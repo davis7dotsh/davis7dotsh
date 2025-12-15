@@ -40,6 +40,11 @@
 		</p>
 
 		<p>
+			<a href="https://btca.dev" target="_blank">btca (The Better Context App)</a> the best way to get
+			up to date context on the tech you're building with.
+		</p>
+
+		<p>
 			<a href="https://github.com/bmdavis419/river" target="_blank">River</a> a trpc like experience
 			for durable streams and ai agents.
 		</p>

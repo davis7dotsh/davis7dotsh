@@ -1,5 +1,5 @@
 {
-	"window.titleBarStyle": "custom",
+	"typescript.experimental.useTsgo": true,
 	"workbench.colorCustomizations": {
 		"titleBar.activeBackground": "#000000",
 		"titleBar.activeForeground": "#ffffff",
