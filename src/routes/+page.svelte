@@ -9,57 +9,113 @@
 </svelte:head>
 
 <main class="z-10 px-3 text-center">
-	<article class="prose prose-neutral prose-invert pb-16 text-left">
+	<div class="pb-16 text-left">
 		<div class="mb-8 flex justify-center">
 			<img src={logo} alt="Ben Davis Logo" class="w-24" />
 		</div>
-		<h1 class="mb-0 pb-0">Ben Davis</h1>
-		<p class="mx-0 my-1">
-			<a href="https://github.com/bmdavis419" target="_blank">developer</a>,
-			<a href="https://www.youtube.com/@bmdavis419" target="_blank">youtuber</a>, and
-			<a href="https://www.youtube.com/@t3dotgg/videos" target="_blank">theo's manager</a>. based in
-			sf.
+		<h1 class="mb-0 pb-0 text-4xl font-bold tracking-tight text-neutral-100">Ben Davis</h1>
+		<p class="mx-0 mt-2 mb-8 text-neutral-300">
+			<a
+				href="https://github.com/bmdavis419"
+				target="_blank"
+				class="text-neutral-100 underline decoration-neutral-700 underline-offset-2 transition-colors hover:decoration-neutral-400"
+				>developer</a
+			>,
+			<a
+				href="https://www.youtube.com/@bmdavis419"
+				target="_blank"
+				class="text-neutral-100 underline decoration-neutral-700 underline-offset-2 transition-colors hover:decoration-neutral-400"
+				>youtuber</a
+			>, and
+			<a
+				href="https://www.youtube.com/@t3dotgg/videos"
+				target="_blank"
+				class="text-neutral-100 underline decoration-neutral-700 underline-offset-2 transition-colors hover:decoration-neutral-400"
+				>theo's manager</a
+			>. based in sf.
 		</p>
 
-		<h3>You might be looking for:</h3>
+		<h3 class="mb-4 text-lg font-medium text-neutral-200">You might be looking for:</h3>
 
-		<p>
-			<a href="/macos">My MacOS Setup</a> a collection of resources on how I setup my mac to be a power
-			user's dream. Includes karabiner config, keyboard shortcuts, tools I used to make my configs, all
-			the programs I use, and more.
-		</p>
+		<div class="space-y-3">
+			<a
+				href="/macos"
+				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+			>
+				<span class="font-medium text-neutral-100">My MacOS Setup</span>
+				<span class="mt-1 block text-sm text-neutral-400"
+					>A collection of resources on how I setup my mac to be a power user's dream. Includes
+					karabiner config, keyboard shortcuts, tools I used to make my configs, all the programs I
+					use, and more.</span
+				>
+			</a>
 
-		<p>
-			<a href="/karabiner">Karabiner Config</a> my complete karabiner elements config and a visualizer
-			for all my keybindings.
-		</p>
+			<a
+				href="/karabiner"
+				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+			>
+				<span class="font-medium text-neutral-100">Karabiner Config</span>
+				<span class="mt-1 block text-sm text-neutral-400"
+					>My complete karabiner elements config and a visualizer for all my keybindings.</span
+				>
+			</a>
 
-		<p>
-			<a href="/sv">SvelteKit Setup</a> a bunch of prompts/cursor rules to get your SvelteKit project
-			started.
-		</p>
+			<a
+				href="/sv"
+				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+			>
+				<span class="font-medium text-neutral-100">SvelteKit Setup</span>
+				<span class="mt-1 block text-sm text-neutral-400"
+					>A bunch of prompts/cursor rules to get your SvelteKit project started.</span
+				>
+			</a>
 
-		<p>
-			<a href="https://btca.dev" target="_blank">btca (The Better Context App)</a> the best way to get
-			up to date context on the tech you're building with.
-		</p>
+			<a
+				href="https://btca.dev"
+				target="_blank"
+				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+			>
+				<span class="font-medium text-neutral-100">btca (The Better Context App)</span>
+				<span class="mt-1 block text-sm text-neutral-400"
+					>The best way to get up to date context on the tech you're building with.</span
+				>
+			</a>
 
-		<p>
-			<a href="https://github.com/bmdavis419/river" target="_blank">River</a> a trpc like experience
-			for durable streams and ai agents.
-		</p>
+			<a
+				href="https://github.com/bmdavis419/river"
+				target="_blank"
+				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+			>
+				<span class="font-medium text-neutral-100">River</span>
+				<span class="mt-1 block text-sm text-neutral-400"
+					>A trpc like experience for durable streams and ai agents.</span
+				>
+			</a>
 
-		<p>
-			<a href="https://insiderviz.com" target="_blank">Insiderviz</a> an insider trading data visualization
-			platform. I built this in college with the boys. Was a really cool project that is now pretty much
-			abandoned.
-		</p>
+			<a
+				href="https://insiderviz.com"
+				target="_blank"
+				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+			>
+				<span class="font-medium text-neutral-100">Insiderviz</span>
+				<span class="mt-1 block text-sm text-neutral-400"
+					>An insider trading data visualization platform. I built this in college with the boys.
+					Was a really cool project that is now pretty much abandoned.</span
+				>
+			</a>
 
-		<p>
-			<a href="https://svg.davis7.sh" target="_blank">Quick SVG Background</a> A really simple webapp
-			for uploading an SVG and adding a background to it. I know it sounds dumb, but I use it all the
-			time for making thumbnails.
-		</p>
-	</article>
+			<a
+				href="https://svg.davis7.sh"
+				target="_blank"
+				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+			>
+				<span class="font-medium text-neutral-100">Quick SVG Background</span>
+				<span class="mt-1 block text-sm text-neutral-400"
+					>A really simple webapp for uploading an SVG and adding a background to it. I know it
+					sounds dumb, but I use it all the time for making thumbnails.</span
+				>
+			</a>
+		</div>
+	</div>
 	<SocialLinks />
 </main>
