@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Copy } from 'lucide-svelte';
+	import { Copy, Check } from 'lucide-svelte';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
 
 	const ghosttyContent = `---
@@ -23,9 +23,15 @@ agent: build
 
 My tmux config is located at: ~/.tmux.conf Your job is to make the changes I describe to that config file. Every time you make a change, make sure to end by giving me the command I need to restart my current tmux instance and use the changes immediately`;
 
-	const copyToClipboard = async (content: string) => {
+	let copiedId = $state<string | null>(null);
+
+	const copyToClipboard = async (content: string, id: string) => {
 		try {
 			await navigator.clipboard.writeText(content);
+			copiedId = id;
+			setTimeout(() => {
+				copiedId = null;
+			}, 2000);
 		} catch (err) {
 			console.error('Failed to copy text: ', err);
 		}
@@ -42,7 +48,9 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 
 <main class="z-10 px-3 text-center">
 	<article class="prose prose-neutral prose-invert pb-16 text-left">
-		<a href="/" class="text-accent hover:text-accent/80 mb-8 inline-block transition-colors"
+		<a
+			href="/"
+			class="mb-8 inline-block text-sm font-medium text-neutral-400 transition-colors hover:text-neutral-300"
 			>← Back to Home</a
 		>
 
@@ -107,11 +115,16 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 
 		<div class="relative">
 			<button
-				class="bg-accent text-background absolute right-2 top-2 flex items-center gap-1 rounded px-2 py-1 text-xs font-semibold transition-opacity hover:opacity-80"
-				onclick={() => copyToClipboard(ghosttyContent)}
+				class="absolute top-2 right-2 flex items-center gap-1 rounded border border-neutral-600 bg-neutral-800 px-2 py-1 text-xs font-medium text-neutral-300 transition-colors hover:border-neutral-500 hover:text-neutral-200"
+				onclick={() => copyToClipboard(ghosttyContent, 'ghostty')}
 			>
-				<Copy size={12} />
-				Copy
+				{#if copiedId === 'ghostty'}
+					<Check size={12} class="text-green-400" />
+					Copied!
+				{:else}
+					<Copy size={12} />
+					Copy
+				{/if}
 			</button>
 			<pre><code
 					>---
@@ -128,11 +141,16 @@ Run "ghostty +show-config --default --docs" to see the full guide on how to conf
 
 		<div class="relative">
 			<button
-				class="bg-accent text-background absolute right-2 top-2 flex items-center gap-1 rounded px-2 py-1 text-xs font-semibold transition-opacity hover:opacity-80"
-				onclick={() => copyToClipboard(cursorContent)}
+				class="absolute top-2 right-2 flex items-center gap-1 rounded border border-neutral-600 bg-neutral-800 px-2 py-1 text-xs font-medium text-neutral-300 transition-colors hover:border-neutral-500 hover:text-neutral-200"
+				onclick={() => copyToClipboard(cursorContent, 'cursor')}
 			>
-				<Copy size={12} />
-				Copy
+				{#if copiedId === 'cursor'}
+					<Check size={12} class="text-green-400" />
+					Copied!
+				{:else}
+					<Copy size={12} />
+					Copy
+				{/if}
 			</button>
 			<pre><code
 					>---
@@ -149,11 +167,16 @@ My cursor (vscode) keybindings are located at: "~/Library/Application Support/Cu
 
 		<div class="relative">
 			<button
-				class="bg-accent text-background absolute right-2 top-2 flex items-center gap-1 rounded px-2 py-1 text-xs font-semibold transition-opacity hover:opacity-80"
-				onclick={() => copyToClipboard(tmuxContent)}
+				class="absolute top-2 right-2 flex items-center gap-1 rounded border border-neutral-600 bg-neutral-800 px-2 py-1 text-xs font-medium text-neutral-300 transition-colors hover:border-neutral-500 hover:text-neutral-200"
+				onclick={() => copyToClipboard(tmuxContent, 'tmux')}
 			>
-				<Copy size={12} />
-				Copy
+				{#if copiedId === 'tmux'}
+					<Check size={12} class="text-green-400" />
+					Copied!
+				{:else}
+					<Copy size={12} />
+					Copy
+				{/if}
 			</button>
 			<pre><code
 					>---
