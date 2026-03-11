@@ -8,6 +8,22 @@
 	let { children } = $props();
 </script>
 
+<svelte:head>
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Ben Davis" />
+	<meta property="og:title" content="Ben Davis - dev & youtuber" />
+	<meta property="og:description" content="developer, youtuber, and theo's manager. based in sf" />
+	<meta property="og:url" content="https://davis7.sh" />
+	<meta property="og:image" content="https://davis7.sh/og.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Ben Davis - dev & youtuber" />
+	<meta name="twitter:description" content="developer, youtuber, and theo's manager. based in sf" />
+	<meta name="twitter:image" content="https://davis7.sh/og.png" />
+</svelte:head>
+
 <div class="relative min-h-screen w-full bg-neutral-950 text-neutral-50">
 	<div
 		class="fixed inset-0 h-full w-full bg-[url('/grid.svg')] [mask-image:linear-gradient(to_bottom,white_0%,white_75%,transparent_100%)]"
