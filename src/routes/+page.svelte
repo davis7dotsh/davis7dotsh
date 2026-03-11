@@ -39,6 +39,16 @@
 
 		<div class="space-y-3">
 			<a
+				href="/sponsors"
+				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+			>
+				<span class="font-medium text-neutral-100">Sponsors</span>
+				<span class="mt-1 block text-sm text-neutral-400"
+					>The companies backing my work, with links, logos, and a quick rundown on each one.</span
+				>
+			</a>
+
+			<a
 				href="/macos"
 				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
 			>
