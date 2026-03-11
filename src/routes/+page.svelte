@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Ben Davis - dev & youtuber</title>
+	<title>Ben Davis</title>
 	<meta name="description" content="developer, youtuber, and theo's manager. based in sf" />
 </svelte:head>
 
