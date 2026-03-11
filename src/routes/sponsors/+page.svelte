@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SocialLinks from '$lib/components/SocialLinks.svelte';
 	import agentuityLogo from '$lib/svg/sponsors/agentuity.svg';
 	import daytonaLogo from '$lib/svg/sponsors/daytona.svg';
 	import greptileLogo from '$lib/svg/sponsors/greptile.svg';
@@ -117,4 +118,6 @@
 			{/each}
 		</div>
 	</div>
+
+	<SocialLinks />
 </main>
