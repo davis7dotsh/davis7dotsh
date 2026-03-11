@@ -115,6 +115,15 @@
 					sounds dumb, but I use it all the time for making thumbnails.</span
 				>
 			</a>
+			<a
+				href="/sponsors"
+				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+			>
+				<span class="font-medium text-neutral-100">Sponsors</span>
+				<span class="mt-1 block text-sm text-neutral-400"
+					>The companies that support my work in development and content creation.</span
+				>
+			</a>
 		</div>
 	</div>
 	<SocialLinks />
