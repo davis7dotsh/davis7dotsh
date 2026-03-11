@@ -42,7 +42,7 @@
 			logoClass: 'max-h-10 max-w-[9.5rem]',
 			logoContainerClass: 'border-cyan-300/10 bg-[#120f18]',
 			cardClass:
-				'border-fuchsia-400/20 bg-linear-to-br from-[#07040f] via-[#17111f] to-[#0b0812] text-neutral-100 hover:border-cyan-300/35 hover:bg-linear-to-br hover:from-[#0a0714] hover:via-[#1d1526] hover:to-[#0d0a15]',
+				'border-fuchsia-400/20 bg-linear-to-br from-[#07040f] via-[#17111f] to-[#0b0812] text-neutral-100 hover:border-fuchsia-400/55 hover:bg-linear-to-br hover:from-[#0a0714] hover:via-[#1d1526] hover:to-[#0d0a15]',
 			descriptionClass: 'text-neutral-300',
 			ctaClass: 'text-[#853CCE] group-hover:text-cyan-200'
 		},
@@ -90,10 +90,10 @@
 					href={sponsor.href}
 					target="_blank"
 					rel="noreferrer"
-					class={`group flex h-75 w-full flex-col rounded-2xl border p-5 transition-all duration-200 hover:-translate-y-0.5 ${sponsor.cardClass}`}
+					class={`group flex h-75 w-full flex-col border p-5 transition-all duration-200 hover:-translate-y-0.5 ${sponsor.cardClass}`}
 				>
 					<div
-						class={`mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden rounded-xl border px-5 ${sponsor.logoContainerClass}`}
+						class={`mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden border px-5 ${sponsor.logoContainerClass}`}
 					>
 						<img
 							src={sponsor.logo}
