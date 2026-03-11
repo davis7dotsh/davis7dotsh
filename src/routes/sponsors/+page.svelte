@@ -9,7 +9,7 @@
 			name: 'Agentuity',
 			href: 'https://davis7.link/agentuity',
 			description:
-				'The full-stack platform for building and deploying AI agents with built-in APIs, frontends, databases, and observability.',
+				"full stack infra for ai agents. seriously, everything you need for building agents it's great",
 			logo: agentuityLogo,
 			logoAlt: 'Agentuity logo',
 			logoClass: 'max-h-10 max-w-[10rem]',
@@ -22,36 +22,34 @@
 		{
 			name: 'Daytona',
 			href: 'https://davis7.link/daytona',
-			description:
-				'Secure infrastructure for running AI-generated code in fast, isolated sandboxes.',
+			description: 'my favorite sandbox platform. really fast, great dx, and open source.',
 			logo: daytonaLogo,
 			logoAlt: 'Daytona logo',
 			logoClass: 'max-h-8 max-w-[10.75rem]',
-			logoContainerClass: 'border-sky-950/10 bg-white',
+			logoContainerClass: 'border-white/10 bg-black',
 			cardClass:
-				'border-sky-500/25 bg-linear-to-br from-white via-[#f3f9ff] to-white text-neutral-950 hover:border-sky-500/60 hover:bg-linear-to-br hover:from-white hover:via-[#eaf5ff] hover:to-white',
-			descriptionClass: 'text-neutral-700',
-			ctaClass: 'text-sky-700 group-hover:text-sky-800'
+				'border-white/15 bg-[#0a0a0a] text-neutral-100 hover:border-white/35 hover:bg-[#111111]',
+			descriptionClass: 'text-neutral-400',
+			ctaClass: 'text-white/70 group-hover:text-white'
 		},
 		{
 			name: 'Railway',
 			href: 'https://davis7.link/railway',
 			description:
-				'A full-stack cloud for deploying apps, servers, and databases with scaling, monitoring, and security built in.',
+				"the best place to host your apps. crazy performance, actually get's modern tech, and really cheap",
 			logo: railwayLogo,
 			logoAlt: 'Railway logo',
-			logoClass: 'max-h-7 max-w-[9.5rem]',
+			logoClass: 'max-h-10 max-w-[9.5rem]',
 			logoContainerClass: 'border-cyan-300/10 bg-[#120f18]',
 			cardClass:
 				'border-fuchsia-400/20 bg-linear-to-br from-[#07040f] via-[#17111f] to-[#0b0812] text-neutral-100 hover:border-cyan-300/35 hover:bg-linear-to-br hover:from-[#0a0714] hover:via-[#1d1526] hover:to-[#0d0a15]',
 			descriptionClass: 'text-neutral-300',
-			ctaClass: 'text-cyan-300 group-hover:text-cyan-200'
+			ctaClass: 'text-[#853CCE] group-hover:text-cyan-200'
 		},
 		{
 			name: 'Greptile',
 			href: 'https://davis7.link/greptile',
-			description:
-				'AI code reviews that understand your entire codebase so teams can catch bugs faster and improve code quality.',
+			description: 'my ai code reviewer of choice. cannot imagine not having it on my repos',
 			logo: greptileLogo,
 			logoAlt: 'Greptile logo',
 			logoClass: 'max-h-9 max-w-[10rem]',
@@ -83,7 +81,7 @@
 
 		<h1 class="text-4xl font-bold tracking-tight text-neutral-100">Sponsors</h1>
 		<p class="mt-3 max-w-2xl text-neutral-300">
-			The companies helping me keep building, shipping, and making cool stuff on the internet.
+			The companies I wanted to work with to make my videos possible
 		</p>
 
 		<div class="mt-8 grid auto-rows-fr gap-4 sm:grid-cols-2">
@@ -92,7 +90,7 @@
 					href={sponsor.href}
 					target="_blank"
 					rel="noreferrer"
-					class={`group flex h-[18.75rem] w-full flex-col rounded-2xl border p-5 transition-all duration-200 hover:-translate-y-0.5 ${sponsor.cardClass}`}
+					class={`group flex h-75 w-full flex-col rounded-2xl border p-5 transition-all duration-200 hover:-translate-y-0.5 ${sponsor.cardClass}`}
 				>
 					<div
 						class={`mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden rounded-xl border px-5 ${sponsor.logoContainerClass}`}
