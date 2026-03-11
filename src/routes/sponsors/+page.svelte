@@ -12,7 +12,7 @@
 				'The full-stack platform for building and deploying AI agents with built-in APIs, frontends, databases, and observability.',
 			logo: agentuityLogo,
 			logoAlt: 'Agentuity logo',
-			logoClass: 'w-40',
+			logoClass: 'max-h-10 max-w-[10rem]',
 			logoContainerClass: 'border-cyan-400/20 bg-black/60',
 			cardClass:
 				'border-cyan-400/20 bg-linear-to-br from-[#0a0a0a] via-[#09161a] to-[#0a0a0a] text-neutral-100 hover:border-cyan-300/45 hover:bg-linear-to-br hover:from-[#0a0a0a] hover:via-[#0d2024] hover:to-[#0a0a0a]',
@@ -26,7 +26,7 @@
 				'Secure infrastructure for running AI-generated code in fast, isolated sandboxes.',
 			logo: daytonaLogo,
 			logoAlt: 'Daytona logo',
-			logoClass: 'w-40',
+			logoClass: 'max-h-8 max-w-[10.75rem]',
 			logoContainerClass: 'border-sky-950/10 bg-white',
 			cardClass:
 				'border-sky-500/25 bg-linear-to-br from-white via-[#f3f9ff] to-white text-neutral-950 hover:border-sky-500/60 hover:bg-linear-to-br hover:from-white hover:via-[#eaf5ff] hover:to-white',
@@ -40,7 +40,7 @@
 				'A full-stack cloud for deploying apps, servers, and databases with scaling, monitoring, and security built in.',
 			logo: railwayLogo,
 			logoAlt: 'Railway logo',
-			logoClass: 'w-36',
+			logoClass: 'max-h-7 max-w-[9.5rem]',
 			logoContainerClass: 'border-cyan-300/10 bg-[#120f18]',
 			cardClass:
 				'border-fuchsia-400/20 bg-linear-to-br from-[#07040f] via-[#17111f] to-[#0b0812] text-neutral-100 hover:border-cyan-300/35 hover:bg-linear-to-br hover:from-[#0a0714] hover:via-[#1d1526] hover:to-[#0d0a15]',
@@ -54,7 +54,7 @@
 				'AI code reviews that understand your entire codebase so teams can catch bugs faster and improve code quality.',
 			logo: greptileLogo,
 			logoAlt: 'Greptile logo',
-			logoClass: 'w-40',
+			logoClass: 'max-h-9 max-w-[10rem]',
 			logoContainerClass: 'border-[#107A4D]/20 bg-[#08130f]',
 			cardClass:
 				'border-[#107A4D]/30 bg-linear-to-br from-[#06100c] via-[#0d2018] to-[#08130f] text-neutral-100 hover:border-[#1c9b67]/55 hover:bg-linear-to-br hover:from-[#07130e] hover:via-[#123021] hover:to-[#0a1712]',
@@ -86,21 +86,21 @@
 			The companies helping me keep building, shipping, and making cool stuff on the internet.
 		</p>
 
-		<div class="mt-8 grid gap-4 sm:grid-cols-2">
+		<div class="mt-8 grid auto-rows-fr gap-4 sm:grid-cols-2">
 			{#each sponsors as sponsor}
 				<a
 					href={sponsor.href}
 					target="_blank"
 					rel="noreferrer"
-					class={`group flex h-full flex-col rounded-2xl border p-5 transition-all duration-200 hover:-translate-y-0.5 ${sponsor.cardClass}`}
+					class={`group flex h-[18.75rem] w-full flex-col rounded-2xl border p-5 transition-all duration-200 hover:-translate-y-0.5 ${sponsor.cardClass}`}
 				>
 					<div
-						class={`mb-5 flex min-h-24 items-center overflow-hidden rounded-xl border px-5 ${sponsor.logoContainerClass}`}
+						class={`mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden rounded-xl border px-5 ${sponsor.logoContainerClass}`}
 					>
 						<img
 							src={sponsor.logo}
 							alt={sponsor.logoAlt}
-							class={`block h-auto max-h-10 max-w-full shrink-0 object-contain object-left ${sponsor.logoClass}`}
+							class={`mx-auto block h-auto w-auto shrink-0 object-contain ${sponsor.logoClass}`}
 						/>
 					</div>
 
