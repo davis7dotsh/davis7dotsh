@@ -4,13 +4,14 @@
 	import daytonaLogo from '$lib/svg/sponsors/daytona.svg';
 	import greptileLogo from '$lib/svg/sponsors/greptile.svg';
 	import railwayLogo from '$lib/svg/sponsors/railway.svg';
+	import workosLogo from '$lib/svg/sponsors/workos.svg';
 
 	const sponsors = [
 		{
 			name: 'Agentuity',
 			href: 'https://davis7.link/agentuity',
 			description:
-				"full stack infra for ai agents. seriously, everything you need for building agents it's great",
+				"Full stack infra for ai agents. Seriously, everything you need for building agents it's great.",
 			logo: agentuityLogo,
 			logoAlt: 'Agentuity logo',
 			logoClass: 'max-h-10 max-w-[10rem]',
@@ -23,7 +24,7 @@
 		{
 			name: 'Daytona',
 			href: 'https://davis7.link/daytona',
-			description: 'my favorite sandbox platform. really fast, great dx, and open source.',
+			description: 'My favorite sandbox platform. Really fast, great dx, and open source.',
 			logo: daytonaLogo,
 			logoAlt: 'Daytona logo',
 			logoClass: 'max-h-8 max-w-[10.75rem]',
@@ -37,7 +38,7 @@
 			name: 'Railway',
 			href: 'https://davis7.link/railway',
 			description:
-				"the best place to host your apps. crazy performance, actually get's modern tech, and really cheap",
+				'The best place to host your apps. Crazy performance, modern tech, and really cheap.',
 			logo: railwayLogo,
 			logoAlt: 'Railway logo',
 			logoClass: 'max-h-10 max-w-[9.5rem]',
@@ -50,7 +51,7 @@
 		{
 			name: 'Greptile',
 			href: 'https://davis7.link/greptile',
-			description: 'my ai code reviewer of choice. cannot imagine not having it on my repos',
+			description: 'My ai code reviewer of choice. Cannot imagine not having it on my repos.',
 			logo: greptileLogo,
 			logoAlt: 'Greptile logo',
 			logoClass: 'max-h-9 max-w-[10rem]',
@@ -59,6 +60,20 @@
 				'border-[#107A4D]/30 bg-linear-to-br from-[#06100c] via-[#0d2018] to-[#08130f] text-neutral-100 hover:border-[#1c9b67]/55 hover:bg-linear-to-br hover:from-[#07130e] hover:via-[#123021] hover:to-[#0a1712]',
 			descriptionClass: 'text-neutral-300',
 			ctaClass: 'text-[#5fd09a] group-hover:text-[#7be0ae]'
+		},
+		{
+			name: 'WorkOS',
+			href: 'https://davis7.link/workos',
+			description:
+				'The auth platform for everything from insane enterprise setups all the way down to side projects.',
+			logo: workosLogo,
+			logoAlt: 'WorkOS logo',
+			logoClass: 'max-h-8 max-w-[9rem]',
+			logoContainerClass: 'border-[#6363F1]/20 bg-[#080816]',
+			cardClass:
+				'border-[#6363F1]/25 bg-linear-to-br from-[#06061a] via-[#0e0e28] to-[#07071c] text-neutral-100 hover:border-[#6363F1]/50 hover:bg-linear-to-br hover:from-[#08081e] hover:via-[#131330] hover:to-[#09091f]',
+			descriptionClass: 'text-neutral-300',
+			ctaClass: 'text-[#9e9eff] group-hover:text-[#b8b8ff]'
 		}
 	] as const;
 </script>
@@ -67,7 +82,7 @@
 	<title>Sponsors - Ben Davis</title>
 	<meta
 		name="description"
-		content="Companies sponsoring Ben Davis, with links, logos, and quick descriptions."
+		content="The companies that I wanted to work with to make my videos possible."
 	/>
 </svelte:head>
 
@@ -82,7 +97,7 @@
 
 		<h1 class="text-4xl font-bold tracking-tight text-neutral-100">Sponsors</h1>
 		<p class="mt-3 max-w-2xl text-neutral-300">
-			The companies I wanted to work with to make my videos possible
+			The companies I wanted to work with to make my videos possible.
 		</p>
 
 		<div class="mt-8 grid auto-rows-fr gap-4 sm:grid-cols-2">
