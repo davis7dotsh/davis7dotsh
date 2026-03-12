@@ -8,72 +8,52 @@
 
 	const sponsors = [
 		{
+			slug: 'agentuity',
 			name: 'Agentuity',
 			href: 'https://davis7.link/agentuity',
 			description:
 				"Full stack infra for ai agents. Seriously, everything you need for building agents it's great.",
 			logo: agentuityLogo,
 			logoAlt: 'Agentuity logo',
-			logoClass: 'max-h-10 max-w-[10rem]',
-			logoContainerClass: 'border-cyan-400/20 bg-black/60',
-			cardClass:
-				'border-cyan-400/20 bg-linear-to-br from-[#0a0a0a] via-[#09161a] to-[#0a0a0a] text-neutral-100 hover:border-cyan-300/45 hover:bg-linear-to-br hover:from-[#0a0a0a] hover:via-[#0d2024] hover:to-[#0a0a0a]',
-			descriptionClass: 'text-neutral-300',
-			ctaClass: 'text-cyan-300 group-hover:text-cyan-200'
+			logoClass: 'max-h-10 max-w-[10rem]'
 		},
 		{
+			slug: 'daytona',
 			name: 'Daytona',
 			href: 'https://davis7.link/daytona',
 			description: 'My favorite sandbox platform. Really fast, great dx, and open source.',
 			logo: daytonaLogo,
 			logoAlt: 'Daytona logo',
-			logoClass: 'max-h-8 max-w-[10.75rem]',
-			logoContainerClass: 'border-white/10 bg-black',
-			cardClass:
-				'border-white/15 bg-[#0a0a0a] text-neutral-100 hover:border-white/35 hover:bg-[#111111]',
-			descriptionClass: 'text-neutral-400',
-			ctaClass: 'text-white/70 group-hover:text-white'
+			logoClass: 'max-h-8 max-w-[10.75rem]'
 		},
 		{
+			slug: 'railway',
 			name: 'Railway',
 			href: 'https://davis7.link/railway',
 			description:
 				'The best place to host your apps. Crazy performance, modern tech, and really cheap.',
 			logo: railwayLogo,
 			logoAlt: 'Railway logo',
-			logoClass: 'max-h-10 max-w-[9.5rem]',
-			logoContainerClass: 'border-cyan-300/10 bg-[#120f18]',
-			cardClass:
-				'border-fuchsia-400/20 bg-linear-to-br from-[#07040f] via-[#17111f] to-[#0b0812] text-neutral-100 hover:border-fuchsia-400/55 hover:bg-linear-to-br hover:from-[#0a0714] hover:via-[#1d1526] hover:to-[#0d0a15]',
-			descriptionClass: 'text-neutral-300',
-			ctaClass: 'text-[#853CCE] group-hover:text-cyan-200'
+			logoClass: 'max-h-10 max-w-[9.5rem]'
 		},
 		{
+			slug: 'greptile',
 			name: 'Greptile',
 			href: 'https://davis7.link/greptile',
 			description: 'My ai code reviewer of choice. Cannot imagine not having it on my repos.',
 			logo: greptileLogo,
 			logoAlt: 'Greptile logo',
-			logoClass: 'max-h-9 max-w-[10rem]',
-			logoContainerClass: 'border-[#107A4D]/20 bg-[#08130f]',
-			cardClass:
-				'border-[#107A4D]/30 bg-linear-to-br from-[#06100c] via-[#0d2018] to-[#08130f] text-neutral-100 hover:border-[#1c9b67]/55 hover:bg-linear-to-br hover:from-[#07130e] hover:via-[#123021] hover:to-[#0a1712]',
-			descriptionClass: 'text-neutral-300',
-			ctaClass: 'text-[#5fd09a] group-hover:text-[#7be0ae]'
+			logoClass: 'max-h-9 max-w-[10rem]'
 		},
 		{
+			slug: 'workos',
 			name: 'WorkOS',
 			href: 'https://davis7.link/workos',
 			description:
 				'The auth platform for everything from insane enterprise setups all the way down to side projects.',
 			logo: workosLogo,
 			logoAlt: 'WorkOS logo',
-			logoClass: 'max-h-8 max-w-[9rem]',
-			logoContainerClass: 'border-[#6363F1]/20 bg-[#080816]',
-			cardClass:
-				'border-[#6363F1]/25 bg-linear-to-br from-[#06061a] via-[#0e0e28] to-[#07071c] text-neutral-100 hover:border-[#6363F1]/50 hover:bg-linear-to-br hover:from-[#08081e] hover:via-[#131330] hover:to-[#09091f]',
-			descriptionClass: 'text-neutral-300',
-			ctaClass: 'text-[#9e9eff] group-hover:text-[#b8b8ff]'
+			logoClass: 'max-h-8 max-w-[9rem]'
 		}
 	] as const;
 </script>
@@ -95,8 +75,10 @@
 			Back home
 		</a>
 
-		<h1 class="text-4xl font-bold tracking-tight text-neutral-100">Sponsors</h1>
-		<p class="mt-3 max-w-2xl text-neutral-300">
+		<h1 class="text-[clamp(2.25rem,4vw,3.75rem)] font-bold tracking-tight text-neutral-100 leading-none">
+			Sponsors
+		</h1>
+		<p class="mt-3 max-w-2xl text-base leading-7 text-neutral-300 sm:text-lg">
 			The companies I wanted to work with to make my videos possible.
 		</p>
 
@@ -106,26 +88,24 @@
 					href={sponsor.href}
 					target="_blank"
 					rel="noreferrer"
-					class={`group flex h-75 w-full flex-col border p-5 transition-all duration-200 hover:-translate-y-0.5 ${sponsor.cardClass}`}
+					class={`group sponsor-card sponsor-card--${sponsor.slug} flex h-75 w-full flex-col p-5`}
 				>
-					<div
-						class={`mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden border px-5 ${sponsor.logoContainerClass}`}
-					>
+					<div class="sponsor-logo-frame mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden px-5">
 						<img
 							src={sponsor.logo}
 							alt={sponsor.logoAlt}
-							class={`mx-auto block h-auto w-auto shrink-0 object-contain ${sponsor.logoClass}`}
+							class={`sponsor-logo mx-auto block h-auto w-auto shrink-0 object-contain ${sponsor.logoClass}`}
 						/>
 					</div>
 
 					<div class="flex flex-1 flex-col">
-						<h2 class="text-xl font-semibold">
+						<h2 class="sponsor-title text-[clamp(1.125rem,1.5vw,1.5rem)] font-semibold leading-tight">
 							{sponsor.name}
 						</h2>
-						<p class={`mt-2 flex-1 text-sm leading-6 ${sponsor.descriptionClass}`}>
+						<p class="sponsor-description mt-2 flex-1 text-sm leading-6 sm:text-base">
 							{sponsor.description}
 						</p>
-						<span class={`mt-4 text-sm font-medium transition-colors ${sponsor.ctaClass}`}>
+						<span class="sponsor-cta mt-4 text-sm font-medium">
 							Visit sponsor
 						</span>
 					</div>
@@ -136,3 +116,157 @@
 
 	<SocialLinks />
 </main>
+
+<style lang="postcss">
+	.sponsor-card {
+		--sponsor-surface: linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #0b0b0b 0%, #181818 100%);
+		--sponsor-border: rgba(255, 255, 255, 0.12);
+		--sponsor-border-hover: rgba(255, 255, 255, 0.24);
+		--sponsor-logo-bg: #050505;
+		--sponsor-logo-border: rgba(255, 255, 255, 0.08);
+		--sponsor-logo-border-hover: rgba(255, 255, 255, 0.18);
+		--sponsor-title: var(--color-neutral-100);
+		--sponsor-description: var(--color-neutral-300);
+		--sponsor-cta: var(--color-neutral-100);
+		background: var(--sponsor-surface);
+		border: 1px solid var(--sponsor-border);
+		color: var(--sponsor-title);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+		transition:
+			transform 180ms ease,
+			background 180ms ease,
+			border-color 180ms ease,
+			box-shadow 180ms ease;
+	}
+
+	.sponsor-card:hover {
+		transform: translateY(-2px);
+		background: var(--sponsor-surface-hover);
+		border-color: var(--sponsor-border-hover);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+	}
+
+	.sponsor-logo-frame {
+		background: var(--sponsor-logo-bg);
+		border: 1px solid var(--sponsor-logo-border);
+		transition: border-color 180ms ease, background 180ms ease;
+	}
+
+	.sponsor-card:hover .sponsor-logo-frame {
+		border-color: var(--sponsor-logo-border-hover);
+	}
+
+	.sponsor-title {
+		color: var(--sponsor-title);
+		letter-spacing: -0.02em;
+	}
+
+	.sponsor-description {
+		color: var(--sponsor-description);
+	}
+
+	.sponsor-cta {
+		color: var(--sponsor-cta);
+	}
+
+	.sponsor-card--agentuity {
+		--sponsor-surface: linear-gradient(180deg, #081214 0%, #091a1d 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #091619 0%, #0d2327 100%);
+		--sponsor-border: rgba(34, 211, 238, 0.18);
+		--sponsor-border-hover: rgba(34, 211, 238, 0.32);
+		--sponsor-logo-border: rgba(34, 211, 238, 0.16);
+		--sponsor-logo-border-hover: rgba(34, 211, 238, 0.28);
+		--sponsor-cta: #22d3ee;
+	}
+
+	.sponsor-card--daytona {
+		--sponsor-surface: linear-gradient(180deg, #0b0b0b 0%, #131313 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #0d0d0d 0%, #1a1a1a 100%);
+		--sponsor-border: rgba(255, 255, 255, 0.14);
+		--sponsor-border-hover: rgba(255, 255, 255, 0.28);
+		--sponsor-logo-border: rgba(255, 255, 255, 0.08);
+		--sponsor-logo-border-hover: rgba(255, 255, 255, 0.2);
+		--sponsor-cta: var(--color-neutral-50);
+	}
+
+	.sponsor-card--railway {
+		--sponsor-surface: linear-gradient(180deg, #120a1b 0%, #1a1226 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #140c1f 0%, #20142d 100%);
+		--sponsor-border: rgba(168, 85, 247, 0.18);
+		--sponsor-border-hover: rgba(168, 85, 247, 0.34);
+		--sponsor-logo-border: rgba(168, 85, 247, 0.16);
+		--sponsor-logo-border-hover: rgba(168, 85, 247, 0.28);
+		--sponsor-cta: #c084fc;
+	}
+
+	.sponsor-card--greptile {
+		--sponsor-surface: linear-gradient(180deg, #07130f 0%, #0b1d16 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #081611 0%, #0f2820 100%);
+		--sponsor-border: rgba(16, 185, 129, 0.18);
+		--sponsor-border-hover: rgba(16, 185, 129, 0.34);
+		--sponsor-logo-border: rgba(16, 185, 129, 0.16);
+		--sponsor-logo-border-hover: rgba(16, 185, 129, 0.28);
+		--sponsor-cta: #34d399;
+	}
+
+	.sponsor-card--workos {
+		--sponsor-surface: linear-gradient(180deg, #0a0d1d 0%, #101632 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #0b1022 0%, #161c3f 100%);
+		--sponsor-border: rgba(99, 102, 241, 0.18);
+		--sponsor-border-hover: rgba(99, 102, 241, 0.34);
+		--sponsor-logo-border: rgba(99, 102, 241, 0.16);
+		--sponsor-logo-border-hover: rgba(99, 102, 241, 0.28);
+		--sponsor-cta: #a5b4fc;
+	}
+
+	:global(html[data-theme='light']) .sponsor-card--agentuity {
+		--sponsor-surface: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #ffffff 0%, #ecfeff 100%);
+		--sponsor-border: rgba(34, 211, 238, 0.18);
+		--sponsor-border-hover: rgba(34, 211, 238, 0.3);
+		--sponsor-logo-border: rgba(34, 211, 238, 0.14);
+		--sponsor-logo-border-hover: rgba(34, 211, 238, 0.24);
+		--sponsor-cta: #0891b2;
+	}
+
+	:global(html[data-theme='light']) .sponsor-card--daytona {
+		--sponsor-surface: linear-gradient(180deg, #ffffff 0%, #f4f4f5 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #ffffff 0%, #e7e7ea 100%);
+		--sponsor-border: rgba(24, 24, 27, 0.12);
+		--sponsor-border-hover: rgba(24, 24, 27, 0.22);
+		--sponsor-logo-border: rgba(24, 24, 27, 0.1);
+		--sponsor-logo-border-hover: rgba(24, 24, 27, 0.18);
+		--sponsor-cta: #171717;
+	}
+
+	:global(html[data-theme='light']) .sponsor-card--railway {
+		--sponsor-surface: linear-gradient(180deg, #ffffff 0%, #f7f2ff 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #ffffff 0%, #f1e7ff 100%);
+		--sponsor-border: rgba(168, 85, 247, 0.18);
+		--sponsor-border-hover: rgba(168, 85, 247, 0.3);
+		--sponsor-logo-border: rgba(168, 85, 247, 0.14);
+		--sponsor-logo-border-hover: rgba(168, 85, 247, 0.24);
+		--sponsor-cta: #7c3aed;
+	}
+
+	:global(html[data-theme='light']) .sponsor-card--greptile {
+		--sponsor-surface: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #ffffff 0%, #dcfce7 100%);
+		--sponsor-border: rgba(16, 185, 129, 0.18);
+		--sponsor-border-hover: rgba(16, 185, 129, 0.3);
+		--sponsor-logo-border: rgba(16, 185, 129, 0.14);
+		--sponsor-logo-border-hover: rgba(16, 185, 129, 0.24);
+		--sponsor-cta: #059669;
+	}
+
+	:global(html[data-theme='light']) .sponsor-card--workos {
+		--sponsor-surface: linear-gradient(180deg, #ffffff 0%, #eef2ff 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #ffffff 0%, #e0e7ff 100%);
+		--sponsor-border: rgba(99, 102, 241, 0.18);
+		--sponsor-border-hover: rgba(99, 102, 241, 0.3);
+		--sponsor-logo-border: rgba(99, 102, 241, 0.14);
+		--sponsor-logo-border-hover: rgba(99, 102, 241, 0.24);
+		--sponsor-cta: #4f46e5;
+	}
+</style>

@@ -52,7 +52,7 @@
 			href="https://karabiner-elements.pqrs.org/"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="text-neutral-100 underline transition-colors hover:text-white">here</a
+			class="text-neutral-100 underline transition-colors hover:text-neutral-50">here</a
 		>.
 	</p>
 

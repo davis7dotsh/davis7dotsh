@@ -103,7 +103,7 @@
 			>← Back to Home</a
 		>
 		<div class="flex items-center justify-between">
-			<h1 class="text-4xl font-bold text-white">SvelteKit Setup</h1>
+			<h1 class="text-4xl font-bold text-neutral-50">SvelteKit Setup</h1>
 			<button
 				onclick={toggleAll}
 				class="rounded-lg border border-neutral-600 px-3 py-1 text-sm font-medium text-neutral-300 transition-colors hover:border-neutral-500 hover:text-neutral-200"
