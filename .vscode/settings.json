@@ -1,10 +1,9 @@
 {
-	"typescript.experimental.useTsgo": true,
+	"js/ts.experimental.useTsgo": true,
 	"workbench.colorCustomizations": {
 		"titleBar.activeBackground": "#000000",
 		"titleBar.activeForeground": "#ffffff",
 		"titleBar.inactiveBackground": "#000000",
 		"titleBar.inactiveForeground": "#ffffff"
-	},
-	"typescript.tsdk": "node_modules/typescript/lib"
+	}
 }

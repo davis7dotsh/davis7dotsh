@@ -80,8 +80,7 @@ body {
 	background-image: linear-gradient(
 		to bottom right,
 		var(--color-neutral-950),
-		var(--color-neutral-900) 55%,
-		var(--color-neutral-800)
+		var(--color-neutral-900)
 	);
 	background-attachment: fixed;
 	color: var(--color-neutral-200);
@@ -126,7 +125,7 @@ body {
 }
 
 .prose a {
-	@apply text-neutral-100 transition-colors hover:text-white;
+	@apply text-neutral-100 transition-colors hover:text-neutral-50;
 	text-decoration: none;
 	border-bottom: 1px solid var(--color-neutral-700);
 }

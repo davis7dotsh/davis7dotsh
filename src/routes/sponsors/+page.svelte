@@ -75,7 +75,9 @@
 			Back home
 		</a>
 
-		<h1 class="text-[clamp(2.25rem,4vw,3.75rem)] font-bold tracking-tight text-neutral-100 leading-none">
+		<h1
+			class="text-[clamp(2.25rem,4vw,3.75rem)] leading-none font-bold tracking-tight text-neutral-100"
+		>
 			Sponsors
 		</h1>
 		<p class="mt-3 max-w-2xl text-base leading-7 text-neutral-300 sm:text-lg">
@@ -90,7 +92,9 @@
 					rel="noreferrer"
 					class={`group sponsor-card sponsor-card--${sponsor.slug} flex h-75 w-full flex-col p-5`}
 				>
-					<div class="sponsor-logo-frame mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden px-5">
+					<div
+						class="sponsor-logo-frame mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden px-5"
+					>
 						<img
 							src={sponsor.logo}
 							alt={sponsor.logoAlt}
@@ -99,15 +103,15 @@
 					</div>
 
 					<div class="flex flex-1 flex-col">
-						<h2 class="sponsor-title text-[clamp(1.125rem,1.5vw,1.5rem)] font-semibold leading-tight">
+						<h2
+							class="sponsor-title text-[clamp(1.125rem,1.5vw,1.5rem)] leading-tight font-semibold"
+						>
 							{sponsor.name}
 						</h2>
 						<p class="sponsor-description mt-2 flex-1 text-sm leading-6 sm:text-base">
 							{sponsor.description}
 						</p>
-						<span class="sponsor-cta mt-4 text-sm font-medium">
-							Visit sponsor
-						</span>
+						<span class="sponsor-cta mt-4 text-sm font-medium"> Visit sponsor </span>
 					</div>
 				</a>
 			{/each}
@@ -150,7 +154,9 @@
 	.sponsor-logo-frame {
 		background: var(--sponsor-logo-bg);
 		border: 1px solid var(--sponsor-logo-border);
-		transition: border-color 180ms ease, background 180ms ease;
+		transition:
+			border-color 180ms ease,
+			background 180ms ease;
 	}
 
 	.sponsor-card:hover .sponsor-logo-frame {
@@ -268,5 +274,12 @@
 		--sponsor-logo-border: rgba(99, 102, 241, 0.14);
 		--sponsor-logo-border-hover: rgba(99, 102, 241, 0.24);
 		--sponsor-cta: #4f46e5;
+	}
+
+	/* Keep logo frame dark in light mode so white SVG logos remain visible */
+	:global(html[data-theme='light']) .sponsor-card {
+		--sponsor-logo-bg: #1a1a1a;
+		--sponsor-title: var(--color-neutral-100);
+		--sponsor-description: var(--color-neutral-300);
 	}
 </style>

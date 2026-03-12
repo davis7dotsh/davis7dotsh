@@ -117,7 +117,7 @@
 		</p>
 		<p class="text-lg text-neutral-300">
 			This will not create a project for you, to do that run: <code
-				class="rounded-md bg-neutral-900 px-2 py-1 font-mono text-sm text-neutral-200"
+				class="rounded-md bg-neutral-800 px-2 py-1 font-mono text-sm text-neutral-200"
 				>bunx sv create</code
 			>. I recommend picking: minimal, typescript, prettier/tailwindcss, and then bun.
 		</p>
@@ -372,7 +372,7 @@
 <!-- Toast Notification -->
 {#if toastMessage}
 	<div
-		class={`fixed right-8 bottom-8 z-50 flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium shadow-xl backdrop-blur-sm transition-all ${toastType === 'success' ? 'border-green-500/30 bg-green-500/10 text-green-300' : 'border-red-500/30 bg-red-500/10 text-red-300'}`}
+		class={`fixed right-8 bottom-8 z-50 flex items-center gap-3 rounded-xl border px-4 py-3 text-sm font-medium shadow-xl backdrop-blur-sm transition-all ${toastType === 'success' ? 'border-green-500/30 bg-green-500/10 text-green-500' : 'border-red-500/30 bg-red-500/10 text-red-500'}`}
 	>
 		<div
 			class={`h-2 w-2 rounded-full ${toastType === 'success' ? 'bg-green-400' : 'bg-red-400'}`}

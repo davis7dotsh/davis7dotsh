@@ -47,7 +47,7 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 </svelte:head>
 
 <main class="z-10 px-3 text-center">
-	<article class="prose prose-neutral prose-invert pb-16 text-left">
+	<article class="prose prose-neutral pb-16 text-left">
 		<a
 			href="/"
 			class="mb-8 inline-block text-sm font-medium text-neutral-400 transition-colors hover:text-neutral-300"

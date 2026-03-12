@@ -26,7 +26,7 @@
 	<meta name="color-scheme" content="dark light" />
 </svelte:head>
 
-<div class="relative min-h-screen w-full bg-neutral-950 text-neutral-50">
+<div class="relative min-h-screen w-full text-neutral-50">
 	<div
 		class="grid-pattern fixed inset-0 h-full w-full [mask-image:linear-gradient(to_bottom,white_0%,white_75%,transparent_100%)]"
 	></div>
