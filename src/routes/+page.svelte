@@ -51,7 +51,7 @@
 		<div class="space-y-3">
 			<a
 				href="/sponsors"
-				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
 			>
 				<span class="font-medium text-neutral-100">Sponsors</span>
 				<span class="mt-1 block text-sm text-neutral-400"
@@ -61,7 +61,7 @@
 
 			<a
 				href="/macos"
-				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
 			>
 				<span class="font-medium text-neutral-100">My MacOS Setup</span>
 				<span class="mt-1 block text-sm text-neutral-400"
@@ -73,7 +73,7 @@
 
 			<a
 				href="/karabiner"
-				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
 			>
 				<span class="font-medium text-neutral-100">Karabiner Config</span>
 				<span class="mt-1 block text-sm text-neutral-400"
@@ -83,7 +83,7 @@
 
 			<a
 				href="/sv"
-				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
 			>
 				<span class="font-medium text-neutral-100">SvelteKit Setup</span>
 				<span class="mt-1 block text-sm text-neutral-400"
@@ -94,7 +94,7 @@
 			<a
 				href="https://btca.dev"
 				target="_blank"
-				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
 			>
 				<span class="font-medium text-neutral-100">btca (The Better Context App)</span>
 				<span class="mt-1 block text-sm text-neutral-400"
@@ -105,7 +105,7 @@
 			<a
 				href="https://github.com/bmdavis419/river"
 				target="_blank"
-				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
 			>
 				<span class="font-medium text-neutral-100">River</span>
 				<span class="mt-1 block text-sm text-neutral-400"
@@ -116,7 +116,7 @@
 			<a
 				href="https://insiderviz.com"
 				target="_blank"
-				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
 			>
 				<span class="font-medium text-neutral-100">Insiderviz</span>
 				<span class="mt-1 block text-sm text-neutral-400"
@@ -128,7 +128,7 @@
 			<a
 				href="https://svg.davis7.sh"
 				target="_blank"
-				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
 			>
 				<span class="font-medium text-neutral-100">Quick SVG Background</span>
 				<span class="mt-1 block text-sm text-neutral-400"
