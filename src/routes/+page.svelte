@@ -94,16 +94,6 @@
 			</a>
 
 			<a
-				href="/sv"
-				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
-			>
-				<span class="font-medium text-neutral-100">SvelteKit Setup</span>
-				<span class="mt-1 block text-sm text-neutral-400"
-					>A bunch of prompts/cursor rules to get your SvelteKit project started.</span
-				>
-			</a>
-
-			<a
 				href="https://btca.dev"
 				target="_blank"
 				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
@@ -111,29 +101,6 @@
 				<span class="font-medium text-neutral-100">btca (The Better Context App)</span>
 				<span class="mt-1 block text-sm text-neutral-400"
 					>The best way to get up to date context on the tech you're building with.</span
-				>
-			</a>
-
-			<a
-				href="https://github.com/bmdavis419/river"
-				target="_blank"
-				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
-			>
-				<span class="font-medium text-neutral-100">River</span>
-				<span class="mt-1 block text-sm text-neutral-400"
-					>A trpc like experience for durable streams and ai agents.</span
-				>
-			</a>
-
-			<a
-				href="https://insiderviz.com"
-				target="_blank"
-				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
-			>
-				<span class="font-medium text-neutral-100">Insiderviz</span>
-				<span class="mt-1 block text-sm text-neutral-400"
-					>An insider trading data visualization platform. I built this in college with the boys.
-					Was a really cool project that is now pretty much abandoned.</span
 				>
 			</a>
 
