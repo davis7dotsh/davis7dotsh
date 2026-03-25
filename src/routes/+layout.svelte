@@ -2,6 +2,7 @@
 	import '../app.css';
 	import { dev } from '$app/environment';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 
 	injectAnalytics({ mode: dev ? 'development' : 'production' });
 
@@ -22,11 +23,12 @@
 	<meta name="twitter:title" content="Ben Davis " />
 	<meta name="twitter:description" content="developer, youtuber, and theo's manager. based in sf" />
 	<meta name="twitter:image" content="https://davis7.sh/og.png" />
+	<meta name="color-scheme" content="dark light" />
 </svelte:head>
 
-<div class="relative min-h-screen w-full bg-neutral-950 text-neutral-50">
+<div class="relative min-h-screen w-full text-neutral-50">
 	<div
-		class="fixed inset-0 h-full w-full bg-[url('/grid.svg')] [mask-image:linear-gradient(to_bottom,white_0%,white_75%,transparent_100%)]"
+		class="grid-pattern fixed inset-0 h-full w-full [mask-image:linear-gradient(to_bottom,white_0%,white_75%,transparent_100%)]"
 	></div>
 
 	<div class="relative z-10 flex h-full w-full justify-center overflow-auto p-4 sm:p-8">
@@ -35,3 +37,5 @@
 		</div>
 	</div>
 </div>
+
+<ThemeToggle />

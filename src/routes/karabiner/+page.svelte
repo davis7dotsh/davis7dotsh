@@ -3,21 +3,35 @@
 	import { Copy } from 'lucide-svelte';
 	import Keyboard from '$lib/components/Keyboard.svelte';
 	import myConfig from './karabiner.json';
+	import { onMount } from 'svelte';
 
 	import { Check } from 'lucide-svelte';
 
 	let html = $state('');
 	let showModal = $state(false);
 	let copied = $state(false);
+	let currentTheme = $state<'dark' | 'light'>('dark');
+
+	onMount(() => {
+		currentTheme = (document.documentElement.dataset.theme as 'dark' | 'light') || 'dark';
+
+		const observer = new MutationObserver(() => {
+			currentTheme = (document.documentElement.dataset.theme as 'dark' | 'light') || 'dark';
+		});
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-theme']
+		});
+
+		return () => observer.disconnect();
+	});
 
 	$effect(() => {
+		const shikiTheme = currentTheme === 'light' ? 'github-light' : 'github-dark';
 		const run = async () => {
 			const innerHtml = await codeToHtml(JSON.stringify(myConfig, null, 2), {
 				lang: 'json',
-				theme: 'github-dark',
-				colorReplacements: {
-					'#24292e': '#262626'
-				}
+				theme: shikiTheme
 			});
 			html = innerHtml;
 		};
@@ -52,7 +66,7 @@
 			href="https://karabiner-elements.pqrs.org/"
 			target="_blank"
 			rel="noopener noreferrer"
-			class="text-neutral-100 underline transition-colors hover:text-white">here</a
+			class="text-neutral-100 underline transition-colors hover:text-neutral-50">here</a
 		>.
 	</p>
 

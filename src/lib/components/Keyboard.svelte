@@ -189,13 +189,13 @@
 </script>
 
 <section
-	class=" flex w-full items-center gap-6 rounded-lg border border-white/20 bg-white/10 p-6 backdrop-blur-sm"
+	class="flex w-full items-center gap-6 rounded-lg border border-neutral-800/70 bg-neutral-900/55 p-6 backdrop-blur-sm"
 >
 	<div class="shrink-0">
 		<div
 			class="flex h-16 w-16 items-center justify-center rounded-lg bg-linear-to-br from-blue-500 to-orange-600"
 		>
-			<svg class="h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+			<svg class="h-8 w-8 text-neutral-50" fill="currentColor" viewBox="0 0 24 24">
 				<path
 					d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM9 17H7v-2h2v2zm0-4H7v-2h2v2zm0-4H7V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"
 				/>
@@ -203,8 +203,8 @@
 		</div>
 	</div>
 	<div class="flex-1">
-		<h2 class="mb-2 text-2xl font-bold text-white">{keyTitle}</h2>
-		<p class="text-white/70">{keyDescription}</p>
+		<h2 class="mb-2 text-2xl font-bold text-neutral-50">{keyTitle}</h2>
+		<p class="text-neutral-200/75">{keyDescription}</p>
 	</div>
 </section>
 
@@ -234,7 +234,7 @@
 							? 'fill-blue-600/80 stroke-blue-400 stroke-2 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)] filter'
 							: hasKeybinding
 								? 'fill-blue-400/40 stroke-blue-300/50 stroke-1 drop-shadow-sm backdrop-blur-sm'
-								: 'fill-white/20 stroke-white/30 stroke-1 drop-shadow-sm backdrop-blur-sm'}
+								: 'fill-neutral-50/20 stroke-neutral-50/30 stroke-1 drop-shadow-sm backdrop-blur-sm'}
 				/>
 				<text
 					x={key.x + key.width / 2}
@@ -242,8 +242,8 @@
 					text-anchor="middle"
 					dominant-baseline="central"
 					class={isCapsLock
-						? 'fill-white text-sm font-medium drop-shadow-sm select-none'
-						: 'fill-white text-sm font-medium select-none'}
+						? 'fill-neutral-50 text-sm font-medium drop-shadow-sm select-none'
+						: 'fill-neutral-50 text-sm font-medium select-none'}
 				>
 					{key.label}
 				</text>
