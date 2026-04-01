@@ -4,6 +4,7 @@
 	import daytonaLogo from '$lib/svg/sponsors/daytona.svg';
 	import greptileLogo from '$lib/svg/sponsors/greptile.svg';
 	import railwayLogo from '$lib/svg/sponsors/railway.svg';
+	import upstashLogo from '$lib/svg/sponsors/upstash.svg';
 	import workosLogo from '$lib/svg/sponsors/workos.svg';
 
 	const sponsors = [
@@ -44,6 +45,16 @@
 			logo: greptileLogo,
 			logoAlt: 'Greptile logo',
 			logoClass: 'max-h-9 max-w-[10rem]'
+		},
+		{
+			slug: 'upstash',
+			name: 'Upstash',
+			href: 'https://davis7.link/upstash',
+			description:
+				'Upstash Redis is the only way I host redis and Upstash Box has the best dx of any sandbox.',
+			logo: upstashLogo,
+			logoAlt: 'Upstash logo',
+			logoClass: 'max-h-8 max-w-[12rem]'
 		},
 		{
 			slug: 'workos',
@@ -216,6 +227,16 @@
 		--sponsor-cta: #34d399;
 	}
 
+	.sponsor-card--upstash {
+		--sponsor-surface: linear-gradient(180deg, #07120c 0%, #0b1a12 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #091710 0%, #0f2418 100%);
+		--sponsor-border: rgba(16, 185, 129, 0.18);
+		--sponsor-border-hover: rgba(16, 185, 129, 0.34);
+		--sponsor-logo-border: rgba(16, 185, 129, 0.16);
+		--sponsor-logo-border-hover: rgba(16, 185, 129, 0.28);
+		--sponsor-cta: #34d399;
+	}
+
 	.sponsor-card--workos {
 		--sponsor-surface: linear-gradient(180deg, #0a0d1d 0%, #101632 100%);
 		--sponsor-surface-hover: linear-gradient(180deg, #0b1022 0%, #161c3f 100%);
@@ -259,6 +280,16 @@
 	:global(html[data-theme='light']) .sponsor-card--greptile {
 		--sponsor-surface: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
 		--sponsor-surface-hover: linear-gradient(180deg, #ffffff 0%, #dcfce7 100%);
+		--sponsor-border: rgba(16, 185, 129, 0.18);
+		--sponsor-border-hover: rgba(16, 185, 129, 0.3);
+		--sponsor-logo-border: rgba(16, 185, 129, 0.14);
+		--sponsor-logo-border-hover: rgba(16, 185, 129, 0.24);
+		--sponsor-cta: #059669;
+	}
+
+	:global(html[data-theme='light']) .sponsor-card--upstash {
+		--sponsor-surface: linear-gradient(180deg, #ffffff 0%, #ecfdf5 100%);
+		--sponsor-surface-hover: linear-gradient(180deg, #ffffff 0%, #d1fae5 100%);
 		--sponsor-border: rgba(16, 185, 129, 0.18);
 		--sponsor-border-hover: rgba(16, 185, 129, 0.3);
 		--sponsor-logo-border: rgba(16, 185, 129, 0.14);
