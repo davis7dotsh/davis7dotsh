@@ -62,7 +62,7 @@
 			<a
 				href="https://ai.davis7.sh/"
 				target="_blank"
-				class="block rounded-lg border border-neutral-800 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/50"
+				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
 			>
 				<span class="font-medium text-neutral-100">My "State of AI"</span>
 				<span class="mt-1 block text-sm text-neutral-400"
