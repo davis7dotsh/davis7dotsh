@@ -99,7 +99,7 @@
 			>
 				<span class="font-medium text-neutral-100">My Font</span>
 				<span class="mt-1 block text-sm text-neutral-400"
-					>The font I use everywhere — Berkeley Mono.</span
+					>The font I use in Cursor and the terminal</span
 				>
 			</a>
 
