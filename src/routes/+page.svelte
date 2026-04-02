@@ -94,6 +94,16 @@
 			</a>
 
 			<a
+				href="/font"
+				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
+			>
+				<span class="font-medium text-neutral-100">My Font</span>
+				<span class="mt-1 block text-sm text-neutral-400"
+					>The font I use everywhere — Berkeley Mono.</span
+				>
+			</a>
+
+			<a
 				href="https://btca.dev"
 				target="_blank"
 				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
