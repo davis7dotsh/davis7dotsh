@@ -4,7 +4,7 @@
 
 <svelte:head>
 	<title>Font - Ben Davis</title>
-	<meta name="description" content="The font I use — Berkeley Mono by US Graphics." />
+	<meta name="description" content="The font I use in Cursor and the terminal" />
 </svelte:head>
 
 <main class="px-3">
@@ -39,7 +39,8 @@
 					rel="noreferrer"
 					class="text-neutral-300 underline decoration-neutral-700 underline-offset-2 transition-colors hover:decoration-neutral-400"
 					>GitHub Dark Default</a
-				>, the icons are <a
+				>, the icons are
+				<a
 					href="https://open-vsx.org/extension/vscode-icons-team/vscode-icons"
 					target="_blank"
 					rel="noreferrer"
