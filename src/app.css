@@ -124,6 +124,28 @@ body {
 	@apply font-semibold text-neutral-100;
 }
 
+.prose :where(code):not(:where(pre code)) {
+	color: var(--color-neutral-100);
+	background-color: color-mix(in srgb, var(--color-neutral-800) 55%, transparent);
+	border: 1px solid var(--color-neutral-700);
+	padding: 0.125rem 0.25rem;
+	font-weight: 500;
+}
+
+.prose :where(code)::before,
+.prose :where(code)::after {
+	content: none;
+}
+
+.prose :where(pre) {
+	background-color: var(--color-neutral-900);
+	border: 1px solid var(--color-neutral-700);
+}
+
+.prose :where(pre code) {
+	color: var(--color-neutral-100);
+}
+
 .prose a {
 	@apply text-neutral-100 transition-colors hover:text-neutral-50;
 	text-decoration: none;
