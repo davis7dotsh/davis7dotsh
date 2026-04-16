@@ -1,5 +1,9 @@
 <script lang="ts">
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
+
+	let height = 0;
+
+	$inspect(height);
 </script>
 
 <svelte:head>
@@ -8,7 +12,12 @@
 </svelte:head>
 
 <main class="px-3">
-	<div class="pb-16">
+	<div
+		class="pb-16"
+		@attach={(el) => {
+			height = el.clientHeight;
+		}}
+	>
 		<a
 			href="/"
 			class="mb-6 inline-flex text-sm text-neutral-400 underline decoration-neutral-800 underline-offset-4 transition-colors hover:text-neutral-200 hover:decoration-neutral-500"
