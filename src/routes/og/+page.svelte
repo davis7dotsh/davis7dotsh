@@ -10,7 +10,7 @@
 			margin: 0;
 			padding: 0;
 			overflow: hidden;
-			background: #000;
+			background: #0b0d10;
 		}
 		/* override the site layout to center the card */
 		body > div > div {
@@ -51,7 +51,7 @@
 	.og-card {
 		width: 1200px;
 		height: 630px;
-		background: #0a0a0a;
+		background: #0b0d10;
 		position: relative;
 		overflow: hidden;
 		font-family:
@@ -67,6 +67,7 @@
 		background-image: url('/grid.svg');
 		background-repeat: repeat;
 		background-size: 24px 24px;
+		opacity: 0.9;
 		/* diagonal fade: transparent top-left, visible bottom-right */
 		mask-image: linear-gradient(
 			135deg,
@@ -82,7 +83,6 @@
 			rgba(0, 0, 0, 0.6) 70%,
 			rgba(0, 0, 0, 1) 100%
 		);
-		opacity: 1;
 	}
 
 	/* subtle radial glow in bottom-right to warm the grid area */
@@ -93,7 +93,7 @@
 		right: -80px;
 		width: 600px;
 		height: 600px;
-		background: radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+		background: radial-gradient(circle, rgba(0, 184, 217, 0.06) 0%, transparent 68%);
 		pointer-events: none;
 		z-index: 1;
 	}
@@ -133,8 +133,8 @@
 		margin: 0;
 		font-size: 52px;
 		font-weight: 700;
-		letter-spacing: -0.03em;
-		color: #fafafa;
+		letter-spacing: 0;
+		color: #f5f6f7;
 		line-height: 1.1;
 	}
 
@@ -142,9 +142,9 @@
 		margin: 0;
 		font-size: 22px;
 		font-weight: 400;
-		color: #737373;
+		color: #b8bec7;
 		line-height: 1.4;
-		letter-spacing: -0.01em;
+		letter-spacing: 0;
 	}
 
 	.og-bottom {
@@ -155,7 +155,7 @@
 	.og-domain {
 		font-size: 18px;
 		font-weight: 500;
-		color: #404040;
+		color: #838b96;
 		letter-spacing: 0.02em;
 	}
 </style>

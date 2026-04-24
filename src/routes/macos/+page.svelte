@@ -48,11 +48,7 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 
 <main class="z-10 px-3 text-center">
 	<article class="prose prose-neutral pb-16 text-left">
-		<a
-			href="/"
-			class="mb-8 inline-block text-sm font-medium text-neutral-400 transition-colors hover:text-neutral-300"
-			>← Back to Home</a
-		>
+		<a href="/" class="back-link mb-8">← Back to Home</a>
 
 		<h1 class="mb-8">MacOS Power User Setup</h1>
 
@@ -115,11 +111,11 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 
 		<div class="relative">
 			<button
-				class="absolute top-2 right-2 flex items-center gap-1 rounded border border-neutral-600 bg-neutral-800 px-2 py-1 text-xs font-medium text-neutral-300 transition-colors hover:border-neutral-500 hover:text-neutral-200"
+				class="button absolute top-2 right-2 px-2 py-1 text-xs"
 				onclick={() => copyToClipboard(ghosttyContent, 'ghostty')}
 			>
 				{#if copiedId === 'ghostty'}
-					<Check size={12} class="text-green-400" />
+					<Check size={12} class="success-text" />
 					Copied!
 				{:else}
 					<Copy size={12} />
@@ -141,11 +137,11 @@ Run "ghostty +show-config --default --docs" to see the full guide on how to conf
 
 		<div class="relative">
 			<button
-				class="absolute top-2 right-2 flex items-center gap-1 rounded border border-neutral-600 bg-neutral-800 px-2 py-1 text-xs font-medium text-neutral-300 transition-colors hover:border-neutral-500 hover:text-neutral-200"
+				class="button absolute top-2 right-2 px-2 py-1 text-xs"
 				onclick={() => copyToClipboard(cursorContent, 'cursor')}
 			>
 				{#if copiedId === 'cursor'}
-					<Check size={12} class="text-green-400" />
+					<Check size={12} class="success-text" />
 					Copied!
 				{:else}
 					<Copy size={12} />
@@ -167,11 +163,11 @@ My cursor (vscode) keybindings are located at: "~/Library/Application Support/Cu
 
 		<div class="relative">
 			<button
-				class="absolute top-2 right-2 flex items-center gap-1 rounded border border-neutral-600 bg-neutral-800 px-2 py-1 text-xs font-medium text-neutral-300 transition-colors hover:border-neutral-500 hover:text-neutral-200"
+				class="button absolute top-2 right-2 px-2 py-1 text-xs"
 				onclick={() => copyToClipboard(tmuxContent, 'tmux')}
 			>
 				{#if copiedId === 'tmux'}
-					<Check size={12} class="text-green-400" />
+					<Check size={12} class="success-text" />
 					Copied!
 				{:else}
 					<Copy size={12} />

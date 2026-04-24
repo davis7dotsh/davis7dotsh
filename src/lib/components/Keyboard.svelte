@@ -188,14 +188,13 @@
 	});
 </script>
 
-<section
-	class="flex w-full items-center gap-6 rounded-lg border border-neutral-800/70 bg-neutral-900/55 p-6 backdrop-blur-sm"
->
+<section class="surface flex w-full items-center gap-6 p-6 backdrop-blur-sm">
 	<div class="shrink-0">
 		<div
-			class="flex h-16 w-16 items-center justify-center rounded-lg bg-linear-to-br from-blue-500 to-orange-600"
+			class="flex h-16 w-16 items-center justify-center border"
+			style="background: color-mix(in srgb, var(--color-accent-cyan) 12%, var(--color-surface)); border-color: var(--color-border-strong)"
 		>
-			<svg class="h-8 w-8 text-neutral-50" fill="currentColor" viewBox="0 0 24 24">
+			<svg class="h-8 w-8" style="color: var(--color-text)" fill="currentColor" viewBox="0 0 24 24">
 				<path
 					d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM9 17H7v-2h2v2zm0-4H7v-2h2v2zm0-4H7V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2zm4 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"
 				/>
@@ -203,12 +202,12 @@
 		</div>
 	</div>
 	<div class="flex-1">
-		<h2 class="mb-2 text-2xl font-bold text-neutral-50">{keyTitle}</h2>
-		<p class="text-neutral-200/75">{keyDescription}</p>
+		<h2 class="mb-2 text-2xl font-bold" style="color: var(--color-text)">{keyTitle}</h2>
+		<p style="color: var(--color-text-muted)">{keyDescription}</p>
 	</div>
 </section>
 
-<div class="w-full overflow-x-auto rounded-lg p-4">
+<div class="w-full overflow-x-auto p-4">
 	<svg viewBox="0 0 {svgWidth} {svgHeight}" class="h-auto w-full">
 		{#each keys as key}
 			{@const isCapsLock = key.label === 'Caps'}
@@ -227,23 +226,28 @@
 					y={key.y}
 					width={key.width}
 					height={keyHeight}
-					rx={6}
-					class={isCapsLock
-						? 'fill-orange-500/80 stroke-orange-400 stroke-2 drop-shadow-[0_0_10px_rgba(251,146,60,0.8)] filter'
+					rx={0}
+					fill={isCapsLock
+						? 'var(--color-warning)'
 						: isHovered
-							? 'fill-blue-600/80 stroke-blue-400 stroke-2 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)] filter'
+							? 'color-mix(in srgb, var(--color-accent-cyan) 42%, var(--color-surface))'
 							: hasKeybinding
-								? 'fill-blue-400/40 stroke-blue-300/50 stroke-1 drop-shadow-sm backdrop-blur-sm'
-								: 'fill-neutral-50/20 stroke-neutral-50/30 stroke-1 drop-shadow-sm backdrop-blur-sm'}
+								? 'color-mix(in srgb, var(--color-accent-cyan) 18%, var(--color-surface))'
+								: 'var(--color-surface)'}
+					stroke={isCapsLock
+						? 'color-mix(in srgb, var(--color-warning) 68%, var(--color-border))'
+						: isHovered || hasKeybinding
+							? 'color-mix(in srgb, var(--color-accent-cyan) 58%, var(--color-border))'
+							: 'var(--color-border)'}
+					stroke-width={isHovered || isCapsLock ? 2 : 1}
 				/>
 				<text
 					x={key.x + key.width / 2}
 					y={key.y + keyHeight / 2}
 					text-anchor="middle"
 					dominant-baseline="central"
-					class={isCapsLock
-						? 'fill-neutral-50 text-sm font-medium drop-shadow-sm select-none'
-						: 'fill-neutral-50 text-sm font-medium select-none'}
+					class="text-sm font-medium select-none"
+					fill={isCapsLock ? '#fff' : 'var(--color-text)'}
 				>
 					{key.label}
 				</text>

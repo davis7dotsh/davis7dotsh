@@ -15,7 +15,8 @@
 				width="96"
 				height="61"
 				aria-hidden="true"
-				class="w-24 text-neutral-50"
+				class="w-24"
+				style="color: var(--color-text)"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<path
@@ -24,103 +25,73 @@
 				/>
 			</svg>
 		</div>
-		<h1 class="mb-0 pb-0 text-4xl font-bold tracking-tight text-neutral-100">Ben Davis</h1>
-		<p class="mx-0 mt-2 mb-8 text-neutral-300">
-			<a
-				href="https://github.com/bmdavis419"
-				target="_blank"
-				class="text-neutral-100 underline decoration-neutral-700 underline-offset-2 transition-colors hover:decoration-neutral-400"
-				>developer</a
-			>,
-			<a
-				href="https://www.youtube.com/@bmdavis419"
-				target="_blank"
-				class="text-neutral-100 underline decoration-neutral-700 underline-offset-2 transition-colors hover:decoration-neutral-400"
-				>youtuber</a
-			>, and
-			<a
-				href="https://www.youtube.com/@t3dotgg/videos"
-				target="_blank"
-				class="text-neutral-100 underline decoration-neutral-700 underline-offset-2 transition-colors hover:decoration-neutral-400"
+		<h1 class="mb-0 pb-0 text-4xl font-bold tracking-tight" style="color: var(--color-text)">
+			Ben Davis
+		</h1>
+		<p class="mx-0 mt-2 mb-8" style="color: var(--color-text-muted)">
+			<a href="https://github.com/bmdavis419" target="_blank" class="brand-link">developer</a>,
+			<a href="https://www.youtube.com/@bmdavis419" target="_blank" class="brand-link">youtuber</a>,
+			and
+			<a href="https://www.youtube.com/@t3dotgg/videos" target="_blank" class="brand-link"
 				>theo's manager</a
 			>. based in sf.
 		</p>
 
-		<h3 class="mb-4 text-lg font-medium text-neutral-200">You might be looking for:</h3>
+		<h3 class="mb-4 text-lg font-medium" style="color: var(--color-text)">
+			You might be looking for:
+		</h3>
 
 		<div class="space-y-3">
-			<a
-				href="/sponsors"
-				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
-			>
-				<span class="font-medium text-neutral-100">Sponsors</span>
-				<span class="mt-1 block text-sm text-neutral-400"
+			<a href="/sponsors" class="resource-card">
+				<span class="font-medium" style="color: var(--color-text)">Sponsors</span>
+				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
 					>The companies backing my work, with links, logos, and a quick rundown on each one.</span
 				>
 			</a>
 
-			<a
-				href="https://ai.davis7.sh/"
-				target="_blank"
-				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
-			>
-				<span class="font-medium text-neutral-100">My "State of AI"</span>
-				<span class="mt-1 block text-sm text-neutral-400"
+			<a href="https://ai.davis7.sh/" target="_blank" class="resource-card">
+				<span class="font-medium" style="color: var(--color-text)">My "State of AI"</span>
+				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
 					>Rankings + descriptions of the models, harnesses, and subs I'm currently using.
 					Periodically updated</span
 				>
 			</a>
 
-			<a
-				href="/macos"
-				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
-			>
-				<span class="font-medium text-neutral-100">My MacOS Setup</span>
-				<span class="mt-1 block text-sm text-neutral-400"
+			<a href="/macos" class="resource-card">
+				<span class="font-medium" style="color: var(--color-text)">My MacOS Setup</span>
+				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
 					>A collection of resources on how I setup my mac to be a power user's dream. Includes
 					karabiner config, keyboard shortcuts, tools I used to make my configs, all the programs I
 					use, and more.</span
 				>
 			</a>
 
-			<a
-				href="/karabiner"
-				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
-			>
-				<span class="font-medium text-neutral-100">Karabiner Config</span>
-				<span class="mt-1 block text-sm text-neutral-400"
+			<a href="/karabiner" class="resource-card">
+				<span class="font-medium" style="color: var(--color-text)">Karabiner Config</span>
+				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
 					>My complete karabiner elements config and a visualizer for all my keybindings.</span
 				>
 			</a>
 
-			<a
-				href="/font"
-				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
-			>
-				<span class="font-medium text-neutral-100">My Font</span>
-				<span class="mt-1 block text-sm text-neutral-400"
+			<a href="/font" class="resource-card">
+				<span class="font-medium" style="color: var(--color-text)">My Font</span>
+				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
 					>The font I use in Cursor and the terminal</span
 				>
 			</a>
 
-			<a
-				href="https://btca.dev"
-				target="_blank"
-				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
-			>
-				<span class="font-medium text-neutral-100">btca (The Better Context App)</span>
-				<span class="mt-1 block text-sm text-neutral-400"
+			<a href="https://btca.dev" target="_blank" class="resource-card">
+				<span class="font-medium" style="color: var(--color-text)"
+					>btca (The Better Context App)</span
+				>
+				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
 					>The best way to get up to date context on the tech you're building with.</span
 				>
 			</a>
 
-			<a
-				href="https://svg.davis7.sh"
-				target="_blank"
-				class="block rounded-lg border border-neutral-800 bg-neutral-900 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-800/80"
-			>
-				<span class="font-medium text-neutral-100">Quick SVG Background</span>
-				<span class="mt-1 block text-sm text-neutral-400"
+			<a href="https://svg.davis7.sh" target="_blank" class="resource-card">
+				<span class="font-medium" style="color: var(--color-text)">Quick SVG Background</span>
+				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
 					>A really simple webapp for uploading an SVG and adding a background to it. I know it
 					sounds dumb, but I use it all the time for making thumbnails.</span
 				>
