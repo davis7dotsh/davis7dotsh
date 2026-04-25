@@ -85,6 +85,7 @@ html[data-theme='light'] {
 	--color-neutral-800: #f1f2f0;
 	--color-neutral-900: #f3f3ef;
 	--color-neutral-950: #fafaf8;
+
 	color-scheme: light;
 	--color-bg: #fafaf8;
 	--color-bg-soft: #f3f3ef;
@@ -139,7 +140,7 @@ body {
 }
 
 .brand-link,
-.prose a {
+.prose a:not(.back-link) {
 	color: var(--color-link);
 	text-decoration: none;
 	border-bottom: 1px solid var(--color-border-strong);
@@ -149,13 +150,14 @@ body {
 }
 
 .brand-link:hover,
-.prose a:hover {
+.prose a:not(.back-link):hover {
 	color: var(--color-link-hover);
 	border-bottom-color: var(--color-link-hover);
 }
 
 .back-link {
 	@apply inline-flex text-sm font-medium;
+
 	color: var(--color-text-subtle);
 	transition: color 160ms ease;
 }
@@ -172,6 +174,7 @@ body {
 
 .resource-card {
 	@apply block p-4 text-left transition-all;
+
 	background: var(--color-surface);
 	border: 1px solid var(--color-border);
 	box-shadow: var(--shadow-surface);
@@ -183,8 +186,22 @@ body {
 	transform: translateY(-1px);
 }
 
+.headline-text,
+.resource-title {
+	color: var(--color-text);
+}
+
+.resource-subtitle {
+	color: var(--color-text-subtle);
+}
+
+.muted-text {
+	color: var(--color-text-muted);
+}
+
 .button {
 	@apply inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium transition-all disabled:cursor-not-allowed;
+
 	background: var(--color-surface);
 	border: 1px solid var(--color-border-strong);
 	color: var(--color-text);
@@ -214,6 +231,7 @@ input:focus-visible {
 
 .icon-button {
 	@apply inline-flex items-center justify-center transition-all;
+
 	background: color-mix(in srgb, var(--color-surface) 88%, transparent);
 	border: 1px solid var(--color-border);
 	color: var(--color-text-muted);
@@ -228,6 +246,7 @@ input:focus-visible {
 
 .field-input {
 	@apply px-3 py-2 font-mono text-xs;
+
 	background: var(--color-surface);
 	border: 1px solid var(--color-border);
 	color: var(--color-text);
@@ -243,6 +262,7 @@ input:focus-visible {
 
 .option-checkbox {
 	@apply mt-0.5 h-5 w-5 shrink-0 cursor-pointer;
+
 	accent-color: var(--color-accent-cyan);
 }
 
@@ -290,11 +310,13 @@ input:focus-visible {
 
 .prose :where(h1, h2, h3, h4, h5, h6) {
 	@apply font-medium tracking-tight;
+
 	color: var(--color-text);
 }
 
 .prose strong {
 	@apply font-semibold;
+
 	color: var(--color-text);
 }
 

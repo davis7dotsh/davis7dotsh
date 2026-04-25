@@ -39,12 +39,16 @@
 		run();
 	});
 
-	const copy = () => {
-		navigator.clipboard.writeText(JSON.stringify(myConfig));
-		copied = true;
-		setTimeout(() => {
+	const copy = async () => {
+		try {
+			await navigator.clipboard.writeText(JSON.stringify(myConfig));
+			copied = true;
+			setTimeout(() => {
+				copied = false;
+			}, 2000);
+		} catch {
 			copied = false;
-		}, 2000);
+		}
 	};
 </script>
 
@@ -136,7 +140,10 @@
 		class="fixed inset-0 z-50 flex items-center justify-center bg-black/55"
 		onclick={() => (showModal = false)}
 	>
-		<div class="surface z-50 max-h-[90vh] max-w-4xl overflow-auto p-6">
+		<div
+			class="surface z-50 max-h-[90vh] max-w-4xl overflow-auto p-6"
+			onclick={(event) => event.stopPropagation()}
+		>
 			<div class="mb-4 flex items-center justify-between">
 				<h3 class="text-xl font-semibold" style="color: var(--color-text)">
 					Full Karabiner Configuration

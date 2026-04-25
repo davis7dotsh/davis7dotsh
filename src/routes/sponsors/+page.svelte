@@ -197,6 +197,10 @@
 		--sponsor-accent: var(--color-cloud);
 	}
 
+	:global(html[data-theme='light']) .sponsor-card--daytona {
+		--sponsor-accent: var(--color-text);
+	}
+
 	.sponsor-card--railway {
 		--sponsor-accent: var(--color-context-violet);
 	}

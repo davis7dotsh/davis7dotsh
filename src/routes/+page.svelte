@@ -25,10 +25,8 @@
 				/>
 			</svg>
 		</div>
-		<h1 class="mb-0 pb-0 text-4xl font-bold tracking-tight" style="color: var(--color-text)">
-			Ben Davis
-		</h1>
-		<p class="mx-0 mt-2 mb-8" style="color: var(--color-text-muted)">
+		<h1 class="headline-text mb-0 pb-0 text-4xl font-bold tracking-tight">Ben Davis</h1>
+		<p class="muted-text mx-0 mt-2 mb-8">
 			<a href="https://github.com/bmdavis419" target="_blank" class="brand-link">developer</a>,
 			<a href="https://www.youtube.com/@bmdavis419" target="_blank" class="brand-link">youtuber</a>,
 			and
@@ -37,29 +35,27 @@
 			>. based in sf.
 		</p>
 
-		<h3 class="mb-4 text-lg font-medium" style="color: var(--color-text)">
-			You might be looking for:
-		</h3>
+		<h3 class="headline-text mb-4 text-lg font-medium">You might be looking for:</h3>
 
 		<div class="space-y-3">
 			<a href="/sponsors" class="resource-card">
-				<span class="font-medium" style="color: var(--color-text)">Sponsors</span>
-				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
+				<span class="resource-title font-medium">Sponsors</span>
+				<span class="resource-subtitle mt-1 block text-sm"
 					>The companies backing my work, with links, logos, and a quick rundown on each one.</span
 				>
 			</a>
 
 			<a href="https://ai.davis7.sh/" target="_blank" class="resource-card">
-				<span class="font-medium" style="color: var(--color-text)">My "State of AI"</span>
-				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
+				<span class="resource-title font-medium">My "State of AI"</span>
+				<span class="resource-subtitle mt-1 block text-sm"
 					>Rankings + descriptions of the models, harnesses, and subs I'm currently using.
 					Periodically updated</span
 				>
 			</a>
 
 			<a href="/macos" class="resource-card">
-				<span class="font-medium" style="color: var(--color-text)">My MacOS Setup</span>
-				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
+				<span class="resource-title font-medium">My MacOS Setup</span>
+				<span class="resource-subtitle mt-1 block text-sm"
 					>A collection of resources on how I setup my mac to be a power user's dream. Includes
 					karabiner config, keyboard shortcuts, tools I used to make my configs, all the programs I
 					use, and more.</span
@@ -67,31 +63,29 @@
 			</a>
 
 			<a href="/karabiner" class="resource-card">
-				<span class="font-medium" style="color: var(--color-text)">Karabiner Config</span>
-				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
+				<span class="resource-title font-medium">Karabiner Config</span>
+				<span class="resource-subtitle mt-1 block text-sm"
 					>My complete karabiner elements config and a visualizer for all my keybindings.</span
 				>
 			</a>
 
 			<a href="/font" class="resource-card">
-				<span class="font-medium" style="color: var(--color-text)">My Font</span>
-				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
+				<span class="resource-title font-medium">My Font</span>
+				<span class="resource-subtitle mt-1 block text-sm"
 					>The font I use in Cursor and the terminal</span
 				>
 			</a>
 
 			<a href="https://btca.dev" target="_blank" class="resource-card">
-				<span class="font-medium" style="color: var(--color-text)"
-					>btca (The Better Context App)</span
-				>
-				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
+				<span class="resource-title font-medium">btca (The Better Context App)</span>
+				<span class="resource-subtitle mt-1 block text-sm"
 					>The best way to get up to date context on the tech you're building with.</span
 				>
 			</a>
 
 			<a href="https://svg.davis7.sh" target="_blank" class="resource-card">
-				<span class="font-medium" style="color: var(--color-text)">Quick SVG Background</span>
-				<span class="mt-1 block text-sm" style="color: var(--color-text-subtle)"
+				<span class="resource-title font-medium">Quick SVG Background</span>
+				<span class="resource-subtitle mt-1 block text-sm"
 					>A really simple webapp for uploading an SVG and adding a background to it. I know it
 					sounds dumb, but I use it all the time for making thumbnails.</span
 				>
