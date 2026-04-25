@@ -58,7 +58,7 @@
 <button
 	type="button"
 	onclick={toggleTheme}
-	class="fixed top-4 right-4 z-50 flex h-11 w-11 items-center justify-center rounded-full border border-neutral-600 bg-neutral-950/80 text-neutral-200 shadow-sm backdrop-blur transition-[transform,background-color,border-color,color] duration-200 hover:scale-105 hover:border-neutral-500 hover:bg-neutral-900/90"
+	class="icon-button fixed top-4 right-4 z-50 h-11 w-11 backdrop-blur transition-[transform,background-color,border-color,color] duration-200 hover:-translate-y-px"
 	aria-label="Toggle color theme"
 	title="Toggle color theme"
 >
