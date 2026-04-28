@@ -56,81 +56,82 @@
 	<title>Ben Davis - Karabiner Config</title>
 </svelte:head>
 
-<div class="flex flex-col items-start gap-8">
-	<a href="/" class="back-link mb-2">← Back to Home</a>
-	<h2 class="text-2xl font-semibold" style="color: var(--color-text)">My Karabiner Config</h2>
+<div class="mx-auto flex max-w-5xl flex-col items-start gap-8">
+	<div class="content-sheet flex w-full flex-col items-start gap-8">
+		<a href="/" class="back-link mb-2">← Back to Home</a>
+		<h2 class="text-2xl font-semibold" style="color: var(--color-text)">My Karabiner Config</h2>
 
-	<p class="leading-relaxed" style="color: var(--color-text-muted)">
-		This is my "hyper key" config, you can download Karabiner elements
-		<a
-			href="https://karabiner-elements.pqrs.org/"
-			target="_blank"
-			rel="noopener noreferrer"
-			class="brand-link">here</a
-		>.
-	</p>
+		<p class="leading-relaxed" style="color: var(--color-text-muted)">
+			This is my "hyper key" config, you can download Karabiner elements
+			<a
+				href="https://karabiner-elements.pqrs.org/"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="brand-link">here</a
+			>.
+		</p>
 
-	<button class="button" onclick={() => (showModal = true)}> View Full Config </button>
+		<button class="button" onclick={() => (showModal = true)}> View Full Config </button>
 
+		<p style="color: var(--color-text-muted)">Keybindings:</p>
+		<ul class="w-full space-y-2 font-bold">
+			<li
+				class="border-b py-2 last:border-b-0"
+				style="border-color: var(--color-border); color: var(--color-text-muted)"
+			>
+				Caps Lock to Hyper
+			</li>
+			<li
+				class="border-b py-2 last:border-b-0"
+				style="border-color: var(--color-border); color: var(--color-text-muted)"
+			>
+				Hyper + tab to control + tab
+			</li>
+			<li
+				class="border-b py-2 last:border-b-0"
+				style="border-color: var(--color-border); color: var(--color-text-muted)"
+			>
+				Hyper + a to cmd + a
+			</li>
+			<li
+				class="border-b py-2 last:border-b-0"
+				style="border-color: var(--color-border); color: var(--color-text-muted)"
+			>
+				Hyper + j/k to pageup/pagedown
+			</li>
+			<li
+				class="border-b py-2 last:border-b-0"
+				style="border-color: var(--color-border); color: var(--color-text-muted)"
+			>
+				Hyper + h/l to left/right arrow
+			</li>
+			<li
+				class="border-b py-2 last:border-b-0"
+				style="border-color: var(--color-border); color: var(--color-text-muted)"
+			>
+				Hyper + c to cmd + c
+			</li>
+			<li
+				class="border-b py-2 last:border-b-0"
+				style="border-color: var(--color-border); color: var(--color-text-muted)"
+			>
+				Hyper + v to cmd + v
+			</li>
+			<li
+				class="border-b py-2 last:border-b-0"
+				style="border-color: var(--color-border); color: var(--color-text-muted)"
+			>
+				Hyper + t to cmd + t
+			</li>
+			<li
+				class="border-b py-2 last:border-b-0"
+				style="border-color: var(--color-border); color: var(--color-text-muted)"
+			>
+				Hyper + w to cmd + w
+			</li>
+		</ul>
+	</div>
 	<Keyboard />
-
-	<p style="color: var(--color-text-muted)">Keybindings:</p>
-	<ul class="w-full space-y-2 font-bold">
-		<li
-			class="border-b py-2 last:border-b-0"
-			style="border-color: var(--color-border); color: var(--color-text-muted)"
-		>
-			Caps Lock to Hyper
-		</li>
-		<li
-			class="border-b py-2 last:border-b-0"
-			style="border-color: var(--color-border); color: var(--color-text-muted)"
-		>
-			Hyper + tab to control + tab
-		</li>
-		<li
-			class="border-b py-2 last:border-b-0"
-			style="border-color: var(--color-border); color: var(--color-text-muted)"
-		>
-			Hyper + a to cmd + a
-		</li>
-		<li
-			class="border-b py-2 last:border-b-0"
-			style="border-color: var(--color-border); color: var(--color-text-muted)"
-		>
-			Hyper + j/k to pageup/pagedown
-		</li>
-		<li
-			class="border-b py-2 last:border-b-0"
-			style="border-color: var(--color-border); color: var(--color-text-muted)"
-		>
-			Hyper + h/l to left/right arrow
-		</li>
-		<li
-			class="border-b py-2 last:border-b-0"
-			style="border-color: var(--color-border); color: var(--color-text-muted)"
-		>
-			Hyper + c to cmd + c
-		</li>
-		<li
-			class="border-b py-2 last:border-b-0"
-			style="border-color: var(--color-border); color: var(--color-text-muted)"
-		>
-			Hyper + v to cmd + v
-		</li>
-		<li
-			class="border-b py-2 last:border-b-0"
-			style="border-color: var(--color-border); color: var(--color-text-muted)"
-		>
-			Hyper + t to cmd + t
-		</li>
-		<li
-			class="border-b py-2 last:border-b-0"
-			style="border-color: var(--color-border); color: var(--color-text-muted)"
-		>
-			Hyper + w to cmd + w
-		</li>
-	</ul>
 </div>
 
 {#if showModal}

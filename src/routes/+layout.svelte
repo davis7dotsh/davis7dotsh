@@ -32,7 +32,7 @@
 	></div>
 
 	<div class="relative z-10 flex h-full w-full justify-center overflow-auto p-4 sm:p-8">
-		<div class="animate-fade-in-up w-full max-w-2xl">
+		<div class="animate-fade-in-up w-full max-w-6xl">
 			{@render children()}
 		</div>
 	</div>

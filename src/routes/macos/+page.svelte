@@ -47,7 +47,7 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 </svelte:head>
 
 <main class="z-10 px-3 text-center">
-	<article class="prose prose-neutral pb-16 text-left">
+	<article class="content-sheet prose prose-neutral mb-8 pb-16 text-left">
 		<a href="/" class="back-link mb-8">← Back to Home</a>
 
 		<h1 class="mb-8">MacOS Power User Setup</h1>

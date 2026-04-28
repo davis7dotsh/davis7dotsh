@@ -95,8 +95,8 @@
 	<meta name="description" content="An easy way to setup your SvelteKit project." />
 </svelte:head>
 
-<div class="w-full max-w-2xl space-y-8 px-3">
-	<div class="space-y-4">
+<div class="mx-auto w-full max-w-4xl space-y-8 px-3">
+	<div class="content-sheet space-y-4">
 		<a href="/" class="back-link mb-4">← Back to Home</a>
 		<div class="flex items-center justify-between">
 			<h1 class="text-4xl font-bold" style="color: var(--color-text)">SvelteKit Setup</h1>

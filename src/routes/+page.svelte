@@ -45,7 +45,7 @@
 				>
 			</a>
 
-			<a href="https://ai.davis7.sh/" target="_blank" class="resource-card">
+			<a href="/ai" class="resource-card">
 				<span class="resource-title font-medium">My "State of AI"</span>
 				<span class="resource-subtitle mt-1 block text-sm"
 					>Rankings + descriptions of the models, harnesses, and subs I'm currently using.
