@@ -106,6 +106,7 @@
 
 	.svg-container {
 		@apply flex h-6 w-6 items-center justify-center;
+		pointer-events: none;
 	}
 
 	.svg-container :global(svg) {

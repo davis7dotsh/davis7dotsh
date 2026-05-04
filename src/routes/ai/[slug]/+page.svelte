@@ -1,58 +1,64 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { marked } from 'marked';
-	import Logo from '$lib/ai/Logo.svelte';
 	import { getAiUpdate } from '$lib/ai/data.remote';
-	import { tagColors, type RatingEntry } from '$lib/ai/ratings';
+	import type { RatingEntry } from '$lib/ai/ratings';
 
 	let { params } = $props();
-	let previousDropdown = $state<HTMLDetailsElement>();
-	let previousOpen = $state(false);
 	const data = $derived(await getAiUpdate(params.slug));
+
+	const logos: Record<string, string> = {
+		'gpt-5-4': '/logos/openai_dark.svg',
+		'gpt-5-4-mini': '/logos/openai_dark.svg',
+		'opus-4-6': '/logos/claude-ai-icon.svg',
+		'sonnet-4-6': '/logos/claude-ai-icon.svg',
+		'gemini-3-1-pro': '/logos/gemini.svg',
+		'composer-2': '/logos/cursor_dark.svg',
+		codex: '/logos/codex_dark.svg',
+		'codex-200': '/logos/codex_dark.svg',
+		't3-code': '/logos/t3-light.svg',
+		'claude-code': '/logos/claude-ai-icon.svg',
+		'claude-max': '/logos/claude-ai-icon.svg',
+		cursor: '/logos/cursor_dark.svg',
+		'cursor-ultra': '/logos/cursor_dark.svg',
+		opencode: '/logos/opencode-dark.svg',
+		'opencode-black': '/logos/opencode-dark.svg',
+		pi: '/logos/pi_dark.svg',
+		'gemini-sub-antigravity': '/logos/gemini.svg'
+	};
 
 	const asOfDate = $derived.by(() => {
 		const [year, month, day] = data.snapshot.asOf.split('-').map(Number);
 		return new Date(year, month - 1, day);
 	});
 
+	const asOfIso = $derived(data.snapshot.asOf);
 	const asOfLabel = $derived(
-		asOfDate.toLocaleDateString('en-US', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric'
-		})
+		asOfDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 	);
 
-	const heroTitle = $derived(
-		`${asOfDate.toLocaleDateString('en-US', {
-			month: 'numeric',
-			day: 'numeric',
-			year: '2-digit'
-		})} - The AI Tools I'm Using`
-	);
+	const heroSubtitle = $derived(`${asOfIso} edition`);
 
-	function md(src: string) {
-		return marked.parse(src, { async: false }) as string;
+	function md(src: string): string {
+		return marked.parse(src.trim(), { async: false }) as string;
 	}
 
-	const sections: { title: string; num: string; entries: RatingEntry[] }[] = $derived([
-		{ title: 'Models', num: '01', entries: data.snapshot.models },
-		{ title: 'Harnesses', num: '02', entries: data.snapshot.harnesses },
-		{ title: 'Subscriptions', num: '03', entries: data.snapshot.subs }
+	type Section = { key: string; label: string; entries: RatingEntry[] };
+	const sections: Section[] = $derived([
+		{ key: 'models', label: 'models', entries: data.snapshot.models },
+		{ key: 'harnesses', label: 'harnesses', entries: data.snapshot.harnesses },
+		{ key: 'subscriptions', label: 'subscriptions', entries: data.snapshot.subs }
 	]);
 
-	const previousSnapshots = $derived(
-		data.index.snapshots.filter((snapshot) => snapshot.slug !== data.snapshot.slug)
-	);
+	const allSnapshots = $derived(data.index.snapshots);
 
-	onMount(() => {
-		function handleClick(event: MouseEvent) {
-			if (!previousDropdown?.contains(event.target as Node)) previousOpen = false;
-		}
+	function snapshotShort(label: string) {
+		return label.toLowerCase();
+	}
 
-		document.addEventListener('click', handleClick);
-		return () => document.removeEventListener('click', handleClick);
-	});
+	function tldr(entries: RatingEntry[]) {
+		const recs = entries.filter((entry) => entry.recommended).map((entry) => entry.name);
+		return recs.length ? recs.join(' · ') : 'none this round';
+	}
 </script>
 
 <svelte:head>
@@ -61,341 +67,441 @@
 	<link rel="canonical" href="https://davis7.sh/ai/{data.snapshot.slug}" />
 </svelte:head>
 
-<div class="v2-root">
-	<div class="v2-page">
-		<header class="v2-header">
-			<div class="v2-header-row">
-				<a class="v2-home" href="/">Ben Davis</a>
-				{#if previousSnapshots.length}
-					<details class="v2-previous" bind:this={previousDropdown} bind:open={previousOpen}>
-						<summary>Previous</summary>
-						<div class="v2-previous-menu">
-							{#each previousSnapshots as snapshot (snapshot.slug)}
-								<a href="/ai/{snapshot.slug}" onclick={() => (previousOpen = false)}
-									>{snapshot.label}</a
-								>
-							{/each}
-						</div>
-					</details>
-				{/if}
-				<span class="v2-date">{asOfLabel}</span>
-			</div>
-			<h1 class="v2-hero">{heroTitle}</h1>
-			<div class="v2-meta content-sheet">
-				<p class="v2-by">
-					by <a href="https://x.com/davis7" target="_blank" rel="noopener noreferrer">Ben Davis</a>
-				</p>
-				<p class="v2-note">
-					DISCLAIMER — this is all just my opinion, based on my experiences and what i've used. it
-					is impossible to try everything at the level of depth i would like to, so i've decided to
-					simply focus this site on the tools that i am using the most everyday
-				</p>
-			</div>
-		</header>
+<main class="dispatch">
+	<header class="dispatch-head">
+		<p class="meta">
+			<a class="back-link" href="/">ben davis</a>
+			<span aria-hidden="true">·</span>
+			<span>davis7.sh</span>
+			<span aria-hidden="true">·</span>
+			<time datetime={asOfIso}>{asOfIso}</time>
+		</p>
 
-		{#each sections as section (section.title)}
-			<section class="v2-section content-sheet">
-				<div class="v2-section-header">
-					<span class="v2-section-num">{section.num}</span>
-					<h2 class="v2-section-title">{section.title}</h2>
-				</div>
+		<h1 class="hero">
+			the ai tools i'm using
+			<span class="hero-sub">{heroSubtitle}</span>
+		</h1>
 
-				<div class="v2-grid">
+		<p class="byline">
+			by <a href="https://x.com/davis7" class="brand-link" target="_blank" rel="noopener noreferrer"
+				>ben davis</a
+			>, published {asOfLabel}.
+		</p>
+
+		<p class="disclaimer">
+			disclaimer. this is all just my opinion, based on my experiences and what i've used. it is
+			impossible to try everything at the level of depth i would like to, so i've decided to simply
+			focus this site on the tools that i am using the most everyday.
+		</p>
+
+		{#if allSnapshots.length > 1}
+			<p class="previous">
+				<span class="previous-label">historical:</span>
+				{#each allSnapshots as snapshot, i (snapshot.slug)}
+					{#if snapshot.slug === data.snapshot.slug}
+						<span class="snapshot-current" aria-current="page">{snapshotShort(snapshot.label)}</span
+						>
+					{:else}
+						<a class="brand-link" href="/ai/{snapshot.slug}">{snapshotShort(snapshot.label)}</a>
+					{/if}{#if i < allSnapshots.length - 1}<span aria-hidden="true">,</span>{/if}
+				{/each}
+			</p>
+		{/if}
+	</header>
+
+	{#each sections as section (section.key)}
+		<section class="section" id={section.key}>
+			<h2 class="section-label">{section.label}</h2>
+			<p class="tldr"><span class="tldr-arrow">tl;dr →</span> {tldr(section.entries)}</p>
+
+			{#if section.entries.length === 0}
+				<p class="empty">nothing this round.</p>
+			{:else}
+				<ol class="items">
 					{#each section.entries as item, i (item.id)}
-						<article class="v2-card" class:v2-card--rec={item.recommended}>
-							<div class="v2-card-top">
-								<span class="v2-card-rank">{String(i + 1).padStart(2, '0')}</span>
-								<div class="v2-card-logo"><Logo logoId={item.logoId} /></div>
-								<div class="v2-card-info">
-									<h3 class="v2-card-name">
-										<a href={item.url} target="_blank" rel="noopener noreferrer external"
-											>{item.name}</a
-										>
-									</h3>
-									{#if item.tags?.length}
-										<div class="v2-card-tags">
-											{#each item.tags as tag (tag)}
-												<span
-													class="v2-card-tag {tagColors[tag] ??
-														'border-neutral-400/20 text-neutral-400/70'}">{tag}</span
-												>
-											{/each}
-										</div>
+						<li class="item" class:item-rec={item.recommended}>
+							<span class="item-rank" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+							<div class="item-body">
+								<p class="item-head">
+									{#if logos[item.logoId]}
+										<span class="item-logo" aria-hidden="true">
+											<img src={logos[item.logoId]} alt="" />
+										</span>
 									{/if}
-								</div>
-								{#if item.recommended}<span class="v2-rec-dot" title="Recommended"></span>{/if}
-							</div>
+									<a
+										class="brand-link item-name"
+										href={item.url}
+										target="_blank"
+										rel="noopener noreferrer external">{item.name}</a
+									>
+									{#if item.tags?.length}
+										<span class="item-tags">
+											{#each item.tags as tag, t (tag)}
+												<span class="item-tag">{tag}</span>{#if t < item.tags.length - 1}<span
+														aria-hidden="true"
+													>
+														·
+													</span>{/if}
+											{/each}
+										</span>
+									{/if}
+									{#if item.recommended}
+										<span class="item-rec-tail">→ recommended</span>
+									{/if}
+								</p>
 
-							<div class="v2-card-body">
-								<div class="v2-card-desc">{@html md(item.description)}</div>
+								<div class="item-desc">
+									{@html md(item.description)}
+								</div>
+
 								{#if item.pros?.length || item.cons?.length}
-									<div class="v2-card-details">
-										{#if item.pros?.length}<div>
-												<span class="v2-detail-label">+</span>
-												<ul class="v2-detail-list">
-													{#each item.pros as line}<li>{line}</li>{/each}
-												</ul>
-											</div>{/if}
-										{#if item.cons?.length}<div>
-												<span class="v2-detail-label">&minus;</span>
-												<ul class="v2-detail-list">
-													{#each item.cons as line}<li>{line}</li>{/each}
-												</ul>
-											</div>{/if}
+									<div class="item-notes">
+										{#if item.pros?.length}
+											<ul class="item-list item-list-pros" aria-label="pros">
+												{#each item.pros as line (line)}
+													<li><span class="glyph" aria-hidden="true">+</span> {line}</li>
+												{/each}
+											</ul>
+										{/if}
+										{#if item.cons?.length}
+											<ul class="item-list item-list-cons" aria-label="cons">
+												{#each item.cons as line (line)}
+													<li><span class="glyph" aria-hidden="true">−</span> {line}</li>
+												{/each}
+											</ul>
+										{/if}
 									</div>
 								{/if}
 							</div>
-						</article>
+						</li>
 					{/each}
-				</div>
-			</section>
-		{/each}
+				</ol>
+			{/if}
+		</section>
+	{/each}
 
-		<footer class="v2-footer"><p>Snapshot for this period, not a live ranking.</p></footer>
-	</div>
-</div>
+	<footer class="dispatch-foot">
+		<p>snapshot for this period · not a live ranking</p>
+	</footer>
+</main>
 
 <style>
-	.v2-root {
-		min-height: 100vh;
-		color: #e5e5e5;
-		font-family: 'Geist', system-ui, sans-serif;
-	}
-	.v2-page {
-		max-width: 1040px;
+	.dispatch {
+		width: 100%;
+		max-width: 56rem;
 		margin: 0 auto;
-		padding: 2rem 0 4rem;
+		padding: 0 0 4rem;
+		color: var(--color-text-muted);
+		font-family: var(--font-family-geist);
+		font-size: 1rem;
+		line-height: 1.6;
 	}
-	.v2-header {
-		margin-bottom: 3rem;
+
+	.dispatch-head {
+		padding-block: 1rem 2.5rem;
+		border-bottom: 1px solid var(--color-border);
 	}
-	.v2-header-row {
-		display: grid;
-		grid-template-columns: 1fr auto 1fr;
-		align-items: center;
-		border-bottom: 1px solid #333;
-		padding-bottom: 0.75rem;
-		margin-bottom: 2rem;
-	}
-	.v2-home,
-	.v2-date,
-	.v2-previous summary {
-		font-size: 0.72rem;
-		color: #9ca3af;
-		text-decoration: none;
-	}
-	.v2-previous {
-		position: relative;
-		justify-self: center;
-	}
-	.v2-previous summary {
-		cursor: pointer;
-		list-style: none;
-	}
-	.v2-previous summary::-webkit-details-marker {
-		display: none;
-	}
-	.v2-previous summary::after {
-		content: '↓';
-		margin-left: 0.35rem;
-		color: #6b7280;
-	}
-	.v2-previous-menu {
-		position: absolute;
-		top: calc(100% + 0.5rem);
-		left: 50%;
-		z-index: 20;
-		min-width: 10rem;
-		transform: translateX(-50%);
-		border: 1px solid #2b313a;
-		background: #0b0d10;
-		box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35);
-	}
-	.v2-previous-menu a {
-		display: block;
-		padding: 0.65rem 0.8rem;
-		font-size: 0.78rem;
-		color: #d1d5db;
-		text-decoration: none;
-		white-space: nowrap;
-	}
-	.v2-previous-menu a:hover {
-		background: #14171c;
-		color: #fff;
-	}
-	.v2-date {
-		text-align: right;
-	}
-	.v2-hero {
-		font-weight: 700;
-		font-size: clamp(1.8rem, 4.2vw, 3.25rem);
-		line-height: 1;
-		letter-spacing: -0.04em;
-		color: #fff;
-		white-space: nowrap;
-	}
-	.v2-meta {
-		margin-top: 1.25rem;
-		margin-left: 0;
-		max-width: 680px;
-		padding: 1.25rem;
-	}
-	.v2-by {
-		font-size: 0.9rem;
-		color: #d1d5db;
-		font-style: italic;
-	}
-	.v2-by a,
-	.v2-card-name a {
-		color: #e5e5e5;
-		text-decoration: none;
-		border-bottom: 1px solid #444;
-	}
-	.v2-note {
-		margin-top: 0.75rem;
-		font-size: 0.78rem;
-		line-height: 1.8;
-		color: #aeb6c2;
-	}
-	.v2-section {
-		margin-bottom: 4rem;
-		max-width: 960px;
-	}
-	.v2-section-header {
-		display: flex;
-		align-items: baseline;
-		gap: 0.75rem;
-		border-bottom: 1px solid #222;
-		padding-bottom: 0.5rem;
-		margin-bottom: 1.25rem;
-	}
-	.v2-section-num {
-		font-size: 0.65rem;
-		color: #3b82f6;
-		font-weight: 500;
-	}
-	.v2-section-title {
-		font-size: 0.78rem;
-		font-weight: 500;
-		letter-spacing: 0.18em;
-		text-transform: uppercase;
-		color: #c4cad3;
-	}
-	.v2-card {
-		padding: 1.25rem 0;
-		border-bottom: 1px solid #1a1a1a;
-	}
-	.v2-card--rec {
-		border-left: 2px solid #34d399;
-		padding-left: 1rem;
-	}
-	.v2-card-top {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-	}
-	.v2-card-rank {
-		font-size: 0.65rem;
-		color: #444;
-		width: 1.5rem;
-		text-align: right;
-		flex-shrink: 0;
-	}
-	.v2-card-info {
-		flex: 1;
-		min-width: 0;
-	}
-	.v2-card-name {
-		font-size: 1.05rem;
-		font-weight: 500;
-		letter-spacing: -0.01em;
-	}
-	.v2-card-tags {
+
+	.meta {
+		margin: 0 0 2rem;
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.75rem;
+		color: var(--color-text-subtle);
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.3rem;
-		margin-top: 0.3rem;
+		gap: 0.5rem;
+		align-items: baseline;
 	}
-	.v2-card-tag {
-		font-size: 0.55rem;
-		letter-spacing: 0.05em;
-		padding: 0.1rem 0.4rem;
-		border: 1px solid;
+
+	.meta time {
+		font-variant-numeric: tabular-nums;
 	}
-	.v2-rec-dot {
-		width: 6px;
-		height: 6px;
-		border-radius: 50%;
-		background: #34d399;
-		box-shadow: 0 0 8px #34d39960;
-		flex-shrink: 0;
+
+	.hero {
+		margin: 0;
+		font-size: clamp(1.6rem, 4.6vw, 2.5rem);
+		font-weight: 700;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		color: var(--color-text);
 	}
-	.v2-card-body {
-		margin-left: calc(1.5rem + 0.75rem + 44px + 0.75rem);
-		margin-top: 0.5rem;
+
+	.hero-sub {
+		display: block;
+		margin-top: 0.4rem;
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.875rem;
+		font-weight: 400;
+		letter-spacing: 0;
+		color: var(--color-text-subtle);
 	}
-	.v2-card-desc {
-		font-size: 0.94rem;
-		line-height: 1.75;
-		color: #c6ccd5;
+
+	.byline {
+		margin: 1.25rem 0 0.75rem;
+		font-size: 0.95rem;
 	}
-	.v2-card-desc :global(p) {
-		margin: 0.3rem 0;
+
+	.disclaimer {
+		margin: 0 0 1.5rem;
+		font-size: 0.95rem;
+		color: var(--color-text-muted);
 	}
-	.v2-card-desc :global(strong) {
-		color: #e5e5e5;
-		font-weight: 600;
+
+	.previous {
+		margin: 0;
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.75rem;
+		color: var(--color-text-subtle);
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+		align-items: baseline;
 	}
-	.v2-card-details {
+
+	.previous-label {
+		color: var(--color-text-subtle);
+	}
+
+	.snapshot-current {
+		color: var(--color-text);
+		text-decoration: underline;
+		text-decoration-color: var(--color-border-strong);
+		text-underline-offset: 0.2em;
+	}
+
+	.section {
+		padding-block: 2.5rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.section:last-of-type {
+		border-bottom: none;
+	}
+
+	.section-label {
+		margin: 0 0 0.75rem;
+		font-size: 1rem;
+		font-weight: 500;
+		color: var(--color-text);
+		letter-spacing: 0;
+	}
+
+	.tldr {
+		margin: 0 0 2rem;
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.8rem;
+		color: var(--color-text-subtle);
+		line-height: 1.6;
+	}
+
+	.tldr-arrow {
+		color: var(--color-text-subtle);
+		margin-right: 0.25rem;
+	}
+
+	.empty {
+		margin: 0;
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.8rem;
+		color: var(--color-text-subtle);
+	}
+
+	.items {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
-		margin-top: 0.6rem;
 	}
-	.v2-detail-label {
-		font-size: 0.7rem;
+
+	.item {
+		position: relative;
+		padding: 1.5rem 0 1.5rem 3rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.item:last-child {
+		border-bottom: none;
+	}
+
+	.item-rank {
+		position: absolute;
+		left: 0;
+		top: 1.55rem;
+		width: 2.25rem;
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.75rem;
 		font-weight: 500;
-		color: #777;
+		color: var(--color-text-subtle);
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
+	}
+
+	.item-head {
+		margin: 0 0 0.5rem;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem 0.625rem;
+		font-size: 1rem;
+		line-height: 1.4;
+	}
+
+	.item-logo {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.5rem;
+		height: 1.5rem;
+		flex-shrink: 0;
+	}
+
+	.item-logo img {
 		display: block;
-		margin-bottom: 0.25rem;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
 	}
-	.v2-detail-list {
-		list-style: none;
-		padding: 0;
-		font-size: 0.86rem;
+
+	:global(html[data-theme='light']) .item-logo {
+		background: var(--color-ink);
+		border: 1px solid var(--color-border);
+		padding: 2px;
+		width: 1.625rem;
+		height: 1.625rem;
+	}
+
+	.item-name {
+		font-size: 1.05rem;
+		font-weight: 500;
+		color: var(--color-text);
+		letter-spacing: -0.005em;
+	}
+
+	.item-rec .item-name {
+		font-weight: 700;
+	}
+
+	.item-tags {
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.7rem;
+		color: var(--color-text-subtle);
+		line-height: 1;
+		display: inline-flex;
+		flex-wrap: wrap;
+		gap: 0.25rem;
+		align-items: baseline;
+	}
+
+	.item-tag {
+		display: inline;
+	}
+
+	.item-rec-tail {
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.7rem;
+		color: var(--color-text-subtle);
+		letter-spacing: 0.02em;
+	}
+
+	.item-desc {
+		font-size: 0.95rem;
+		color: var(--color-text-muted);
+		line-height: 1.65;
+		max-width: 65ch;
+	}
+
+	.item-desc :global(p) {
+		margin: 0 0 0.5rem;
+	}
+
+	.item-desc :global(p:last-child) {
+		margin-bottom: 0;
+	}
+
+	.item-desc :global(strong) {
+		color: var(--color-text);
+		font-weight: 600;
+	}
+
+	.item-desc :global(a) {
+		color: var(--color-link);
+		text-decoration: none;
+		border-bottom: 1px solid var(--color-border-strong);
+		transition:
+			color 160ms ease,
+			border-color 160ms ease;
+	}
+
+	.item-desc :global(a:hover) {
+		color: var(--color-link-hover);
+		border-bottom-color: var(--color-link-hover);
+	}
+
+	.item-desc :global(code) {
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.85em;
+		color: var(--color-text);
+		background-color: color-mix(in srgb, var(--color-surface-elevated) 70%, transparent);
+		border: 1px solid var(--color-border);
+		padding: 0.05rem 0.3rem;
+	}
+
+	.item-notes {
+		margin-top: 0.75rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.78rem;
 		line-height: 1.7;
-		color: #b4bbc6;
+		color: var(--color-text-muted);
+		max-width: 70ch;
 	}
-	.v2-detail-list li::before {
-		content: '—';
-		margin-right: 0.4rem;
-		color: #555;
+
+	.item-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
-	.v2-footer {
-		margin-top: 5rem;
-		font-size: 0.6rem;
-		color: #666;
+
+	.item-list li {
+		display: grid;
+		grid-template-columns: 1.25rem 1fr;
+		align-items: baseline;
+	}
+
+	.item-list .glyph {
+		color: var(--color-text-subtle);
+		font-weight: 500;
+	}
+
+	.dispatch-foot {
+		margin-top: 3.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--color-border);
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.7rem;
+		color: var(--color-text-subtle);
 		text-align: center;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.02em;
 	}
-	@media (max-width: 639px) {
-		.v2-card-body {
-			margin-left: 0;
-			margin-top: 0.75rem;
+
+	.dispatch-foot p {
+		margin: 0;
+	}
+
+	@media (max-width: 480px) {
+		.item {
+			padding-left: 2.5rem;
 		}
-		.v2-header-row {
-			grid-template-columns: 1fr;
-			gap: 0.5rem;
+
+		.item-rank {
+			width: 1.75rem;
 		}
-		.v2-date {
-			text-align: left;
-		}
-		.v2-previous {
-			justify-self: start;
-		}
-		.v2-previous-menu {
-			left: 0;
-			transform: none;
+
+		.hero {
+			letter-spacing: -0.015em;
 		}
 	}
 </style>

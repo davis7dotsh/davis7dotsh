@@ -7,14 +7,14 @@ summary: >
   for this period. Each section is ordered by placement.
 
 models:
-  - id: gpt-5-4
-    name: GPT 5.4
-    url: https://openai.com/index/introducing-gpt-5-4/
+  - id: gpt-5-5
+    name: GPT 5.5
+    url: https://openai.com/index/introducing-gpt-5-5/
     logoId: gpt-5-4
     tags: [default, coding, computer use]
     recommended: true
     description: |
-      My default model for coding.
+      My model for basically everything
     pros:
       - Incredible instruction following
       - Recent training data
@@ -24,8 +24,8 @@ models:
     cons:
       - Awful at UI
 
-  - id: opus-4-6
-    name: Opus 4.6
+  - id: opus-4-7
+    name: Opus 4.7
     url: https://www.anthropic.com/claude/opus
     logoId: opus-4-6
     tags: [ui, design, coding]
@@ -38,8 +38,7 @@ models:
       - Pleasant to talk to
       - Excellent at UI and frontend
     cons:
-      - Lacks the "wisdom" of 5.4, resulting in much worse code over time
-      - Expensive
+      - If you ask it anything that even smells like "security" it falls apart
 
   - id: gpt-5-4-mini
     name: GPT 5.4 Mini
@@ -126,7 +125,7 @@ harnesses:
     tags: [cli, sdk]
     recommended: true
     description: |
-      The tui is a tui. Idk what else to say but: it's good. 
+      The tui is a tui. Idk what else to say but: it's good.
 
       The really impressive part is the SDK. Best "agent" SDK I've tried by a lot.
     pros:
@@ -183,7 +182,7 @@ subs:
     tags: [$200, every model]
     recommended: true
     description: |
-      Your $200 will get you ~$400-$500 a month in inference. Not nearly as insane of a subsidy as the major labs, but still worth having in my opinion. 
+      Your $200 will get you ~$400-$500 a month in inference. Not nearly as insane of a subsidy as the major labs, but still worth having in my opinion.
 
       If you have to pick only one sub, this is the one to get.
     pros:

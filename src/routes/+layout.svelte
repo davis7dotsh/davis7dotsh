@@ -28,7 +28,7 @@
 
 <div class="relative min-h-screen w-full">
 	<div
-		class="grid-pattern fixed inset-0 h-full w-full [mask-image:linear-gradient(to_bottom,white_0%,white_75%,transparent_100%)]"
+		class="grid-pattern fixed inset-0 h-full w-full [mask-image:radial-gradient(ellipse_at_center,transparent_0%,transparent_35%,rgba(0,0,0,0.5)_70%,black_100%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,transparent_0%,transparent_35%,rgba(0,0,0,0.5)_70%,black_100%)]"
 	></div>
 
 	<div class="relative z-10 flex h-full w-full justify-center overflow-auto p-4 sm:p-8">

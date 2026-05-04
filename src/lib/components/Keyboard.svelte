@@ -1,6 +1,6 @@
 <script lang="ts">
-	let keyTitle = $state('Hover a key');
-	let keyDescription = $state('Hover one of the keys to see the keybinding');
+	let keyTitle = $state('Hover or focus a key');
+	let keyDescription = $state('Hover or focus a key to see the keybinding');
 	let hoveredKey = $state.raw<{ label: string } | null>(null);
 	let lastTimeout: number | null = null;
 
@@ -164,20 +164,20 @@
 		})
 	);
 
-	function handleMouseEnter(key: (typeof keys)[0]) {
+	function activateKey(key: (typeof keys)[0]) {
 		if (key.label === 'Caps') return;
 		hoveredKey = key;
 		if (lastTimeout) clearTimeout(lastTimeout);
-		keyTitle = key.title || 'Hover a key';
-		keyDescription = key.description || 'Hover one of the keys to see the keybinding';
+		keyTitle = key.title || 'Hover or focus a key';
+		keyDescription = key.description || 'Hover or focus a key to see the keybinding';
 	}
 
-	function handleMouseLeave() {
+	function deactivateKey() {
 		hoveredKey = null;
 		if (lastTimeout) clearTimeout(lastTimeout);
 		lastTimeout = window.setTimeout(() => {
-			keyTitle = 'Hover a key';
-			keyDescription = 'Hover one of the keys to see the keybinding';
+			keyTitle = 'Hover or focus a key';
+			keyDescription = 'Hover or focus a key to see the keybinding';
 		}, 150);
 	}
 
@@ -192,7 +192,7 @@
 	<div class="shrink-0">
 		<div
 			class="flex h-16 w-16 items-center justify-center border"
-			style="background: color-mix(in srgb, var(--color-accent-cyan) 12%, var(--color-surface)); border-color: var(--color-border-strong)"
+			style="background: color-mix(in srgb, var(--color-accent-blue) 12%, var(--color-surface)); border-color: var(--color-border-strong)"
 		>
 			<svg class="h-8 w-8" style="color: var(--color-text)" fill="currentColor" viewBox="0 0 24 24">
 				<path
@@ -208,18 +208,32 @@
 </section>
 
 <div class="w-full overflow-x-auto p-4">
-	<svg viewBox="0 0 {svgWidth} {svgHeight}" class="h-auto w-full">
+	<svg
+		viewBox="0 0 {svgWidth} {svgHeight}"
+		class="h-auto w-full"
+		role="group"
+		aria-label="Karabiner keyboard map"
+	>
 		{#each keys as key}
 			{@const isCapsLock = key.label === 'Caps'}
 			{@const hasKeybinding = key.title && key.description}
 			{@const isHovered = hoveredKey === key}
+			{@const isInteractive = !isCapsLock && hasKeybinding}
 
-			<!-- svelte-ignore a11y_click_events_have_key_events -->
-			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 			<g
-				style:cursor={isCapsLock ? 'default' : 'pointer'}
-				onmouseenter={() => handleMouseEnter(key)}
-				onmouseleave={handleMouseLeave}
+				class="key-group"
+				class:key-group-static={!isInteractive}
+				role={isInteractive ? 'button' : undefined}
+				tabindex={isInteractive ? 0 : undefined}
+				aria-label={isInteractive
+					? `${key.label || 'space'}: ${key.title}. ${key.description}`
+					: undefined}
+				style:cursor={isCapsLock ? 'default' : isInteractive ? 'pointer' : 'default'}
+				onmouseenter={() => activateKey(key)}
+				onmouseleave={deactivateKey}
+				onfocus={() => activateKey(key)}
+				onblur={deactivateKey}
 			>
 				<rect
 					x={key.x}
@@ -230,14 +244,14 @@
 					fill={isCapsLock
 						? 'var(--color-warning)'
 						: isHovered
-							? 'color-mix(in srgb, var(--color-accent-cyan) 42%, var(--color-surface))'
+							? 'color-mix(in srgb, var(--color-accent-blue) 42%, var(--color-surface))'
 							: hasKeybinding
-								? 'color-mix(in srgb, var(--color-accent-cyan) 18%, var(--color-surface))'
+								? 'color-mix(in srgb, var(--color-accent-blue) 18%, var(--color-surface))'
 								: 'var(--color-surface)'}
 					stroke={isCapsLock
 						? 'color-mix(in srgb, var(--color-warning) 68%, var(--color-border))'
 						: isHovered || hasKeybinding
-							? 'color-mix(in srgb, var(--color-accent-cyan) 58%, var(--color-border))'
+							? 'color-mix(in srgb, var(--color-accent-blue) 58%, var(--color-border))'
 							: 'var(--color-border)'}
 					stroke-width={isHovered || isCapsLock ? 2 : 1}
 				/>
@@ -255,3 +269,14 @@
 		{/each}
 	</svg>
 </div>
+
+<style>
+	.key-group:focus {
+		outline: none;
+	}
+
+	.key-group:focus-visible > rect {
+		stroke: var(--color-focus);
+		stroke-width: 2.5;
+	}
+</style>

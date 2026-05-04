@@ -1,16 +1,14 @@
 <script lang="ts">
 	import { codeToHtml } from 'shiki';
-	import { Copy } from 'lucide-svelte';
+	import { Copy, Check, X } from 'lucide-svelte';
 	import Keyboard from '$lib/components/Keyboard.svelte';
 	import myConfig from './karabiner.json';
 	import { onMount } from 'svelte';
 
-	import { Check } from 'lucide-svelte';
-
 	let html = $state('');
-	let showModal = $state(false);
 	let copied = $state(false);
 	let currentTheme = $state<'dark' | 'light'>('dark');
+	let dialogEl = $state<HTMLDialogElement>();
 
 	onMount(() => {
 		currentTheme = (document.documentElement.dataset.theme as 'dark' | 'light') || 'dark';
@@ -50,13 +48,25 @@
 			copied = false;
 		}
 	};
+
+	function openDialog() {
+		dialogEl?.showModal();
+	}
+
+	function closeDialog() {
+		dialogEl?.close();
+	}
+
+	function handleBackdropClick(event: MouseEvent) {
+		if (event.target === dialogEl) closeDialog();
+	}
 </script>
 
 <svelte:head>
 	<title>Ben Davis - Karabiner Config</title>
 </svelte:head>
 
-<div class="mx-auto flex max-w-5xl flex-col items-start gap-8">
+<main class="mx-auto flex max-w-5xl flex-col items-start gap-8">
 	<div class="content-sheet flex w-full flex-col items-start gap-8">
 		<a href="/" class="back-link mb-2">← Back to Home</a>
 		<h2 class="text-2xl font-semibold" style="color: var(--color-text)">My Karabiner Config</h2>
@@ -71,7 +81,7 @@
 			>.
 		</p>
 
-		<button class="button" onclick={() => (showModal = true)}> View Full Config </button>
+		<button class="button" onclick={openDialog}> View Full Config </button>
 
 		<p style="color: var(--color-text-muted)">Keybindings:</p>
 		<ul class="w-full space-y-2 font-bold">
@@ -132,39 +142,63 @@
 		</ul>
 	</div>
 	<Keyboard />
-</div>
+</main>
 
-{#if showModal}
-	<!-- svelte-ignore a11y_click_events_have_key_events -->
-	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div
-		class="fixed inset-0 z-50 flex items-center justify-center bg-black/55"
-		onclick={() => (showModal = false)}
-	>
-		<div
-			class="surface z-50 max-h-[90vh] max-w-4xl overflow-auto p-6"
-			onclick={(event) => event.stopPropagation()}
-		>
-			<div class="mb-4 flex items-center justify-between">
-				<h3 class="text-xl font-semibold" style="color: var(--color-text)">
-					Full Karabiner Configuration
-				</h3>
-				<button class="icon-button h-8 w-8" onclick={() => (showModal = false)}> ✕ </button>
-			</div>
-			<div class="mb-4">
-				<button class="button" onclick={copy}>
-					{#if copied}
-						<Check size={16} class="success-text" />
-						Copied!
-					{:else}
-						<Copy size={16} />
-						Copy Config
-					{/if}
-				</button>
-			</div>
-			<div class="surface p-4 text-sm">
-				{@html html}
-			</div>
+<dialog
+	bind:this={dialogEl}
+	class="config-dialog surface"
+	aria-labelledby="karabiner-config-title"
+	onclick={handleBackdropClick}
+>
+	<div class="config-dialog-inner">
+		<div class="mb-4 flex items-center justify-between gap-4">
+			<h3
+				id="karabiner-config-title"
+				class="text-xl font-semibold"
+				style="color: var(--color-text)"
+			>
+				Full Karabiner Configuration
+			</h3>
+			<button class="icon-button h-9 w-9" onclick={closeDialog} aria-label="Close dialog">
+				<X size={16} />
+			</button>
+		</div>
+		<div class="mb-4">
+			<button class="button" onclick={copy}>
+				{#if copied}
+					<Check size={16} class="success-text" />
+					Copied!
+				{:else}
+					<Copy size={16} />
+					Copy Config
+				{/if}
+			</button>
+		</div>
+		<div class="surface p-4 text-sm">
+			{@html html}
 		</div>
 	</div>
-{/if}
+</dialog>
+
+<style>
+	.config-dialog {
+		max-width: min(64rem, 100vw - 2rem);
+		max-height: min(90vh, 100dvh - 2rem);
+		width: 100%;
+		padding: 0;
+		border: 1px solid var(--color-border);
+		background: var(--color-surface);
+		color: var(--color-text);
+		overflow: hidden;
+	}
+
+	.config-dialog::backdrop {
+		background: rgba(0, 0, 0, 0.55);
+	}
+
+	.config-dialog-inner {
+		max-height: inherit;
+		overflow: auto;
+		padding: 1.5rem;
+	}
+</style>
