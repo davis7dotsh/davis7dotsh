@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { vercelImageUrl, vercelSrcset } from '$lib/image';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
 </script>
 
@@ -46,7 +47,9 @@
 
 		<div class="full-bleed">
 			<img
-				src="/font-showcase.png"
+				src={vercelImageUrl('/font-showcase.png', 1200)}
+				srcset={vercelSrcset('/font-showcase.png')}
+				sizes="min(1200px, calc(100vw - 2rem))"
 				alt="Berkeley Mono font showcase"
 				class="w-full border shadow-2xl shadow-black/35"
 				style="border-color: var(--color-border)"
