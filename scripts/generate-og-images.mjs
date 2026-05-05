@@ -3,6 +3,7 @@ import { mkdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
+import { deflateSync, inflateSync } from 'node:zlib';
 
 const execFileAsync = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -87,6 +88,135 @@ const specs = [
 
 function fileUrl(...parts) {
 	return pathToFileURL(path.join(...parts)).toString();
+}
+
+function crc32(buffer) {
+	let crc = 0xffffffff;
+	for (const byte of buffer) {
+		crc ^= byte;
+		for (let bit = 0; bit < 8; bit += 1) crc = (crc >>> 1) ^ (0xedb88320 & -(crc & 1));
+	}
+
+	return (crc ^ 0xffffffff) >>> 0;
+}
+
+function pngChunk(type, data) {
+	const typeBuffer = Buffer.from(type);
+	const chunk = Buffer.alloc(12 + data.length);
+	chunk.writeUInt32BE(data.length, 0);
+	typeBuffer.copy(chunk, 4);
+	data.copy(chunk, 8);
+	chunk.writeUInt32BE(crc32(Buffer.concat([typeBuffer, data])), 8 + data.length);
+	return chunk;
+}
+
+function unfilterScanlines(raw, width, height, bytesPerPixel) {
+	const stride = width * bytesPerPixel;
+	const pixels = Buffer.alloc(stride * height);
+	let rawOffset = 0;
+
+	for (let y = 0; y < height; y += 1) {
+		const filter = raw[rawOffset];
+		rawOffset += 1;
+		const rowOffset = y * stride;
+		const previousRowOffset = rowOffset - stride;
+
+		for (let x = 0; x < stride; x += 1) {
+			const value = raw[rawOffset + x];
+			const left = x >= bytesPerPixel ? pixels[rowOffset + x - bytesPerPixel] : 0;
+			const up = y > 0 ? pixels[previousRowOffset + x] : 0;
+			const upLeft =
+				y > 0 && x >= bytesPerPixel ? pixels[previousRowOffset + x - bytesPerPixel] : 0;
+
+			let predictor = 0;
+			if (filter === 1) predictor = left;
+			else if (filter === 2) predictor = up;
+			else if (filter === 3) predictor = Math.floor((left + up) / 2);
+			else if (filter === 4) {
+				const p = left + up - upLeft;
+				const pa = Math.abs(p - left);
+				const pb = Math.abs(p - up);
+				const pc = Math.abs(p - upLeft);
+				predictor = pa <= pb && pa <= pc ? left : pb <= pc ? up : upLeft;
+			}
+
+			pixels[rowOffset + x] = (value + predictor) & 0xff;
+		}
+
+		rawOffset += stride;
+	}
+
+	return pixels;
+}
+
+async function cropPngTop(inputPath, outputPath, cropWidth, cropHeight) {
+	const input = await import('node:fs/promises').then((fs) => fs.readFile(inputPath));
+	const signature = input.subarray(0, 8);
+	const idatParts = [];
+	let offset = 8;
+	let width = 0;
+	let height = 0;
+	let bitDepth = 0;
+	let colorType = 0;
+
+	while (offset < input.length) {
+		const length = input.readUInt32BE(offset);
+		const type = input.subarray(offset + 4, offset + 8).toString('ascii');
+		const data = input.subarray(offset + 8, offset + 8 + length);
+		offset += 12 + length;
+
+		if (type === 'IHDR') {
+			width = data.readUInt32BE(0);
+			height = data.readUInt32BE(4);
+			bitDepth = data[8];
+			colorType = data[9];
+		} else if (type === 'IDAT') {
+			idatParts.push(data);
+		} else if (type === 'IEND') break;
+	}
+
+	if (bitDepth !== 8 || ![2, 6].includes(colorType)) {
+		throw new Error(`Unsupported PNG format: bitDepth=${bitDepth}, colorType=${colorType}`);
+	}
+	if (cropWidth > width || cropHeight > height) {
+		throw new Error(`Cannot crop ${cropWidth}x${cropHeight} from ${width}x${height}`);
+	}
+
+	const bytesPerPixel = colorType === 6 ? 4 : 3;
+	const stride = width * bytesPerPixel;
+	const pixels = unfilterScanlines(
+		inflateSync(Buffer.concat(idatParts)),
+		width,
+		height,
+		bytesPerPixel
+	);
+	const croppedStride = cropWidth * bytesPerPixel;
+	const cropped = Buffer.alloc((croppedStride + 1) * cropHeight);
+
+	for (let y = 0; y < cropHeight; y += 1) {
+		const outOffset = y * (croppedStride + 1);
+		cropped[outOffset] = 0;
+		pixels.copy(cropped, outOffset + 1, y * stride, y * stride + croppedStride);
+	}
+
+	const ihdr = Buffer.alloc(13);
+	ihdr.writeUInt32BE(cropWidth, 0);
+	ihdr.writeUInt32BE(cropHeight, 4);
+	ihdr[8] = bitDepth;
+	ihdr[9] = colorType;
+	ihdr[10] = 0;
+	ihdr[11] = 0;
+	ihdr[12] = 0;
+
+	await writeFile(
+		outputPath,
+		Buffer.concat([
+			signature,
+			pngChunk('IHDR', ihdr),
+			pngChunk('IDAT', deflateSync(cropped)),
+			pngChunk('IEND', Buffer.alloc(0))
+		])
+	);
 }
 
 function pageHtml(spec) {
@@ -286,6 +416,7 @@ await mkdir(tempDir, { recursive: true });
 for (const spec of specs) {
 	const htmlPath = path.join(tempDir, `${spec.slug}.html`);
 	const outPath = path.join(outDir, `${spec.slug}.png`);
+	const screenshotPath = path.join(tempDir, `${spec.slug}.png`);
 
 	await writeFile(htmlPath, pageHtml(spec));
 	try {
@@ -299,18 +430,20 @@ for (const spec of specs) {
 				'--force-device-scale-factor=1',
 				'--run-all-compositor-stages-before-draw',
 				'--virtual-time-budget=1000',
-				'--window-size=1200,630',
+				'--window-size=1200,717',
 				`--user-data-dir=${path.join(tempDir, `chrome-${spec.slug}`)}`,
-				`--screenshot=${outPath}`,
+				`--screenshot=${screenshotPath}`,
 				pathToFileURL(htmlPath).toString()
 			],
 			{ timeout: 8000 }
 		);
 	} catch (error) {
-		await stat(outPath);
-		if (error.killed) console.warn(`chrome timeout after writing ${path.relative(root, outPath)}`);
+		await stat(screenshotPath);
+		if (error.killed)
+			console.warn(`chrome timeout after writing ${path.relative(root, screenshotPath)}`);
 		else throw error;
 	}
+	await cropPngTop(screenshotPath, outPath, 1200, 630);
 
 	console.log(`wrote ${path.relative(root, outPath)}`);
 }

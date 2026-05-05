@@ -69,6 +69,13 @@
 				>
 			</a>
 
+			<a href="https://github.com/davis7dotsh/my-pi-setup" target="_blank" class="resource-card">
+				<span class="resource-title font-medium">My pi setup</span>
+				<span class="resource-subtitle mt-1 block text-sm"
+					>My custom pi coding agent setup. Extensions, theme, etc.</span
+				>
+			</a>
+
 			<a href="/font" class="resource-card">
 				<span class="resource-title font-medium">My Font</span>
 				<span class="resource-subtitle mt-1 block text-sm"
