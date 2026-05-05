@@ -76,7 +76,7 @@ harnesses:
 
       Then you ask it to change something about itself. Once you do and it self modifies and turns into exactly what you want/need, you will never use another tui.
     pros:
-      - Truely dynamic software
+      - Truly dynamic software
       - Best SDK
       - Super minimal and performant core
       - Works with every model
@@ -101,6 +101,27 @@ harnesses:
     cons:
       - Less featureful then something like Codex desktop
 
+  - id: codex-desktop
+    name: Codex Desktop App
+    url: https://developers.openai.com/codex/app
+    logoId: codex
+    tags: [desktop app, cli]
+    recommended: true
+    description: |
+      The performance still isn't perfect, but it's continuously getting better. Particularly the image gen and browser use stuff being built in is really useful.
+
+      Don't use it much, but when I want to generate images or debug with browser use it's a great option. Very good app that you're not going to go wrong with.
+    pros:
+      - Tons of features
+      - Has only been getting better over time
+      - First class way to use OpenAI models
+      - Image gen built in
+      - Browser use built in
+      - Beautiful UI
+    cons:
+      - Performance still isn't quite where I want it
+      - I generally prefer more lightweight tools and harnesses, but that's a personal preference it's very very capable
+
 subs:
   - id: codex-200
     name: OpenAI Codex
@@ -118,7 +139,7 @@ subs:
       - Use any harness you want
       - Current best models
     cons:
-      - GPT models only, currently not a big deal, but limits ur flexability
+      - GPT models only, currently not a big deal, but limits ur flexibility
 
   - id: cursor-ultra
     name: Cursor Ultra
