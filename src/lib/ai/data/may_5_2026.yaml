@@ -1,0 +1,153 @@
+id: may_5_2026
+label: May 5, 2026
+asOf: '2026-05-05'
+subtitle: Editorial ranking snapshot
+summary: >
+  Snapshot as of early May 2026. TL;DR: GPT-5.5 with Pi for basically everything.
+
+models:
+  - id: gpt-5-5
+    name: GPT 5.5
+    url: https://openai.com/index/introducing-gpt-5-5/
+    logoId: gpt-5-4
+    tags: [default, coding, computer use]
+    recommended: true
+    description: |
+      My model for basically everything.
+
+      Low reasoning for 90% of tasks. Just give it ur desired end state, it will get there.
+
+      Break out xHigh or high for big plans or research, but you really don't need it most of the time.
+
+      Only weird thing is it's hyper sensitive to context in the thread. If u tell it something, it will not forget for better or for worse...
+    pros:
+      - Does exactly what u tell it to
+      - Recent training data
+      - Perfect tool calling
+      - Best code I've ever seen from a model came from this one
+      - Computer & Browser Use
+    cons:
+      - Still not great at UI stuff
+      - Worse at super long threads than 5.4 was
+      - Hyper sensitive to what's currently in context. Can lead to some annoying behaviors, have to babysit the context more than old GPT models.
+
+  - id: opus-4-7
+    name: Opus 4.7
+    url: https://www.anthropic.com/claude/opus
+    logoId: opus-4-6
+    tags: [ui, design, coding]
+    recommended: true
+    description: |
+      Still better than GPT at frontend stuff. It does the job, but doesn't feel great to use.
+
+      And if u say the word security anywhere near it it dies.
+    pros:
+      - Amazing tool calling
+      - Still nice to talk to
+      - Can handle frontend stuff really well
+      - Follows instructions (usually)
+    cons:
+      - If you ask it anything that even smells like "security" it yells at you and fails to do anything useful
+      - Feels like a step down from opus 4.5 and 4.6 if I'm being honest
+
+  - id: gemini-3-flash
+    name: Gemini 3 Flash
+    url: https://deepmind.google/models/gemini/
+    logoId: gemini-3-1-pro
+    tags: [multi-modal]
+    recommended: true
+    description: The best model for sticking a bunch of text, json, images, video, pdfs, or whatever in and getting a structured json blob out.
+    pros:
+      - Handles images, videos, pdfs, etc. remarkably well
+      - Really cheap
+    cons:
+      - Can't really call tools all that well
+      - Slower than you would expect
+
+harnesses:
+  - id: pi
+    name: Pi
+    url: https://github.com/badlogic/pi-mono
+    logoId: pi
+    tags: [cli, sdk]
+    recommended: true
+    description:
+      I've been obsessed with Pi since I discovered the extension system. When you boot it for the first time, there's basically nothing there. 4 tools, a tiny system prompt, and a boring but clean TUI.
+
+      Then you ask it to change something about itself. Once you do and it self modifies and turns into exactly what you want/need, you will never use another tui.
+    pros:
+      - Truely dynamic software
+      - Best SDK
+      - Super minimal and performant core
+      - Works with every model
+      - Very very stable
+    cons:
+      - Requires customization to reach full potential. Not as beginner friendly as other options
+
+  - id: t3-code
+    name: T3 Code
+    url: https://t3.codes/
+    logoId: t3-code
+    tags: [desktop app]
+    recommended: true
+    description: |
+      Yes I'm biased, but T3 Code is really good. If I hadn't gotten consumed by Pi, I would probably still be maining T3 Code. (eventually I'll add Pi support and be back don't worry)
+
+      If you want a GUI for your agents, there's nothing else I'd choose
+    pros:
+      - Very very fast
+      - Doesn't lag and overheat my computer
+      - Wraps codex and other existing harnesses so it's A) free and B) giving u the best experience for the models
+    cons:
+      - Less featureful then something like Codex desktop
+
+subs:
+  - id: codex-200
+    name: OpenAI Codex
+    url: https://openai.com/codex
+    logoId: codex-200
+    tags: [$200, gpt only]
+    recommended: true
+    description: |
+      Now that 5.5 is out, I would just get this. You get effectively unlimited 5.5 unless you're going insane with it and if you use it on lower reasoning levels you will never hit limits.
+
+      They're also super chill about you using the sub elsewhere. I use it in Pi and Openclaw all the time. They don't care, it's awesome.
+
+    pros:
+      - Basically unlimited inference
+      - Use any harness you want
+      - Current best models
+    cons:
+      - GPT models only, currently not a big deal, but limits ur flexability
+
+  - id: cursor-ultra
+    name: Cursor Ultra
+    url: https://cursor.com/pricing
+    logoId: cursor-ultra
+    tags: [$200, every model]
+    recommended: true
+    description: |
+      Your $200 will get you ~$400-$500 a month in inference. Not nearly as insane of a subsidy as the major labs, but still worth having in my opinion.
+
+      If you have to pick only one sub, this is the one to get.
+    pros:
+      - You get a solid editor, the only good cloud agents, and a fine cli.
+      - Model variety
+    cons:
+      - Inference subsidy isn't as crazy as the big labs'
+
+  - id: opencode-black
+    name: OpenCode Black
+    url: https://opencode.ai/black
+    logoId: opencode-black
+    tags: [$200, every model]
+    recommended: true
+    description: |
+      This is the third sub I'd get if you can spend the money. Not as insane of a value as the other subs, but it seems like you can pretty easily get close to $1000 if you push it (although that could change).
+
+      Best part of this one is how flexible Opencode Zen is. It's truly just an API, your sub gets you an API key. Which means it's trivial to use as the inference for agents your building, in other harnesses, etc.
+    pros:
+      - Opencode Zen is basically an API so you can use it anywhere
+    cons:
+      - Not as absurd of a value
+      - Heavily wait listed right now, you might not even be able to get it

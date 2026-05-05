@@ -1,0 +1,11 @@
+title: State of AI Rankings
+defaultSnapshot: may_5_2026
+snapshots:
+  - id: may_5_2026
+    slug: may-5-2026
+    label: May 5, 2026
+    file: may_5_2026.yaml
+  - id: march_25_2026
+    slug: march-25-2026
+    label: March 25, 2026
+    file: march_25_2026.yaml

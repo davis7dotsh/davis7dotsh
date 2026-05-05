@@ -27,17 +27,29 @@
 		</div>
 		<h1 class="headline-text mb-0 pb-0 text-4xl font-bold tracking-tight">Ben Davis</h1>
 		<p class="muted-text mx-0 mt-2 mb-8">
-			<a href="https://github.com/bmdavis419" target="_blank" class="brand-link">developer</a>,
-			<a href="https://www.youtube.com/@bmdavis419" target="_blank" class="brand-link">youtuber</a>,
-			and
-			<a href="https://www.youtube.com/@t3dotgg/videos" target="_blank" class="brand-link"
-				>theo's manager</a
+			<a
+				href="https://github.com/bmdavis419"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="brand-link">developer</a
+			>,
+			<a
+				href="https://www.youtube.com/@bmdavis419"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="brand-link">youtuber</a
+			>, and
+			<a
+				href="https://www.youtube.com/@t3dotgg/videos"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="brand-link">theo's manager</a
 			>. based in sf.
 		</p>
 
 		<h3 class="headline-text mb-4 text-lg font-medium">You might be looking for:</h3>
 
-		<div class="space-y-3">
+		<div class="home-link-list space-y-3">
 			<a href="/sponsors" class="resource-card">
 				<span class="resource-title font-medium">Sponsors</span>
 				<span class="resource-subtitle mt-1 block text-sm"
@@ -45,7 +57,7 @@
 				>
 			</a>
 
-			<a href="https://ai.davis7.sh/" target="_blank" class="resource-card">
+			<a href="/ai" class="resource-card">
 				<span class="resource-title font-medium">My "State of AI"</span>
 				<span class="resource-subtitle mt-1 block text-sm"
 					>Rankings + descriptions of the models, harnesses, and subs I'm currently using.
@@ -69,6 +81,18 @@
 				>
 			</a>
 
+			<a
+				href="https://github.com/davis7dotsh/my-pi-setup"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="resource-card"
+			>
+				<span class="resource-title font-medium">My pi setup</span>
+				<span class="resource-subtitle mt-1 block text-sm"
+					>My custom pi coding agent setup. Extensions, theme, etc.</span
+				>
+			</a>
+
 			<a href="/font" class="resource-card">
 				<span class="resource-title font-medium">My Font</span>
 				<span class="resource-subtitle mt-1 block text-sm"
@@ -76,14 +100,19 @@
 				>
 			</a>
 
-			<a href="https://btca.dev" target="_blank" class="resource-card">
+			<a href="https://btca.dev" target="_blank" rel="noopener noreferrer" class="resource-card">
 				<span class="resource-title font-medium">btca (The Better Context App)</span>
 				<span class="resource-subtitle mt-1 block text-sm"
 					>The best way to get up to date context on the tech you're building with.</span
 				>
 			</a>
 
-			<a href="https://svg.davis7.sh" target="_blank" class="resource-card">
+			<a
+				href="https://svg.davis7.sh"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="resource-card"
+			>
 				<span class="resource-title font-medium">Quick SVG Background</span>
 				<span class="resource-subtitle mt-1 block text-sm"
 					>A really simple webapp for uploading an SVG and adding a background to it. I know it

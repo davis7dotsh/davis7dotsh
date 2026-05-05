@@ -12,7 +12,7 @@
 	let topBarColor = $state('#232831');
 	let topBarTextColor = $state('#ffffff');
 	let tailwindThemeEnabled = $state(false);
-	let primaryColor = $state('#00B8D9');
+	let primaryColor = $state('#2663EB');
 
 	let toastMessage = $state<string | null>(null);
 	let toastType = $state<'success' | 'error'>('success');
@@ -95,8 +95,8 @@
 	<meta name="description" content="An easy way to setup your SvelteKit project." />
 </svelte:head>
 
-<div class="w-full max-w-2xl space-y-8 px-3">
-	<div class="space-y-4">
+<div class="mx-auto w-full max-w-4xl space-y-8 px-3">
+	<div class="content-sheet space-y-4">
 		<a href="/" class="back-link mb-4">← Back to Home</a>
 		<div class="flex items-center justify-between">
 			<h1 class="text-4xl font-bold" style="color: var(--color-text)">SvelteKit Setup</h1>
@@ -132,7 +132,7 @@
 					/>
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Vercel Setup</span>
-						<p class="mt-0.5 text-xs" style="color: var(--color-text-subtle)">
+						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
 							Adds the vercel adapter and removes the default one
 						</p>
 					</div>
@@ -148,7 +148,7 @@
 						<span class="text-sm font-medium" style="color: var(--color-text)"
 							>Cloudflare Setup</span
 						>
-						<p class="mt-0.5 text-xs" style="color: var(--color-text-subtle)">
+						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
 							Adds the cloudflare adapter, sets up wrangler, and gives you the right commands to
 							deploy to cloudflare
 						</p>
@@ -158,7 +158,7 @@
 					<input type="checkbox" bind:checked={convexSetup} class="option-checkbox" />
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Convex Setup</span>
-						<p class="mt-0.5 text-xs" style="color: var(--color-text-subtle)">
+						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
 							Sets up convex in your sveltekit app and gives you a good cursor rule for it
 						</p>
 					</div>
@@ -167,7 +167,7 @@
 					<input type="checkbox" bind:checked={cursorRules} class="option-checkbox" />
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Cursor Rules</span>
-						<p class="mt-0.5 text-xs" style="color: var(--color-text-subtle)">
+						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
 							Adds 5 useful cursor rules for sveltekit: global, neverthrow, svelte, tailwindcss, and
 							convex
 						</p>
@@ -178,7 +178,7 @@
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Useful Packages</span
 						>
-						<p class="mt-0.5 text-xs" style="color: var(--color-text-subtle)">
+						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
 							Adds useful packages for sveltekit: runed, neverthrow, and zod
 						</p>
 					</div>
@@ -187,7 +187,7 @@
 					<input type="checkbox" bind:checked={asyncSvelte} class="option-checkbox" />
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Async Svelte</span>
-						<p class="mt-0.5 text-xs" style="color: var(--color-text-subtle)">
+						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
 							Updates the svelte.config.js file to support async svelte
 						</p>
 					</div>
@@ -196,7 +196,7 @@
 					<input type="checkbox" bind:checked={helloWorld} class="option-checkbox" />
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Hello World</span>
-						<p class="mt-0.5 text-xs" style="color: var(--color-text-subtle)">
+						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
 							Makes the default page a nicer hello world
 						</p>
 					</div>

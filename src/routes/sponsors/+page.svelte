@@ -96,8 +96,8 @@
 				<a
 					href={sponsor.href}
 					target="_blank"
-					rel="noreferrer"
-					class={`group sponsor-card sponsor-card--${sponsor.slug} flex h-75 w-full flex-col p-5`}
+					rel="noopener noreferrer"
+					class={`sponsor-card sponsor-${sponsor.slug} flex min-h-75 w-full flex-col p-5`}
 				>
 					<div
 						class="sponsor-logo-frame mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden px-5"
@@ -130,97 +130,96 @@
 
 <style lang="postcss">
 	.sponsor-card {
-		--sponsor-accent: var(--color-accent-cyan);
-		--sponsor-accent-soft: color-mix(in srgb, var(--sponsor-accent) 18%, transparent);
-		--sponsor-surface: var(--color-surface);
-		--sponsor-surface-hover: var(--color-surface-elevated);
-		--sponsor-border: var(--color-border);
-		--sponsor-border-hover: color-mix(in srgb, var(--sponsor-accent) 34%, var(--color-border));
-		--sponsor-logo-bg: var(--color-ink);
-		--sponsor-logo-border: color-mix(in srgb, var(--sponsor-accent) 18%, var(--color-border));
-		--sponsor-logo-border-hover: color-mix(in srgb, var(--sponsor-accent) 34%, var(--color-border));
-		--sponsor-title: var(--color-text);
-		--sponsor-description: var(--color-text-muted);
-		--sponsor-cta: var(--sponsor-accent);
-		background: var(--sponsor-surface);
-		border: 1px solid var(--sponsor-border);
-		color: var(--sponsor-title);
-		box-shadow:
-			var(--shadow-surface),
-			inset 0 2px 0 var(--sponsor-accent-soft);
+		--sponsor-accent: var(--color-text-subtle);
+
+		background:
+			linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--sponsor-accent) 14%, transparent),
+				transparent 42%
+			),
+			linear-gradient(
+				315deg,
+				color-mix(in srgb, var(--sponsor-accent) 7%, transparent),
+				transparent 48%
+			),
+			color-mix(in srgb, var(--sponsor-accent) 10%, var(--color-bg));
+		border: 1px solid color-mix(in srgb, var(--sponsor-accent) 32%, transparent);
+		color: var(--color-text);
+		box-shadow: var(--shadow-surface);
 		transition:
-			transform 180ms ease,
-			background 180ms ease,
-			border-color 180ms ease,
-			box-shadow 180ms ease;
+			transform 160ms ease,
+			background 160ms ease,
+			border-color 160ms ease;
 	}
 
 	.sponsor-card:hover {
-		transform: translateY(-2px);
-		background: var(--sponsor-surface-hover);
-		border-color: var(--sponsor-border-hover);
-		box-shadow:
-			var(--shadow-surface),
-			inset 0 2px 0 color-mix(in srgb, var(--sponsor-accent) 42%, transparent);
+		transform: translateY(-1px);
+		background:
+			linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--sponsor-accent) 20%, transparent),
+				transparent 44%
+			),
+			linear-gradient(
+				315deg,
+				color-mix(in srgb, var(--sponsor-accent) 11%, transparent),
+				transparent 50%
+			),
+			color-mix(in srgb, var(--sponsor-accent) 14%, var(--color-bg));
+		border-color: color-mix(in srgb, var(--sponsor-accent) 52%, transparent);
+	}
+
+	.sponsor-agentuity {
+		--sponsor-accent: #8b5cf6;
+	}
+
+	.sponsor-daytona {
+		--sponsor-accent: #38bdf8;
+	}
+
+	.sponsor-railway {
+		--sponsor-accent: #a855f7;
+	}
+
+	.sponsor-greptile {
+		--sponsor-accent: #22c55e;
+	}
+
+	.sponsor-upstash {
+		--sponsor-accent: #00e9a3;
+	}
+
+	.sponsor-workos {
+		--sponsor-accent: #6366f1;
 	}
 
 	.sponsor-logo-frame {
-		background: var(--sponsor-logo-bg);
-		border: 1px solid var(--sponsor-logo-border);
-		transition:
-			border-color 180ms ease,
-			background 180ms ease;
-	}
-
-	.sponsor-card:hover .sponsor-logo-frame {
-		border-color: var(--sponsor-logo-border-hover);
+		background: var(--color-ink);
+		border: 1px solid rgba(229, 231, 235, 0.08);
 	}
 
 	.sponsor-title {
-		color: var(--sponsor-title);
+		color: var(--color-text);
 		letter-spacing: -0.02em;
 	}
 
 	.sponsor-description {
-		color: var(--sponsor-description);
+		color: var(--color-text-muted);
 	}
 
 	.sponsor-cta {
-		color: var(--sponsor-cta);
+		color: var(--color-text-subtle);
+		transition: color 160ms ease;
 	}
 
-	.sponsor-card--agentuity {
-		--sponsor-accent: var(--color-accent-cyan);
+	.sponsor-card:hover .sponsor-cta {
+		color: var(--color-link-hover);
 	}
 
-	.sponsor-card--daytona {
-		--sponsor-accent: var(--color-cloud);
-	}
-
-	:global(html[data-theme='light']) .sponsor-card--daytona {
-		--sponsor-accent: var(--color-text);
-	}
-
-	.sponsor-card--railway {
-		--sponsor-accent: var(--color-context-violet);
-	}
-
-	.sponsor-card--greptile {
-		--sponsor-accent: var(--color-success);
-	}
-
-	.sponsor-card--upstash {
-		--sponsor-accent: var(--color-success);
-	}
-
-	.sponsor-card--workos {
-		--sponsor-accent: var(--color-context-violet);
-	}
-
-	/* Keep logo frame dark in light mode so white SVG logos remain visible */
-	:global(html[data-theme='light']) .sponsor-card {
-		--sponsor-logo-bg: #1a1a1a;
-		--sponsor-title: var(--color-text);
-		--sponsor-description: var(--color-text-muted);
+	/* keep logo frame dark in light mode so white SVG logos stay legible */
+	:global(html[data-theme='light']) .sponsor-logo-frame {
+		background: #1a1a1a;
+		border-color: rgba(255, 255, 255, 0.08);
 	}
 </style>
