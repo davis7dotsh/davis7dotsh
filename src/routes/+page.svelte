@@ -37,7 +37,7 @@
 
 		<h3 class="headline-text mb-4 text-lg font-medium">You might be looking for:</h3>
 
-		<div class="space-y-3">
+		<div class="home-link-list space-y-3">
 			<a href="/sponsors" class="resource-card">
 				<span class="resource-title font-medium">Sponsors</span>
 				<span class="resource-subtitle mt-1 block text-sm"

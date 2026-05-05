@@ -97,7 +97,7 @@
 					href={sponsor.href}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="sponsor-card flex min-h-75 w-full flex-col p-5"
+					class={`sponsor-card sponsor-${sponsor.slug} flex min-h-75 w-full flex-col p-5`}
 				>
 					<div
 						class="sponsor-logo-frame mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden px-5"
@@ -130,8 +130,21 @@
 
 <style lang="postcss">
 	.sponsor-card {
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
+		--sponsor-accent: var(--color-text-subtle);
+
+		background:
+			linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--sponsor-accent) 14%, transparent),
+				transparent 42%
+			),
+			linear-gradient(
+				315deg,
+				color-mix(in srgb, var(--sponsor-accent) 7%, transparent),
+				transparent 48%
+			),
+			color-mix(in srgb, var(--sponsor-accent) 10%, var(--color-bg));
+		border: 1px solid color-mix(in srgb, var(--sponsor-accent) 32%, transparent);
 		color: var(--color-text);
 		box-shadow: var(--shadow-surface);
 		transition:
@@ -142,13 +155,48 @@
 
 	.sponsor-card:hover {
 		transform: translateY(-1px);
-		background: var(--color-surface-elevated);
-		border-color: var(--color-border-strong);
+		background:
+			linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--sponsor-accent) 20%, transparent),
+				transparent 44%
+			),
+			linear-gradient(
+				315deg,
+				color-mix(in srgb, var(--sponsor-accent) 11%, transparent),
+				transparent 50%
+			),
+			color-mix(in srgb, var(--sponsor-accent) 14%, var(--color-bg));
+		border-color: color-mix(in srgb, var(--sponsor-accent) 52%, transparent);
+	}
+
+	.sponsor-agentuity {
+		--sponsor-accent: #8b5cf6;
+	}
+
+	.sponsor-daytona {
+		--sponsor-accent: #38bdf8;
+	}
+
+	.sponsor-railway {
+		--sponsor-accent: #a855f7;
+	}
+
+	.sponsor-greptile {
+		--sponsor-accent: #22c55e;
+	}
+
+	.sponsor-upstash {
+		--sponsor-accent: #00e9a3;
+	}
+
+	.sponsor-workos {
+		--sponsor-accent: #6366f1;
 	}
 
 	.sponsor-logo-frame {
 		background: var(--color-ink);
-		border: 1px solid var(--color-border);
+		border: 1px solid rgba(229, 231, 235, 0.08);
 	}
 
 	.sponsor-title {

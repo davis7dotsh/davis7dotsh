@@ -217,6 +217,18 @@ body::before {
 	transform: translateY(-1px);
 }
 
+.home-link-list .resource-card {
+	background: transparent;
+	border-color: transparent;
+	box-shadow: none;
+}
+
+.home-link-list .resource-card:hover {
+	background: var(--color-surface-elevated);
+	border-color: var(--color-border-strong);
+	box-shadow: var(--shadow-surface);
+}
+
 .headline-text,
 .resource-title {
 	color: var(--color-text);
