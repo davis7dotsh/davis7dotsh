@@ -73,6 +73,9 @@
 	--social-link-hover: var(--color-paper);
 	--youtube-play-color: var(--color-ink);
 	--shadow-surface: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+	--shadow-sheet: 0 24px 80px rgba(0, 0, 0, 0.32);
+	--color-sheet-start: color-mix(in srgb, var(--color-ink) 82%, var(--color-surface));
+	--color-sheet-end: color-mix(in srgb, var(--color-graphite) 74%, var(--color-ink));
 }
 
 html[data-theme='light'] {
@@ -107,6 +110,9 @@ html[data-theme='light'] {
 	--social-link-hover: var(--color-text);
 	--youtube-play-color: #ffffff;
 	--shadow-surface: 0 1px 0 rgba(255, 255, 255, 0.72) inset;
+	--shadow-sheet: 0 18px 60px rgba(11, 13, 16, 0.08);
+	--color-sheet-start: color-mix(in srgb, var(--color-surface) 88%, var(--color-bg));
+	--color-sheet-end: color-mix(in srgb, var(--color-surface-elevated) 70%, var(--color-surface));
 }
 
 html,
@@ -180,16 +186,10 @@ body::before {
 	margin-right: auto;
 	margin-left: auto;
 	background:
-		linear-gradient(
-			to bottom right,
-			color-mix(in srgb, var(--color-ink) 82%, var(--color-surface)),
-			color-mix(in srgb, var(--color-graphite) 74%, var(--color-ink))
-		),
-		var(--color-ink);
+		linear-gradient(to bottom right, var(--color-sheet-start), var(--color-sheet-end)),
+		var(--color-bg);
 	border: 1px solid var(--color-border);
-	box-shadow:
-		var(--shadow-surface),
-		0 24px 80px rgba(0, 0, 0, 0.32);
+	box-shadow: var(--shadow-surface), var(--shadow-sheet);
 	padding: clamp(1.25rem, 3vw, 2.5rem);
 }
 
