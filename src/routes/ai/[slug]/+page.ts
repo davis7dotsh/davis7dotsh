@@ -1,8 +1,8 @@
-import { getAiIndex } from '$lib/ai/data.remote';
+import { getIndex } from '$lib/ai/data';
 
 export const prerender = true;
 
-export async function entries() {
-	const index = await getAiIndex();
+export function entries() {
+	const index = getIndex();
 	return index.snapshots.map((snapshot) => ({ slug: snapshot.slug }));
 }
