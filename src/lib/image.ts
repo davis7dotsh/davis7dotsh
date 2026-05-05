@@ -1,10 +1,10 @@
-import { building, dev } from '$app/environment';
+import { dev } from '$app/environment';
 
 const defaultWidths = [640, 828, 1200, 1920];
 const defaultQuality = 90;
 
 function shouldOptimize(src: string) {
-	return !dev && !building && !src.endsWith('.svg');
+	return !dev && !src.endsWith('.svg');
 }
 
 export function vercelImageUrl(src: string, width = 1200, quality = defaultQuality) {

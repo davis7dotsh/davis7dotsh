@@ -306,7 +306,7 @@ input:focus-visible {
 .option-checkbox {
 	@apply mt-0.5 h-5 w-5 shrink-0 cursor-pointer;
 
-	accent-color: var(--color-accent-blue);
+	accent-color: var(--color-text-muted);
 }
 
 .code-chip {

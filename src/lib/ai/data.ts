@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { parse } from 'yaml';
+import { aiIndexManifest, getAiSnapshotMetas } from './manifest';
 import type { RatingsIndex, RatingsSnapshot } from './ratings';
 
 const yamlFiles = import.meta.glob('./data/*.yaml', {
@@ -8,8 +9,6 @@ const yamlFiles = import.meta.glob('./data/*.yaml', {
 	query: '?raw'
 }) as Record<string, string>;
 
-const slugForId = (id: string) => id.replaceAll('_', '-');
-
 function loadYaml<T>(filename: string) {
 	const raw = yamlFiles[`./data/${filename}`];
 	if (!raw) error(500, `Missing bundled AI data file: ${filename}`);
@@ -17,16 +16,18 @@ function loadYaml<T>(filename: string) {
 }
 
 export function getIndex() {
-	const legacy = loadYaml<{
-		title: string;
-		defaultSnapshot: string;
-		snapshots: { id: string; slug?: string; label: string; file: string }[];
-	}>('index.yaml');
+	const legacy = aiIndexManifest;
+	const snapshots = getAiSnapshotMetas();
+	const seenSlugs = new Set<string>();
 
-	const snapshots = legacy.snapshots.map((snapshot) => ({
-		...snapshot,
-		slug: snapshot.slug ?? slugForId(snapshot.id)
-	}));
+	for (const snapshot of snapshots) {
+		if (seenSlugs.has(snapshot.slug))
+			error(500, `AI index contains duplicate snapshot slug: ${snapshot.slug}`);
+		seenSlugs.add(snapshot.slug);
+	}
+
+	if (snapshots.length === 0) error(500, 'AI index must contain at least one snapshot');
+
 	const latest =
 		snapshots.find((snapshot) => snapshot.id === legacy.defaultSnapshot) ?? snapshots[0];
 

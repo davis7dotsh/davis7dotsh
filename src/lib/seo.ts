@@ -1,3 +1,5 @@
+import { aiIndexManifest, getAiSnapshotMetas } from '$lib/ai/manifest';
+
 type SeoConfig = {
 	title: string;
 	description: string;
@@ -16,6 +18,18 @@ const defaultSeo: SeoConfig = {
 
 const aiDescriptions =
 	"rankings and notes on the ai models, harnesses, and subscriptions i'm using.";
+const aiSnapshots = getAiSnapshotMetas();
+const latestAiSnapshot =
+	aiSnapshots.find((snapshot) => snapshot.id === aiIndexManifest.defaultSnapshot) ?? aiSnapshots[0];
+
+export function aiSnapshotSeo(slug: string, label: string): SeoConfig {
+	return {
+		title: `State of AI Rankings - ${label}`,
+		description: aiDescriptions,
+		path: `/ai/${slug}`,
+		image: `/og/ai-${slug}.png`
+	};
+}
 
 const seoByPath: Record<string, SeoConfig> = {
 	'/': defaultSeo,
@@ -29,20 +43,14 @@ const seoByPath: Record<string, SeoConfig> = {
 		title: 'State of AI Rankings - Ben Davis',
 		description: aiDescriptions,
 		path: '/ai',
-		image: '/og/ai-may-5-2026.png'
+		image: latestAiSnapshot ? `/og/ai-${latestAiSnapshot.slug}.png` : defaultSeo.image
 	},
-	'/ai/may-5-2026': {
-		title: 'State of AI Rankings - May 5, 2026',
-		description: aiDescriptions,
-		path: '/ai/may-5-2026',
-		image: '/og/ai-may-5-2026.png'
-	},
-	'/ai/march-25-2026': {
-		title: 'State of AI Rankings - March 25, 2026',
-		description: aiDescriptions,
-		path: '/ai/march-25-2026',
-		image: '/og/ai-march-25-2026.png'
-	},
+	...Object.fromEntries(
+		aiSnapshots.map((snapshot) => [
+			`/ai/${snapshot.slug}`,
+			aiSnapshotSeo(snapshot.slug, snapshot.label)
+		])
+	),
 	'/macos': {
 		title: 'MacOS Power User Setup - Ben Davis',
 		description: 'karabiner, raycast, rectangle, and small config commands for a faster mac.',

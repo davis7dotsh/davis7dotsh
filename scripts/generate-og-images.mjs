@@ -9,7 +9,13 @@ const execFileAsync = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'static', 'og');
 const tempDir = path.join(root, '.tmp', 'og-render');
-const chromePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const chromePath =
+	process.env.CHROME_PATH ??
+	(process.platform === 'darwin'
+		? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+		: process.platform === 'win32'
+			? 'chrome.exe'
+			: 'google-chrome');
 
 const specs = [
 	{
@@ -88,6 +94,15 @@ const specs = [
 
 function fileUrl(...parts) {
 	return pathToFileURL(path.join(...parts)).toString();
+}
+
+function escapeHtml(value) {
+	return String(value)
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#39;');
 }
 
 function crc32(buffer) {
@@ -393,14 +408,14 @@ function pageHtml(spec) {
 			<div class="frame"></div>
 			<div class="content">
 				<div class="main">
-					<p class="kicker">${spec.kicker}</p>
-					<h1>${spec.title}</h1>
-					<p class="description">${spec.description}</p>
+					<p class="kicker">${escapeHtml(spec.kicker)}</p>
+					<h1>${escapeHtml(spec.title)}</h1>
+					<p class="description">${escapeHtml(spec.description)}</p>
 				</div>
 				<aside class="side">
-					<p class="artifact">${spec.artifact}</p>
+					<p class="artifact">${escapeHtml(spec.artifact)}</p>
 					<div class="receipt">
-						${spec.receipt.map((line) => `<span>${line}</span>`).join('')}
+						${spec.receipt.map((line) => `<span>${escapeHtml(line)}</span>`).join('')}
 					</div>
 				</aside>
 			</div>
@@ -438,7 +453,11 @@ for (const spec of specs) {
 			{ timeout: 8000 }
 		);
 	} catch (error) {
-		await stat(screenshotPath);
+		try {
+			await stat(screenshotPath);
+		} catch {
+			throw error;
+		}
 		if (error.killed)
 			console.warn(`chrome timeout after writing ${path.relative(root, screenshotPath)}`);
 		else throw error;
