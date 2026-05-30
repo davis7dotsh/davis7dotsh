@@ -80,6 +80,7 @@
 <svelte:head>
 	<title>My Home Server - Ben Davis</title>
 	<meta name="description" content="The hardware and cost breakdown for my home server setup." />
+	<link rel="canonical" href="https://davis7.sh/home-server" />
 </svelte:head>
 
 <main class="z-10 px-3">

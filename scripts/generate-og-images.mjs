@@ -64,6 +64,15 @@ const specs = [
 		artifact: 'setup'
 	},
 	{
+		slug: 'home-server',
+		source: 'home-bg.png',
+		title: 'My Home Server',
+		kicker: 'davis7.sh/home-server',
+		description: 'the hardware, links, and cost breakdown for my home server setup.',
+		receipt: ['networking', 'nas + storage', 'rack', 'compute', '$7,078.92'],
+		artifact: 'ledger'
+	},
+	{
 		slug: 'karabiner',
 		source: 'karabiner-bg.png',
 		title: 'Karabiner Config',
