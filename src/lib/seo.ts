@@ -57,6 +57,12 @@ const seoByPath: Record<string, SeoConfig> = {
 		path: '/macos',
 		image: '/og/macos.png'
 	},
+	'/home-server': {
+		title: 'My Home Server - Ben Davis',
+		description: 'the hardware, links, and cost breakdown for my home server setup.',
+		path: '/home-server',
+		image: '/og/home-server.png'
+	},
 	'/karabiner': {
 		title: 'Karabiner Config - Ben Davis',
 		description: 'my hyper key config and keybinding visualizer.',
