@@ -74,6 +74,13 @@
 				>
 			</a>
 
+			<a href="/home-server" class="resource-card">
+				<span class="resource-title font-medium">My Home Server</span>
+				<span class="resource-subtitle mt-1 block text-sm"
+					>The hardware, links, and cost breakdown for my home server setup.</span
+				>
+			</a>
+
 			<a href="/karabiner" class="resource-card">
 				<span class="resource-title font-medium">Karabiner Config</span>
 				<span class="resource-subtitle mt-1 block text-sm"
