@@ -63,15 +63,8 @@ const specs = [
 		receipt: ['hyper + space', 'raycast', 'rectangle', 'ghostty', 'tmux'],
 		artifact: 'setup'
 	},
-	{
-		slug: 'home-server',
-		source: 'home-bg.png',
-		title: 'My Home Server',
-		kicker: 'davis7.sh/home-server',
-		description: '',
-		receipt: ['networking', 'nas + storage', 'rack', 'compute', '$7,078.92'],
-		artifact: 'ledger'
-	},
+	// home-server.png is intentionally excluded: it uses approved route-specific
+	// GPT Image 2 artwork with a custom Geist + logo lockup rather than this shared card template.
 	{
 		slug: 'karabiner',
 		source: 'karabiner-bg.png',
