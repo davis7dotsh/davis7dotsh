@@ -29,8 +29,9 @@
 		let cancelled = false;
 
 		(async () => {
+			const highlighted = await highlightJson(JSON.stringify(myConfig, null, 2), shikiTheme);
 			if (cancelled) return;
-			html = await highlightJson(JSON.stringify(myConfig, null, 2), shikiTheme);
+			html = highlighted;
 		})();
 
 		return () => {
