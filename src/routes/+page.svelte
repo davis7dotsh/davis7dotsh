@@ -1,4 +1,5 @@
 <script lang="ts">
+	import PrimarySocialLinks from '$lib/components/PrimarySocialLinks.svelte';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
 </script>
 
@@ -25,29 +26,8 @@
 				/>
 			</svg>
 		</div>
-		<h1 class="headline-text mb-0 pb-0 text-4xl font-bold tracking-tight">Ben Davis</h1>
-		<p class="muted-text mx-0 mt-2 mb-8">
-			<a
-				href="https://github.com/bmdavis419"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="brand-link">developer</a
-			>,
-			<a
-				href="https://www.youtube.com/@bmdavis419"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="brand-link">youtuber</a
-			>, and
-			<a
-				href="https://www.youtube.com/@t3dotgg/videos"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="brand-link">theo's manager</a
-			>. based in sf.
-		</p>
-
-		<h3 class="headline-text mb-4 text-lg font-medium">You might be looking for:</h3>
+		<h1 class="headline-text mb-0 pb-0 text-[2.75rem] font-bold tracking-tight">Ben Davis</h1>
+		<PrimarySocialLinks />
 
 		<div class="home-link-list space-y-3">
 			<a href="/sponsors" class="resource-card">

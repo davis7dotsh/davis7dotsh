@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { codeToHtml } from 'shiki';
 	import { Copy, Check, X } from 'lucide-svelte';
 	import Keyboard from '$lib/components/Keyboard.svelte';
+	import { highlightJson } from '$lib/shiki-highlight';
 	import myConfig from './karabiner.json';
 	import { onMount } from 'svelte';
 
@@ -26,15 +26,17 @@
 
 	$effect(() => {
 		const shikiTheme = currentTheme === 'light' ? 'github-light' : 'github-dark';
-		const run = async () => {
-			const innerHtml = await codeToHtml(JSON.stringify(myConfig, null, 2), {
-				lang: 'json',
-				theme: shikiTheme
-			});
-			html = innerHtml;
-		};
+		let cancelled = false;
 
-		run();
+		(async () => {
+			const highlighted = await highlightJson(JSON.stringify(myConfig, null, 2), shikiTheme);
+			if (cancelled) return;
+			html = highlighted;
+		})();
+
+		return () => {
+			cancelled = true;
+		};
 	});
 
 	const copy = async () => {
