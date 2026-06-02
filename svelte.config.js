@@ -16,12 +16,7 @@ const config = {
 				minimumCacheTTL: 300
 			}
 		}),
-		prerender: {
-			handleHttpError: ({ path, message }) => {
-				if (path === '/_vercel/image') return;
-				throw new Error(message);
-			}
-		},
+
 		experimental: {
 			remoteFunctions: true
 		}
