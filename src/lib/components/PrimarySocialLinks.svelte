@@ -82,7 +82,7 @@
 	}
 
 	.primary-social-links__list {
-		@apply m-0 flex list-none flex-wrap items-center gap-x-5 gap-y-2 p-0;
+		@apply m-0 grid list-none grid-cols-2 gap-x-5 gap-y-3 p-0 sm:flex sm:flex-wrap sm:items-center sm:gap-y-2;
 	}
 
 	.primary-social-link {
