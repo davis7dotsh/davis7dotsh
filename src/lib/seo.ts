@@ -59,7 +59,7 @@ const seoByPath: Record<string, SeoConfig> = {
 	},
 	'/home-server': {
 		title: 'My Home Server - Ben Davis',
-		description: 'the hardware, links, and cost breakdown for my home server setup.',
+		description: 'the hardware, links, and cost breakdowns for my home server setups.',
 		path: '/home-server',
 		image: '/og/home-server.png'
 	},
