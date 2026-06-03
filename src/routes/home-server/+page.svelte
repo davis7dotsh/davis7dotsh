@@ -212,20 +212,28 @@
 					image: '/home-server/belkin-surge-protector.jpg',
 					alt: 'Belkin 12-outlet surge protector power strip',
 					layout: 'standard'
+				},
+				{
+					item: 'Jueraori WiFi Router Storage Cabinet',
+					price: '$123.99',
+					href: 'https://davis7.link/router-storage-cabinet',
+					image: '/home-server/router-storage-cabinet.jpg',
+					alt: 'Walnut Jueraori WiFi router storage cabinet with its rattan doors open',
+					layout: 'wide'
 				}
 			],
 			breakdown: [
 				{ category: 'networking & routing', total: '$829.10' },
 				{ category: 'NAS & storage', total: '$1,489.99' },
-				{ category: 'rack & power', total: '$98.98' }
+				{ category: 'rack & power', total: '$222.97' }
 			],
-			total: '$2,418.07'
+			total: '$2,542.06'
 		}
 	] as const;
 </script>
 
 <svelte:head>
-	<title>My Home Server(s) - Ben Davis</title>
+	<title>My Home Servers - Ben Davis</title>
 	<meta name="description" content="The hardware and cost breakdowns for my home server setups." />
 	<link rel="canonical" href="https://davis7.sh/home-server" />
 </svelte:head>
@@ -511,7 +519,6 @@
 	.receipt {
 		max-width: 24rem;
 		margin-top: clamp(2.5rem, 5vw, 4.5rem);
-		margin-left: auto;
 	}
 
 	.receipt-list {
