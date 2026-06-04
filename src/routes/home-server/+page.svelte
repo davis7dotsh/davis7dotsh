@@ -38,6 +38,22 @@
 					layout: 'wide'
 				},
 				{
+					item: 'VCE CAT6A Keystone Couplers (25 Pack)',
+					price: '$24.99',
+					href: 'https://davis7.link/vce-cat6a-couplers',
+					image: '/home-server/vce-cat6a-couplers.jpg',
+					alt: 'Blue VCE CAT6A keystone couplers arranged beside one enlarged coupler',
+					layout: 'standard'
+				},
+				{
+					item: 'CABNEER Cat8 Cables (1 ft, 10 Pack)',
+					price: '$16.19',
+					href: 'https://davis7.link/cabneer-cat8-1ft-10-pack',
+					image: '/home-server/cabneer-cat8-1ft-10-pack.jpg',
+					alt: 'Ten short black and blue braided CABNEER Cat8 Ethernet cables',
+					layout: 'standard'
+				},
+				{
 					item: 'Firewalla Gold Pro Rack Mount',
 					price: '$82.00',
 					href: 'https://firewalla.com/products/firewalla-gold-pro-rack-mount?variant=45741344948468',
@@ -135,12 +151,12 @@
 				}
 			],
 			breakdown: [
-				{ category: 'Networking & routing', total: '$2,439.97' },
+				{ category: 'Networking & routing', total: '$2,481.15' },
 				{ category: 'NAS & storage', total: '$3,609.96' },
 				{ category: 'Rack & power', total: '$298.94' },
 				{ category: 'Compute', total: '$799.00' }
 			],
-			total: '$7,147.87'
+			total: '$7,189.05'
 		},
 		{
 			id: 'parents',
