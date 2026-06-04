@@ -4,30 +4,30 @@ import { z } from 'zod';
 const VERCEL_SETUP_PROMPT = `
 Setup this SvelteKit project to be deployed to Vercel by doing the following:
 
-1. install the adapter and get rid of the old one:
+1. Install the adapter and get rid of the old one:
 bun add -D @sveltejs/adapter-vercel
 bun remove @sveltejs/adapter-auto
-2. update the svelte.config.js file to use the new adapter:
+2. Update the svelte.config.js file to use the new adapter:
 import adapter from '@sveltejs/adapter-vercel';
 `;
 
 const CONVEX_SETUP_PROMPT = `
-Setup convex to be used in this project by doing the following:
+Setup Convex to be used in this project by doing the following:
 
-1. install the convex packages:
+1. Install the Convex packages:
 bun add convex convex-svelte
-2. create a convex.json file in the root of the project with the following content:
+2. Create a convex.json file in the root of the project with the following content:
 {
 	"$schema": "https://raw.githubusercontent.com/get-convex/convex-backend/refs/heads/main/npm-packages/convex/schemas/convex.schema.json",
 	"functions": "src/convex/"
 }
-3. update the dev scripts in the package.json and install the concurrently package:
+3. Update the dev scripts in the package.json and install the concurrently package:
 bun add -D concurrently
 
 "dev": "concurrently --names \"SVELTE,CONVEX\" -c yellow,magenta \"bun run dev:sv\" \"bun run dev:cx\"",
 "dev:sv": "vite dev",
 "dev:cx": "convex dev",
-4. update the +layout.svelte file at the root of the routes directory to include the following in the script tag:
+4. Update the +layout.svelte file at the root of the routes directory to include the following in the script tag:
 <script lang="ts">  
 import { PUBLIC_CONVEX_URL } from '$env/static/public';  
 import { setupConvex } from 'convex-svelte';  
@@ -35,28 +35,28 @@ import { setupConvex } from 'convex-svelte';
 const { children } = $props();  
 setupConvex(PUBLIC_CONVEX_URL);  
 </script>
-don't get rid of anything else in the +layout.svelte file, just add the above code.
-5. add in the convex cursor rules by running the following command:
+Don't get rid of anything else in the +layout.svelte file, just add the above code.
+5. Add in the Convex Cursor rules by running the following command:
 curl "https://www.davis7.sh/sv/rules?rule=convex" -o .cursor/rules/convex.mdc
-6. prompt the user when this agent run is finished to run the following command to setup the convex project:
+6. Prompt the user when this agent run is finished to run the following command to setup the Convex project:
 bun run dev:cx
-7. update the svelte.config.js to include the following:
+7. Update the svelte.config.js to include the following:
 kit: {
 		alias: {
 			$convex: './src/convex'
 		}
 }
-leave the rest of the svelte.config.js file alone (including the kit section, just add the alias)
+Leave the rest of the svelte.config.js file alone (including the kit section, just add the alias)
 `;
 
 const CLOUDFLARE_SETUP_PROMPT = `
-Setup this SvelteKit project to be deployed to Cloudflare workers by doing the following:
-1. install the adapter and get rid of the old one:
+Setup this SvelteKit project to be deployed to Cloudflare Workers by doing the following:
+1. Install the adapter and get rid of the old one:
 bun add -D @sveltejs/adapter-cloudflare
 bun remove @sveltejs/adapter-auto
-2. update the svelte.config.js file to use the new adapter:
+2. Update the svelte.config.js file to use the new adapter:
 import adapter from '@sveltejs/adapter-cloudflare';
-3. update the scripts in package.json to be the following:
+3. Update the scripts in package.json to be the following:
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -69,7 +69,7 @@ import adapter from '@sveltejs/adapter-cloudflare';
 		"format": "prettier --write .",
 		"lint": "prettier --check ."
 	},
-4. create a wrangler.jsonc file in the root of the project with the following content:
+4. Create a wrangler.jsonc file in the root of the project with the following content:
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "",
@@ -84,9 +84,9 @@ import adapter from '@sveltejs/adapter-cloudflare';
 		"enabled": true
 	}
 }
-fill the name with the name in the package.json file.
-5. generate the types with: bun run cf-typegen
-6. update app.d.ts to be the following:
+Fill the name with the name in the package.json file.
+5. Generate the types with: bun run cf-typegen
+6. Update app.d.ts to be the following:
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
 declare global {
@@ -105,8 +105,8 @@ export {};
 const CURSOR_RULES_PROMPT = `
 Setup the cursor rules for this project by doing the following:
 
-1. make sure the cursor rules directory exists (".cursor/rules"), if it doesn't, create it
-2. run the following commands to populate the rules directory:
+1. Make sure the Cursor rules directory exists (".cursor/rules"), if it doesn't, create it
+2. Run the following commands to populate the rules directory:
 curl "https://www.davis7.sh/sv/rules?rule=global" -o .cursor/rules/global.mdc && \
 curl "https://www.davis7.sh/sv/rules?rule=neverthrow" -o .cursor/rules/neverthrow.mdc && \
 curl "https://www.davis7.sh/sv/rules?rule=svelte" -o .cursor/rules/svelte.mdc && \
@@ -144,15 +144,15 @@ The only thing you should be touching is the compilerOptions: { experimental: { 
 `;
 
 const VSCODE_THEME_PROMPT = (opts: { topBarColor: string; topBarTextColor: string }) => `
-add a vscode conifg file that sets the top bar to be ${opts.topBarColor} with ${opts.topBarTextColor} text 
+Add a VSCode conifg file that sets the top bar to be ${opts.topBarColor} with ${opts.topBarTextColor} text
 `;
 
 const TAILWIND_THEME_PROMPT = (opts: { primaryColor: string }) => `
-in @app.css could you setup a basic theme for this site. It should be light mode with tailwind neutral colors, and set the primary color to be ${opts.primaryColor}
+In @app.css could you setup a basic theme for this site. It should be light mode with Tailwind neutral colors, and set the primary color to be ${opts.primaryColor}
 `;
 
 const HELLO_WORLD_PROMPT = `
-setup the root layout and page to be nicer:
+Setup the root layout and page to be nicer:
 
 ---
 
@@ -192,7 +192,7 @@ setup the root layout and page to be nicer:
 
 ---
 
-NOTE: if there is not a primary color set, just use orange-500
+NOTE: If there is not a primary color set, just use orange-500
 `;
 
 const getPromptsSchema = z.object({

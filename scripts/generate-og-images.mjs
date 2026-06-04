@@ -23,45 +23,45 @@ const specs = [
 		source: 'home-bg.png',
 		title: 'Ben Davis',
 		kicker: 'davis7.sh',
-		description: "developer, youtuber, and theo's manager. based in sf",
-		receipt: ['developer', 'youtuber', "theo's manager", 'sf'],
-		artifact: 'directory'
+		description: "Developer, YouTuber, and Theo's manager. Based in SF",
+		receipt: ['Developer', 'YouTuber', "Theo's Manager", 'SF'],
+		artifact: 'Directory'
 	},
 	{
 		slug: 'sponsors',
 		source: 'sponsors-bg.png',
 		title: 'Sponsors',
 		kicker: 'davis7.sh/sponsors',
-		description: 'the companies backing my work and videos.',
+		description: 'The companies backing my work and videos.',
 		receipt: ['Agentuity', 'Daytona', 'Railway', 'Greptile', 'Upstash', 'WorkOS'],
-		artifact: 'ledger'
+		artifact: 'Ledger'
 	},
 	{
 		slug: 'ai-may-5-2026',
 		source: 'ai-bg.png',
 		title: 'State of AI Rankings',
-		kicker: 'may 5, 2026',
-		description: "models, harnesses, and subscriptions i'm using.",
-		receipt: ['models', 'harnesses', 'subscriptions', 'snapshot'],
-		artifact: 'ranking'
+		kicker: 'May 5, 2026',
+		description: "Models, harnesses, and subscriptions I'm using.",
+		receipt: ['Models', 'Harnesses', 'Subscriptions', 'Snapshot'],
+		artifact: 'Ranking'
 	},
 	{
 		slug: 'ai-march-25-2026',
 		source: 'ai-bg.png',
 		title: 'State of AI Rankings',
-		kicker: 'march 25, 2026',
-		description: "models, harnesses, and subscriptions i'm using.",
-		receipt: ['models', 'harnesses', 'subscriptions', 'snapshot'],
-		artifact: 'ranking'
+		kicker: 'March 25, 2026',
+		description: "Models, harnesses, and subscriptions I'm using.",
+		receipt: ['Models', 'Harnesses', 'Subscriptions', 'Snapshot'],
+		artifact: 'Ranking'
 	},
 	{
 		slug: 'macos',
 		source: 'macos-bg.png',
-		title: 'MacOS Power User Setup',
+		title: 'macOS Power User Setup',
 		kicker: 'davis7.sh/macos',
-		description: 'karabiner, raycast, rectangle, and small config commands.',
-		receipt: ['hyper + space', 'raycast', 'rectangle', 'ghostty', 'tmux'],
-		artifact: 'setup'
+		description: 'Karabiner, Raycast, Rectangle, and small config commands.',
+		receipt: ['Hyper + Space', 'Raycast', 'Rectangle', 'Ghostty', 'tmux'],
+		artifact: 'Setup'
 	},
 	{
 		slug: 'home-server',
@@ -69,35 +69,35 @@ const specs = [
 		title: 'My Home Server',
 		kicker: 'davis7.sh/home-server',
 		description: '',
-		receipt: ['networking', 'nas + storage', 'rack', 'compute', '$7,078.92'],
-		artifact: 'ledger'
+		receipt: ['Networking', 'NAS + Storage', 'Rack', 'Compute', '$7,078.92'],
+		artifact: 'Ledger'
 	},
 	{
 		slug: 'karabiner',
 		source: 'karabiner-bg.png',
 		title: 'Karabiner Config',
 		kicker: 'davis7.sh/karabiner',
-		description: 'hyper key config and keybinding visualizer.',
-		receipt: ['caps lock -> hyper', 'hyper + hjkl', 'cmd shortcuts', 'json'],
-		artifact: 'keymap'
+		description: 'Hyper key config and keybinding visualizer.',
+		receipt: ['Caps Lock -> Hyper', 'Hyper + HJKL', 'Cmd Shortcuts', 'JSON'],
+		artifact: 'Keymap'
 	},
 	{
 		slug: 'font',
 		source: 'font-bg.png',
 		title: 'Berkeley Mono',
 		kicker: 'davis7.sh/font',
-		description: 'the font, theme, and icon setup i use.',
-		receipt: ['cursor', 'terminal', 'github dark default', 'vscode icons'],
-		artifact: 'type'
+		description: 'The font, theme, and icon setup I use.',
+		receipt: ['Cursor', 'Terminal', 'GitHub Dark Default', 'VSCode Icons'],
+		artifact: 'Type'
 	},
 	{
 		slug: 'sveltekit',
 		source: 'sveltekit-bg.png',
 		title: 'SvelteKit Setup',
 		kicker: 'davis7.sh/sv',
-		description: 'a small prompt generator for project setup.',
-		receipt: ['adapter', 'rules', 'packages', 'theme', 'copy prompts'],
-		artifact: 'checklist'
+		description: 'A small prompt generator for project setup.',
+		receipt: ['Adapter', 'Rules', 'Packages', 'Theme', 'Copy Prompts'],
+		artifact: 'Checklist'
 	}
 ];
 

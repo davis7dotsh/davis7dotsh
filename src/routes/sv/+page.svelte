@@ -104,12 +104,12 @@
 		</div>
 		<p class="text-lg" style="color: var(--color-text-muted)">
 			An easy way to setup your SvelteKit project. Select the options you want to enable and copy
-			the prompts to your clipboard, then paste them into cursor.
+			the prompts to your clipboard, then paste them into Cursor.
 		</p>
 		<p class="text-lg" style="color: var(--color-text-muted)">
 			This will not create a project for you, to do that run: <code
 				class="code-chip px-2 py-1 font-mono text-sm">bunx sv create</code
-			>. I recommend picking: minimal, typescript, prettier/tailwindcss, and then bun.
+			>. I recommend picking: minimal, TypeScript, Prettier/Tailwind CSS, and then Bun.
 		</p>
 	</div>
 
@@ -133,7 +133,7 @@
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Vercel Setup</span>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Adds the vercel adapter and removes the default one
+							Adds the Vercel adapter and removes the default one
 						</p>
 					</div>
 				</label>
@@ -149,8 +149,8 @@
 							>Cloudflare Setup</span
 						>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Adds the cloudflare adapter, sets up wrangler, and gives you the right commands to
-							deploy to cloudflare
+							Adds the Cloudflare adapter, sets up Wrangler, and gives you the right commands to
+							deploy to Cloudflare
 						</p>
 					</div>
 				</label>
@@ -159,7 +159,7 @@
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Convex Setup</span>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Sets up convex in your sveltekit app and gives you a good cursor rule for it
+							Sets up Convex in your SvelteKit app and gives you a good Cursor rule for it
 						</p>
 					</div>
 				</label>
@@ -168,8 +168,8 @@
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Cursor Rules</span>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Adds 5 useful cursor rules for sveltekit: global, neverthrow, svelte, tailwindcss, and
-							convex
+							Adds 5 useful Cursor rules for SvelteKit: global, neverthrow, Svelte, Tailwind CSS,
+							and Convex
 						</p>
 					</div>
 				</label>
@@ -179,7 +179,7 @@
 						<span class="text-sm font-medium" style="color: var(--color-text)">Useful Packages</span
 						>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Adds useful packages for sveltekit: runed, neverthrow, and zod
+							Adds useful packages for SvelteKit: runed, neverthrow, and Zod
 						</p>
 					</div>
 				</label>
@@ -188,7 +188,7 @@
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Async Svelte</span>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Updates the svelte.config.js file to support async svelte
+							Updates the svelte.config.js file to support async Svelte
 						</p>
 					</div>
 				</label>
@@ -197,7 +197,7 @@
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)">Hello World</span>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Makes the default page a nicer hello world
+							Makes the default page a nicer Hello World
 						</p>
 					</div>
 				</label>

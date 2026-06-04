@@ -29,16 +29,11 @@
 	];
 </script>
 
-<nav class="primary-social-links" aria-label="social">
+<nav class="primary-social-links" aria-label="Social">
 	<ul class="primary-social-links__list">
 		{#each links as link (link.href)}
 			<li>
-				<a
-					href={link.href}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="primary-social-link"
-				>
+				<a href={link.href} target="_blank" rel="noopener noreferrer" class="primary-social-link">
 					<span class="primary-social-link__icon" aria-hidden="true">
 						{#if link.icon === 'youtube'}
 							<svg viewBox="0 0 256 180" xmlns="http://www.w3.org/2000/svg">

@@ -7,14 +7,14 @@ description: Help make changes to my terminal emulator
 agent: build
 ---
 
-Run "ghostty +show-config --default --docs" to see the full guide on how to configure my terminal emulator ghostty. In this session I want you to help me get it configured. When I tell you to make a change, reference the docs on how to do it, and then write the changes to: "~/Library/Application Support/com.mitchellh.ghostty/config"`;
+Run "ghostty +show-config --default --docs" to see the full guide on how to configure my terminal emulator Ghostty. In this session I want you to help me get it configured. When I tell you to make a change, reference the docs on how to do it, and then write the changes to: "~/Library/Application Support/com.mitchellh.ghostty/config"`;
 
 	const cursorContent = `---
-description: Help fine tune my cursor keybindings
+description: Help fine tune my Cursor keybindings
 agent: build
 ---
 
-My cursor (vscode) keybindings are located at: "~/Library/Application Support/Cursor/User/keybindings.json". In this session your job is to help me fine tune them.`;
+My Cursor (VSCode) keybindings are located at: "~/Library/Application Support/Cursor/User/keybindings.json". In this session your job is to help me fine tune them.`;
 
 	const tmuxContent = `---
 description: Help fine tune tmux config
@@ -39,10 +39,10 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 </script>
 
 <svelte:head>
-	<title>Ben Davis - MacOS Power User Setup</title>
+	<title>Ben Davis - macOS Power User Setup</title>
 	<meta
 		name="description"
-		content="My complete MacOS setup for power user productivity with Karabiner, Raycast, Rectangle, and custom configs"
+		content="My complete macOS setup for power user productivity with Karabiner, Raycast, Rectangle, and custom configs"
 	/>
 </svelte:head>
 
@@ -50,50 +50,50 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 	<article class="content-sheet prose prose-neutral mb-8 pb-16 text-left">
 		<a href="/" class="back-link mb-8">← Back to Home</a>
 
-		<h1 class="mb-8">MacOS Power User Setup</h1>
+		<h1 class="mb-8">macOS Power User Setup</h1>
 
 		<p>
-			I've setup my mac so that it is as fast to navigate through and work on as Linux. The main
+			I've set up my Mac so that it is as fast to navigate through and work on as Linux. The main
 			things I did this with are:
 		</p>
 
 		<ul>
 			<li>
-				<a href="https://karabiner-elements.pqrs.org/" target="_blank">karabiner elements</a>
+				<a href="https://karabiner-elements.pqrs.org/" target="_blank">Karabiner Elements</a>
 				(breakdown <a href="/karabiner">here</a>)
 			</li>
 			<li>
-				<a href="https://www.raycast.com/" target="_blank">raycast</a>
+				<a href="https://www.raycast.com/" target="_blank">Raycast</a>
 			</li>
 			<li>
-				<a href="https://rectangleapp.com/" target="_blank">rectangle</a>
+				<a href="https://rectangleapp.com/" target="_blank">Rectangle</a>
 			</li>
 		</ul>
 
 		<p>
-			Starting with the simplest one, rectangle is just my window manager. I really only ever use
+			Starting with the simplest one, Rectangle is just my window manager. I really only ever use
 			the binding
 			<code>left_option + left_control + enter</code> for full-screening and centering a window.
 		</p>
 
 		<p>
 			<strong
-				>The key to all of this is never ever use the desktops or built in full screen of macos.
+				>The key to all of this is never ever use the desktops or built in full screen of macOS.
 				This will massively slow down your jumping between apps, just fullscreen them and jump
-				around with <code>cmd + tab</code> and the raycast opening shortcuts.</strong
+				around with <code>cmd + tab</code> and the Raycast opening shortcuts.</strong
 			>
 		</p>
 
 		<p>
-			The next key piece is karabiner elements. I use this to make a <strong>hyper key</strong> on
+			The next key piece is Karabiner Elements. I use this to make a <strong>hyper key</strong> on
 			caps lock. I have it bound so that if you tap it, it presses escape, and if you press it with
 			something else it acts as <code>control + option + shift + command</code>. This is insanely
-			powerful for navigation and work, especially when combined with raycast.
+			powerful for navigation and work, especially when combined with Raycast.
 		</p>
 
 		<p>
-			I have raycast bound to <code>hyper + space</code> (which is really
-			<code>caps lock + space</code>). Then in raycast if you search extensions, then search for an
+			I have Raycast bound to <code>hyper + space</code> (which is really
+			<code>caps lock + space</code>). Then in Raycast if you search extensions, then search for an
 			application, then you can set a keybinding for it. Mine are all hyper + something. You can see
 			them all <a href="/karabiner">here</a>.
 		</p>
@@ -101,12 +101,12 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 		<h2>Super Easy Configs</h2>
 
 		<p>
-			When I setup my mac I did a ton of custom stuff for tmux, ghostty, and cursor. I never read
-			any of the configs for any of them, I just ended up making little commands for opencode, then
+			When I setup my Mac I did a ton of custom stuff for tmux, Ghostty, and Cursor. I never read
+			any of the configs for any of them, I just ended up making little commands for OpenCode, then
 			had an AI write them for me. They're not complex, but if you want mine for a reference:
 		</p>
 
-		<h3>ghostty</h3>
+		<h3>Ghostty</h3>
 		<p><code>~/.opencode/command/ghostty.md</code></p>
 
 		<div class="relative">
@@ -128,11 +128,11 @@ description: Help make changes to my terminal emulator
 agent: build
 ---
 
-Run "ghostty +show-config --default --docs" to see the full guide on how to configure my terminal emulator ghostty. In this session I want you to help me get it configured. When I tell you to make a change, reference the docs on how to do it, and then write the changes to: "~/Library/Application Support/com.mitchellh.ghostty/config"</code
+Run "ghostty +show-config --default --docs" to see the full guide on how to configure my terminal emulator Ghostty. In this session I want you to help me get it configured. When I tell you to make a change, reference the docs on how to do it, and then write the changes to: "~/Library/Application Support/com.mitchellh.ghostty/config"</code
 				></pre>
 		</div>
 
-		<h3>cursor</h3>
+		<h3>Cursor</h3>
 		<p><code>~/.opencode/command/cursor.md</code></p>
 
 		<div class="relative">
@@ -150,11 +150,11 @@ Run "ghostty +show-config --default --docs" to see the full guide on how to conf
 			</button>
 			<pre><code
 					>---
-description: Help fine tune my cursor keybindings
+description: Help fine tune my Cursor keybindings
 agent: build
 ---
 
-My cursor (vscode) keybindings are located at: "~/Library/Application Support/Cursor/User/keybindings.json". In this session your job is to help me fine tune them.</code
+My Cursor (VSCode) keybindings are located at: "~/Library/Application Support/Cursor/User/keybindings.json". In this session your job is to help me fine tune them.</code
 				></pre>
 		</div>
 
@@ -185,7 +185,7 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 		</div>
 
 		<p>
-			Just drop these in and then start opencode in the root directory and you can do <code
+			Just drop these in and then start OpenCode in the root directory and you can do <code
 				>/tmux</code
 			> to customize your tmux config without having to deal with figuring out yet another config setup.
 		</p>

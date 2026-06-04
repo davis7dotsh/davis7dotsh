@@ -16,7 +16,7 @@
 			name: 'Agentuity',
 			href: 'https://davis7.link/agentuity',
 			description:
-				"Full stack infra for ai agents. Seriously, everything you need for building agents it's great.",
+				"Full stack infra for AI agents. Seriously, everything you need for building agents. It's great.",
 			logo: agentuityLogo,
 			logoAlt: 'Agentuity logo',
 			logoClass: 'max-h-10 max-w-[10rem]'
@@ -25,7 +25,7 @@
 			slug: 'greptile',
 			name: 'Greptile',
 			href: 'https://davis7.link/greptile',
-			description: 'My ai code reviewer of choice. Cannot imagine not having it on my repos.',
+			description: 'My AI code reviewer of choice. Cannot imagine not having it on my repos.',
 			logo: greptileLogo,
 			logoAlt: 'Greptile logo',
 			logoClass: 'max-h-9 max-w-[10rem]'
@@ -64,7 +64,7 @@
 			slug: 'daytona',
 			name: 'Daytona',
 			href: 'https://davis7.link/daytona',
-			description: 'My favorite sandbox platform. Really fast, great dx, and open source.',
+			description: 'My favorite sandbox platform. Really fast, great DX, and open source.',
 			logo: daytonaLogo,
 			logoAlt: 'Daytona logo',
 			logoClass: 'max-h-8 max-w-[10.75rem]'
@@ -84,7 +84,7 @@
 			name: 'Upstash',
 			href: 'https://davis7.link/upstash',
 			description:
-				'Upstash Redis is the only way I host redis and Upstash Box has the best dx of any sandbox.',
+				'Upstash Redis is the only way I host Redis and Upstash Box has the best DX of any sandbox.',
 			logo: upstashLogo,
 			logoAlt: 'Upstash logo',
 			logoClass: 'max-h-8 max-w-[12rem]'

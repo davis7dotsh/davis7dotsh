@@ -16,7 +16,7 @@
 	const setups = [
 		{
 			id: 'main',
-			title: 'Main rack',
+			title: 'Main Rack',
 			image: '/home-server/main-rack-setup.jpeg',
 			alt: 'Main home server rack with networking gear, NAS, and rackmount power protection',
 			note: 'The full home setup, built for 10Gb networking',
@@ -160,7 +160,7 @@
 		},
 		{
 			id: 'parents',
-			title: 'Secondary rack',
+			title: 'Secondary Rack',
 			image: '/home-server/parents-rack-setup.jpeg',
 			alt: 'Parents rack with a white mini rack, NAS, Firewalla Orange, eero routers, and surge protector',
 			note: "Smaller version at my parent's place, built for 2.5Gb networking",
@@ -318,7 +318,7 @@
 
 				<div class="receipt">
 					<div>
-						<h3>By category</h3>
+						<h3>By Category</h3>
 						<dl class="receipt-list">
 							{#each setup.breakdown as row (row.category)}
 								<div>
