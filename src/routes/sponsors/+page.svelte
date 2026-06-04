@@ -1,7 +1,10 @@
 <script lang="ts">
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
 	import agentuityLogo from '$lib/svg/sponsors/agentuity.svg';
+	import convexLogo from '$lib/svg/sponsors/convex.svg';
 	import daytonaLogo from '$lib/svg/sponsors/daytona.svg';
+	import depotLogo from '$lib/svg/sponsors/depot.svg';
+	import firecrawlLogo from '$lib/svg/sponsors/firecrawl.svg';
 	import greptileLogo from '$lib/svg/sponsors/greptile.svg';
 	import railwayLogo from '$lib/svg/sponsors/railway.svg';
 	import upstashLogo from '$lib/svg/sponsors/upstash.svg';
@@ -19,13 +22,23 @@
 			logoClass: 'max-h-10 max-w-[10rem]'
 		},
 		{
-			slug: 'daytona',
-			name: 'Daytona',
-			href: 'https://davis7.link/daytona',
-			description: 'My favorite sandbox platform. Really fast, great dx, and open source.',
-			logo: daytonaLogo,
-			logoAlt: 'Daytona logo',
-			logoClass: 'max-h-8 max-w-[10.75rem]'
+			slug: 'greptile',
+			name: 'Greptile',
+			href: 'https://davis7.link/greptile',
+			description: 'My ai code reviewer of choice. Cannot imagine not having it on my repos.',
+			logo: greptileLogo,
+			logoAlt: 'Greptile logo',
+			logoClass: 'max-h-9 max-w-[10rem]'
+		},
+		{
+			slug: 'firecrawl',
+			name: 'Firecrawl',
+			href: 'https://davis7.link/firecrawl',
+			description:
+				'Two tools: web search and web scrape (get the content of a page in markdown). I cannot live without them.',
+			logo: firecrawlLogo,
+			logoAlt: 'Firecrawl logo',
+			logoClass: 'max-h-9 max-w-[10rem]'
 		},
 		{
 			slug: 'railway',
@@ -38,13 +51,33 @@
 			logoClass: 'max-h-10 max-w-[9.5rem]'
 		},
 		{
-			slug: 'greptile',
-			name: 'Greptile',
-			href: 'https://davis7.link/greptile',
-			description: 'My ai code reviewer of choice. Cannot imagine not having it on my repos.',
-			logo: greptileLogo,
-			logoAlt: 'Greptile logo',
+			slug: 'depot',
+			name: 'Depot',
+			href: 'https://davis7.link/depot',
+			description:
+				'Depot CI takes github actions for slow and unusable, to something I actually want to use.',
+			logo: depotLogo,
+			logoAlt: 'Depot logo',
 			logoClass: 'max-h-9 max-w-[10rem]'
+		},
+		{
+			slug: 'daytona',
+			name: 'Daytona',
+			href: 'https://davis7.link/daytona',
+			description: 'My favorite sandbox platform. Really fast, great dx, and open source.',
+			logo: daytonaLogo,
+			logoAlt: 'Daytona logo',
+			logoClass: 'max-h-8 max-w-[10.75rem]'
+		},
+		{
+			slug: 'convex',
+			name: 'Convex',
+			href: 'https://davis7.link/convex',
+			description:
+				'My favorite backend for apps. Effortless client/server sync, infra as code, and agents are great at using it.',
+			logo: convexLogo,
+			logoAlt: 'Convex logo',
+			logoClass: 'max-h-10 max-w-[10rem]'
 		},
 		{
 			slug: 'upstash',
@@ -186,12 +219,24 @@
 		--sponsor-accent: #22c55e;
 	}
 
+	.sponsor-firecrawl {
+		--sponsor-accent: #fa5d19;
+	}
+
+	.sponsor-depot {
+		--sponsor-accent: #46a759;
+	}
+
 	.sponsor-upstash {
 		--sponsor-accent: #00e9a3;
 	}
 
 	.sponsor-workos {
 		--sponsor-accent: #6366f1;
+	}
+
+	.sponsor-convex {
+		--sponsor-accent: #ee342f;
 	}
 
 	.sponsor-logo-frame {
