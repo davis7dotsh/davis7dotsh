@@ -58,7 +58,7 @@ const seoByPath: Record<string, SeoConfig> = {
 		image: '/og/macos.png'
 	},
 	'/home-server': {
-		title: 'My Home Server - Ben Davis',
+		title: 'My Home Servers - Ben Davis',
 		description: 'The hardware, links, and cost breakdowns for my home server setups.',
 		path: '/home-server',
 		image: '/og/home-server.png'
