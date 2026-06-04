@@ -4,7 +4,6 @@
 	import { page } from '$app/state';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
-	import { vercelImageUrl } from '$lib/image';
 	import { absoluteUrl, getSeo } from '$lib/seo';
 
 	injectAnalytics({ mode: dev ? 'development' : 'production' });
@@ -12,7 +11,7 @@
 	let { children } = $props();
 	const seo = $derived(getSeo(page.url.pathname));
 	const canonicalUrl = $derived(absoluteUrl(seo.path));
-	const imageUrl = $derived(absoluteUrl(vercelImageUrl(seo.image, 1200)));
+	const imageUrl = $derived(absoluteUrl(seo.image));
 </script>
 
 <svelte:head>
@@ -23,6 +22,7 @@
 	<meta property="og:url" content={canonicalUrl} />
 	<meta property="og:image" content={imageUrl} />
 	<meta property="og:image:alt" content={`${seo.title} preview`} />
+	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
 

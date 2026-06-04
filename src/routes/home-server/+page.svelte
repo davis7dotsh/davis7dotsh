@@ -251,7 +251,7 @@
 <svelte:head>
 	<title>My Home Servers - Ben Davis</title>
 	<meta name="description" content="The hardware and cost breakdowns for my home server setups." />
-	<link rel="canonical" href="https://davis7.sh/home-server" />
+	<link rel="canonical" href="https://www.davis7.sh/home-server" />
 </svelte:head>
 
 <main class="z-10 px-3">

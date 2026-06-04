@@ -7,7 +7,7 @@ type SeoConfig = {
 	image: string;
 };
 
-const origin = 'https://davis7.sh';
+const origin = 'https://www.davis7.sh';
 
 const defaultSeo: SeoConfig = {
 	title: 'Ben Davis',

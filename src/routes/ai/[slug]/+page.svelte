@@ -64,7 +64,7 @@
 <svelte:head>
 	<title>{data.index.title} — {data.snapshot.label}</title>
 	<meta name="description" content="{data.snapshot.subtitle} — {data.snapshot.label}." />
-	<link rel="canonical" href="https://davis7.sh/ai/{data.snapshot.slug}" />
+	<link rel="canonical" href="https://www.davis7.sh/ai/{data.snapshot.slug}" />
 </svelte:head>
 
 <main class="dispatch">
