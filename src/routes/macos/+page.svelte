@@ -53,7 +53,7 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 		<h1 class="mb-8">macOS Power User Setup</h1>
 
 		<p>
-			I've setup my Mac so that it is as fast to navigate through and work on as Linux. The main
+			I've set up my Mac so that it is as fast to navigate through and work on as Linux. The main
 			things I did this with are:
 		</p>
 
