@@ -17,7 +17,7 @@
 				class="text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-bold tracking-tight"
 				style="color: var(--color-text)"
 			>
-				What Font is That?
+				What Font Is That?
 			</h1>
 
 			<a
@@ -30,7 +30,7 @@
 			</a>
 
 			<p class="text-sm sm:text-base" style="color: var(--color-text-subtle)">
-				(and the theme is <a
+				(And the theme is <a
 					href="https://open-vsx.org/extension/GitHub/github-vscode-theme"
 					target="_blank"
 					rel="noreferrer"

@@ -74,7 +74,7 @@
 		<h2 class="text-2xl font-semibold" style="color: var(--color-text)">My Karabiner Config</h2>
 
 		<p class="leading-relaxed" style="color: var(--color-text-muted)">
-			This is my "hyper key" config, you can download Karabiner elements
+			This is my "hyper key" config, you can download Karabiner Elements
 			<a
 				href="https://karabiner-elements.pqrs.org/"
 				target="_blank"
@@ -97,49 +97,49 @@
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + tab to control + tab
+				Hyper + Tab to Control + Tab
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + a to cmd + a
+				Hyper + A to Cmd + A
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + j/k to pageup/pagedown
+				Hyper + J/K to PageUp/PageDown
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + h/l to left/right arrow
+				Hyper + H/L to Left/Right Arrow
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + c to cmd + c
+				Hyper + C to Cmd + C
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + v to cmd + v
+				Hyper + V to Cmd + V
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + t to cmd + t
+				Hyper + T to Cmd + T
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + w to cmd + w
+				Hyper + W to Cmd + W
 			</li>
 		</ul>
 	</div>

@@ -36,7 +36,7 @@
 		asOfDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 	);
 
-	const heroSubtitle = $derived(`${asOfIso} edition`);
+	const heroSubtitle = $derived(`${asOfIso} Edition`);
 
 	function md(src: string): string {
 		return marked.parse(src.trim(), { async: false }) as string;
@@ -44,20 +44,20 @@
 
 	type Section = { key: string; label: string; entries: RatingEntry[] };
 	const sections: Section[] = $derived([
-		{ key: 'models', label: 'models', entries: data.snapshot.models },
-		{ key: 'harnesses', label: 'harnesses', entries: data.snapshot.harnesses },
-		{ key: 'subscriptions', label: 'subscriptions', entries: data.snapshot.subs }
+		{ key: 'models', label: 'Models', entries: data.snapshot.models },
+		{ key: 'harnesses', label: 'Harnesses', entries: data.snapshot.harnesses },
+		{ key: 'subscriptions', label: 'Subscriptions', entries: data.snapshot.subs }
 	]);
 
 	const allSnapshots = $derived(data.index.snapshots);
 
 	function snapshotShort(label: string) {
-		return label.toLowerCase();
+		return label;
 	}
 
 	function tldr(entries: RatingEntry[]) {
 		const recs = entries.filter((entry) => entry.recommended).map((entry) => entry.name);
-		return recs.length ? recs.join(' · ') : 'none this round';
+		return recs.length ? recs.join(' · ') : 'None this round';
 	}
 </script>
 
@@ -70,7 +70,7 @@
 <main class="dispatch">
 	<header class="dispatch-head">
 		<p class="meta">
-			<a class="back-link" href="/">ben davis</a>
+			<a class="back-link" href="/">Ben Davis</a>
 			<span aria-hidden="true">·</span>
 			<span>davis7.sh</span>
 			<span aria-hidden="true">·</span>
@@ -78,25 +78,25 @@
 		</p>
 
 		<h1 class="hero">
-			the ai tools i'm using
+			The AI Tools I'm Using
 			<span class="hero-sub">{heroSubtitle}</span>
 		</h1>
 
 		<p class="byline">
-			by <a href="https://x.com/davis7" class="brand-link" target="_blank" rel="noopener noreferrer"
-				>ben davis</a
+			By <a href="https://x.com/davis7" class="brand-link" target="_blank" rel="noopener noreferrer"
+				>Ben Davis</a
 			>, published {asOfLabel}.
 		</p>
 
 		<p class="disclaimer">
-			disclaimer. this is all just my opinion, based on my experiences and what i've used. it is
-			impossible to try everything at the level of depth i would like to, so i've decided to simply
-			focus this site on the tools that i am using the most everyday.
+			Disclaimer. This is all just my opinion, based on my experiences and what I've used. It is
+			impossible to try everything at the level of depth I would like to, so I've decided to simply
+			focus this site on the tools that I am using the most everyday.
 		</p>
 
 		{#if allSnapshots.length > 1}
 			<p class="previous">
-				<span class="previous-label">historical:</span>
+				<span class="previous-label">Historical:</span>
 				{#each allSnapshots as snapshot, i (snapshot.slug)}
 					{#if snapshot.slug === data.snapshot.slug}
 						<span class="snapshot-current" aria-current="page">{snapshotShort(snapshot.label)}</span
@@ -112,10 +112,10 @@
 	{#each sections as section (section.key)}
 		<section class="section" id={section.key}>
 			<h2 class="section-label">{section.label}</h2>
-			<p class="tldr"><span class="tldr-arrow">tl;dr →</span> {tldr(section.entries)}</p>
+			<p class="tldr"><span class="tldr-arrow">TL;DR →</span> {tldr(section.entries)}</p>
 
 			{#if section.entries.length === 0}
-				<p class="empty">nothing this round.</p>
+				<p class="empty">Nothing this round.</p>
 			{:else}
 				<ol class="items">
 					{#each section.entries as item, i (item.id)}
@@ -146,7 +146,7 @@
 										</span>
 									{/if}
 									{#if item.recommended}
-										<span class="item-rec-tail">→ recommended</span>
+										<span class="item-rec-tail">→ Recommended</span>
 									{/if}
 								</p>
 
@@ -157,14 +157,14 @@
 								{#if item.pros?.length || item.cons?.length}
 									<div class="item-notes">
 										{#if item.pros?.length}
-											<ul class="item-list item-list-pros" aria-label="pros">
+											<ul class="item-list item-list-pros" aria-label="Pros">
 												{#each item.pros as line (line)}
 													<li><span class="glyph" aria-hidden="true">+</span> {line}</li>
 												{/each}
 											</ul>
 										{/if}
 										{#if item.cons?.length}
-											<ul class="item-list item-list-cons" aria-label="cons">
+											<ul class="item-list item-list-cons" aria-label="Cons">
 												{#each item.cons as line (line)}
 													<li><span class="glyph" aria-hidden="true">−</span> {line}</li>
 												{/each}
@@ -181,7 +181,7 @@
 	{/each}
 
 	<footer class="dispatch-foot">
-		<p>snapshot for this period · not a live ranking</p>
+		<p>Snapshot for this period · Not a live ranking</p>
 	</footer>
 </main>
 

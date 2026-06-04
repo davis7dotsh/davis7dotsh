@@ -28,25 +28,25 @@
 				label: '1',
 				width: 40,
 				title: 'Helium',
-				description: 'Hyper + 1 opens Helium (using raycast)'
+				description: 'Hyper + 1 opens Helium (using Raycast)'
 			},
 			{
 				label: '2',
 				width: 40,
 				title: 'Ghosty',
-				description: 'Hyper + 2 opens Ghosty (using raycast)'
+				description: 'Hyper + 2 opens Ghosty (using Raycast)'
 			},
 			{
 				label: '3',
 				width: 40,
 				title: 'Cursor',
-				description: 'Hyper + 3 opens Cursor (using raycast)'
+				description: 'Hyper + 3 opens Cursor (using Raycast)'
 			},
 			{
 				label: '4',
 				width: 40,
 				title: 'Discord',
-				description: 'Hyper + 4 opens Discord (using raycast)'
+				description: 'Hyper + 4 opens Discord (using Raycast)'
 			},
 			{ label: '5', width: 40 },
 			{ label: '6', width: 40 },
@@ -54,38 +54,38 @@
 				label: '7',
 				width: 40,
 				title: 'Final Cut Pro',
-				description: 'Hyper + 7 opens Final Cut Pro (using raycast)'
+				description: 'Hyper + 7 opens Final Cut Pro (using Raycast)'
 			},
 			{
 				label: '8',
 				width: 40,
 				title: 'Affinity Photo',
-				description: 'Hyper + 8 opens Affinity Photo (using raycast)'
+				description: 'Hyper + 8 opens Affinity Photo (using Raycast)'
 			},
 			{
 				label: '9',
 				width: 40,
 				title: 'Todoist',
-				description: 'Hyper + 9 opens Todoist (using raycast)'
+				description: 'Hyper + 9 opens Todoist (using Raycast)'
 			},
 			{
 				label: '0',
 				width: 40,
 				title: 'Obsidian',
-				description: 'Hyper + 0 opens Obsidian (using raycast)'
+				description: 'Hyper + 0 opens Obsidian (using Raycast)'
 			},
 			{ label: '-', width: 40 },
 			{ label: '=', width: 40 },
 			{ label: 'Backspace', width: 80 }
 		],
 		[
-			{ label: 'Tab', width: 60, title: 'control + tab', description: 'Presses control + tab' },
+			{ label: 'Tab', width: 60, title: 'Control + Tab', description: 'Presses Control + Tab' },
 			{ label: 'Q', width: 40 },
-			{ label: 'W', width: 40, title: 'CMD + W', description: 'Presses cmd + w' },
+			{ label: 'W', width: 40, title: 'Cmd + W', description: 'Presses Cmd + W' },
 			{ label: 'E', width: 40 },
 			{ label: 'R', width: 40 },
-			{ label: 'T', width: 40, title: 'CMD + T', description: 'Presses cmd + t' },
-			{ label: 'Y', width: 40, title: 'CMD + Y', description: 'Presses cmd + y' },
+			{ label: 'T', width: 40, title: 'Cmd + T', description: 'Presses Cmd + T' },
+			{ label: 'Y', width: 40, title: 'Cmd + Y', description: 'Presses Cmd + Y' },
 			{ label: 'U', width: 40 },
 			{ label: 'I', width: 40 },
 			{ label: 'O', width: 40 },
@@ -96,7 +96,7 @@
 		],
 		[
 			{ label: 'Caps', width: 70 },
-			{ label: 'A', width: 40, title: 'CMD + A', description: 'Presses cmd + a' },
+			{ label: 'A', width: 40, title: 'Cmd + A', description: 'Presses Cmd + A' },
 			{ label: 'S', width: 40 },
 			{ label: 'D', width: 40 },
 			{ label: 'F', width: 40 },
@@ -113,20 +113,20 @@
 			{ label: 'Shift', width: 90 },
 			{ label: 'Z', width: 40 },
 			{ label: 'X', width: 40 },
-			{ label: 'C', width: 40, title: 'CMD + C', description: 'Presses cmd + c' },
-			{ label: 'V', width: 40, title: 'CMD + V', description: 'Presses cmd + v' },
-			{ label: 'B', width: 40, title: 'Zen', description: 'Hyper + B opens Zen (using raycast)' },
+			{ label: 'C', width: 40, title: 'Cmd + C', description: 'Presses Cmd + C' },
+			{ label: 'V', width: 40, title: 'Cmd + V', description: 'Presses Cmd + V' },
+			{ label: 'B', width: 40, title: 'Zen', description: 'Hyper + B opens Zen (using Raycast)' },
 			{
 				label: 'N',
 				width: 40,
 				title: 'Notion',
-				description: 'Hyper + N opens Notion (using raycast)'
+				description: 'Hyper + N opens Notion (using Raycast)'
 			},
 			{
 				label: 'M',
 				width: 40,
 				title: 'Superhuman',
-				description: 'Hyper + M opens Superhuman (using raycast)'
+				description: 'Hyper + M opens Superhuman (using Raycast)'
 			},
 			{ label: ',', width: 40 },
 			{ label: '.', width: 40 },
@@ -134,13 +134,13 @@
 			{ label: 'Shift', width: 90 }
 		],
 		[
-			{ label: 'fn', width: 60 },
-			{ label: 'ctrl', width: 60 },
-			{ label: 'opt', width: 60 },
-			{ label: 'cmd', width: 60 },
+			{ label: 'Fn', width: 60 },
+			{ label: 'Ctrl', width: 60 },
+			{ label: 'Opt', width: 60 },
+			{ label: 'Cmd', width: 60 },
 			{ label: '', width: 260, title: 'Space', description: 'Hyper + Space opens Raycast' }, // Spacebar
-			{ label: 'cmd', width: 60 },
-			{ label: 'opt', width: 60 }
+			{ label: 'Cmd', width: 60 },
+			{ label: 'Opt', width: 60 }
 		]
 	]);
 
@@ -227,7 +227,7 @@
 				role={isInteractive ? 'button' : undefined}
 				tabindex={isInteractive ? 0 : undefined}
 				aria-label={isInteractive
-					? `${key.label || 'space'}: ${key.title}. ${key.description}`
+					? `${key.label || 'Space'}: ${key.title}. ${key.description}`
 					: undefined}
 				style:cursor={isCapsLock ? 'default' : isInteractive ? 'pointer' : 'default'}
 				onmouseenter={() => activateKey(key)}

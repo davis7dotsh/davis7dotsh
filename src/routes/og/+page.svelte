@@ -36,7 +36,7 @@
 			<img src={logo} alt="Ben Davis logo" class="og-logo" />
 			<div class="og-text">
 				<h1 class="og-name">Ben Davis</h1>
-				<p class="og-tagline">developer, youtuber, and theo's manager</p>
+				<p class="og-tagline">Developer, YouTuber, and Theo's manager</p>
 			</div>
 		</div>
 

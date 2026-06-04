@@ -11,13 +11,13 @@ const origin = 'https://davis7.sh';
 
 const defaultSeo: SeoConfig = {
 	title: 'Ben Davis',
-	description: "developer, youtuber, and theo's manager. based in sf",
+	description: "Developer, YouTuber, and Theo's manager. Based in SF",
 	path: '/',
 	image: '/og/home.png'
 };
 
 const aiDescriptions =
-	"rankings and notes on the ai models, harnesses, and subscriptions i'm using.";
+	"Rankings and notes on the AI models, harnesses, and subscriptions I'm using.";
 const aiSnapshots = getAiSnapshotMetas();
 const latestAiSnapshot =
 	aiSnapshots.find((snapshot) => snapshot.id === aiIndexManifest.defaultSnapshot) ?? aiSnapshots[0];
@@ -35,7 +35,7 @@ const seoByPath: Record<string, SeoConfig> = {
 	'/': defaultSeo,
 	'/sponsors': {
 		title: 'Sponsors - Ben Davis',
-		description: 'the companies backing my work and videos.',
+		description: 'The companies backing my work and videos.',
 		path: '/sponsors',
 		image: '/og/sponsors.png'
 	},
@@ -52,32 +52,32 @@ const seoByPath: Record<string, SeoConfig> = {
 		])
 	),
 	'/macos': {
-		title: 'MacOS Power User Setup - Ben Davis',
-		description: 'karabiner, raycast, rectangle, and small config commands for a faster mac.',
+		title: 'macOS Power User Setup - Ben Davis',
+		description: 'Karabiner, Raycast, Rectangle, and small config commands for a faster Mac.',
 		path: '/macos',
 		image: '/og/macos.png'
 	},
 	'/home-server': {
 		title: 'My Home Server - Ben Davis',
-		description: 'the hardware, links, and cost breakdowns for my home server setups.',
+		description: 'The hardware, links, and cost breakdowns for my home server setups.',
 		path: '/home-server',
 		image: '/og/home-server.png'
 	},
 	'/karabiner': {
 		title: 'Karabiner Config - Ben Davis',
-		description: 'my hyper key config and keybinding visualizer.',
+		description: 'My hyper key config and keybinding visualizer.',
 		path: '/karabiner',
 		image: '/og/karabiner.png'
 	},
 	'/font': {
 		title: 'Font - Ben Davis',
-		description: 'the font, theme, and icon setup i use in cursor and the terminal.',
+		description: 'The font, theme, and icon setup I use in Cursor and the terminal.',
 		path: '/font',
 		image: '/og/font.png'
 	},
 	'/sv': {
 		title: 'SvelteKit Setup - Ben Davis',
-		description: 'a small prompt generator for setting up a sveltekit project.',
+		description: 'A small prompt generator for setting up a SvelteKit project.',
 		path: '/sv',
 		image: '/og/sveltekit.png'
 	},
