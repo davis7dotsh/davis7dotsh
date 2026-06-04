@@ -16,10 +16,10 @@
 	const setups = [
 		{
 			id: 'main',
-			title: 'main rack',
+			title: 'Main rack',
 			image: '/home-server/main-rack-setup.jpeg',
 			alt: 'Main home server rack with networking gear, NAS, and rackmount power protection',
-			note: 'the full home setup',
+			note: 'The full home setup, built for 10Gb networking',
 			purchases: [
 				{
 					item: 'Firewalla Gold Pro',
@@ -135,19 +135,19 @@
 				}
 			],
 			breakdown: [
-				{ category: 'networking & routing', total: '$2,439.97' },
+				{ category: 'Networking & routing', total: '$2,439.97' },
 				{ category: 'NAS & storage', total: '$3,609.96' },
-				{ category: 'rack & power', total: '$298.94' },
-				{ category: 'compute', total: '$799.00' }
+				{ category: 'Rack & power', total: '$298.94' },
+				{ category: 'Compute', total: '$799.00' }
 			],
 			total: '$7,147.87'
 		},
 		{
 			id: 'parents',
-			title: 'secondary rack',
+			title: 'Secondary rack',
 			image: '/home-server/parents-rack-setup.jpeg',
 			alt: 'Parents rack with a white mini rack, NAS, Firewalla Orange, eero routers, and surge protector',
-			note: "smaller version at my parent's place",
+			note: "Smaller version at my parent's place, built for 2.5Gb networking",
 			purchases: [
 				{
 					item: 'Firewalla Orange',
@@ -223,9 +223,9 @@
 				}
 			],
 			breakdown: [
-				{ category: 'networking & routing', total: '$829.10' },
+				{ category: 'Networking & routing', total: '$829.10' },
 				{ category: 'NAS & storage', total: '$1,489.99' },
-				{ category: 'rack & power', total: '$222.97' }
+				{ category: 'Rack & power', total: '$222.97' }
 			],
 			total: '$2,542.06'
 		}
@@ -244,6 +244,16 @@
 			<a href="/" class="back-link">← Back to Home</a>
 			<h1>My Home Servers</h1>
 		</header>
+
+		<div class="intro">
+			<p>
+				These are the two home server setups I have. My main setup is overkill for most people. The
+				main reason I have it is because I do YouTube for a living, so 10Gb networking is worth it.
+				For most people, the secondary setup is a great fit. The Firewalla is the best part. I
+				highly recommend getting one.
+			</p>
+			<p class="affiliate-disclaimer">Note: Some links on this page are Amazon affiliate links.</p>
+		</div>
 
 		{#each setups as setup, setupIndex (setup.id)}
 			<section class="setup" aria-labelledby={`${setup.id}-title`}>
@@ -273,7 +283,7 @@
 							href={purchase.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							aria-label={`${purchase.item}, ${purchase.price}. open product listing in a new tab`}
+							aria-label={`${purchase.item}, ${purchase.price}. Open product listing in a new tab`}
 						>
 							<img
 								src={vercelImageUrl(purchase.image, 828, tileImageQuality)}
@@ -292,7 +302,7 @@
 
 				<div class="receipt">
 					<div>
-						<h3>by category</h3>
+						<h3>By category</h3>
 						<dl class="receipt-list">
 							{#each setup.breakdown as row (row.category)}
 								<div>
@@ -301,7 +311,7 @@
 								</div>
 							{/each}
 							<div class="total">
-								<dt>total</dt>
+								<dt>Total</dt>
 								<dd>{setup.total}</dd>
 							</div>
 						</dl>
@@ -334,6 +344,23 @@
 		font-weight: 700;
 		letter-spacing: -0.065em;
 		line-height: 0.95;
+	}
+
+	.intro {
+		max-width: 65ch;
+		margin-bottom: clamp(2rem, 4vw, 3.5rem);
+		color: var(--color-text-muted);
+	}
+
+	.intro p {
+		margin: 0;
+	}
+
+	.affiliate-disclaimer {
+		margin-top: 0.75rem !important;
+		color: var(--color-text-subtle);
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.75rem;
 	}
 
 	.setup + .setup {
