@@ -16,7 +16,7 @@
 			name: 'Agentuity',
 			href: 'https://davis7.link/agentuity',
 			description:
-				"Full stack infra for AI agents. Seriously, everything you need for building agents it's great.",
+				"Full stack infra for AI agents. Seriously, everything you need for building agents. It's great.",
 			logo: agentuityLogo,
 			logoAlt: 'Agentuity logo',
 			logoClass: 'max-h-10 max-w-[10rem]'
