@@ -1,5 +1,10 @@
 # Agents
 
+- use bun for the package manager and to run scripts
+- make sure to use modern up to date svelte patterns and features
+
+this is my personal website. focus on having it be fast, responsive, concise, and very simple.
+
 ## Design Context
 
 This project carries strategic and visual design context in two files at the repository root:
