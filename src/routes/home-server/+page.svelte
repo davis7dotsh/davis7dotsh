@@ -242,7 +242,7 @@
 	<article class="server-sheet mb-8 text-left">
 		<header class="page-heading">
 			<a href="/" class="back-link">← Back to Home</a>
-			<h1>My Home Server(s)</h1>
+			<h1>My Home Servers</h1>
 		</header>
 
 		{#each setups as setup, setupIndex (setup.id)}
