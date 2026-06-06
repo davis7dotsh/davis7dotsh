@@ -20,6 +20,12 @@
 			image: '/home-server/main-rack-setup.jpeg',
 			alt: 'Main home server rack with networking gear, NAS, and rackmount power protection',
 			note: 'The full home setup, built for 10Gb networking',
+			diagram: {
+				image: '/home-server/main-network-diagram.png',
+				width: 2462,
+				height: 1526,
+				alt: 'Main network topology showing AT&T and Firewalla on VLAN 20, with an eero access point, switches, NAS, and Mac mini separated across VLANs 10, 30, and 40'
+			},
 			purchases: [
 				{
 					item: 'Firewalla Gold Pro',
@@ -164,6 +170,12 @@
 			image: '/home-server/parents-rack-setup.jpeg',
 			alt: 'Parents rack with a white mini rack, NAS, Firewalla Orange, eero routers, and surge protector',
 			note: "Smaller version at my parent's place, built for 2.5Gb networking",
+			diagram: {
+				image: '/home-server/secondary-network-diagram.png',
+				width: 1848,
+				height: 1500,
+				alt: 'Secondary network topology showing AT&T connected through Firewalla to a switch, eero access point, and NAS'
+			},
 			purchases: [
 				{
 					item: 'Firewalla Orange',
@@ -291,6 +303,27 @@
 						/>
 					</figure>
 				</div>
+
+				<figure class="setup-diagram">
+					<img
+						src={vercelImageUrl(setup.diagram.image, 1920, setupImageQuality)}
+						srcset={vercelSrcset(setup.diagram.image, undefined, setupImageQuality)}
+						sizes="(max-width: 36rem) calc(100vw - 2rem), min(94vw, 88rem)"
+						width={setup.diagram.width}
+						height={setup.diagram.height}
+						alt={setup.diagram.alt}
+						loading="lazy"
+					/>
+					<figcaption>
+						<span class="diagram-label">network map</span>
+						<span
+							>tip: <a href={setup.diagram.image} target="_blank" rel="noopener noreferrer"
+								>open the full-size image</a
+							>, then copy or paste it into GPT or Claude for a deeper walkthrough, or to adapt it
+							to your own setup.</span
+						>
+					</figcaption>
+				</figure>
 
 				<div class="product-grid">
 					{#each setup.purchases as purchase, purchaseIndex (purchase.item)}
@@ -455,6 +488,57 @@
 		object-fit: cover;
 	}
 
+	.setup-diagram {
+		margin: 0 0 1px;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+	}
+
+	.setup-diagram img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	.setup-diagram figcaption {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 2rem;
+		padding: 0.85rem 1rem;
+		border-top: 1px solid var(--color-border);
+		color: var(--color-text-muted);
+		font-size: 0.875rem;
+		line-height: 1.5;
+	}
+
+	.diagram-label {
+		flex-shrink: 0;
+		color: var(--color-text-subtle);
+		font-family: var(--font-family-geist-mono);
+		font-size: 0.75rem;
+	}
+
+	.setup-diagram figcaption a {
+		color: var(--color-text);
+		text-decoration: underline;
+		text-decoration-color: var(--color-border-strong);
+		text-underline-offset: 0.18em;
+		transition:
+			color 160ms ease,
+			text-decoration-color 160ms ease;
+	}
+
+	.setup-diagram figcaption a:hover {
+		color: var(--color-link-hover);
+		text-decoration-color: var(--color-link-hover);
+	}
+
+	.setup-diagram figcaption a:focus-visible {
+		outline: 1px solid var(--color-focus);
+		outline-offset: 3px;
+	}
+
 	.product-grid {
 		display: grid;
 		grid-auto-flow: dense;
@@ -617,6 +701,12 @@
 
 		.setup-photo img {
 			height: auto;
+		}
+
+		.setup-diagram figcaption {
+			display: grid;
+			gap: 0.4rem;
+			padding: 0.8rem;
 		}
 
 		.product-grid {
