@@ -108,8 +108,8 @@
 		</p>
 		<p class="text-lg" style="color: var(--color-text-muted)">
 			This will not create a project for you, to do that run: <code
-				class="code-chip px-2 py-1 font-mono text-sm">bunx sv create</code
-			>. I recommend picking: minimal, TypeScript, Prettier/Tailwind CSS, and then Bun.
+				class="code-chip px-2 py-1 font-mono text-sm">pnpm dlx sv create</code
+			>. I recommend picking: minimal, TypeScript, Prettier/Tailwind CSS, and then pnpm.
 		</p>
 	</div>
 
