@@ -5,8 +5,8 @@ const VERCEL_SETUP_PROMPT = `
 Setup this SvelteKit project to be deployed to Vercel by doing the following:
 
 1. Install the adapter and get rid of the old one:
-bun add -D @sveltejs/adapter-vercel
-bun remove @sveltejs/adapter-auto
+pnpm add -D @sveltejs/adapter-vercel
+pnpm remove @sveltejs/adapter-auto
 2. Update the svelte.config.js file to use the new adapter:
 import adapter from '@sveltejs/adapter-vercel';
 `;
@@ -15,16 +15,16 @@ const CONVEX_SETUP_PROMPT = `
 Setup Convex to be used in this project by doing the following:
 
 1. Install the Convex packages:
-bun add convex convex-svelte
+pnpm add convex convex-svelte
 2. Create a convex.json file in the root of the project with the following content:
 {
 	"$schema": "https://raw.githubusercontent.com/get-convex/convex-backend/refs/heads/main/npm-packages/convex/schemas/convex.schema.json",
 	"functions": "src/convex/"
 }
 3. Update the dev scripts in the package.json and install the concurrently package:
-bun add -D concurrently
+pnpm add -D concurrently
 
-"dev": "concurrently --names \"SVELTE,CONVEX\" -c yellow,magenta \"bun run dev:sv\" \"bun run dev:cx\"",
+"dev": "concurrently --names \"SVELTE,CONVEX\" -c yellow,magenta \"pnpm run dev:sv\" \"pnpm run dev:cx\"",
 "dev:sv": "vite dev",
 "dev:cx": "convex dev",
 4. Update the +layout.svelte file at the root of the routes directory to include the following in the script tag:
@@ -39,7 +39,7 @@ Don't get rid of anything else in the +layout.svelte file, just add the above co
 5. Add in the Convex Cursor rules by running the following command:
 curl "https://www.davis7.sh/sv/rules?rule=convex" -o .cursor/rules/convex.mdc
 6. Prompt the user when this agent run is finished to run the following command to setup the Convex project:
-bun run dev:cx
+pnpm run dev:cx
 7. Update the svelte.config.js to include the following:
 kit: {
 		alias: {
@@ -52,19 +52,19 @@ Leave the rest of the svelte.config.js file alone (including the kit section, ju
 const CLOUDFLARE_SETUP_PROMPT = `
 Setup this SvelteKit project to be deployed to Cloudflare Workers by doing the following:
 1. Install the adapter and get rid of the old one:
-bun add -D @sveltejs/adapter-cloudflare
-bun remove @sveltejs/adapter-auto
+pnpm add -D @sveltejs/adapter-cloudflare
+pnpm remove @sveltejs/adapter-auto
 2. Update the svelte.config.js file to use the new adapter:
 import adapter from '@sveltejs/adapter-cloudflare';
 3. Update the scripts in package.json to be the following:
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "bun run build && wrangler dev",
+		"preview": "pnpm run build && wrangler dev",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"deploy": "bun run build && wrangler deploy",
+		"deploy": "pnpm run build && wrangler deploy",
 		"cf-typegen": "wrangler types ./src/worker-configuration.d.ts",
 		"format": "prettier --write .",
 		"lint": "prettier --check ."
@@ -85,7 +85,7 @@ import adapter from '@sveltejs/adapter-cloudflare';
 	}
 }
 Fill the name with the name in the package.json file.
-5. Generate the types with: bun run cf-typegen
+5. Generate the types with: pnpm run cf-typegen
 6. Update app.d.ts to be the following:
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
@@ -116,7 +116,7 @@ curl "https://www.davis7.sh/sv/rules?rule=convex" -o .cursor/rules/convex.mdc
 
 const USEFUL_PACKAGES_PROMPT = `
 Run the following command to install packages for this project:
-bun add zod neverthrow runed
+pnpm add zod neverthrow runed
 `;
 
 const ASYNC_SVELTE_PROMPT = `
