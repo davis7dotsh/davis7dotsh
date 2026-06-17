@@ -19,7 +19,7 @@ const FILE_EXEMPT = new Set(['src/routes/og/+page.svelte']);
 const RULES = [
 	{
 		id: 'no-rounded',
-		re: /\brounded-(?!none\b)[a-z0-9[\]]+/g,
+		re: /\brounded-(?!none\b)[a-z0-9[\].\/-]+/g,
 		msg: 'rounded-* utility — border-radius is globally 0; sharp edges are identity'
 	},
 	{
@@ -34,12 +34,12 @@ const RULES = [
 	},
 	{
 		id: 'no-scale',
-		re: /\bscale\(|\b(?:hover|group-hover|focus):scale-/g,
+		re: /\bscale\(|\b(?:[a-z-]+:)*scale-[a-z0-9[\].\/-]+\b/g,
 		msg: 'scale() transform — the only hover lift is translateY(-1px)'
 	},
 	{
 		id: 'no-glass',
-		re: /\bbackdrop-blur\b/g,
+		re: /\bbackdrop-blur(?:-[a-z0-9[\]-]+)?\b/g,
 		msg: 'backdrop-blur (glass trope) — allowed only on the theme toggle and toasts',
 		allow: new Set(['src/lib/components/ThemeToggle.svelte'])
 	}
@@ -59,7 +59,7 @@ const files = SCAN_DIRS.flatMap((d) => walk(join(ROOT, d)));
 const violations = [];
 
 for (const file of files) {
-	const rel = relative(ROOT, file);
+	const rel = relative(ROOT, file).replaceAll('\\', '/');
 	if (FILE_EXEMPT.has(rel)) continue;
 	const lines = readFileSync(file, 'utf8').split('\n');
 	for (const rule of RULES) {

@@ -4,12 +4,14 @@
 	let { content }: { content: string } = $props();
 
 	let copied = $state(false);
+	let resetTimer: ReturnType<typeof setTimeout> | undefined;
 
 	async function copy() {
 		try {
 			await navigator.clipboard.writeText(content);
 			copied = true;
-			setTimeout(() => {
+			clearTimeout(resetTimer);
+			resetTimer = setTimeout(() => {
 				copied = false;
 			}, 2000);
 		} catch (err) {
@@ -19,7 +21,7 @@
 </script>
 
 <div class="relative">
-	<button class="button absolute top-2 right-2 px-2 py-1 text-xs" onclick={copy}>
+	<button type="button" class="button absolute top-2 right-2 px-2 py-1 text-xs" onclick={copy}>
 		{#if copied}
 			<Check size={12} class="success-text" />
 			Copied!

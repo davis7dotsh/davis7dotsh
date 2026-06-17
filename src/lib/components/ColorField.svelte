@@ -16,7 +16,7 @@
 	>
 	<div class="flex items-center gap-3">
 		<input type="color" {id} bind:value class="field-input color-swatch cursor-pointer" />
-		<input type="text" bind:value class="field-input flex-1" />
+		<input type="text" bind:value class="field-input flex-1" aria-label={`${label} hex value`} />
 	</div>
 </div>
 
