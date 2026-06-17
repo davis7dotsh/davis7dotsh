@@ -10,15 +10,10 @@
 
 <main class="px-3">
 	<div class="pb-16">
-		<a href="/" class="back-link mb-6"> Back home </a>
+		<a href="/" class="back-link mb-6">← Back</a>
 
 		<div class="mt-12 mb-10 flex flex-col items-center gap-4 text-center sm:mt-20 sm:mb-14">
-			<h1
-				class="text-[clamp(2.5rem,5vw,4rem)] leading-[1.1] font-bold tracking-tight"
-				style="color: var(--color-text)"
-			>
-				What Font Is That?
-			</h1>
+			<h1 class="headline-text text-4xl font-semibold tracking-tight">What Font Is That?</h1>
 
 			<a
 				href="https://usgraphics.com/products/berkeley-mono"
@@ -45,26 +40,15 @@
 			</p>
 		</div>
 
-		<div class="full-bleed">
-			<img
-				src={vercelImageUrl('/font-showcase.png', 1200)}
-				srcset={vercelSrcset('/font-showcase.png')}
-				sizes="min(1200px, calc(100vw - 2rem))"
-				alt="Berkeley Mono font showcase"
-				class="w-full border shadow-2xl shadow-black/35"
-				style="border-color: var(--color-border)"
-			/>
-		</div>
+		<img
+			src={vercelImageUrl('/font-showcase.png', 1200)}
+			srcset={vercelSrcset('/font-showcase.png')}
+			sizes="min(1200px, calc(100vw - 2rem))"
+			alt="Berkeley Mono font showcase"
+			class="w-full border"
+			style="border-color: var(--color-border)"
+		/>
 	</div>
 
 	<SocialLinks />
 </main>
-
-<style>
-	.full-bleed {
-		width: min(1200px, calc(100vw - 2rem));
-		position: relative;
-		left: 50%;
-		transform: translateX(-50%);
-	}
-</style>

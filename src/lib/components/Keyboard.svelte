@@ -188,11 +188,11 @@
 	});
 </script>
 
-<section class="surface flex w-full items-center gap-6 p-6 backdrop-blur-sm">
+<section class="surface flex w-full items-center gap-6 p-6">
 	<div class="shrink-0">
 		<div
 			class="flex h-16 w-16 items-center justify-center border"
-			style="background: color-mix(in srgb, var(--color-accent-blue) 12%, var(--color-surface)); border-color: var(--color-border-strong)"
+			style="background: var(--color-surface-elevated); border-color: var(--color-border-strong)"
 		>
 			<svg class="h-8 w-8" style="color: var(--color-text)" fill="currentColor" viewBox="0 0 24 24">
 				<path
@@ -202,7 +202,7 @@
 		</div>
 	</div>
 	<div class="flex-1">
-		<h2 class="mb-2 text-2xl font-bold" style="color: var(--color-text)">{keyTitle}</h2>
+		<h2 class="headline-text mb-2 text-2xl font-semibold">{keyTitle}</h2>
 		<p style="color: var(--color-text-muted)">{keyDescription}</p>
 	</div>
 </section>
@@ -241,19 +241,15 @@
 					width={key.width}
 					height={keyHeight}
 					rx={0}
-					fill={isCapsLock
-						? 'var(--color-warning)'
-						: isHovered
-							? 'color-mix(in srgb, var(--color-accent-blue) 42%, var(--color-surface))'
-							: hasKeybinding
-								? 'color-mix(in srgb, var(--color-accent-blue) 18%, var(--color-surface))'
-								: 'var(--color-surface)'}
-					stroke={isCapsLock
-						? 'color-mix(in srgb, var(--color-warning) 68%, var(--color-border))'
-						: isHovered || hasKeybinding
-							? 'color-mix(in srgb, var(--color-accent-blue) 58%, var(--color-border))'
-							: 'var(--color-border)'}
-					stroke-width={isHovered || isCapsLock ? 2 : 1}
+					fill={isHovered
+						? 'var(--color-surface-hover)'
+						: isCapsLock || hasKeybinding
+							? 'var(--color-surface-elevated)'
+							: 'var(--color-surface)'}
+					stroke={isHovered || isCapsLock || hasKeybinding
+						? 'var(--color-border-strong)'
+						: 'var(--color-border)'}
+					stroke-width="1"
 				/>
 				<text
 					x={key.x + key.width / 2}
@@ -261,7 +257,7 @@
 					text-anchor="middle"
 					dominant-baseline="central"
 					class="text-sm font-medium select-none"
-					fill={isCapsLock ? '#fff' : 'var(--color-text)'}
+					fill="var(--color-text)"
 				>
 					{key.label}
 				</text>

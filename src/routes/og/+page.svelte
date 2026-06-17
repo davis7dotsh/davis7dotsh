@@ -10,7 +10,7 @@
 			margin: 0;
 			padding: 0;
 			overflow: hidden;
-			background: #0b0d10;
+			background: var(--color-ink);
 		}
 		/* override the site layout to center the card */
 		body > div > div {
@@ -51,7 +51,7 @@
 	.og-card {
 		width: 1200px;
 		height: 630px;
-		background: #0b0d10;
+		background: var(--color-ink);
 		position: relative;
 		overflow: hidden;
 		font-family:
@@ -83,19 +83,6 @@
 			rgba(0, 0, 0, 0.6) 70%,
 			rgba(0, 0, 0, 1) 100%
 		);
-	}
-
-	/* subtle radial glow in bottom-right to warm the grid area */
-	.og-card::before {
-		content: '';
-		position: absolute;
-		bottom: -80px;
-		right: -80px;
-		width: 600px;
-		height: 600px;
-		background: radial-gradient(circle, rgba(0, 184, 217, 0.06) 0%, transparent 68%);
-		pointer-events: none;
-		z-index: 1;
 	}
 
 	.og-content {
@@ -134,7 +121,7 @@
 		font-size: 52px;
 		font-weight: 700;
 		letter-spacing: 0;
-		color: #f5f6f7;
+		color: var(--color-paper);
 		line-height: 1.1;
 	}
 
