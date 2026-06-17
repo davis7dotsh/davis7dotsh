@@ -1,0 +1,12 @@
+"$schema" = "https://conductor.build/schemas/settings.repo.schema.json"
+
+[scripts]
+# Install deps with pnpm (the project's package manager). pnpm's `prepare`
+# lifecycle runs `svelte-kit sync` automatically, generating ./.svelte-kit.
+setup = "pnpm install"
+
+# SvelteKit dev server. Each workspace gets its own port via CONDUCTOR_PORT.
+run = "pnpm dev --port $CONDUCTOR_PORT"
+
+# No fixed port, database, or Docker stack — workspaces run side by side.
+run_mode = "concurrent"
