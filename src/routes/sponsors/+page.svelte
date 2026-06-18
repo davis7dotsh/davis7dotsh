@@ -14,6 +14,7 @@
 	const sponsors = [
 		{
 			slug: 'agentuity',
+			accent: '#8b5cf6',
 			name: 'Agentuity',
 			href: 'https://davis7.link/agentuity',
 			description:
@@ -24,6 +25,7 @@
 		},
 		{
 			slug: 'greptile',
+			accent: '#22c55e',
 			name: 'Greptile',
 			href: 'https://davis7.link/greptile',
 			description: 'My AI code reviewer of choice. Cannot imagine not having it on my repos.',
@@ -33,6 +35,7 @@
 		},
 		{
 			slug: 'firecrawl',
+			accent: '#fa5d19',
 			name: 'Firecrawl',
 			href: 'https://davis7.link/firecrawl',
 			description:
@@ -43,6 +46,7 @@
 		},
 		{
 			slug: 'railway',
+			accent: '#a855f7',
 			name: 'Railway',
 			href: 'https://davis7.link/railway',
 			description:
@@ -53,6 +57,7 @@
 		},
 		{
 			slug: 'depot',
+			accent: '#46a759',
 			name: 'Depot',
 			href: 'https://davis7.link/depot',
 			description:
@@ -63,6 +68,7 @@
 		},
 		{
 			slug: 'daytona',
+			accent: '#38bdf8',
 			name: 'Daytona',
 			href: 'https://davis7.link/daytona',
 			description: 'My favorite sandbox platform. Really fast, great DX, and open source.',
@@ -72,6 +78,7 @@
 		},
 		{
 			slug: 'convex',
+			accent: '#ee342f',
 			name: 'Convex',
 			href: 'https://davis7.link/convex',
 			description:
@@ -82,6 +89,7 @@
 		},
 		{
 			slug: 'upstash',
+			accent: '#00e9a3',
 			name: 'Upstash',
 			href: 'https://davis7.link/upstash',
 			description:
@@ -92,6 +100,7 @@
 		},
 		{
 			slug: 'workos',
+			accent: '#6366f1',
 			name: 'WorkOS',
 			href: 'https://davis7.link/workos',
 			description:
@@ -123,7 +132,8 @@
 					href={sponsor.href}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="resource-card min-h-75 w-full"
+					class="resource-card sponsor-card min-h-75 w-full"
+					style:--sponsor-accent={sponsor.accent}
 				>
 					<div class="flex h-full flex-col">
 						<div class="logo-frame mb-5 h-24 w-full shrink-0 overflow-hidden px-5">
@@ -151,6 +161,50 @@
 </main>
 
 <style lang="postcss">
+	/*
+	 * Per-sponsor brand accents. This is a deliberate, owner-approved exception to
+	 * the Wire Rule in DESIGN.md: sponsors get a faint brand-colored tint + border so
+	 * each card reads as its company. The card still layers on .resource-card, so it
+	 * keeps the shared focus ring, the 1px lift, --shadow-surface, and reduced-motion.
+	 */
+	.sponsor-card {
+		--sponsor-accent: var(--color-text-subtle);
+
+		background:
+			linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--sponsor-accent) 14%, transparent),
+				transparent 42%
+			),
+			linear-gradient(
+				315deg,
+				color-mix(in srgb, var(--sponsor-accent) 7%, transparent),
+				transparent 48%
+			),
+			color-mix(in srgb, var(--sponsor-accent) 10%, var(--color-bg));
+		border-color: color-mix(in srgb, var(--sponsor-accent) 32%, transparent);
+		transition:
+			background 160ms ease,
+			border-color 160ms ease,
+			transform 160ms ease;
+	}
+
+	.sponsor-card:hover {
+		background:
+			linear-gradient(
+				135deg,
+				color-mix(in srgb, var(--sponsor-accent) 20%, transparent),
+				transparent 44%
+			),
+			linear-gradient(
+				315deg,
+				color-mix(in srgb, var(--sponsor-accent) 11%, transparent),
+				transparent 50%
+			),
+			color-mix(in srgb, var(--sponsor-accent) 14%, var(--color-bg));
+		border-color: color-mix(in srgb, var(--sponsor-accent) 52%, transparent);
+	}
+
 	.sponsor-cta {
 		color: var(--color-text-subtle);
 		transition: color 160ms ease;
