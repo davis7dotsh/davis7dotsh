@@ -1,10 +1,13 @@
 <script lang="ts">
 	import { Copy, Check } from 'lucide-svelte';
+	import { onDestroy } from 'svelte';
 
 	let { content }: { content: string } = $props();
 
 	let copied = $state(false);
 	let resetTimer: ReturnType<typeof setTimeout> | undefined;
+
+	onDestroy(() => clearTimeout(resetTimer));
 
 	async function copy() {
 		try {

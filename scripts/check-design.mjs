@@ -29,7 +29,7 @@ const RULES = [
 	},
 	{
 		id: 'no-heavy-shadow',
-		re: /\bshadow-(?:sm|md|lg|xl|2xl)\b/g,
+		re: /\bshadow-(?:sm|md|lg|xl|2xl|inner)\b|\bshadow-\[/g,
 		msg: 'heavy shadow utility — only .content-sheet and .toast carry shadows'
 	},
 	{
