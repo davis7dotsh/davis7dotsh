@@ -19,7 +19,7 @@ This project carries strategic and visual design context in two files at the rep
 1. Restraint reads as confidence — empty space is content
 2. Self-evident over self-explanatory — pages don't introduce themselves
 3. One opinion per surface — each page commits to a single visual idea
-4. Lowercase by default, capitalized on purpose
+4. Normal sentence/title case with proper punctuation, never shouty (no forced ALL-CAPS)
 5. Sharp edges on purpose — `border-radius: 0` is identity
 6. Utility pages earn their own register
 

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { vercelImageUrl, vercelSrcset } from '$lib/image';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
 
 	const tileImageQuality = 82;
 	const setupImageQuality = 82;
@@ -268,10 +269,7 @@
 
 <main class="z-10 px-3">
 	<article class="server-sheet mb-8 text-left">
-		<header class="page-heading">
-			<a href="/" class="back-link">← Back to Home</a>
-			<h1>My Home Servers</h1>
-		</header>
+		<PageHeader title="My Home Servers" />
 
 		<div class="intro">
 			<p>
@@ -380,19 +378,6 @@
 		margin-left: auto;
 		max-width: min(94rem, 100%);
 		padding: clamp(1.25rem, 3vw, 2.5rem);
-	}
-
-	.page-heading {
-		margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-	}
-
-	.page-heading h1 {
-		margin: 2rem 0 0;
-		color: var(--color-text);
-		font-size: clamp(2.4rem, 5vw, 4.8rem);
-		font-weight: 700;
-		letter-spacing: -0.065em;
-		line-height: 0.95;
 	}
 
 	.intro {
@@ -602,14 +587,11 @@
 		object-fit: contain;
 		padding: clamp(1rem, 2.5vw, 2.25rem);
 		background: color-mix(in srgb, var(--color-surface) 86%, var(--color-bg));
-		transition:
-			opacity 220ms ease,
-			transform 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
+		transition: opacity 220ms ease;
 	}
 
 	.product-tile:hover img {
 		opacity: 0.92;
-		transform: scale(1.035);
 	}
 
 	.product-overlay {
@@ -623,7 +605,11 @@
 		justify-content: space-between;
 		gap: 1rem;
 		padding: 3.5rem 0.85rem 0.85rem;
-		background: linear-gradient(to top, rgba(11, 13, 16, 0.92), rgba(11, 13, 16, 0));
+		background: linear-gradient(
+			to top,
+			color-mix(in srgb, var(--color-ink) 92%, transparent),
+			transparent
+		);
 	}
 
 	.product-name {

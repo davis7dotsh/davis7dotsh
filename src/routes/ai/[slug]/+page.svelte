@@ -2,29 +2,10 @@
 	import { marked } from 'marked';
 	import { getAiUpdate } from '$lib/ai/data.remote';
 	import type { RatingEntry } from '$lib/ai/ratings';
+	import { aiLogos as logos } from '$lib/ai/logos';
 
 	let { params } = $props();
 	const data = $derived(await getAiUpdate(params.slug));
-
-	const logos: Record<string, string> = {
-		'gpt-5-4': '/logos/openai_dark.svg',
-		'gpt-5-4-mini': '/logos/openai_dark.svg',
-		'opus-4-6': '/logos/claude-ai-icon.svg',
-		'sonnet-4-6': '/logos/claude-ai-icon.svg',
-		'gemini-3-1-pro': '/logos/gemini.svg',
-		'composer-2': '/logos/cursor_dark.svg',
-		codex: '/logos/codex_dark.svg',
-		'codex-200': '/logos/codex_dark.svg',
-		't3-code': '/logos/t3-light.svg',
-		'claude-code': '/logos/claude-ai-icon.svg',
-		'claude-max': '/logos/claude-ai-icon.svg',
-		cursor: '/logos/cursor_dark.svg',
-		'cursor-ultra': '/logos/cursor_dark.svg',
-		opencode: '/logos/opencode-dark.svg',
-		'opencode-black': '/logos/opencode-dark.svg',
-		pi: '/logos/pi_dark.svg',
-		'gemini-sub-antigravity': '/logos/gemini.svg'
-	};
 
 	const asOfDate = $derived.by(() => {
 		const [year, month, day] = data.snapshot.asOf.split('-').map(Number);
@@ -62,8 +43,8 @@
 </script>
 
 <svelte:head>
-	<title>{data.index.title} — {data.snapshot.label}</title>
-	<meta name="description" content="{data.snapshot.subtitle} — {data.snapshot.label}." />
+	<title>{data.index.title} · {data.snapshot.label}</title>
+	<meta name="description" content="{data.snapshot.subtitle} · {data.snapshot.label}." />
 	<link rel="canonical" href="https://www.davis7.sh/ai/{data.snapshot.slug}" />
 </svelte:head>
 
@@ -364,7 +345,7 @@
 	}
 
 	:global(html[data-theme='light']) .item-logo {
-		background: var(--color-ink);
+		background: var(--color-logo-frame-bg);
 		border: 1px solid var(--color-border);
 		padding: 2px;
 		width: 1.625rem;

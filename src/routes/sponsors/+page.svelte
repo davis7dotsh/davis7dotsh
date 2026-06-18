@@ -1,5 +1,6 @@
 <script lang="ts">
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
 	import agentuityLogo from '$lib/svg/sponsors/agentuity.svg';
 	import convexLogo from '$lib/svg/sponsors/convex.svg';
 	import daytonaLogo from '$lib/svg/sponsors/daytona.svg';
@@ -13,6 +14,7 @@
 	const sponsors = [
 		{
 			slug: 'agentuity',
+			accent: '#8b5cf6',
 			name: 'Agentuity',
 			href: 'https://davis7.link/agentuity',
 			description:
@@ -23,6 +25,7 @@
 		},
 		{
 			slug: 'greptile',
+			accent: '#22c55e',
 			name: 'Greptile',
 			href: 'https://davis7.link/greptile',
 			description: 'My AI code reviewer of choice. Cannot imagine not having it on my repos.',
@@ -32,6 +35,7 @@
 		},
 		{
 			slug: 'firecrawl',
+			accent: '#fa5d19',
 			name: 'Firecrawl',
 			href: 'https://davis7.link/firecrawl',
 			description:
@@ -42,6 +46,7 @@
 		},
 		{
 			slug: 'railway',
+			accent: '#a855f7',
 			name: 'Railway',
 			href: 'https://davis7.link/railway',
 			description:
@@ -52,6 +57,7 @@
 		},
 		{
 			slug: 'depot',
+			accent: '#46a759',
 			name: 'Depot',
 			href: 'https://davis7.link/depot',
 			description:
@@ -62,6 +68,7 @@
 		},
 		{
 			slug: 'daytona',
+			accent: '#38bdf8',
 			name: 'Daytona',
 			href: 'https://davis7.link/daytona',
 			description: 'My favorite sandbox platform. Really fast, great DX, and open source.',
@@ -71,6 +78,7 @@
 		},
 		{
 			slug: 'convex',
+			accent: '#ee342f',
 			name: 'Convex',
 			href: 'https://davis7.link/convex',
 			description:
@@ -81,6 +89,7 @@
 		},
 		{
 			slug: 'upstash',
+			accent: '#00e9a3',
 			name: 'Upstash',
 			href: 'https://davis7.link/upstash',
 			description:
@@ -91,6 +100,7 @@
 		},
 		{
 			slug: 'workos',
+			accent: '#6366f1',
 			name: 'WorkOS',
 			href: 'https://davis7.link/workos',
 			description:
@@ -112,46 +122,35 @@
 
 <main class="px-3">
 	<div class="pb-16">
-		<a href="/" class="back-link mb-6"> Back home </a>
-
-		<h1
-			class="text-[clamp(2.25rem,4vw,3.75rem)] leading-none font-bold tracking-tight"
-			style="color: var(--color-text)"
-		>
-			Sponsors
-		</h1>
-		<p class="mt-3 max-w-2xl text-base leading-7 sm:text-lg" style="color: var(--color-text-muted)">
+		<PageHeader title="Sponsors">
 			The companies I wanted to work with to make my videos possible.
-		</p>
+		</PageHeader>
 
-		<div class="mt-8 grid auto-rows-fr gap-4 sm:grid-cols-2">
+		<div class="grid auto-rows-fr gap-4 sm:grid-cols-2">
 			{#each sponsors as sponsor}
 				<a
 					href={sponsor.href}
 					target="_blank"
 					rel="noopener noreferrer"
-					class={`sponsor-card sponsor-${sponsor.slug} flex min-h-75 w-full flex-col p-5`}
+					class="resource-card sponsor-card min-h-75 w-full"
+					style:--sponsor-accent={sponsor.accent}
 				>
-					<div
-						class="sponsor-logo-frame mb-5 flex h-24 w-full shrink-0 items-center justify-center overflow-hidden px-5"
-					>
-						<img
-							src={sponsor.logo}
-							alt={sponsor.logoAlt}
-							class={`sponsor-logo mx-auto block h-auto w-auto shrink-0 object-contain ${sponsor.logoClass}`}
-						/>
-					</div>
+					<div class="flex h-full flex-col">
+						<div class="logo-frame mb-5 h-24 w-full shrink-0 overflow-hidden px-5">
+							<img
+								src={sponsor.logo}
+								alt={sponsor.logoAlt}
+								class={`block h-auto w-auto shrink-0 object-contain ${sponsor.logoClass}`}
+							/>
+						</div>
 
-					<div class="flex flex-1 flex-col">
-						<h2
-							class="sponsor-title text-[clamp(1.125rem,1.5vw,1.5rem)] leading-tight font-semibold"
-						>
+						<h2 class="resource-title text-lg leading-tight font-semibold tracking-tight">
 							{sponsor.name}
 						</h2>
-						<p class="sponsor-description mt-2 flex-1 text-sm leading-6 sm:text-base">
+						<p class="resource-subtitle mt-2 flex-1 text-sm leading-6 sm:text-base">
 							{sponsor.description}
 						</p>
-						<span class="sponsor-cta mt-4 text-sm font-medium"> Visit sponsor </span>
+						<span class="sponsor-cta mt-4 text-sm font-medium">Visit sponsor →</span>
 					</div>
 				</a>
 			{/each}
@@ -162,6 +161,12 @@
 </main>
 
 <style lang="postcss">
+	/*
+	 * Per-sponsor brand accents. This is a deliberate, owner-approved exception to
+	 * the Wire Rule in DESIGN.md: sponsors get a faint brand-colored tint + border so
+	 * each card reads as its company. The card still layers on .resource-card, so it
+	 * keeps the shared focus ring, the 1px lift, --shadow-surface, and reduced-motion.
+	 */
 	.sponsor-card {
 		--sponsor-accent: var(--color-text-subtle);
 
@@ -177,17 +182,14 @@
 				transparent 48%
 			),
 			color-mix(in srgb, var(--sponsor-accent) 10%, var(--color-bg));
-		border: 1px solid color-mix(in srgb, var(--sponsor-accent) 32%, transparent);
-		color: var(--color-text);
-		box-shadow: var(--shadow-surface);
+		border-color: color-mix(in srgb, var(--sponsor-accent) 32%, transparent);
 		transition:
-			transform 160ms ease,
 			background 160ms ease,
-			border-color 160ms ease;
+			border-color 160ms ease,
+			transform 160ms ease;
 	}
 
 	.sponsor-card:hover {
-		transform: translateY(-1px);
 		background:
 			linear-gradient(
 				135deg,
@@ -203,68 +205,12 @@
 		border-color: color-mix(in srgb, var(--sponsor-accent) 52%, transparent);
 	}
 
-	.sponsor-agentuity {
-		--sponsor-accent: #8b5cf6;
-	}
-
-	.sponsor-daytona {
-		--sponsor-accent: #38bdf8;
-	}
-
-	.sponsor-railway {
-		--sponsor-accent: #a855f7;
-	}
-
-	.sponsor-greptile {
-		--sponsor-accent: #22c55e;
-	}
-
-	.sponsor-firecrawl {
-		--sponsor-accent: #fa5d19;
-	}
-
-	.sponsor-depot {
-		--sponsor-accent: #46a759;
-	}
-
-	.sponsor-upstash {
-		--sponsor-accent: #00e9a3;
-	}
-
-	.sponsor-workos {
-		--sponsor-accent: #6366f1;
-	}
-
-	.sponsor-convex {
-		--sponsor-accent: #ee342f;
-	}
-
-	.sponsor-logo-frame {
-		background: var(--color-ink);
-		border: 1px solid rgba(229, 231, 235, 0.08);
-	}
-
-	.sponsor-title {
-		color: var(--color-text);
-		letter-spacing: -0.02em;
-	}
-
-	.sponsor-description {
-		color: var(--color-text-muted);
-	}
-
 	.sponsor-cta {
 		color: var(--color-text-subtle);
 		transition: color 160ms ease;
 	}
 
-	.sponsor-card:hover .sponsor-cta {
+	:global(.resource-card:hover) .sponsor-cta {
 		color: var(--color-link-hover);
-	}
-
-	/* keep logo frame dark in light mode so white SVG logos stay legible */
-	:global(html[data-theme='light']) .sponsor-logo-frame {
-		background: #1a1a1a;
-		border-color: rgba(255, 255, 255, 0.08);
 	}
 </style>
