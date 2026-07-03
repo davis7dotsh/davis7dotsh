@@ -155,15 +155,55 @@
 					image: '/home-server/tp-link-10g-switch.jpg',
 					alt: 'TP-Link TL-SX1008 eight-port 10G switch',
 					layout: 'wide'
+				},
+				{
+					item: 'Framework Desktop (Ryzen AI Max+ 395, 64GB)',
+					price: '$1,599.00',
+					href: 'https://frame.work/desktop',
+					image: '/home-server/framework-desktop.jpg',
+					alt: 'Black Framework Desktop with a checkered front panel',
+					layout: 'portrait'
+				},
+				{
+					item: 'GMKtec K8 Plus Mini PC',
+					price: '$809.99',
+					href: 'https://amzn.to/4b98JKD',
+					image: '/home-server/gmktec-k8-plus.jpg',
+					alt: 'Two black GMKtec K8 Plus mini PCs showing front and rear ports',
+					layout: 'standard'
+				},
+				{
+					item: 'MINISFORUM DEG1 eGPU Dock',
+					price: '$109.00',
+					href: 'https://www.amazon.com/dp/B0DCZLPWXK',
+					image: '/home-server/minisforum-deg1-egpu-dock.jpg',
+					alt: 'MINISFORUM DEG1 external GPU dock with OCuLink connector',
+					layout: 'wide'
+				},
+				{
+					item: 'MSI MAG A550BN 550W PSU',
+					price: '$47.99',
+					href: 'https://amzn.to/4eYkdlo',
+					image: '/home-server/msi-mag-a550bn-psu.jpg',
+					alt: 'MSI MAG A550BN 550W power supply next to its box',
+					layout: 'wide'
+				},
+				{
+					item: 'GL.iNet Comet Pro Remote KVM',
+					price: '$179.99',
+					href: 'https://amzn.to/4eRoOqR',
+					image: '/home-server/glinet-comet-pro-kvm.jpg',
+					alt: 'GL.iNet Comet Pro remote KVM with its touchscreen showing an IP address',
+					layout: 'standard'
 				}
 			],
 			breakdown: [
-				{ category: 'Networking & routing', total: '$2,481.15' },
+				{ category: 'Networking & routing', total: '$2,661.14' },
 				{ category: 'NAS & storage', total: '$3,609.96' },
-				{ category: 'Rack & power', total: '$298.94' },
-				{ category: 'Compute', total: '$799.00' }
+				{ category: 'Rack & power', total: '$346.93' },
+				{ category: 'Compute', total: '$3,316.99' }
 			],
-			total: '$7,189.05'
+			total: '$9,935.02'
 		},
 		{
 			id: 'parents',
