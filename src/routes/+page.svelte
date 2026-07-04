@@ -100,6 +100,42 @@
 					>Upload an SVG, add a background, export it.</span
 				>
 			</a>
+
+			<a
+				href="https://models.davis7.sh"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="resource-card"
+			>
+				<span class="resource-title font-medium">Faster Models.dev</span>
+				<span class="resource-subtitle mt-1 block text-sm"
+					>My version of the models.dev site. Way faster, with the filters I want.</span
+				>
+			</a>
+
+			<a
+				href="https://github.com/davis7dotsh/grep-bench"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="resource-card"
+			>
+				<span class="resource-title font-medium">Grep Bench</span>
+				<span class="resource-subtitle mt-1 block text-sm"
+					>Benchmark for how well different models search codebases.</span
+				>
+			</a>
+
+			<a
+				href="https://github.com/davis7dotsh/my-sveltekit-template"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="resource-card"
+			>
+				<span class="resource-title font-medium">My SvelteKit Template</span>
+				<span class="resource-subtitle mt-1 block text-sm"
+					>SvelteKit, Effect v4, Convex, and Tailwind, wired up the way I start projects.</span
+				>
+			</a>
 		</div>
 	</div>
 	<SocialLinks />

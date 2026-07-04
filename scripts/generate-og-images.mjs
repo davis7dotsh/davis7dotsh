@@ -244,7 +244,7 @@ async function cropPngTop(inputPath, outputPath, cropWidth, cropHeight) {
 }
 
 function pageHtml(spec) {
-	const source = fileUrl(outDir, 'source', spec.source);
+	const source = fileUrl(root, 'scripts', 'og-source', spec.source);
 	const geist = fileUrl(root, 'static', 'Geist[wght].ttf');
 	const mono = fileUrl(root, 'static', 'GeistMono[wght].ttf');
 

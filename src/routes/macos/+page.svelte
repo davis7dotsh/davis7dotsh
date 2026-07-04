@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Copy, Check } from 'lucide-svelte';
+	import { Copy, Check } from '@lucide/svelte';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
 
 	const ghosttyContent = `---
