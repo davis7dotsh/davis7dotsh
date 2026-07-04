@@ -1,15 +1,12 @@
-import { parse } from 'yaml';
-import rawIndexYaml from './data/index.yaml?raw';
+import rawIndex from './data/index.json';
 
-const rawIndex = parse(rawIndexYaml) as {
+export const slugForId = (id: string) => id.replaceAll('_', '-');
+
+export const aiIndexManifest = rawIndex as {
 	title: string;
 	defaultSnapshot: string;
 	snapshots: { id: string; slug?: string; label: string; file: string }[];
 };
-
-export const slugForId = (id: string) => id.replaceAll('_', '-');
-
-export const aiIndexManifest = rawIndex;
 
 export function getAiSnapshotMetas() {
 	return aiIndexManifest.snapshots.map((snapshot) => ({

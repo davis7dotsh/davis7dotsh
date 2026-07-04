@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Moon, Sun, SunMoon } from 'lucide-svelte';
+	import { Moon, Sun, SunMoon } from '@lucide/svelte';
 
 	type Theme = 'light' | 'dark';
 

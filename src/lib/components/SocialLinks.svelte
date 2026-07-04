@@ -22,7 +22,7 @@
 		</div>
 		<span class="sr-only">YouTube</span>
 	</a>
-	<a href="https://x.com/@davis7" target="_blank" rel="noopener noreferrer" class="social-link">
+	<a href="https://x.com/davis7" target="_blank" rel="noopener noreferrer" class="social-link">
 		<div class="svg-container">
 			<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1227" viewBox="0 0 1200 1227">
 				<path

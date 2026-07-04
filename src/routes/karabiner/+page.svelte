@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Copy, Check, X } from 'lucide-svelte';
+	import { Copy, Check, X } from '@lucide/svelte';
 	import Keyboard from '$lib/components/Keyboard.svelte';
 	import { highlightJson } from '$lib/shiki-highlight';
 	import myConfig from './karabiner.json';
