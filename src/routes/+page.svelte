@@ -124,18 +124,6 @@
 					>Benchmark for how well different models search codebases.</span
 				>
 			</a>
-
-			<a
-				href="https://github.com/davis7dotsh/my-sveltekit-template"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="resource-card"
-			>
-				<span class="resource-title font-medium">My SvelteKit Template</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>SvelteKit, Effect v4, Convex, and Tailwind, wired up the way I start projects.</span
-				>
-			</a>
 		</div>
 	</div>
 	<SocialLinks />
