@@ -80,6 +80,9 @@
 	--shadow-sheet: 0 24px 80px rgba(0, 0, 0, 0.32);
 	--color-sheet-start: color-mix(in srgb, var(--color-ink) 82%, var(--color-surface));
 	--color-sheet-end: color-mix(in srgb, var(--color-graphite) 74%, var(--color-ink));
+	/* Dark plate behind third-party logos so white SVG logos stay legible in both themes. */
+	--color-logo-frame-bg: var(--color-ink);
+	--color-overlay: color-mix(in srgb, var(--color-ink) 70%, transparent);
 }
 
 html[data-theme='light'] {
@@ -117,6 +120,9 @@ html[data-theme='light'] {
 	--shadow-sheet: 0 18px 60px rgba(11, 13, 16, 0.08);
 	--color-sheet-start: color-mix(in srgb, var(--color-surface) 88%, var(--color-bg));
 	--color-sheet-end: color-mix(in srgb, var(--color-surface-elevated) 70%, var(--color-surface));
+	/* Stays dark in light mode so white SVG logos keep contrast against their frame. */
+	--color-logo-frame-bg: #1a1a1a;
+	--color-overlay: color-mix(in srgb, var(--color-ink) 55%, transparent);
 }
 
 html,
@@ -207,6 +213,15 @@ body::before {
 	background: var(--color-surface);
 	border: 1px solid var(--color-border);
 	box-shadow: var(--shadow-surface);
+}
+
+/* Dark plate for third-party logos; consistent across dark and light themes. */
+.logo-frame {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--color-logo-frame-bg);
+	border: 1px solid var(--color-border);
 }
 
 .resource-card {

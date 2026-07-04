@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { vercelImageUrl, vercelSrcset } from '$lib/image';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
+	import PageHeader from '$lib/components/PageHeader.svelte';
 
 	const tileImageQuality = 82;
 	const setupImageQuality = 82;
@@ -154,15 +155,55 @@
 					image: '/home-server/tp-link-10g-switch.jpg',
 					alt: 'TP-Link TL-SX1008 eight-port 10G switch',
 					layout: 'wide'
+				},
+				{
+					item: 'Framework Desktop (Ryzen AI Max+ 395, 64GB)',
+					price: '$1,599.00',
+					href: 'https://frame.work/desktop',
+					image: '/home-server/framework-desktop.jpg',
+					alt: 'Black Framework Desktop with a checkered front panel',
+					layout: 'portrait'
+				},
+				{
+					item: 'GMKtec K8 Plus Mini PC',
+					price: '$809.99',
+					href: 'https://amzn.to/4b98JKD',
+					image: '/home-server/gmktec-k8-plus.jpg',
+					alt: 'Two black GMKtec K8 Plus mini PCs showing front and rear ports',
+					layout: 'standard'
+				},
+				{
+					item: 'MINISFORUM DEG1 eGPU Dock',
+					price: '$109.00',
+					href: 'https://www.amazon.com/dp/B0DCZLPWXK',
+					image: '/home-server/minisforum-deg1-egpu-dock.jpg',
+					alt: 'MINISFORUM DEG1 external GPU dock with OCuLink connector',
+					layout: 'wide'
+				},
+				{
+					item: 'MSI MAG A550BN 550W PSU',
+					price: '$47.99',
+					href: 'https://amzn.to/4eYkdlo',
+					image: '/home-server/msi-mag-a550bn-psu.jpg',
+					alt: 'MSI MAG A550BN 550W power supply next to its box',
+					layout: 'wide'
+				},
+				{
+					item: 'GL.iNet Comet Pro Remote KVM',
+					price: '$179.99',
+					href: 'https://amzn.to/4eRoOqR',
+					image: '/home-server/glinet-comet-pro-kvm.jpg',
+					alt: 'GL.iNet Comet Pro remote KVM with its touchscreen showing an IP address',
+					layout: 'standard'
 				}
 			],
 			breakdown: [
-				{ category: 'Networking & routing', total: '$2,481.15' },
+				{ category: 'Networking & routing', total: '$2,661.14' },
 				{ category: 'NAS & storage', total: '$3,609.96' },
-				{ category: 'Rack & power', total: '$298.94' },
-				{ category: 'Compute', total: '$799.00' }
+				{ category: 'Rack & power', total: '$346.93' },
+				{ category: 'Compute', total: '$3,316.99' }
 			],
-			total: '$7,189.05'
+			total: '$9,935.02'
 		},
 		{
 			id: 'parents',
@@ -268,10 +309,7 @@
 
 <main class="z-10 px-3">
 	<article class="server-sheet mb-8 text-left">
-		<header class="page-heading">
-			<a href="/" class="back-link">← Back to Home</a>
-			<h1>My Home Servers</h1>
-		</header>
+		<PageHeader title="My Home Servers" />
 
 		<div class="intro">
 			<p>
@@ -380,19 +418,6 @@
 		margin-left: auto;
 		max-width: min(94rem, 100%);
 		padding: clamp(1.25rem, 3vw, 2.5rem);
-	}
-
-	.page-heading {
-		margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-	}
-
-	.page-heading h1 {
-		margin: 2rem 0 0;
-		color: var(--color-text);
-		font-size: clamp(2.4rem, 5vw, 4.8rem);
-		font-weight: 700;
-		letter-spacing: -0.065em;
-		line-height: 0.95;
 	}
 
 	.intro {
@@ -602,14 +627,11 @@
 		object-fit: contain;
 		padding: clamp(1rem, 2.5vw, 2.25rem);
 		background: color-mix(in srgb, var(--color-surface) 86%, var(--color-bg));
-		transition:
-			opacity 220ms ease,
-			transform 420ms cubic-bezier(0.165, 0.84, 0.44, 1);
+		transition: opacity 220ms ease;
 	}
 
 	.product-tile:hover img {
 		opacity: 0.92;
-		transform: scale(1.035);
 	}
 
 	.product-overlay {
@@ -623,7 +645,11 @@
 		justify-content: space-between;
 		gap: 1rem;
 		padding: 3.5rem 0.85rem 0.85rem;
-		background: linear-gradient(to top, rgba(11, 13, 16, 0.92), rgba(11, 13, 16, 0));
+		background: linear-gradient(
+			to top,
+			color-mix(in srgb, var(--color-ink) 92%, transparent),
+			transparent
+		);
 	}
 
 	.product-name {

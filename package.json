@@ -12,7 +12,8 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
-		"lint": "prettier --check ."
+		"lint": "prettier --check . && node scripts/check-design.mjs",
+		"lint:design": "node scripts/check-design.mjs"
 	},
 	"devDependencies": {
 		"@shikijs/langs": "^4.3.0",

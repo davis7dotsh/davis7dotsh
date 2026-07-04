@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Copy, Check } from '@lucide/svelte';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
+	import CodeSnippet from '$lib/components/CodeSnippet.svelte';
 
 	const ghosttyContent = `---
 description: Help make changes to my terminal emulator
@@ -22,20 +22,6 @@ agent: build
 ---
 
 My tmux config is located at: ~/.tmux.conf Your job is to make the changes I describe to that config file. Every time you make a change, make sure to end by giving me the command I need to restart my current tmux instance and use the changes immediately`;
-
-	let copiedId = $state<string | null>(null);
-
-	const copyToClipboard = async (content: string, id: string) => {
-		try {
-			await navigator.clipboard.writeText(content);
-			copiedId = id;
-			setTimeout(() => {
-				copiedId = null;
-			}, 2000);
-		} catch (err) {
-			console.error('Failed to copy text: ', err);
-		}
-	};
 </script>
 
 <svelte:head>
@@ -47,8 +33,8 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 </svelte:head>
 
 <main class="z-10 px-3 text-center">
-	<article class="content-sheet prose prose-neutral mb-8 pb-16 text-left">
-		<a href="/" class="back-link mb-8">← Back to Home</a>
+	<article class="content-sheet prose mb-8 pb-16 text-left">
+		<a href="/" class="back-link mb-8">← Back</a>
 
 		<h1 class="mb-8">macOS Power User Setup</h1>
 
@@ -108,81 +94,15 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 
 		<h3>Ghostty</h3>
 		<p><code>~/.opencode/command/ghostty.md</code></p>
-
-		<div class="relative">
-			<button
-				class="button absolute top-2 right-2 px-2 py-1 text-xs"
-				onclick={() => copyToClipboard(ghosttyContent, 'ghostty')}
-			>
-				{#if copiedId === 'ghostty'}
-					<Check size={12} class="success-text" />
-					Copied!
-				{:else}
-					<Copy size={12} />
-					Copy
-				{/if}
-			</button>
-			<pre><code
-					>---
-description: Help make changes to my terminal emulator
-agent: build
----
-
-Run "ghostty +show-config --default --docs" to see the full guide on how to configure my terminal emulator Ghostty. In this session I want you to help me get it configured. When I tell you to make a change, reference the docs on how to do it, and then write the changes to: "~/Library/Application Support/com.mitchellh.ghostty/config"</code
-				></pre>
-		</div>
+		<CodeSnippet content={ghosttyContent} />
 
 		<h3>Cursor</h3>
 		<p><code>~/.opencode/command/cursor.md</code></p>
-
-		<div class="relative">
-			<button
-				class="button absolute top-2 right-2 px-2 py-1 text-xs"
-				onclick={() => copyToClipboard(cursorContent, 'cursor')}
-			>
-				{#if copiedId === 'cursor'}
-					<Check size={12} class="success-text" />
-					Copied!
-				{:else}
-					<Copy size={12} />
-					Copy
-				{/if}
-			</button>
-			<pre><code
-					>---
-description: Help fine tune my Cursor keybindings
-agent: build
----
-
-My Cursor (VSCode) keybindings are located at: "~/Library/Application Support/Cursor/User/keybindings.json". In this session your job is to help me fine tune them.</code
-				></pre>
-		</div>
+		<CodeSnippet content={cursorContent} />
 
 		<h3>tmux</h3>
 		<p><code>~/.opencode/command/tmux.md</code></p>
-
-		<div class="relative">
-			<button
-				class="button absolute top-2 right-2 px-2 py-1 text-xs"
-				onclick={() => copyToClipboard(tmuxContent, 'tmux')}
-			>
-				{#if copiedId === 'tmux'}
-					<Check size={12} class="success-text" />
-					Copied!
-				{:else}
-					<Copy size={12} />
-					Copy
-				{/if}
-			</button>
-			<pre><code
-					>---
-description: Help fine tune tmux config
-agent: build
----
-
-My tmux config is located at: ~/.tmux.conf Your job is to make the changes I describe to that config file. Every time you make a change, make sure to end by giving me the command I need to restart my current tmux instance and use the changes immediately</code
-				></pre>
-		</div>
+		<CodeSnippet content={tmuxContent} />
 
 		<p>
 			Just drop these in and then start OpenCode in the root directory and you can do <code

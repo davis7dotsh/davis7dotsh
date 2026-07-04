@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { remoteGetPrompts } from '$lib/prompts.remote';
+	import ColorField from '$lib/components/ColorField.svelte';
 
 	let vercelSetup = $state(false);
 	let cloudflareSetup = $state(false);
@@ -97,10 +98,10 @@
 
 <div class="mx-auto w-full max-w-4xl space-y-8 px-3">
 	<div class="content-sheet space-y-4">
-		<a href="/" class="back-link mb-4">← Back to Home</a>
+		<a href="/" class="back-link mb-4">← Back</a>
 		<div class="flex items-center justify-between">
-			<h1 class="text-4xl font-bold" style="color: var(--color-text)">SvelteKit Setup</h1>
-			<button onclick={toggleAll} class="button px-3 py-1"> Toggle All </button>
+			<h1 class="headline-text text-4xl font-semibold tracking-tight">SvelteKit Setup</h1>
+			<button onclick={toggleAll} class="button px-3 py-1">Toggle All</button>
 		</div>
 		<p class="text-lg" style="color: var(--color-text-muted)">
 			An easy way to setup your SvelteKit project. Select the options you want to enable and copy
@@ -116,12 +117,7 @@
 	<div class="space-y-8">
 		<!-- Basic Prompts -->
 		<div class="space-y-4">
-			<h2
-				class="text-sm font-semibold tracking-wide uppercase"
-				style="color: var(--color-text-subtle)"
-			>
-				Setup Options
-			</h2>
+			<h2 class="text-sm font-semibold" style="color: var(--color-text-subtle)">Setup Options</h2>
 			<div class="space-y-1">
 				<label class="option-row">
 					<input
@@ -206,76 +202,31 @@
 
 		<!-- VSCode Theme -->
 		<div class="space-y-4">
-			<label class="flex cursor-pointer items-center gap-3">
-				<input type="checkbox" bind:checked={vscodeThemeEnabled} class="option-checkbox h-4 w-4" />
+			<label class="option-row">
+				<input type="checkbox" bind:checked={vscodeThemeEnabled} class="option-checkbox" />
 				<span class="font-medium" style="color: var(--color-text)">VSCode Theme</span>
 			</label>
 			{#if vscodeThemeEnabled}
 				<div class="space-y-4 pl-7">
-					<div>
-						<label
-							for="topBarColor"
-							class="mb-3 block text-xs font-medium tracking-wide uppercase"
-							style="color: var(--color-text-subtle)">Top Bar Color</label
-						>
-						<div class="flex items-center gap-3">
-							<input
-								type="color"
-								id="topBarColor"
-								bind:value={topBarColor}
-								class="field-input h-8 w-12 cursor-pointer p-0"
-							/>
-							<input type="text" bind:value={topBarColor} class="field-input flex-1" />
-						</div>
-					</div>
-					<div>
-						<label
-							for="topBarTextColor"
-							class="mb-3 block text-xs font-medium tracking-wide uppercase"
-							style="color: var(--color-text-subtle)">Top Bar Text Color</label
-						>
-						<div class="flex items-center gap-3">
-							<input
-								type="color"
-								id="topBarTextColor"
-								bind:value={topBarTextColor}
-								class="field-input h-8 w-12 cursor-pointer p-0"
-							/>
-							<input type="text" bind:value={topBarTextColor} class="field-input flex-1" />
-						</div>
-					</div>
+					<ColorField id="topBarColor" label="Top Bar Color" bind:value={topBarColor} />
+					<ColorField
+						id="topBarTextColor"
+						label="Top Bar Text Color"
+						bind:value={topBarTextColor}
+					/>
 				</div>
 			{/if}
 		</div>
 
 		<!-- Tailwind Theme -->
 		<div class="space-y-4">
-			<label class="flex cursor-pointer items-center gap-3">
-				<input
-					type="checkbox"
-					bind:checked={tailwindThemeEnabled}
-					class="option-checkbox h-4 w-4"
-				/>
+			<label class="option-row">
+				<input type="checkbox" bind:checked={tailwindThemeEnabled} class="option-checkbox" />
 				<span class="font-medium" style="color: var(--color-text)">Tailwind Theme</span>
 			</label>
 			{#if tailwindThemeEnabled}
 				<div class="space-y-4 pl-7">
-					<div>
-						<label
-							for="primaryColor"
-							class="mb-3 block text-xs font-medium tracking-wide uppercase"
-							style="color: var(--color-text-subtle)">Primary Color</label
-						>
-						<div class="flex items-center gap-3">
-							<input
-								type="color"
-								id="primaryColor"
-								bind:value={primaryColor}
-								class="field-input h-8 w-12 cursor-pointer p-0"
-							/>
-							<input type="text" bind:value={primaryColor} class="field-input flex-1" />
-						</div>
-					</div>
+					<ColorField id="primaryColor" label="Primary Color" bind:value={primaryColor} />
 				</div>
 			{/if}
 		</div>

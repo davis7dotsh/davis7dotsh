@@ -136,7 +136,7 @@ components:
 
 **Creative North Star: "The Quiet Workbench"**
 
-A workbench someone keeps tidy. Surfaces are restrained, edges are sharp, and the only piece of color in the room is the wire that conducts a signal — the blue focus ring, the blue link hover. Nothing is on display that isn't being used. Voice is dry and lowercase by default. The site reads like notes between competent friends, not a presentation.
+A workbench someone keeps tidy. Surfaces are restrained, edges are sharp, and the only piece of color in the room is the wire that conducts a signal — the blue focus ring, the blue link hover. Nothing is on display that isn't being used. Voice is dry and understated, written in normal sentence and title case with proper punctuation. The site reads like notes between competent friends, not a presentation.
 
 The whole system runs on a single move: a five-step monochrome ladder (ink → graphite → slate → panel → concrete in dark, paper-warm in light), 1px hairline borders to separate without decorating, and one variable typeface family (Geist + GeistMono) that does all the typographic work. Hierarchy lives in scale and weight, never in color. Decoration lives nowhere.
 
@@ -148,7 +148,7 @@ The system rejects every visual cliché of the influencer-personal-site: no grad
 - Hard `border-radius: 0` everywhere — this is identity, not oversight
 - One typeface family (Geist), one mono companion (GeistMono), no third font
 - Blue accent reserved for state and links — never a fill, never a flourish
-- Lowercase body voice, capitalization saved for proper nouns and headings
+- Normal sentence/title case copy; understated, never shouty (no forced ALL-CAPS)
 - Dark by default, light theme is a true peer (not an afterthought)
 
 ## 2. Colors: The Workbench Palette
@@ -224,7 +224,7 @@ The light theme is not an inversion. It is a parallel system tuned to ink-on-war
 
 **The Two-Family Rule.** Geist for prose and UI. GeistMono for inputs, code, and "data-feeling" UI. There is no third typeface. If a variant looks like it needs one, the variant is wrong.
 
-**The Lowercase Voice Rule.** Body, link text, descriptive copy: lowercase. Capitalization signals weight — proper nouns, page titles (`State of AI`, `MacOS Setup`), and the `Ben Davis` mark itself. Sentence-case headers are wrong; full-caps headers are very wrong.
+**The Plain-Case Voice Rule.** Body, links, and descriptive copy use normal sentence case with proper punctuation; headers and titles use sentence or title case as you normally would. Capitalize proper nouns, page titles (`State of AI`, `macOS Setup`), and the `Ben Davis` mark. What is wrong is shouty styling: forced ALL-CAPS or letter-spaced uppercase labels (the `uppercase` utility), and an affected all-lowercase style. Plain, well-written English — not a typographic affectation in either direction.
 
 **The 65ch Cap.** Prose surfaces (`.prose`) cap line length at 65ch. Wider than that and the page starts to read like documentation, which is the wrong register for this site.
 
@@ -337,7 +337,7 @@ There is exactly one heavy shadow in the entire system, and it is reserved for t
 - **Do** convey depth by stepping up the ink → graphite → slate → panel → concrete ladder. Reach for the next tone before reaching for a shadow.
 - **Do** use blue only for interactive state — links, focus rings, hover signals. Treat it like a wire that conducts a signal: it appears where there is current.
 - **Do** use Geist for prose and UI, GeistMono for inputs, code chips, and "data-feeling" UI. No third typeface.
-- **Do** keep body copy lowercase by default. Capitalize proper nouns and titles only.
+- **Do** write copy in normal sentence/title case with proper punctuation. Avoid forced ALL-CAPS (the `uppercase` utility) and an affected all-lowercase style.
 - **Do** cap prose line length at 65ch via the `.prose` selector.
 - **Do** apply 1px hairline borders to elevated surfaces — `rgba(229,231,235,0.12)` resting, `0.22` on hover.
 - **Do** use the `translateY(-1px)` lift for hover affordance — exactly one pixel, no more.

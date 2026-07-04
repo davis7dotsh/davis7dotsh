@@ -70,8 +70,8 @@
 
 <main class="mx-auto flex max-w-5xl flex-col items-start gap-8">
 	<div class="content-sheet flex w-full flex-col items-start gap-8">
-		<a href="/" class="back-link mb-2">← Back to Home</a>
-		<h2 class="text-2xl font-semibold" style="color: var(--color-text)">My Karabiner Config</h2>
+		<a href="/" class="back-link">← Back</a>
+		<h1 class="headline-text text-4xl font-semibold tracking-tight">My Karabiner Config</h1>
 
 		<p class="leading-relaxed" style="color: var(--color-text-muted)">
 			This is my "hyper key" config, you can download Karabiner Elements
@@ -86,7 +86,7 @@
 		<button class="button" onclick={openDialog}> View Full Config </button>
 
 		<p style="color: var(--color-text-muted)">Keybindings:</p>
-		<ul class="w-full space-y-2 font-bold">
+		<ul class="w-full space-y-2">
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
@@ -195,7 +195,7 @@
 	}
 
 	.config-dialog::backdrop {
-		background: rgba(0, 0, 0, 0.55);
+		background: var(--color-overlay);
 	}
 
 	.config-dialog-inner {
