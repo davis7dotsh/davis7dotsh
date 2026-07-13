@@ -1,7 +1,3 @@
-<script lang="ts">
-	import logo from '$lib/svg/my-logo.svg';
-</script>
-
 <svelte:head>
 	<title>OG Image - Ben Davis</title>
 	<style>
@@ -33,7 +29,7 @@
 	<div class="og-content">
 		<!-- top-left: logo + name -->
 		<div class="og-top">
-			<img src={logo} alt="Ben Davis logo" class="og-logo" />
+			<img src="/brand/bendavis-white-brandmark.svg" alt="Ben Davis logo" class="og-logo" />
 			<div class="og-text">
 				<h1 class="og-name">Ben Davis</h1>
 				<p class="og-tagline">Developer, YouTuber, and Theo's manager</p>
