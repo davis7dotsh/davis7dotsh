@@ -2,18 +2,13 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" type="image/png" sizes="64x64" />
 		<link
-			rel="icon"
-			href="%sveltekit.assets%/brand/bendavis-black-brandmark.svg"
-			type="image/svg+xml"
-			media="(prefers-color-scheme: light)"
-		/>
-		<link
+			id="theme-favicon"
 			rel="icon"
 			href="%sveltekit.assets%/brand/bendavis-white-brandmark.svg"
 			type="image/svg+xml"
-			media="(prefers-color-scheme: dark)"
+			data-light-href="%sveltekit.assets%/brand/bendavis-black-brandmark.svg"
+			data-dark-href="%sveltekit.assets%/brand/bendavis-white-brandmark.svg"
 		/>
 		<link
 			rel="preload"
@@ -35,6 +30,15 @@
 			(() => {
 				const storageKey = 'theme-preference';
 				const root = document.documentElement;
+				const favicon = document.querySelector('#theme-favicon');
+				const applyTheme = (theme) => {
+					root.dataset.theme = theme;
+					root.style.colorScheme = theme;
+
+					const faviconHref =
+						theme === 'light' ? favicon?.dataset.lightHref : favicon?.dataset.darkHref;
+					if (faviconHref) favicon.href = faviconHref;
+				};
 
 				try {
 					const storedTheme = localStorage.getItem(storageKey);
@@ -46,11 +50,9 @@
 								? 'dark'
 								: 'light';
 
-					root.dataset.theme = theme;
-					root.style.colorScheme = theme;
+					applyTheme(theme);
 				} catch {
-					root.dataset.theme = 'dark';
-					root.style.colorScheme = 'dark';
+					applyTheme('dark');
 				}
 			})();
 		</script>
