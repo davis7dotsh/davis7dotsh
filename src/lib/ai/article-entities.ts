@@ -169,8 +169,10 @@ const escapeHtml = (value: string) =>
 		.replaceAll('"', '&quot;')
 		.replaceAll("'", '&#039;');
 
-const findEntity = (value: string) =>
-	articleEntities.find((entity) => entity.aliases.some((alias) => value.includes(alias)));
+const findEntity = (value: string) => {
+	const label = value.trim();
+	return articleEntities.find((entity) => entity.aliases.includes(label));
+};
 
 const renderEntityLink = (entity: ArticleEntity, label: string, href = entity.href) => {
 	const icon = entity.icon

@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { renderAiArticle } from '$lib/ai/article-entities';
-	import { latestAiArticle } from '$lib/ai/articles';
+	import { july26AiArticle } from '$lib/ai/articles';
 	import article from './article.md?raw';
 
 	const articleHtml = renderAiArticle(article);
 </script>
 
 <svelte:head>
-	<title>{latestAiArticle.title} · State of AI</title>
-	<meta name="description" content={latestAiArticle.description} />
-	<link rel="canonical" href="https://www.davis7.sh/ai/{latestAiArticle.slug}" />
+	<title>{july26AiArticle.title} · State of AI</title>
+	<meta name="description" content={july26AiArticle.description} />
+	<link rel="canonical" href="https://www.davis7.sh/ai/{july26AiArticle.slug}" />
 </svelte:head>
 
 <main class="article-page">
@@ -245,7 +245,6 @@
 		margin: 2.25rem 0 2.5rem;
 		border: 1px solid var(--color-border);
 		background: color-mix(in srgb, var(--color-surface) 58%, transparent);
-		box-shadow: var(--shadow-surface);
 		font-family: var(--font-family-geist-mono);
 	}
 
