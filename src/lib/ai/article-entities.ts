@@ -167,6 +167,7 @@ const escapeRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$
 const aliasSource = aliases.map(escapeRegex).join('|');
 const entityAtStart = new RegExp(`^(?:${aliasSource})(?![\\p{L}\\p{N}])`, 'u');
 const nextEntity = new RegExp(`(?<![\\p{L}\\p{N}])(?:${aliasSource})(?![\\p{L}\\p{N}])`, 'u');
+const youtubeHosts = new Set(['youtu.be', 'youtube.com', 'www.youtube.com', 'm.youtube.com']);
 
 const escapeHtml = (value: string) =>
 	value
@@ -179,6 +180,14 @@ const escapeHtml = (value: string) =>
 const findEntity = (value: string) => {
 	const label = value.trim();
 	return articleEntities.find((entity) => entity.aliases.includes(label));
+};
+
+const isYouTubeLink = (href: string) => {
+	try {
+		return youtubeHosts.has(new URL(href).hostname);
+	} catch {
+		return false;
+	}
 };
 
 const renderEntityLink = (entity: ArticleEntity, label: string, href = entity.href) => {
@@ -242,9 +251,11 @@ const articleMarked = new Marked({
 	renderer: {
 		link(token) {
 			const entity = findEntity(token.text);
-			if (!entity) return false;
+			if (entity) return renderEntityLink(entity, token.text, token.href);
 
-			return renderEntityLink(entity, token.text, token.href);
+			if (!isYouTubeLink(token.href)) return false;
+
+			return `<a href="${escapeHtml(token.href)}" target="_blank" rel="noopener noreferrer external">${escapeHtml(token.text)}</a>`;
 		}
 	}
 });
