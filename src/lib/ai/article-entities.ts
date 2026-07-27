@@ -153,6 +153,13 @@ const articleEntities: ArticleEntity[] = [
 ];
 
 const entitiesByKey = new Map(articleEntities.map((entity) => [entity.key, entity]));
+const lightThemeInvertedIcons = new Set([
+	'/logos/openai_dark.svg',
+	'/logos/codex_dark.svg',
+	'/logos/cursor_dark.svg',
+	'/logos/pi_dark.svg',
+	'/logos/t3-light.svg'
+]);
 const aliases = articleEntities
 	.flatMap((entity) => entity.aliases)
 	.sort((left, right) => right.length - left.length);
@@ -175,8 +182,11 @@ const findEntity = (value: string) => {
 };
 
 const renderEntityLink = (entity: ArticleEntity, label: string, href = entity.href) => {
+	const iconClass = lightThemeInvertedIcons.has(entity.icon ?? '')
+		? 'article-entity-icon article-entity-icon--invert-light'
+		: 'article-entity-icon';
 	const icon = entity.icon
-		? `<img class="article-entity-icon" src="${escapeHtml(entity.icon)}" alt="" width="16" height="16" aria-hidden="true">`
+		? `<img class="${iconClass}" src="${escapeHtml(entity.icon)}" alt="" width="16" height="16" aria-hidden="true">`
 		: `<span class="article-entity-icon article-entity-monogram" aria-hidden="true">${escapeHtml(entity.iconText ?? entity.lab.slice(0, 2))}</span>`;
 	const accessibleLabel = `${label} · ${entity.lab} · opens in a new tab`;
 

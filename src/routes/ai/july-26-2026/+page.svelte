@@ -209,6 +209,10 @@
 		object-fit: contain;
 	}
 
+	:global(html[data-theme='light']) .article-body :global(.article-entity-icon--invert-light) {
+		filter: invert(1);
+	}
+
 	.article-body :global(.article-entity-monogram) {
 		display: inline-grid;
 		place-items: center;
