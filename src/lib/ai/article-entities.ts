@@ -159,7 +159,7 @@ const aliases = articleEntities
 const escapeRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const aliasSource = aliases.map(escapeRegex).join('|');
 const entityAtStart = new RegExp(`^(?:${aliasSource})(?![\\p{L}\\p{N}])`, 'u');
-const nextEntity = new RegExp(`(?:${aliasSource})(?![\\p{L}\\p{N}])`, 'u');
+const nextEntity = new RegExp(`(?<![\\p{L}\\p{N}])(?:${aliasSource})(?![\\p{L}\\p{N}])`, 'u');
 
 const escapeHtml = (value: string) =>
 	value
