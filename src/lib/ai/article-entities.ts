@@ -187,10 +187,14 @@ const articleEntityExtension = {
 	name: 'articleEntity',
 	level: 'inline',
 	start(source) {
+		if (this.lexer.state.inLink) return;
+
 		const match = nextEntity.exec(source);
 		return match?.index;
 	},
 	tokenizer(source) {
+		if (this.lexer.state.inLink) return;
+
 		const match = entityAtStart.exec(source);
 		if (!match) return;
 
