@@ -1,4 +1,5 @@
-import { aiIndexManifest, getAiSnapshotMetas } from '$lib/ai/manifest';
+import { getAiSnapshotMetas } from '$lib/ai/manifest';
+import { latestAiArticle } from '$lib/ai/articles';
 
 type SeoConfig = {
 	title: string;
@@ -19,8 +20,6 @@ const defaultSeo: SeoConfig = {
 const aiDescriptions =
 	"Rankings and notes on the AI models, harnesses, and subscriptions I'm using.";
 const aiSnapshots = getAiSnapshotMetas();
-const latestAiSnapshot =
-	aiSnapshots.find((snapshot) => snapshot.id === aiIndexManifest.defaultSnapshot) ?? aiSnapshots[0];
 
 export function aiSnapshotSeo(slug: string, label: string): SeoConfig {
 	return {
@@ -40,10 +39,16 @@ const seoByPath: Record<string, SeoConfig> = {
 		image: '/og/sponsors.png'
 	},
 	'/ai': {
-		title: 'State of AI Rankings - Ben Davis',
-		description: aiDescriptions,
+		title: `${latestAiArticle.title} - Ben Davis`,
+		description: latestAiArticle.description,
 		path: '/ai',
-		image: latestAiSnapshot ? `/og/ai-${latestAiSnapshot.slug}.png` : defaultSeo.image
+		image: latestAiArticle.image
+	},
+	[`/ai/${latestAiArticle.slug}`]: {
+		title: `${latestAiArticle.title} - Ben Davis`,
+		description: latestAiArticle.description,
+		path: `/ai/${latestAiArticle.slug}`,
+		image: latestAiArticle.image
 	},
 	...Object.fromEntries(
 		aiSnapshots.map((snapshot) => [

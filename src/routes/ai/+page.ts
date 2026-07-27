@@ -1,7 +1,6 @@
 import { redirect } from '@sveltejs/kit';
-import { getAiIndex } from '$lib/ai/data.remote';
+import { latestAiArticle } from '$lib/ai/articles';
 
-export async function load() {
-	const index = await getAiIndex();
-	redirect(308, `/ai/${index.latestSlug}`);
+export function load() {
+	redirect(308, `/ai/${latestAiArticle.slug}`);
 }

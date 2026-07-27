@@ -3,6 +3,7 @@
 	import { getAiUpdate } from '$lib/ai/data.remote';
 	import type { RatingEntry } from '$lib/ai/ratings';
 	import { aiLogos as logos } from '$lib/ai/logos';
+	import { latestAiArticle } from '$lib/ai/articles';
 
 	let { params } = $props();
 	const data = $derived(await getAiUpdate(params.slug));
@@ -78,6 +79,8 @@
 		{#if allSnapshots.length > 1}
 			<p class="previous">
 				<span class="previous-label">Historical:</span>
+				<a class="brand-link" href="/ai/{latestAiArticle.slug}">{latestAiArticle.label}</a>
+				<span aria-hidden="true">,</span>
 				{#each allSnapshots as snapshot, i (snapshot.slug)}
 					{#if snapshot.slug === data.snapshot.slug}
 						<span class="snapshot-current" aria-current="page">{snapshotShort(snapshot.label)}</span
