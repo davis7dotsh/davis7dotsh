@@ -5,10 +5,22 @@ import { absoluteUrl } from '$lib/seo';
 export const prerender = true;
 
 const staticPaths = ['/', '/sponsors', '/macos', '/home-server', '/karabiner', '/font', '/sv'];
+const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+
+function snapshotPath(slug: string) {
+	if (!slugPattern.test(slug)) throw new Error(`Invalid AI snapshot slug: ${slug}`);
+	return `/ai/${slug}`;
+}
+
+function escapeXml(value: string) {
+	return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+}
 
 export const GET = (() => {
-	const paths = [...staticPaths, ...getAiSnapshotMetas().map((snapshot) => `/ai/${snapshot.slug}`)];
-	const urls = paths.map((path) => `\t<url><loc>${absoluteUrl(path)}</loc></url>`).join('\n');
+	const paths = [...staticPaths, ...getAiSnapshotMetas().map(({ slug }) => snapshotPath(slug))];
+	const urls = paths
+		.map((path) => `\t<url><loc>${escapeXml(absoluteUrl(path))}</loc></url>`)
+		.join('\n');
 	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls}

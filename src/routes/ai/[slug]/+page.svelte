@@ -143,7 +143,7 @@
 									{#each descriptionBlocks(item.description) as block, blockIndex (`${item.id}-${blockIndex}`)}
 										{#if block.type === 'list'}
 											<ul>
-												{#each block.items as line (line)}
+												{#each block.items as line, lineIndex (`${item.id}-${blockIndex}-${lineIndex}`)}
 													<li>{line}</li>
 												{/each}
 											</ul>
