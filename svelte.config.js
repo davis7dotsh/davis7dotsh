@@ -16,9 +16,20 @@ const config = {
 				minimumCacheTTL: 2678400
 			}
 		}),
-
-		experimental: {
-			remoteFunctions: true
+		csp: {
+			mode: 'auto',
+			directives: {
+				'default-src': ['self'],
+				'base-uri': ['self'],
+				'connect-src': ['self'],
+				'font-src': ['self'],
+				'form-action': ['self'],
+				'img-src': ['self', 'data:'],
+				'object-src': ['none'],
+				'script-src': ['self'],
+				'style-src-elem': ['self'],
+				'style-src-attr': ['unsafe-inline']
+			}
 		},
 
 		prerender: {
