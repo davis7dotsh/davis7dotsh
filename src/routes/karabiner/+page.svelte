@@ -1,43 +1,11 @@
 <script lang="ts">
-	import { Copy, Check, X } from '@lucide/svelte';
+	import Icon from '$lib/components/Icon.svelte';
 	import Keyboard from '$lib/components/Keyboard.svelte';
-	import { highlightJson } from '$lib/shiki-highlight';
 	import myConfig from './karabiner.json';
-	import { onMount } from 'svelte';
 
-	let html = $state('');
+	const configText = JSON.stringify(myConfig, null, 2);
 	let copied = $state(false);
-	let currentTheme = $state<'dark' | 'light'>('dark');
 	let dialogEl = $state<HTMLDialogElement>();
-
-	onMount(() => {
-		currentTheme = (document.documentElement.dataset.theme as 'dark' | 'light') || 'dark';
-
-		const observer = new MutationObserver(() => {
-			currentTheme = (document.documentElement.dataset.theme as 'dark' | 'light') || 'dark';
-		});
-		observer.observe(document.documentElement, {
-			attributes: true,
-			attributeFilter: ['data-theme']
-		});
-
-		return () => observer.disconnect();
-	});
-
-	$effect(() => {
-		const shikiTheme = currentTheme === 'light' ? 'github-light' : 'github-dark';
-		let cancelled = false;
-
-		(async () => {
-			const highlighted = await highlightJson(JSON.stringify(myConfig, null, 2), shikiTheme);
-			if (cancelled) return;
-			html = highlighted;
-		})();
-
-		return () => {
-			cancelled = true;
-		};
-	});
 
 	const copy = async () => {
 		try {
@@ -162,22 +130,22 @@
 				Full Karabiner Configuration
 			</h3>
 			<button class="icon-button h-9 w-9" onclick={closeDialog} aria-label="Close dialog">
-				<X size={16} />
+				<Icon name="x" size={16} />
 			</button>
 		</div>
 		<div class="mb-4">
 			<button class="button" onclick={copy}>
 				{#if copied}
-					<Check size={16} class="success-text" />
+					<Icon name="check" size={16} class="success-text" />
 					Copied!
 				{:else}
-					<Copy size={16} />
+					<Icon name="copy" size={16} />
 					Copy Config
 				{/if}
 			</button>
 		</div>
 		<div class="surface p-4 text-sm">
-			{@html html}
+			<pre class="config-code"><code>{configText}</code></pre>
 		</div>
 	</div>
 </dialog>
@@ -202,5 +170,13 @@
 		max-height: inherit;
 		overflow: auto;
 		padding: 1.5rem;
+	}
+
+	.config-code {
+		margin: 0;
+		overflow: auto;
+		color: var(--color-text);
+		font-family: var(--font-family-geist-mono);
+		white-space: pre;
 	}
 </style>

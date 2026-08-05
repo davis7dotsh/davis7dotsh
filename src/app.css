@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
 
 @theme {
 	--font-family-geist:
@@ -383,6 +382,37 @@ input:focus-visible {
 .prose {
 	color: var(--color-text-muted);
 	max-width: 65ch;
+}
+
+.prose :where(h1, h2, h3, p, ul, pre) {
+	margin-top: 0;
+	margin-bottom: 1.25rem;
+}
+
+.prose :where(h1) {
+	font-size: 2.25rem;
+	line-height: 1.1;
+}
+
+.prose :where(h2) {
+	margin-top: 2rem;
+	font-size: 1.5rem;
+	line-height: 1.25;
+}
+
+.prose :where(h3) {
+	margin-top: 1.5rem;
+	font-size: 1.25rem;
+	line-height: 1.3;
+}
+
+.prose :where(ul) {
+	padding-left: 1.5rem;
+	list-style: disc;
+}
+
+.prose :where(li + li) {
+	margin-top: 0.5rem;
 }
 
 .prose :where(h1, h2, h3, h4, h5, h6) {

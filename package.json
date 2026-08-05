@@ -9,37 +9,25 @@
 		"build": "svelte-kit sync && vite build",
 		"prepare": "svelte-kit sync",
 		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsgo --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsgo --tsconfig ./tsconfig.json --watch",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"generate:og": "node scripts/generate-og-images.mjs",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && node scripts/check-design.mjs",
 		"lint:design": "node scripts/check-design.mjs"
 	},
 	"devDependencies": {
-		"@shikijs/langs": "^4.4.1",
-		"@shikijs/themes": "^4.4.1",
 		"@sveltejs/adapter-vercel": "^6.3.4",
 		"@sveltejs/kit": "^2.70.2",
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
-		"@tailwindcss/typography": "^0.5.20",
 		"@tailwindcss/vite": "^4.3.3",
-		"@types/node": "^26.1.2",
-		"@typescript/native": "npm:typescript@^7.0.2",
 		"prettier": "^3.9.6",
 		"prettier-plugin-svelte": "^4.1.1",
-		"prettier-plugin-tailwindcss": "^0.8.1",
-		"shiki": "^4.4.1",
 		"svelte": "^5.56.8",
 		"svelte-check": "^4.7.4",
 		"tailwindcss": "^4.3.3",
 		"typescript": "^6.0.3",
 		"vite": "^8.2.0"
-	},
-	"dependencies": {
-		"@lucide/svelte": "^1.28.0",
-		"@vercel/analytics": "^2.0.1",
-		"yaml": "^2.9.0",
-		"zod": "^4.4.3"
 	},
 	"packageManager": "pnpm@11.5.2+sha512.71c631e382066efc25625d5cf029075de07b61b37f6e27350fbd84b1bda5864c8c1967adc280776b45c30a715c0359a3be08fef42d5bb09e2b99029979692916"
 }

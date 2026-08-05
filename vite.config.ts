@@ -9,8 +9,6 @@ export default defineConfig({
 			output: {
 				manualChunks(id) {
 					if (id.includes('node_modules/svelte/')) return 'svelte';
-					if (id.includes('node_modules/@shikijs/') || id.includes('node_modules/shiki/'))
-						return 'shiki';
 				}
 			}
 		}

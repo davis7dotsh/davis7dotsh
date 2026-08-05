@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Moon, Sun, SunMoon } from '@lucide/svelte';
+	import Icon from '$lib/components/Icon.svelte';
 
 	type Theme = 'light' | 'dark';
 
@@ -65,11 +65,11 @@
 >
 	{#if mounted}
 		{#if theme === 'dark'}
-			<Sun size={18} />
+			<Icon name="sun" size={18} />
 		{:else}
-			<Moon size={18} />
+			<Icon name="moon" size={18} />
 		{/if}
 	{:else}
-		<SunMoon size={18} />
+		<Icon name="sun-moon" size={18} />
 	{/if}
 </button>

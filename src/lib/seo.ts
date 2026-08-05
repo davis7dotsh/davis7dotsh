@@ -22,7 +22,7 @@ const aiSnapshots = getAiSnapshotMetas();
 const latestAiSnapshot =
 	aiSnapshots.find((snapshot) => snapshot.id === aiIndexManifest.defaultSnapshot) ?? aiSnapshots[0];
 
-export function aiSnapshotSeo(slug: string, label: string): SeoConfig {
+function aiSnapshotSeo(slug: string, label: string): SeoConfig {
 	return {
 		title: `State of AI Rankings - ${label}`,
 		description: aiDescriptions,

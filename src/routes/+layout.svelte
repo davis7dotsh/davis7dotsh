@@ -1,12 +1,8 @@
 <script>
 	import '../app.css';
-	import { dev } from '$app/environment';
 	import { page } from '$app/state';
-	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import { absoluteUrl, getSeo } from '$lib/seo';
-
-	injectAnalytics({ mode: dev ? 'development' : 'production' });
 
 	let { children } = $props();
 	const seo = $derived(getSeo(page.url.pathname));

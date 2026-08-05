@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Copy, Check } from '@lucide/svelte';
+	import Icon from '$lib/components/Icon.svelte';
 
 	let { content }: { content: string } = $props();
 
@@ -23,10 +23,10 @@
 <div class="relative">
 	<button type="button" class="button absolute top-2 right-2 px-2 py-1 text-xs" onclick={copy}>
 		{#if copied}
-			<Check size={12} class="success-text" />
+			<Icon name="check" size={12} class="success-text" />
 			Copied!
 		{:else}
-			<Copy size={12} />
+			<Icon name="copy" size={12} />
 			Copy
 		{/if}
 	</button>
