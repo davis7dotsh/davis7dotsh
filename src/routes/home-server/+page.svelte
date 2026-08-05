@@ -165,6 +165,22 @@
 					layout: 'portrait'
 				},
 				{
+					item: 'NVIDIA DGX Spark (×2)',
+					price: '$4,649.99 × 2',
+					href: 'https://amzn.to/4bxgOco',
+					image: '/home-server/nvidia-dgx-spark.jpg',
+					alt: 'Gold NVIDIA DGX Spark personal AI supercomputer viewed from the front',
+					layout: 'large'
+				},
+				{
+					item: 'ASUS 400G QSFP112 DAC Cable',
+					price: '$175.99',
+					href: 'https://amzn.to/4yZoDBH',
+					image: '/home-server/asus-400g-qsfp112-dac-cable.jpg',
+					alt: 'Short black braided ASUS 400G QSFP112 cable with silver connectors',
+					layout: 'wide'
+				},
+				{
 					item: 'GMKtec K8 Plus Mini PC',
 					price: '$809.99',
 					href: 'https://amzn.to/4b98JKD',
@@ -201,9 +217,9 @@
 				{ category: 'Networking & routing', total: '$2,661.14' },
 				{ category: 'NAS & storage', total: '$3,609.96' },
 				{ category: 'Rack & power', total: '$346.93' },
-				{ category: 'Compute', total: '$3,316.99' }
+				{ category: 'Compute & interconnect', total: '$12,792.96' }
 			],
-			total: '$9,935.02'
+			total: '$19,410.99'
 		},
 		{
 			id: 'parents',
