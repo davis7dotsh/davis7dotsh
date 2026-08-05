@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { parse } from 'yaml';
 import { aiIndexManifest, getAiSnapshotMetas } from './manifest';
-import type { RatingsIndex, RatingsSnapshot } from './ratings';
+import { ratingsSnapshotSchema, type RatingsIndex } from './ratings';
 
 const yamlFiles = import.meta.glob('./data/*.yaml', {
 	eager: true,
@@ -9,10 +9,10 @@ const yamlFiles = import.meta.glob('./data/*.yaml', {
 	query: '?raw'
 }) as Record<string, string>;
 
-function loadYaml<T>(filename: string) {
+function loadYaml(filename: string) {
 	const raw = yamlFiles[`./data/${filename}`];
 	if (!raw) error(500, `Missing bundled AI data file: ${filename}`);
-	return parse(raw) as T;
+	return parse(raw);
 }
 
 export function getIndex() {
@@ -43,7 +43,7 @@ export function getSnapshot(slug: string) {
 	const meta = index.snapshots.find((snapshot) => snapshot.slug === slug || snapshot.id === slug);
 	if (!meta) error(404, 'AI update not found');
 
-	const snapshot = loadYaml<Omit<RatingsSnapshot, 'slug'>>(meta.file);
+	const snapshot = ratingsSnapshotSchema.parse(loadYaml(meta.file));
 
 	return {
 		index,

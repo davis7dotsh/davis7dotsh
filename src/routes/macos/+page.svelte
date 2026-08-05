@@ -45,14 +45,16 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 
 		<ul>
 			<li>
-				<a href="https://karabiner-elements.pqrs.org/" target="_blank">Karabiner Elements</a>
+				<a href="https://karabiner-elements.pqrs.org/" target="_blank" rel="noopener noreferrer"
+					>Karabiner Elements</a
+				>
 				(breakdown <a href="/karabiner">here</a>)
 			</li>
 			<li>
-				<a href="https://www.raycast.com/" target="_blank">Raycast</a>
+				<a href="https://www.raycast.com/" target="_blank" rel="noopener noreferrer">Raycast</a>
 			</li>
 			<li>
-				<a href="https://rectangleapp.com/" target="_blank">Rectangle</a>
+				<a href="https://rectangleapp.com/" target="_blank" rel="noopener noreferrer">Rectangle</a>
 			</li>
 		</ul>
 

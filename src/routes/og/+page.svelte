@@ -4,24 +4,6 @@
 
 <svelte:head>
 	<title>OG Image - Ben Davis</title>
-	<style>
-		body,
-		html {
-			margin: 0;
-			padding: 0;
-			overflow: hidden;
-			background: var(--color-ink);
-		}
-		/* override the site layout to center the card */
-		body > div > div {
-			all: unset;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 100vw;
-			height: 100vh;
-		}
-	</style>
 </svelte:head>
 
 <!-- 1200x630 OG card, self-contained -->
@@ -48,6 +30,24 @@
 </div>
 
 <style>
+	:global(body),
+	:global(html) {
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		background: var(--color-ink);
+	}
+
+	/* override the site layout to center the card */
+	:global(body > div > div) {
+		all: unset;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100vw;
+		height: 100vh;
+	}
+
 	.og-card {
 		width: 1200px;
 		height: 630px;

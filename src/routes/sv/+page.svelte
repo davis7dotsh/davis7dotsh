@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { remoteGetPrompts } from '$lib/prompts.remote';
+	import { getPrompts } from '$lib/prompts';
 	import ColorField from '$lib/components/ColorField.svelte';
 
 	let vercelSetup = $state(false);
@@ -31,7 +31,7 @@
 	async function copyPrompts() {
 		isLoading = true;
 		try {
-			const prompts = await remoteGetPrompts({
+			const prompts = getPrompts({
 				vercelSetup,
 				cloudflareSetup,
 				cursorRules,

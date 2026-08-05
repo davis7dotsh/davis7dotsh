@@ -1,11 +1,9 @@
 <script lang="ts">
-	import { marked } from 'marked';
-	import { getAiUpdate } from '$lib/ai/data.remote';
 	import type { RatingEntry } from '$lib/ai/ratings';
 	import { aiLogos as logos } from '$lib/ai/logos';
+	import type { PageProps } from './$types';
 
-	let { params } = $props();
-	const data = $derived(await getAiUpdate(params.slug));
+	let { data }: PageProps = $props();
 
 	const asOfDate = $derived.by(() => {
 		const [year, month, day] = data.snapshot.asOf.split('-').map(Number);
@@ -19,8 +17,18 @@
 
 	const heroSubtitle = $derived(`${asOfIso} Edition`);
 
-	function md(src: string): string {
-		return marked.parse(src.trim(), { async: false }) as string;
+	type DescriptionBlock = { type: 'paragraph'; text: string } | { type: 'list'; items: string[] };
+
+	function descriptionBlocks(description: string): DescriptionBlock[] {
+		return description
+			.trim()
+			.split(/\n\s*\n/)
+			.map((block) => block.split('\n').map((line) => line.trim()))
+			.map((lines) =>
+				lines.every((line) => line.startsWith('- '))
+					? { type: 'list', items: lines.map((line) => line.slice(2)) }
+					: { type: 'paragraph', text: lines.join(' ') }
+			);
 	}
 
 	type Section = { key: string; label: string; entries: RatingEntry[] };
@@ -132,7 +140,17 @@
 								</p>
 
 								<div class="item-desc">
-									{@html md(item.description)}
+									{#each descriptionBlocks(item.description) as block, blockIndex (`${item.id}-${blockIndex}`)}
+										{#if block.type === 'list'}
+											<ul>
+												{#each block.items as line, lineIndex (`${item.id}-${blockIndex}-${lineIndex}`)}
+													<li>{line}</li>
+												{/each}
+											</ul>
+										{:else}
+											<p>{block.text}</p>
+										{/if}
+									{/each}
 								</div>
 
 								{#if item.pros?.length || item.cons?.length}
@@ -392,40 +410,18 @@
 		max-width: 65ch;
 	}
 
-	.item-desc :global(p) {
+	.item-desc p,
+	.item-desc ul {
 		margin: 0 0 0.5rem;
 	}
 
-	.item-desc :global(p:last-child) {
+	.item-desc p:last-child,
+	.item-desc ul:last-child {
 		margin-bottom: 0;
 	}
 
-	.item-desc :global(strong) {
-		color: var(--color-text);
-		font-weight: 600;
-	}
-
-	.item-desc :global(a) {
-		color: var(--color-link);
-		text-decoration: none;
-		border-bottom: 1px solid var(--color-border-strong);
-		transition:
-			color 160ms ease,
-			border-color 160ms ease;
-	}
-
-	.item-desc :global(a:hover) {
-		color: var(--color-link-hover);
-		border-bottom-color: var(--color-link-hover);
-	}
-
-	.item-desc :global(code) {
-		font-family: var(--font-family-geist-mono);
-		font-size: 0.85em;
-		color: var(--color-text);
-		background-color: color-mix(in srgb, var(--color-surface-elevated) 70%, transparent);
-		border: 1px solid var(--color-border);
-		padding: 0.05rem 0.3rem;
+	.item-desc ul {
+		padding-left: 1.25rem;
 	}
 
 	.item-notes {

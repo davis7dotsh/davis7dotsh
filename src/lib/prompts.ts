@@ -1,6 +1,3 @@
-import { command } from '$app/server';
-import { z } from 'zod';
-
 const VERCEL_SETUP_PROMPT = `
 Setup this SvelteKit project to be deployed to Vercel by doing the following:
 
@@ -128,10 +125,7 @@ const config = {
 
 	kit: {
 		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter(),
-		experimental: {
-			remoteFunctions: true
-		}
+		adapter: adapter()
 	},
 	compilerOptions: {
 		experimental: {
@@ -140,7 +134,7 @@ const config = {
 	}
 };
 
-The only thing you should be touching is the compilerOptions: { experimental: { async: true } } section and the experimental: { remoteFunctions: true } section, leave the rest of the file alone.
+The only thing you should be touching is the compilerOptions: { experimental: { async: true } } section. Leave the rest of the file alone.
 `;
 
 const VSCODE_THEME_PROMPT = (opts: { topBarColor: string; topBarTextColor: string }) => `
@@ -195,28 +189,24 @@ Setup the root layout and page to be nicer:
 NOTE: If there is not a primary color set, just use orange-500
 `;
 
-const getPromptsSchema = z.object({
-	vercelSetup: z.boolean(),
-	cloudflareSetup: z.boolean(),
-	cursorRules: z.boolean(),
-	usefulPackages: z.boolean(),
-	asyncSvelte: z.boolean(),
-	helloWorld: z.boolean(),
-	convexSetup: z.boolean(),
-	vscodeTheme: z
-		.object({
-			topBarColor: z.string(),
-			topBarTextColor: z.string()
-		})
-		.optional(),
-	tailwindTheme: z
-		.object({
-			primaryColor: z.string()
-		})
-		.optional()
-});
+type PromptOptions = {
+	vercelSetup: boolean;
+	cloudflareSetup: boolean;
+	cursorRules: boolean;
+	usefulPackages: boolean;
+	asyncSvelte: boolean;
+	helloWorld: boolean;
+	convexSetup: boolean;
+	vscodeTheme?: {
+		topBarColor: string;
+		topBarTextColor: string;
+	};
+	tailwindTheme?: {
+		primaryColor: string;
+	};
+};
 
-export const remoteGetPrompts = command(getPromptsSchema, (opts) => {
+export function getPrompts(opts: PromptOptions) {
 	const prompts = [];
 	if (opts.asyncSvelte) prompts.push(ASYNC_SVELTE_PROMPT);
 	if (opts.cursorRules) prompts.push(CURSOR_RULES_PROMPT);
@@ -228,4 +218,4 @@ export const remoteGetPrompts = command(getPromptsSchema, (opts) => {
 	if (opts.helloWorld) prompts.push(HELLO_WORLD_PROMPT);
 	if (opts.convexSetup) prompts.push(CONVEX_SETUP_PROMPT);
 	return prompts.join('\n');
-});
+}
