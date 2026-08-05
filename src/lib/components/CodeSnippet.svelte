@@ -30,5 +30,11 @@
 			Copy
 		{/if}
 	</button>
-	<pre><code>{content}</code></pre>
+	<pre class="code-snippet"><code>{content}</code></pre>
 </div>
+
+<style>
+	.code-snippet {
+		padding-top: 3.25rem;
+	}
+</style>

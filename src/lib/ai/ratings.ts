@@ -87,7 +87,14 @@ export function parseRatingsSnapshot(value: unknown): SnapshotData {
 	const label = 'AI snapshot';
 	const record = object(value, label);
 	const asOf = string(record, 'asOf', label);
-	if (!/^\d{4}-\d{2}-\d{2}$/.test(asOf)) throw new Error(`${label}.asOf must be an ISO date`);
+	const date = new Date(`${asOf}T00:00:00.000Z`);
+	if (
+		!/^\d{4}-\d{2}-\d{2}$/.test(asOf) ||
+		Number.isNaN(date.valueOf()) ||
+		date.toISOString().slice(0, 10) !== asOf
+	) {
+		throw new Error(`${label}.asOf must be an ISO date`);
+	}
 
 	return {
 		id: string(record, 'id', label),

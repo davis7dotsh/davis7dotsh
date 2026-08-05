@@ -24,7 +24,7 @@
 	{#if name === 'check'}
 		<path d="m20 6-11 11-5-5" />
 	{:else if name === 'copy'}
-		<rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+		<rect width="14" height="14" x="8" y="8" />
 		<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
 	{:else if name === 'moon'}
 		<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79" />
