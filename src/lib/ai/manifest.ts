@@ -1,6 +1,6 @@
 import rawIndex from './data/index.json';
 
-export const slugForId = (id: string) => id.replaceAll('_', '-');
+const slugForId = (id: string) => id.replaceAll('_', '-');
 
 export const aiIndexManifest = rawIndex as {
 	title: string;
