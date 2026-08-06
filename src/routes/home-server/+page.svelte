@@ -157,20 +157,12 @@
 					layout: 'wide'
 				},
 				{
-					item: 'Framework Desktop (Ryzen AI Max+ 395, 64GB)',
-					price: '$1,599.00',
-					href: 'https://frame.work/desktop',
-					image: '/home-server/framework-desktop.jpg',
-					alt: 'Black Framework Desktop with a checkered front panel',
-					layout: 'portrait'
-				},
-				{
 					item: 'NVIDIA DGX Spark (×2)',
 					price: '$4,649.99 × 2',
 					href: 'https://amzn.to/4bxgOco',
 					image: '/home-server/nvidia-dgx-spark.jpg',
 					alt: 'Two gold NVIDIA DGX Spark personal AI supercomputers stacked together',
-					layout: 'large'
+					layout: 'wide'
 				},
 				{
 					item: 'ASUS 400G QSFP112 DAC Cable',
@@ -181,12 +173,20 @@
 					layout: 'wide'
 				},
 				{
+					item: 'Framework Desktop (Ryzen AI Max+ 395, 64GB)',
+					price: '$1,599.00',
+					href: 'https://frame.work/desktop',
+					image: '/home-server/framework-desktop.jpg',
+					alt: 'Black Framework Desktop with a checkered front panel',
+					layout: 'portrait'
+				},
+				{
 					item: 'GMKtec K8 Plus Mini PC',
 					price: '$809.99',
 					href: 'https://amzn.to/4b98JKD',
 					image: '/home-server/gmktec-k8-plus.jpg',
 					alt: 'Two black GMKtec K8 Plus mini PCs showing front and rear ports',
-					layout: 'standard'
+					layout: 'portrait'
 				},
 				{
 					item: 'MINISFORUM DEG1 eGPU Dock',
@@ -210,7 +210,7 @@
 					href: 'https://amzn.to/4eRoOqR',
 					image: '/home-server/glinet-comet-pro-kvm.jpg',
 					alt: 'GL.iNet Comet Pro remote KVM with its touchscreen showing an IP address',
-					layout: 'standard'
+					layout: 'wide'
 				}
 			],
 			breakdown: [
