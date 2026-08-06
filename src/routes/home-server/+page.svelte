@@ -169,14 +169,14 @@
 					price: '$4,649.99 × 2',
 					href: 'https://amzn.to/4bxgOco',
 					image: '/home-server/nvidia-dgx-spark.jpg',
-					alt: 'Gold NVIDIA DGX Spark personal AI supercomputer viewed from the front',
+					alt: 'Two gold NVIDIA DGX Spark personal AI supercomputers stacked together',
 					layout: 'large'
 				},
 				{
 					item: 'ASUS 400G QSFP112 DAC Cable',
 					price: '$175.99',
 					href: 'https://amzn.to/4yZoDBH',
-					image: '/home-server/asus-400g-qsfp112-dac-cable.jpg',
+					image: '/home-server/asus-400g-qsfp112-dac-cable.png',
 					alt: 'Short black braided ASUS 400G QSFP112 cable with silver connectors',
 					layout: 'wide'
 				},
