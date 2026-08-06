@@ -157,6 +157,22 @@
 					layout: 'wide'
 				},
 				{
+					item: 'NVIDIA DGX Spark (×2)',
+					price: '$4,649.99 × 2',
+					href: 'https://amzn.to/4bxgOco',
+					image: '/home-server/nvidia-dgx-spark.jpg',
+					alt: 'Two gold NVIDIA DGX Spark personal AI supercomputers stacked together',
+					layout: 'wide'
+				},
+				{
+					item: 'ASUS 400G QSFP112 DAC Cable',
+					price: '$175.99',
+					href: 'https://amzn.to/4yZoDBH',
+					image: '/home-server/asus-400g-qsfp112-dac-cable.png',
+					alt: 'Short black braided ASUS 400G QSFP112 cable with silver connectors',
+					layout: 'wide'
+				},
+				{
 					item: 'Framework Desktop (Ryzen AI Max+ 395, 64GB)',
 					price: '$1,599.00',
 					href: 'https://frame.work/desktop',
@@ -170,7 +186,7 @@
 					href: 'https://amzn.to/4b98JKD',
 					image: '/home-server/gmktec-k8-plus.jpg',
 					alt: 'Two black GMKtec K8 Plus mini PCs showing front and rear ports',
-					layout: 'standard'
+					layout: 'portrait'
 				},
 				{
 					item: 'MINISFORUM DEG1 eGPU Dock',
@@ -194,16 +210,16 @@
 					href: 'https://amzn.to/4eRoOqR',
 					image: '/home-server/glinet-comet-pro-kvm.jpg',
 					alt: 'GL.iNet Comet Pro remote KVM with its touchscreen showing an IP address',
-					layout: 'standard'
+					layout: 'wide'
 				}
 			],
 			breakdown: [
 				{ category: 'Networking & routing', total: '$2,661.14' },
 				{ category: 'NAS & storage', total: '$3,609.96' },
 				{ category: 'Rack & power', total: '$346.93' },
-				{ category: 'Compute', total: '$3,316.99' }
+				{ category: 'Compute & interconnect', total: '$12,792.96' }
 			],
-			total: '$9,935.02'
+			total: '$19,410.99'
 		},
 		{
 			id: 'parents',
