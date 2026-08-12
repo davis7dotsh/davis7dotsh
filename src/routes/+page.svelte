@@ -35,6 +35,18 @@
 				<span class="resource-subtitle mt-1 block text-sm">The companies backing my work.</span>
 			</a>
 
+			<a
+				href="https://substack.com/@davis7"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="resource-card"
+			>
+				<span class="resource-title font-medium">Substack</span>
+				<span class="resource-subtitle mt-1 block text-sm"
+					>Longer notes on AI and tech. Where I think in writing.</span
+				>
+			</a>
+
 			<a href="/ai" class="resource-card">
 				<span class="resource-title font-medium">My "State of AI"</span>
 				<span class="resource-subtitle mt-1 block text-sm"
