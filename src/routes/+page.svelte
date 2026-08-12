@@ -93,49 +93,6 @@
 					>The font I use in Cursor and the terminal.</span
 				>
 			</a>
-
-			<a href="https://btca.dev" target="_blank" rel="noopener noreferrer" class="resource-card">
-				<span class="resource-title font-medium">BTCA (The Better Context App)</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>Up-to-date context for the tech you're building with.</span
-				>
-			</a>
-
-			<a
-				href="https://svg.davis7.sh"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="resource-card"
-			>
-				<span class="resource-title font-medium">Quick SVG Background</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>Upload an SVG, add a background, export it.</span
-				>
-			</a>
-
-			<a
-				href="https://models.davis7.sh"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="resource-card"
-			>
-				<span class="resource-title font-medium">Faster Models.dev</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>My version of the models.dev site. Way faster, with the filters I want.</span
-				>
-			</a>
-
-			<a
-				href="https://github.com/davis7dotsh/grep-bench"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="resource-card"
-			>
-				<span class="resource-title font-medium">Grep Bench</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>Benchmark for how well different models search codebases.</span
-				>
-			</a>
 		</div>
 	</div>
 	<SocialLinks />
