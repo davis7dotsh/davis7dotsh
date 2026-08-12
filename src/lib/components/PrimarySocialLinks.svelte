@@ -2,7 +2,7 @@
 	type Link = {
 		href: string;
 		label: string;
-		icon: 'youtube' | 'x' | 'twitch';
+		icon: 'youtube' | 'x' | 'twitch' | 'substack';
 	};
 
 	const links: Link[] = [
@@ -20,6 +20,11 @@
 			href: 'https://x.com/davis7',
 			label: 'davis7',
 			icon: 'x'
+		},
+		{
+			href: 'https://substack.com/@davis7',
+			label: 'substack',
+			icon: 'substack'
 		},
 		{
 			href: 'https://www.twitch.tv/bmdavis419',
@@ -51,6 +56,13 @@
 								<path
 									fill="currentColor"
 									d="M714.163 519.284 1160.89 0h-105.86L667.137 450.887 357.328 0H0l468.492 681.821L0 1226.37h105.866l409.625-476.152 327.181 476.152H1200L714.137 519.284h.026ZM569.165 687.828l-47.468-67.894-377.686-540.24h162.604l304.797 435.991 47.468 67.894 396.2 566.721H892.476L569.165 687.854v-.026Z"
+								/>
+							</svg>
+						{:else if link.icon === 'substack'}
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+								<path
+									fill="currentColor"
+									d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"
 								/>
 							</svg>
 						{:else}

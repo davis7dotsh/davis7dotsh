@@ -34,6 +34,22 @@
 		<span class="sr-only">X (Twitter)</span>
 	</a>
 	<a
+		href="https://substack.com/@davis7"
+		target="_blank"
+		rel="noopener noreferrer"
+		class="social-link"
+	>
+		<div class="svg-container">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+				<path
+					fill="currentColor"
+					d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"
+				/>
+			</svg>
+		</div>
+		<span class="sr-only">Substack</span>
+	</a>
+	<a
 		href="https://discord.gg/q2eARhxwMV"
 		target="_blank"
 		rel="noopener noreferrer"
