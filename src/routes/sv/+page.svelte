@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getPrompts } from '$lib/prompts';
 	import ColorField from '$lib/components/ColorField.svelte';
+	import { trackCopy } from '$lib/analytics';
 
 	let vercelSetup = $state(false);
 	let cloudflareSetup = $state(false);
@@ -44,6 +45,7 @@
 			});
 
 			await navigator.clipboard.writeText(prompts);
+			trackCopy('SvelteKit setup prompts');
 			copySuccess = true;
 			setTimeout(() => {
 				copySuccess = false;

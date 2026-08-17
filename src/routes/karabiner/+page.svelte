@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '$lib/components/Icon.svelte';
 	import Keyboard from '$lib/components/Keyboard.svelte';
+	import { trackCopy } from '$lib/analytics';
 	import myConfig from './karabiner.json';
 
 	const configText = JSON.stringify(myConfig, null, 2);
@@ -10,6 +11,7 @@
 	const copy = async () => {
 		try {
 			await navigator.clipboard.writeText(JSON.stringify(myConfig));
+			trackCopy('Karabiner config');
 			copied = true;
 			setTimeout(() => {
 				copied = false;
