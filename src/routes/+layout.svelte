@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
 	import { page } from '$app/state';
+	import Analytics from '$lib/components/Analytics.svelte';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import { absoluteUrl, getSeo } from '$lib/seo';
 
@@ -43,3 +44,4 @@
 </div>
 
 <ThemeToggle />
+<Analytics />

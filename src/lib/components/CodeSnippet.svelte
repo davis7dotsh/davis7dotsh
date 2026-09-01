@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Icon from '$lib/components/Icon.svelte';
+	import { trackCopy } from '$lib/analytics';
 
-	let { content }: { content: string } = $props();
+	let { content, label = 'Config snippet' }: { content: string; label?: string } = $props();
 
 	let copied = $state(false);
 	let resetTimer: ReturnType<typeof setTimeout> | undefined;
@@ -9,6 +10,7 @@
 	async function copy() {
 		try {
 			await navigator.clipboard.writeText(content);
+			trackCopy(label);
 			copied = true;
 			clearTimeout(resetTimer);
 			resetTimer = setTimeout(() => {

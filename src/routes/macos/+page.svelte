@@ -96,15 +96,15 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 
 		<h3>Ghostty</h3>
 		<p><code>~/.opencode/command/ghostty.md</code></p>
-		<CodeSnippet content={ghosttyContent} />
+		<CodeSnippet content={ghosttyContent} label="macOS Ghostty config" />
 
 		<h3>Cursor</h3>
 		<p><code>~/.opencode/command/cursor.md</code></p>
-		<CodeSnippet content={cursorContent} />
+		<CodeSnippet content={cursorContent} label="macOS Cursor keybindings" />
 
 		<h3>tmux</h3>
 		<p><code>~/.opencode/command/tmux.md</code></p>
-		<CodeSnippet content={tmuxContent} />
+		<CodeSnippet content={tmuxContent} label="macOS tmux config" />
 
 		<p>
 			Just drop these in and then start OpenCode in the root directory and you can do <code
