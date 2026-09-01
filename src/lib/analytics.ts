@@ -1,6 +1,5 @@
 import { track } from '@vercel/analytics';
 
-/** Classify an outbound link so the dashboard reads socials vs. products vs. references. */
 const linkCategories: Array<[RegExp, string]> = [
 	[
 		/(^|\.)(youtube\.com|youtu\.be|twitch\.tv|twitter\.com|x\.com|substack\.com|discord\.(gg|com)|github\.com)$/i,
@@ -12,6 +11,7 @@ const linkCategories: Array<[RegExp, string]> = [
 	]
 ];
 
+/** Classify an outbound link so the dashboard reads socials vs. products vs. references. */
 function categoryFor(url: URL): string {
 	const host = url.hostname.replace(/^www\./, '');
 	for (const [pattern, category] of linkCategories) {
@@ -43,7 +43,7 @@ export function trackOutboundLink(anchor: HTMLAnchorElement): void {
 
 	track('Outbound Link', {
 		label: label.slice(0, 120),
-		url: url.toString().slice(0, 255),
+		url: `${url.origin}${url.pathname}`.slice(0, 255),
 		category: categoryFor(url)
 	});
 }
