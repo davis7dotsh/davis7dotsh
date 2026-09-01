@@ -34,7 +34,7 @@ export function trackOutboundLink(anchor: HTMLAnchorElement): void {
 		return;
 	}
 	if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
-	if (url.host === window.location.host) return;
+	if (url.origin === window.location.origin) return;
 
 	const label =
 		anchor.getAttribute('aria-label')?.trim() ||
