@@ -33,3 +33,13 @@ This project carries strategic and visual design context in two files at the rep
 - Light theme is a parallel warm-cream system, not an inversion
 
 When in doubt, read both files end-to-end before proposing changes.
+
+## Cursor Cloud specific instructions
+
+Static SvelteKit site (Svelte 5, Vite, Tailwind v4), no backend/database/secrets. Scripts live in `package.json`; use `pnpm`.
+
+- Dev server: `pnpm dev` serves on `http://localhost:5173`. `/ai` returns a 307 redirect to a default slug; all other routes (`/`, `/karabiner`, `/home-server`, `/sponsors`, `/macos`, `/font`, `/sv`) return 200.
+- Lint: `pnpm lint` runs Prettier `--check` plus the custom design guardrail in `scripts/check-design.mjs` (enforces DESIGN.md invariants: no `rounded-*`, no raw Tailwind palette colors, no heavy shadows, etc.). `pnpm format` auto-fixes formatting.
+- Type/Svelte check: `pnpm check` (runs `svelte-kit sync` then `svelte-check`).
+- Build: `pnpm build` uses `@sveltejs/adapter-vercel`; it outputs to `.vercel`/`.svelte-kit` and needs no env vars.
+- `.npmrc` sets `engine-strict=true`; keep the toolchain aligned with `packageManager` (pnpm) and Node 22.
