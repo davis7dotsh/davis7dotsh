@@ -13,6 +13,11 @@
 		theme = nextTheme;
 		document.documentElement.dataset.theme = nextTheme;
 		document.documentElement.style.colorScheme = nextTheme;
+
+		const favicon = document.querySelector<HTMLLinkElement>('#theme-favicon');
+		const faviconHref =
+			nextTheme === 'light' ? favicon?.dataset.lightHref : favicon?.dataset.darkHref;
+		if (favicon && faviconHref) favicon.href = faviconHref;
 	}
 
 	function toggleTheme() {
