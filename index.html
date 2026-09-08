@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Developer, YouTuber, and Theo's manager. Based in SF" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" type="image/svg+xml" href="/bendavis_black_brandmark.svg?v=theme" />
+    <link rel="preload" href="/Geist.woff2" as="font" type="font/woff2" crossorigin />
+    <title>Ben Davis</title>
+    <script>
+      try {
+        const stored = localStorage.getItem('theme-preference');
+        document.documentElement.dataset.theme = stored === 'light' || stored === 'dark'
+          ? stored : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      } catch {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    </script>
+    <style>
+      /* Startup theme colors are embedded by the build. */
+      /* theme-startup */
+      html { background: var(--startup-background); }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script defer src="/ben-davis-animation/lottie.min.js"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
