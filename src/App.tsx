@@ -8,6 +8,7 @@ import { AnimatedBrand } from './AnimatedBrand';
 import { Subpage } from './Subpage';
 import { subpagePaths } from './subpage-routes';
 import { BackgroundPlayground } from './BackgroundPlayground';
+import { findBackgroundSwatch, isLightHex, readStoredBackgroundId } from './background-options';
 
 export function App() {
   const [pathname, setPathname] = useState(() => window.location.pathname.replace(/\/$/, '') || '/');
@@ -50,7 +51,11 @@ export function App() {
     }
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname]);
-  const [theme, setTheme] = useState<"light" | "dark">(() => document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    const storedBackground = findBackgroundSwatch(readStoredBackgroundId());
+    if (storedBackground) return isLightHex(storedBackground.hex) ? 'light' : 'dark';
+    return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+  });
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
@@ -88,6 +93,17 @@ export function App() {
     }
   }
 
+  function previewBackground(hex: string | null) {
+    if (!hex) return;
+    const next = isLightHex(hex) ? 'light' : 'dark';
+    setTheme(next);
+    try {
+      localStorage.setItem('theme-preference', next);
+    } catch {
+      // Theme still updates when browser storage is unavailable.
+    }
+  }
+
   return (
     <>
       <div {...stylex.props(styles.grid)} aria-hidden="true" />
@@ -121,7 +137,7 @@ export function App() {
         </main>}
         <SocialFooter />
       </div>
-      <BackgroundPlayground />
+      <BackgroundPlayground onPreviewHex={previewBackground} />
     </>
   );
 }

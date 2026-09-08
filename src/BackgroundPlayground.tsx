@@ -9,7 +9,7 @@ import {
   storeBackgroundId,
 } from './background-options';
 
-export function BackgroundPlayground() {
+export function BackgroundPlayground({ onPreviewHex }: { onPreviewHex?: (hex: string | null) => void }) {
   const [selectedId, setSelectedId] = useState(readStoredBackgroundId);
 
   useLayoutEffect(() => {
@@ -22,6 +22,7 @@ export function BackgroundPlayground() {
   function select(id: string) {
     setSelectedId(id);
     storeBackgroundId(id);
+    onPreviewHex?.(findBackgroundSwatch(id)?.hex ?? null);
   }
 
   return (
@@ -90,10 +91,10 @@ const styles = stylex.create({
     left: 0,
     display: 'flex',
     alignItems: 'center',
-    gap: '20px',
+    flexWrap: 'wrap',
+    gap: '16px 20px',
     paddingBlock: '10px',
     paddingInline: '16px',
-    overflowX: 'auto',
     backgroundColor: '#0b0d10',
     color: '#f5f6f7',
     borderTopWidth: 1,
@@ -121,8 +122,10 @@ const styles = stylex.create({
   groups: {
     display: 'flex',
     alignItems: 'center',
-    gap: '20px',
+    flexWrap: 'wrap',
+    gap: '16px 20px',
     minHeight: '44px',
+    flexGrow: 1,
   },
   group: {
     display: 'flex',

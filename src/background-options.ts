@@ -136,6 +136,14 @@ export function readStoredBackgroundId() {
   }
 }
 
+export function isLightHex(hex: string) {
+  const value = Number.parseInt(hex.slice(1), 16);
+  const r = (value >> 16) & 255;
+  const g = (value >> 8) & 255;
+  const b = value & 255;
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b > 150;
+}
+
 export function storeBackgroundId(id: string) {
   try {
     if (id === DEFAULT_BACKGROUND_ID) localStorage.removeItem(PLAYGROUND_STORAGE_KEY);
