@@ -33,6 +33,24 @@ function aiSnapshotSeo(slug: string, label: string): SeoConfig {
 
 const seoByPath: Record<string, SeoConfig> = {
 	'/': defaultSeo,
+	'/executor': {
+		title: 'Executor on Nexus',
+		description: "Ben Davis's private integration gateway for personal workflows.",
+		path: '/executor',
+		image: '/og/home.png'
+	},
+	'/executor/privacy': {
+		title: 'Executor privacy policy',
+		description: 'How Executor on Nexus handles connected account data.',
+		path: '/executor/privacy',
+		image: '/og/home.png'
+	},
+	'/executor/terms': {
+		title: 'Executor terms of use',
+		description: 'Terms for personal use of Executor on Nexus.',
+		path: '/executor/terms',
+		image: '/og/home.png'
+	},
 	'/sponsors': {
 		title: 'Sponsors - Ben Davis',
 		description: 'The companies backing my work and videos.',
