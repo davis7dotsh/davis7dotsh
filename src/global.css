@@ -20,13 +20,13 @@
 
 *, *::before, *::after { box-sizing: border-box; font-weight: var(--font-weight) !important; }
 html, body, #root { min-height: 100%; margin: 0; }
-html { background: var(--bg, var(--startup-background)); scroll-behavior: smooth; scroll-padding-block: var(--anchor-offset); }
+html { background: var(--bg-playground, var(--bg, var(--startup-background))); scroll-behavior: smooth; scroll-padding-block: var(--anchor-offset); }
 [id] { scroll-margin-block: var(--anchor-offset); }
 * { scrollbar-width: none; }
 *::-webkit-scrollbar { display: none; }
 body {
   min-height: 100vh;
-  background: var(--bg, var(--startup-background));
+  background: var(--bg-playground, var(--bg, var(--startup-background)));
   color: var(--muted);
 }
 @layer base {

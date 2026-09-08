@@ -7,6 +7,7 @@ import { SocialFooter } from './SocialFooter';
 import { AnimatedBrand } from './AnimatedBrand';
 import { Subpage } from './Subpage';
 import { subpagePaths } from './subpage-routes';
+import { BackgroundPlayground } from './BackgroundPlayground';
 
 export function App() {
   const [pathname, setPathname] = useState(() => window.location.pathname.replace(/\/$/, '') || '/');
@@ -120,6 +121,7 @@ export function App() {
         </main>}
         <SocialFooter />
       </div>
+      <BackgroundPlayground />
     </>
   );
 }
