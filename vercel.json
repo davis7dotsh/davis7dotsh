@@ -1,43 +1,37 @@
 {
-	"headers": [
-		{
-			"source": "/(.*)",
-			"headers": [
-				{
-					"key": "X-Content-Type-Options",
-					"value": "nosniff"
-				},
-				{
-					"key": "X-Frame-Options",
-					"value": "DENY"
-				},
-				{
-					"key": "Referrer-Policy",
-					"value": "strict-origin-when-cross-origin"
-				},
-				{
-					"key": "Permissions-Policy",
-					"value": "camera=(), microphone=(), geolocation=()"
-				}
-			]
-		},
-		{
-			"source": "/(.*)\\.(woff2|ttf)",
-			"headers": [
-				{
-					"key": "Cache-Control",
-					"value": "public, max-age=2592000, stale-while-revalidate=31536000"
-				}
-			]
-		},
-		{
-			"source": "/(logos|home-server|og)/(.*)",
-			"headers": [
-				{
-					"key": "Cache-Control",
-					"value": "public, max-age=86400, stale-while-revalidate=604800"
-				}
-			]
-		}
-	]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npx --yes --package=bun@1.4.0 bun install --frozen-lockfile",
+  "buildCommand": "npx --yes --package=bun@1.4.0 bun run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/sponsors",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ai",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/macos",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/home-server",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/karabiner",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/font",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ai/march-25-2026",
+      "destination": "/index.html"
+    }
+  ]
 }
