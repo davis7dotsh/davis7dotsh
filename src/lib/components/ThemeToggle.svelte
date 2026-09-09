@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tr, localizePath } from '$lib/i18n';
 	import { onMount } from 'svelte';
 	import Icon from '$lib/components/Icon.svelte';
 
@@ -59,9 +60,9 @@
 	type="button"
 	onclick={toggleTheme}
 	class="icon-button fixed top-4 right-4 z-50 h-11 w-11 backdrop-blur transition-[transform,background-color,border-color,color] duration-200 hover:-translate-y-px"
-	aria-label="Toggle color theme"
+	aria-label={tr('Toggle color theme')}
 	aria-pressed={mounted ? theme === 'dark' : undefined}
-	title="Toggle color theme"
+	title={tr('Toggle color theme')}
 >
 	{#if mounted}
 		{#if theme === 'dark'}

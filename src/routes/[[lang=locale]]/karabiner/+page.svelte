@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { tr, localizePath } from '$lib/i18n';
+	import RichText from '$lib/components/RichText.svelte';
 	import Icon from '$lib/components/Icon.svelte';
 	import Keyboard from '$lib/components/Keyboard.svelte';
 	import { trackCopy } from '$lib/analytics';
@@ -35,81 +37,88 @@
 </script>
 
 <svelte:head>
-	<title>Ben Davis - Karabiner Config</title>
+	<title>{tr('Ben Davis - Karabiner Config')}</title>
 </svelte:head>
 
 <main class="mx-auto flex max-w-5xl flex-col items-start gap-8">
 	<div class="content-sheet flex w-full flex-col items-start gap-8">
-		<a href="/" class="back-link">← Back</a>
-		<h1 class="headline-text text-4xl font-semibold tracking-tight">My Karabiner Config</h1>
+		<a href={localizePath('/')} class="back-link">{tr('← Back')}</a>
+		<h1 class="headline-text text-4xl font-semibold tracking-tight">{tr('My Karabiner Config')}</h1>
 
 		<p class="leading-relaxed" style="color: var(--color-text-muted)">
-			This is my "hyper key" config, you can download Karabiner Elements
-			<a
-				href="https://karabiner-elements.pqrs.org/"
-				target="_blank"
-				rel="noopener noreferrer"
-				class="brand-link">here</a
-			>.
+			<RichText
+				message={'This is my "hyper key" config, you can download Karabiner Elements <s0>here</s0>.'}
+				elements={[
+					{
+						tag: 'a',
+						attributes: {
+							href: 'https://karabiner-elements.pqrs.org/',
+							target: '_blank',
+							rel: 'noopener noreferrer',
+							class: 'brand-link'
+						}
+					}
+				]}
+			/>
 		</p>
 
-		<button class="button" onclick={openDialog}> View Full Config </button>
+		<button class="button" onclick={openDialog}> {tr('View Full Config')} </button>
 
-		<p style="color: var(--color-text-muted)">Keybindings:</p>
+		<p style="color: var(--color-text-muted)">{tr('Keybindings:')}</p>
 		<ul class="w-full space-y-2">
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Caps Lock to Hyper
+				{tr('Caps Lock to Hyper')}
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + Tab to Control + Tab
+				{tr('Hyper + Tab to Control + Tab')}
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + A to Cmd + A
+				{tr('Hyper + A to Cmd + A')}
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + J/K to PageUp/PageDown
+				{tr('Hyper + J/K to PageUp/PageDown')}
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + H/L to Left/Right Arrow
+				{tr('Hyper + H/L to Left/Right Arrow')}
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + C to Cmd + C
+				{tr('Hyper + C to Cmd + C')}
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + V to Cmd + V
+				{tr('Hyper + V to Cmd + V')}
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + T to Cmd + T
+				{tr('Hyper + T to Cmd + T')}
 			</li>
 			<li
 				class="border-b py-2 last:border-b-0"
 				style="border-color: var(--color-border); color: var(--color-text-muted)"
 			>
-				Hyper + W to Cmd + W
+				{tr('Hyper + W to Cmd + W')}
 			</li>
 		</ul>
 	</div>
@@ -129,20 +138,18 @@
 				class="text-xl font-semibold"
 				style="color: var(--color-text)"
 			>
-				Full Karabiner Configuration
+				{tr('Full Karabiner Configuration')}
 			</h3>
-			<button class="icon-button h-9 w-9" onclick={closeDialog} aria-label="Close dialog">
+			<button class="icon-button h-9 w-9" onclick={closeDialog} aria-label={tr('Close dialog')}>
 				<Icon name="x" size={16} />
 			</button>
 		</div>
 		<div class="mb-4">
 			<button class="button" onclick={copy}>
 				{#if copied}
-					<Icon name="check" size={16} class="success-text" />
-					Copied!
+					<Icon name="check" size={16} class="success-text" /> {tr('Copied!')}
 				{:else}
-					<Icon name="copy" size={16} />
-					Copy Config
+					<Icon name="copy" size={16} /> {tr('Copy Config')}
 				{/if}
 			</button>
 		</div>

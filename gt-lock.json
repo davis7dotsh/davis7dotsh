@@ -1,0 +1,33 @@
+{
+	"version": 2,
+	"branchId": "brc_tmuaxbbd7f53c073u8vxvz9g",
+	"entries": [
+		{
+			"fileId": "fe850ea99aacafd2d8abc67819c4d0dfe30793d383dacc9c4b191a7c3dbf6cca",
+			"versionId": "73bb8da965fe0a51ce2410d1cc67ed6f12894588dd4cf680d9c4bd935dd66a7c",
+			"translations": {
+				"ja": {
+					"updatedAt": "2026-09-09T23:45:24.279Z",
+					"fileName": "src/lib/i18n/locales/ja.json",
+					"postProcessHash": "0b022ea17c3ca6b22923c978414390a395420290a587e51478d5a006c464f035"
+				},
+				"fr": {
+					"updatedAt": "2026-09-09T23:45:24.281Z",
+					"fileName": "src/lib/i18n/locales/fr.json",
+					"postProcessHash": "300d2dfb04999fd33cf5bfaeb25cf6957158d1f2be80150699fe0adff779d63c"
+				},
+				"de": {
+					"updatedAt": "2026-09-09T23:45:24.283Z",
+					"fileName": "src/lib/i18n/locales/de.json",
+					"postProcessHash": "07de2a4e13539d2a629dc41d76df0ad1682721b5d224f713b3975cc5b39ab8ee"
+				},
+				"es": {
+					"updatedAt": "2026-09-09T23:45:24.287Z",
+					"fileName": "src/lib/i18n/locales/es.json",
+					"postProcessHash": "1f57ca889542f9c3fd77e7e773f2e4ef196bcbfcb00ed8c822e0bd0d78b13e64"
+				}
+			},
+			"fileName": "src/lib/i18n/locales/en.json"
+		}
+	]
+}

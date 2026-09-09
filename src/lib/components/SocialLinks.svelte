@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { tr, localizePath } from '$lib/i18n';
+</script>
+
 <div class="flex items-center justify-center space-x-6 pb-8">
 	<a
 		href="https://www.youtube.com/@bmdavis419"
@@ -20,7 +24,7 @@
 				<path fill="var(--youtube-play-color)" d="m102.421 128.06 66.328-38.418-66.328-38.418z" />
 			</svg>
 		</div>
-		<span class="sr-only">YouTube</span>
+		<span class="sr-only">{tr('YouTube')}</span>
 	</a>
 	<a href="https://x.com/davis7" target="_blank" rel="noopener noreferrer" class="social-link">
 		<div class="svg-container">
@@ -31,7 +35,7 @@
 				/>
 			</svg>
 		</div>
-		<span class="sr-only">X (Twitter)</span>
+		<span class="sr-only">{tr('X (Twitter)')}</span>
 	</a>
 	<a
 		href="https://substack.com/@davis7"
@@ -47,7 +51,7 @@
 				/>
 			</svg>
 		</div>
-		<span class="sr-only">Substack</span>
+		<span class="sr-only">{tr('Substack')}</span>
 	</a>
 	<a
 		href="https://discord.gg/q2eARhxwMV"
@@ -69,7 +73,7 @@
 				/>
 			</svg>
 		</div>
-		<span class="sr-only">Discord</span>
+		<span class="sr-only">{tr('Discord')}</span>
 	</a>
 	<a
 		href="https://github.com/bmdavis419"
@@ -91,7 +95,7 @@
 				/>
 			</svg>
 		</div>
-		<span class="sr-only">GitHub</span>
+		<span class="sr-only">{tr('GitHub')}</span>
 	</a>
 	<a
 		href="https://www.twitch.tv/bmdavis419"
@@ -113,7 +117,7 @@
 				/>
 			</svg>
 		</div>
-		<span class="sr-only">Twitch</span>
+		<span class="sr-only">{tr('Twitch')}</span>
 	</a>
 </div>
 

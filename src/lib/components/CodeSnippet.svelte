@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tr, localizePath } from '$lib/i18n';
 	import Icon from '$lib/components/Icon.svelte';
 	import { trackCopy } from '$lib/analytics';
 
@@ -25,11 +26,9 @@
 <div class="relative">
 	<button type="button" class="button absolute top-2 right-2 px-2 py-1 text-xs" onclick={copy}>
 		{#if copied}
-			<Icon name="check" size={12} class="success-text" />
-			Copied!
+			<Icon name="check" size={12} class="success-text" /> {tr('Copied!')}
 		{:else}
-			<Icon name="copy" size={12} />
-			Copy
+			<Icon name="copy" size={12} /> {tr('Copy')}
 		{/if}
 	</button>
 	<pre class="code-snippet"><code>{content}</code></pre>

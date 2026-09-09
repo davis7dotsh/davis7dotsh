@@ -14,13 +14,17 @@
 		"generate:og": "node scripts/generate-og-images.mjs",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && node scripts/check-design.mjs",
-		"lint:design": "node scripts/check-design.mjs"
+		"lint:design": "node scripts/check-design.mjs",
+		"i18n:translate": "pnpm i18n:extract && node --env-file-if-exists=.env.local ./node_modules/gtx-cli/bin/main.js translate && pnpm i18n:check",
+		"i18n:extract": "node scripts/extract-i18n.mjs",
+		"i18n:check": "node scripts/check-i18n.mjs"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^6.3.4",
 		"@sveltejs/kit": "^2.70.2",
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/vite": "^4.3.3",
+		"gtx-cli": "^2.20.3",
 		"prettier": "^3.9.6",
 		"prettier-plugin-svelte": "^4.1.1",
 		"svelte": "^5.56.8",

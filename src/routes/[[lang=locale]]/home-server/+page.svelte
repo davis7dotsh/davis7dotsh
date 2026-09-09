@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tr, localizePath } from '$lib/i18n';
 	import { vercelImageUrl, vercelSrcset } from '$lib/image';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
@@ -318,23 +319,26 @@
 </script>
 
 <svelte:head>
-	<title>My Home Servers - Ben Davis</title>
-	<meta name="description" content="The hardware and cost breakdowns for my home server setups." />
-	<link rel="canonical" href="https://www.davis7.sh/home-server" />
+	<title>{tr('My Home Servers - Ben Davis')}</title>
+	<meta
+		name="description"
+		content={tr('The hardware and cost breakdowns for my home server setups.')}
+	/>
 </svelte:head>
 
 <main class="z-10 px-3">
 	<article class="server-sheet mb-8 text-left">
-		<PageHeader title="My Home Servers" />
+		<PageHeader title={tr('My Home Servers')} />
 
 		<div class="intro">
 			<p>
-				These are the two home server setups I have. My main setup is overkill for most people. The
-				main reason I have it is because I do YouTube for a living, so 10Gb networking is worth it.
-				For most people, the secondary setup is a great fit. The Firewalla is the best part. I
-				highly recommend getting one.
+				{tr(
+					'These are the two home server setups I have. My main setup is overkill for most people. The main reason I have it is because I do YouTube for a living, so 10Gb networking is worth it. For most people, the secondary setup is a great fit. The Firewalla is the best part. I highly recommend getting one.'
+				)}
 			</p>
-			<p class="affiliate-disclaimer">Note: Some links on this page are Amazon affiliate links.</p>
+			<p class="affiliate-disclaimer">
+				{tr('Note: Some links on this page are Amazon affiliate links.')}
+			</p>
 		</div>
 
 		{#each setups as setup, setupIndex (setup.id)}
@@ -342,9 +346,11 @@
 				<div class="setup-intro">
 					<header class="setup-heading">
 						<p class="setup-index">0{setupIndex + 1}</p>
-						<h2 id={`${setup.id}-title`}>{setup.title}</h2>
-						<p class="setup-note">{setup.note}</p>
-						<p class="setup-total">{setup.purchases.length} items · {setup.total}</p>
+						<h2 id={`${setup.id}-title`}>{tr(setup.title)}</h2>
+						<p class="setup-note">{tr(setup.note)}</p>
+						<p class="setup-total">
+							{tr('{count} items · {total}', { count: setup.purchases.length, total: setup.total })}
+						</p>
 					</header>
 
 					<figure class="setup-photo">
@@ -352,7 +358,7 @@
 							src={vercelImageUrl(setup.image, 828, setupImageQuality)}
 							srcset={vercelSrcset(setup.image, undefined, setupImageQuality)}
 							sizes="(max-width: 36rem) calc(100vw - 2rem), min(36vw, 30rem)"
-							alt={setup.alt}
+							alt={tr(setup.alt)}
 							loading={setupIndex === 0 ? 'eager' : 'lazy'}
 						/>
 					</figure>
@@ -365,16 +371,18 @@
 						sizes="(max-width: 36rem) calc(100vw - 2rem), min(94vw, 88rem)"
 						width={setup.diagram.width}
 						height={setup.diagram.height}
-						alt={setup.diagram.alt}
+						alt={tr(setup.diagram.alt)}
 						loading="lazy"
 					/>
 					<figcaption>
-						<span class="diagram-label">network map</span>
+						<span class="diagram-label">{tr('network map')}</span>
 						<span
-							>tip: <a href={setup.diagram.image} target="_blank" rel="noopener noreferrer"
-								>open the full-size image</a
-							>, then copy or paste it into GPT or Claude for a deeper walkthrough, or to adapt it
-							to your own setup.</span
+							>{tr('tip:')}
+							<a href={setup.diagram.image} target="_blank" rel="noopener noreferrer"
+								>{tr('open the full-size image')}</a
+							>{tr(
+								', then copy or paste it into GPT or Claude for a deeper walkthrough, or to adapt it to your own setup.'
+							)}</span
 						>
 					</figcaption>
 				</figure>
@@ -386,13 +394,13 @@
 							href={purchase.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							aria-label={`${purchase.item}, ${purchase.price}. Open product listing in a new tab`}
+							aria-label={`${purchase.item}, ${purchase.price}. ${tr('Open product listing in a new tab')}`}
 						>
 							<img
 								src={vercelImageUrl(purchase.image, 828, tileImageQuality)}
 								srcset={vercelSrcset(purchase.image, undefined, tileImageQuality)}
 								sizes={tileSizes(purchase.layout)}
-								alt={purchase.alt}
+								alt={tr(purchase.alt)}
 								loading={setupIndex === 0 && purchaseIndex < 4 ? 'eager' : 'lazy'}
 							/>
 							<span class="product-overlay">
@@ -405,16 +413,16 @@
 
 				<div class="receipt">
 					<div>
-						<h3>By Category</h3>
+						<h3>{tr('By Category')}</h3>
 						<dl class="receipt-list">
 							{#each setup.breakdown as row (row.category)}
 								<div>
-									<dt>{row.category}</dt>
+									<dt>{tr(row.category)}</dt>
 									<dd>{row.total}</dd>
 								</div>
 							{/each}
 							<div class="total">
-								<dt>Total</dt>
+								<dt>{tr('Total')}</dt>
 								<dd>{setup.total}</dd>
 							</div>
 						</dl>

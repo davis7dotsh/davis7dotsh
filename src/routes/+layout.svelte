@@ -1,21 +1,32 @@
 <script>
 	import '../app.css';
+	import { tr, localizePath, currentLocale } from '$lib/i18n';
+	import { locales, stripLocale, withLocale } from '$lib/i18n/config';
 	import { page } from '$app/state';
 	import Analytics from '$lib/components/Analytics.svelte';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 	import { absoluteUrl, getSeo } from '$lib/seo';
 
 	let { children } = $props();
-	const seo = $derived(getSeo(page.url.pathname));
-	const canonicalUrl = $derived(absoluteUrl(seo.path));
+	const seo = $derived(getSeo(stripLocale(page.url.pathname)));
+	const isLocalizedPage = $derived(page.route.id?.startsWith('/[[lang=locale]]'));
+	const canonicalUrl = $derived(absoluteUrl(isLocalizedPage ? localizePath(seo.path) : seo.path));
 	const imageUrl = $derived(absoluteUrl(seo.image));
 </script>
 
 <svelte:head>
+	<link rel="canonical" href={canonicalUrl} />
+	<meta property="og:locale" content={currentLocale()} />
+	{#if isLocalizedPage}
+		{#each locales as locale (locale)}
+			<link rel="alternate" hreflang={locale} href={absoluteUrl(withLocale(seo.path, locale))} />
+		{/each}
+		<link rel="alternate" hreflang="x-default" href={absoluteUrl(seo.path)} />
+	{/if}
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Ben Davis" />
-	<meta property="og:title" content={seo.title} />
-	<meta property="og:description" content={seo.description} />
+	<meta property="og:title" content={tr(seo.title)} />
+	<meta property="og:description" content={tr(seo.description)} />
 	<meta property="og:url" content={canonicalUrl} />
 	<meta property="og:image" content={imageUrl} />
 	<meta property="og:image:alt" content={`${seo.title} preview`} />
@@ -24,8 +35,8 @@
 	<meta property="og:image:height" content="630" />
 
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={seo.title} />
-	<meta name="twitter:description" content={seo.description} />
+	<meta name="twitter:title" content={tr(seo.title)} />
+	<meta name="twitter:description" content={tr(seo.description)} />
 	<meta name="twitter:image" content={imageUrl} />
 	<meta name="twitter:image:alt" content={`${seo.title} preview`} />
 	<meta name="color-scheme" content="dark light" />
