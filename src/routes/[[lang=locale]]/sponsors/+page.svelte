@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tr, localizePath } from '$lib/i18n';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import agentuityLogo from '$lib/svg/sponsors/agentuity.svg';
@@ -113,17 +114,17 @@
 </script>
 
 <svelte:head>
-	<title>Sponsors - Ben Davis</title>
+	<title>{tr('Sponsors - Ben Davis')}</title>
 	<meta
 		name="description"
-		content="The companies that I wanted to work with to make my videos possible."
+		content={tr('The companies that I wanted to work with to make my videos possible.')}
 	/>
 </svelte:head>
 
 <main class="px-3">
 	<div class="pb-16">
-		<PageHeader title="Sponsors">
-			The companies I wanted to work with to make my videos possible.
+		<PageHeader title={tr('Sponsors')}>
+			{tr('The companies I wanted to work with to make my videos possible.')}
 		</PageHeader>
 
 		<div class="grid auto-rows-fr gap-4 sm:grid-cols-2">
@@ -139,7 +140,7 @@
 						<div class="logo-frame mb-5 h-24 w-full shrink-0 overflow-hidden px-5">
 							<img
 								src={sponsor.logo}
-								alt={sponsor.logoAlt}
+								alt={tr(sponsor.logoAlt)}
 								class={`block h-auto w-auto shrink-0 object-contain ${sponsor.logoClass}`}
 							/>
 						</div>
@@ -148,9 +149,9 @@
 							{sponsor.name}
 						</h2>
 						<p class="resource-subtitle mt-2 flex-1 text-sm leading-6 sm:text-base">
-							{sponsor.description}
+							{tr(sponsor.description)}
 						</p>
-						<span class="sponsor-cta mt-4 text-sm font-medium">Visit sponsor →</span>
+						<span class="sponsor-cta mt-4 text-sm font-medium">{tr('Visit sponsor →')}</span>
 					</div>
 				</a>
 			{/each}

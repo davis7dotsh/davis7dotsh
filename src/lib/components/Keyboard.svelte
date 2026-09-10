@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tr, localizePath } from '$lib/i18n';
 	let keyTitle = $state('Hover or focus a key');
 	let keyDescription = $state('Hover or focus a key to see the keybinding');
 	let hoveredKey = $state.raw<{ label: string } | null>(null);
@@ -202,8 +203,8 @@
 		</div>
 	</div>
 	<div class="flex-1">
-		<h2 class="headline-text mb-2 text-2xl font-semibold">{keyTitle}</h2>
-		<p style="color: var(--color-text-muted)">{keyDescription}</p>
+		<h2 class="headline-text mb-2 text-2xl font-semibold">{tr(keyTitle)}</h2>
+		<p style="color: var(--color-text-muted)">{tr(keyDescription)}</p>
 	</div>
 </section>
 
@@ -212,7 +213,7 @@
 		viewBox="0 0 {svgWidth} {svgHeight}"
 		class="h-auto w-full"
 		role="group"
-		aria-label="Karabiner keyboard map"
+		aria-label={tr('Karabiner keyboard map')}
 	>
 		{#each keys as key}
 			{@const isCapsLock = key.label === 'Caps'}
@@ -227,7 +228,7 @@
 				role={isInteractive ? 'button' : undefined}
 				tabindex={isInteractive ? 0 : undefined}
 				aria-label={isInteractive
-					? `${key.label || 'Space'}: ${key.title}. ${key.description}`
+					? `${key.label || 'Space'}: ${tr(key.title ?? '')}. ${tr(key.description || '')}`
 					: undefined}
 				style:cursor={isCapsLock ? 'default' : isInteractive ? 'pointer' : 'default'}
 				onmouseenter={() => activateKey(key)}

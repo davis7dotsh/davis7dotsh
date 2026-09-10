@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tr, localizePath } from '$lib/i18n';
 	type Link = {
 		href: string;
 		label: string;
@@ -34,7 +35,7 @@
 	];
 </script>
 
-<nav class="primary-social-links" aria-label="Social">
+<nav class="primary-social-links" aria-label={tr('Social')}>
 	<ul class="primary-social-links__list">
 		{#each links as link (link.href)}
 			<li>
@@ -74,7 +75,7 @@
 							</svg>
 						{/if}
 					</span>
-					<span class="primary-social-link__label">{link.label}</span>
+					<span class="primary-social-link__label">{tr(link.label)}</span>
 				</a>
 			</li>
 		{/each}

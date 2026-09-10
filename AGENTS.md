@@ -2,6 +2,7 @@
 
 - use pnpm for the package manager and to run scripts
 - make sure to use modern up to date svelte patterns and features
+- Whenever user-facing copy is added or changed, run `pnpm i18n:translate` after the final copy edit and before committing or handing off the work. Include the updated translation catalogs and `gt-lock.json` in the same commit.
 
 this is my personal website. focus on having it be fast, responsive, concise, and very simple.
 

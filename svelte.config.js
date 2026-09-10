@@ -33,6 +33,20 @@ const config = {
 		},
 
 		prerender: {
+			crawl: false,
+			entries: [
+				'/og',
+				'/sitemap.xml',
+				'/sv/rules',
+				'/executor',
+				'/executor/privacy',
+				'/executor/terms',
+				...['en', 'es', 'fr', 'de', 'ja'].flatMap((locale) =>
+					['', '/sponsors', '/macos', '/home-server', '/karabiner', '/font', '/sv'].map(
+						(route) => `/${locale}${route}`
+					)
+				)
+			],
 			handleHttpError: ({ path, message }) => {
 				if (path === '/_vercel/image') return;
 

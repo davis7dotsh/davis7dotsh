@@ -1,0 +1,12 @@
+{
+	"$schema": "https://assets.gtx.dev/config-schema.json",
+	"projectId": "prj_btze5heqqr26j85j88z0a0mo",
+	"defaultLocale": "en",
+	"locales": ["es", "fr", "de", "ja"],
+	"files": {
+		"json": {
+			"include": ["src/lib/i18n/locales/[locale].json"]
+		}
+	},
+	"publish": false
+}

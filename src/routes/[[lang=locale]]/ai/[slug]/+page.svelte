@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { tr, localizePath, currentLocale } from '$lib/i18n';
+	import RichText from '$lib/components/RichText.svelte';
 	import type { RatingEntry } from '$lib/ai/ratings';
 	import { aiLogos as logos } from '$lib/ai/logos';
 	import type { PageProps } from './$types';
@@ -12,10 +14,10 @@
 
 	const asOfIso = $derived(data.snapshot.asOf);
 	const asOfLabel = $derived(
-		asOfDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+		asOfDate.toLocaleDateString(currentLocale(), { year: 'numeric', month: 'long', day: 'numeric' })
 	);
 
-	const heroSubtitle = $derived(`${asOfIso} Edition`);
+	const heroSubtitle = $derived(`${asOfIso} ${tr('Edition')}`);
 
 	type DescriptionBlock = { type: 'paragraph'; text: string } | { type: 'list'; items: string[] };
 
@@ -41,57 +43,71 @@
 	const allSnapshots = $derived(data.index.snapshots);
 
 	function snapshotShort(label: string) {
-		return label;
+		return tr(label);
 	}
 
 	function tldr(entries: RatingEntry[]) {
 		const recs = entries.filter((entry) => entry.recommended).map((entry) => entry.name);
-		return recs.length ? recs.join(' · ') : 'None this round';
+		return recs.length ? recs.join(' · ') : tr('None this round');
 	}
 </script>
 
 <svelte:head>
-	<title>{data.index.title} · {data.snapshot.label}</title>
-	<meta name="description" content="{data.snapshot.subtitle} · {data.snapshot.label}." />
-	<link rel="canonical" href="https://www.davis7.sh/ai/{data.snapshot.slug}" />
+	<title>{tr(data.index.title)} · {tr(data.snapshot.label)}</title>
+	<meta name="description" content="{tr(data.snapshot.subtitle)} · {tr(data.snapshot.label)}." />
 </svelte:head>
 
 <main class="dispatch">
 	<header class="dispatch-head">
 		<p class="meta">
-			<a class="back-link" href="/">Ben Davis</a>
+			<a class="back-link" href={localizePath('/')}>{tr('Ben Davis')}</a>
 			<span aria-hidden="true">·</span>
-			<span>davis7.sh</span>
+			<span>{tr('davis7.sh')}</span>
 			<span aria-hidden="true">·</span>
 			<time datetime={asOfIso}>{asOfIso}</time>
 		</p>
 
 		<h1 class="hero">
-			The AI Tools I'm Using
-			<span class="hero-sub">{heroSubtitle}</span>
+			{tr("The AI Tools I'm Using")} <span class="hero-sub">{heroSubtitle}</span>
 		</h1>
 
 		<p class="byline">
-			By <a href="https://x.com/davis7" class="brand-link" target="_blank" rel="noopener noreferrer"
-				>Ben Davis</a
-			>, published {asOfLabel}.
+			<RichText
+				message={tr('By {name}, published {date}.', {
+					name: '<s0>Ben Davis</s0>',
+					date: asOfLabel
+				})}
+				elements={[
+					{
+						tag: 'a',
+						attributes: {
+							href: 'https://x.com/davis7',
+							class: 'brand-link',
+							target: '_blank',
+							rel: 'noopener noreferrer'
+						}
+					}
+				]}
+			/>
 		</p>
 
 		<p class="disclaimer">
-			Disclaimer. This is all just my opinion, based on my experiences and what I've used. It is
-			impossible to try everything at the level of depth I would like to, so I've decided to simply
-			focus this site on the tools that I am using the most everyday.
+			{tr(
+				"Disclaimer. This is all just my opinion, based on my experiences and what I've used. It is impossible to try everything at the level of depth I would like to, so I've decided to simply focus this site on the tools that I am using the most everyday."
+			)}
 		</p>
 
 		{#if allSnapshots.length > 1}
 			<p class="previous">
-				<span class="previous-label">Historical:</span>
+				<span class="previous-label">{tr('Historical:')}</span>
 				{#each allSnapshots as snapshot, i (snapshot.slug)}
 					{#if snapshot.slug === data.snapshot.slug}
 						<span class="snapshot-current" aria-current="page">{snapshotShort(snapshot.label)}</span
 						>
 					{:else}
-						<a class="brand-link" href="/ai/{snapshot.slug}">{snapshotShort(snapshot.label)}</a>
+						<a class="brand-link" href={localizePath('/ai/' + snapshot.slug)}
+							>{snapshotShort(snapshot.label)}</a
+						>
 					{/if}{#if i < allSnapshots.length - 1}<span aria-hidden="true">,</span>{/if}
 				{/each}
 			</p>
@@ -100,11 +116,11 @@
 
 	{#each sections as section (section.key)}
 		<section class="section" id={section.key}>
-			<h2 class="section-label">{section.label}</h2>
-			<p class="tldr"><span class="tldr-arrow">TL;DR →</span> {tldr(section.entries)}</p>
+			<h2 class="section-label">{tr(section.label)}</h2>
+			<p class="tldr"><span class="tldr-arrow">{tr('TL;DR →')}</span> {tldr(section.entries)}</p>
 
 			{#if section.entries.length === 0}
-				<p class="empty">Nothing this round.</p>
+				<p class="empty">{tr('Nothing this round.')}</p>
 			{:else}
 				<ol class="items">
 					{#each section.entries as item, i (item.id)}
@@ -126,7 +142,7 @@
 									{#if item.tags?.length}
 										<span class="item-tags">
 											{#each item.tags as tag, t (tag)}
-												<span class="item-tag">{tag}</span>{#if t < item.tags.length - 1}<span
+												<span class="item-tag">{tr(tag)}</span>{#if t < item.tags.length - 1}<span
 														aria-hidden="true"
 													>
 														·
@@ -135,12 +151,12 @@
 										</span>
 									{/if}
 									{#if item.recommended}
-										<span class="item-rec-tail">→ Recommended</span>
+										<span class="item-rec-tail">{tr('→ Recommended')}</span>
 									{/if}
 								</p>
 
 								<div class="item-desc">
-									{#each descriptionBlocks(item.description) as block, blockIndex (`${item.id}-${blockIndex}`)}
+									{#each descriptionBlocks(tr(item.description)) as block, blockIndex (`${item.id}-${blockIndex}`)}
 										{#if block.type === 'list'}
 											<ul>
 												{#each block.items as line, lineIndex (`${item.id}-${blockIndex}-${lineIndex}`)}
@@ -156,16 +172,16 @@
 								{#if item.pros?.length || item.cons?.length}
 									<div class="item-notes">
 										{#if item.pros?.length}
-											<ul class="item-list item-list-pros" aria-label="Pros">
+											<ul class="item-list item-list-pros" aria-label={tr('Pros')}>
 												{#each item.pros as line (line)}
-													<li><span class="glyph" aria-hidden="true">+</span> {line}</li>
+													<li><span class="glyph" aria-hidden="true">+</span> {tr(line)}</li>
 												{/each}
 											</ul>
 										{/if}
 										{#if item.cons?.length}
-											<ul class="item-list item-list-cons" aria-label="Cons">
+											<ul class="item-list item-list-cons" aria-label={tr('Cons')}>
 												{#each item.cons as line (line)}
-													<li><span class="glyph" aria-hidden="true">−</span> {line}</li>
+													<li><span class="glyph" aria-hidden="true">−</span> {tr(line)}</li>
 												{/each}
 											</ul>
 										{/if}
@@ -180,7 +196,7 @@
 	{/each}
 
 	<footer class="dispatch-foot">
-		<p>Snapshot for this period · Not a live ranking</p>
+		<p>{tr('Snapshot for this period · Not a live ranking')}</p>
 	</footer>
 </main>
 

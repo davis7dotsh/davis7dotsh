@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { tr, localizePath } from '$lib/i18n';
+	import RichText from '$lib/components/RichText.svelte';
 	import { getPrompts } from '$lib/prompts';
 	import ColorField from '$lib/components/ColorField.svelte';
 	import { trackCopy } from '$lib/analytics';
@@ -50,12 +52,9 @@
 			setTimeout(() => {
 				copySuccess = false;
 			}, 2000);
-			showToast('Prompts copied to clipboard!', 'success');
+			showToast(tr('Prompts copied to clipboard!'), 'success');
 		} catch (error) {
-			showToast(
-				`Failed to copy prompts: ${error instanceof Error ? error.message : 'Unknown error'}`,
-				'error'
-			);
+			showToast(tr('Failed to copy prompts.'), 'error');
 		} finally {
 			isLoading = false;
 		}
@@ -94,32 +93,36 @@
 </script>
 
 <svelte:head>
-	<title>SvelteKit Setup</title>
-	<meta name="description" content="An easy way to setup your SvelteKit project." />
+	<title>{tr('SvelteKit Setup')}</title>
+	<meta name="description" content={tr('An easy way to setup your SvelteKit project.')} />
 </svelte:head>
 
 <div class="mx-auto w-full max-w-4xl space-y-8 px-3">
 	<div class="content-sheet space-y-4">
-		<a href="/" class="back-link mb-4">← Back</a>
+		<a href={localizePath('/')} class="back-link mb-4">{tr('← Back')}</a>
 		<div class="flex items-center justify-between">
-			<h1 class="headline-text text-4xl font-semibold tracking-tight">SvelteKit Setup</h1>
-			<button onclick={toggleAll} class="button px-3 py-1">Toggle All</button>
+			<h1 class="headline-text text-4xl font-semibold tracking-tight">{tr('SvelteKit Setup')}</h1>
+			<button onclick={toggleAll} class="button px-3 py-1">{tr('Toggle All')}</button>
 		</div>
 		<p class="text-lg" style="color: var(--color-text-muted)">
-			An easy way to setup your SvelteKit project. Select the options you want to enable and copy
-			the prompts to your clipboard, then paste them into Cursor.
+			{tr(
+				'An easy way to setup your SvelteKit project. Select the options you want to enable and copy the prompts to your clipboard, then paste them into Cursor.'
+			)}
 		</p>
 		<p class="text-lg" style="color: var(--color-text-muted)">
-			This will not create a project for you, to do that run: <code
-				class="code-chip px-2 py-1 font-mono text-sm">pnpm dlx sv create</code
-			>. I recommend picking: minimal, TypeScript, Prettier/Tailwind CSS, and then pnpm.
+			<RichText
+				message={'This will not create a project for you, to do that run: <s0>pnpm dlx sv create</s0>. I recommend picking: minimal, TypeScript, Prettier/Tailwind CSS, and then pnpm.'}
+				elements={[{ tag: 'code', attributes: { class: 'code-chip px-2 py-1 font-mono text-sm' } }]}
+			/>
 		</p>
 	</div>
 
 	<div class="space-y-8">
 		<!-- Basic Prompts -->
 		<div class="space-y-4">
-			<h2 class="text-sm font-semibold" style="color: var(--color-text-subtle)">Setup Options</h2>
+			<h2 class="text-sm font-semibold" style="color: var(--color-text-subtle)">
+				{tr('Setup Options')}
+			</h2>
 			<div class="space-y-1">
 				<label class="option-row">
 					<input
@@ -129,9 +132,11 @@
 						class="option-checkbox"
 					/>
 					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)">Vercel Setup</span>
+						<span class="text-sm font-medium" style="color: var(--color-text)"
+							>{tr('Vercel Setup')}</span
+						>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Adds the Vercel adapter and removes the default one
+							{tr('Adds the Vercel adapter and removes the default one')}
 						</p>
 					</div>
 				</label>
@@ -144,58 +149,69 @@
 					/>
 					<div>
 						<span class="text-sm font-medium" style="color: var(--color-text)"
-							>Cloudflare Setup</span
+							>{tr('Cloudflare Setup')}</span
 						>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Adds the Cloudflare adapter, sets up Wrangler, and gives you the right commands to
-							deploy to Cloudflare
+							{tr(
+								'Adds the Cloudflare adapter, sets up Wrangler, and gives you the right commands to deploy to Cloudflare'
+							)}
 						</p>
 					</div>
 				</label>
 				<label class="option-row">
 					<input type="checkbox" bind:checked={convexSetup} class="option-checkbox" />
 					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)">Convex Setup</span>
+						<span class="text-sm font-medium" style="color: var(--color-text)"
+							>{tr('Convex Setup')}</span
+						>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Sets up Convex in your SvelteKit app and gives you a good Cursor rule for it
+							{tr('Sets up Convex in your SvelteKit app and gives you a good Cursor rule for it')}
 						</p>
 					</div>
 				</label>
 				<label class="option-row">
 					<input type="checkbox" bind:checked={cursorRules} class="option-checkbox" />
 					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)">Cursor Rules</span>
+						<span class="text-sm font-medium" style="color: var(--color-text)"
+							>{tr('Cursor Rules')}</span
+						>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Adds 5 useful Cursor rules for SvelteKit: global, neverthrow, Svelte, Tailwind CSS,
-							and Convex
+							{tr(
+								'Adds 5 useful Cursor rules for SvelteKit: global, neverthrow, Svelte, Tailwind CSS, and Convex'
+							)}
 						</p>
 					</div>
 				</label>
 				<label class="option-row">
 					<input type="checkbox" bind:checked={usefulPackages} class="option-checkbox" />
 					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)">Useful Packages</span
+						<span class="text-sm font-medium" style="color: var(--color-text)"
+							>{tr('Useful Packages')}</span
 						>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Adds useful packages for SvelteKit: runed, neverthrow, and Zod
+							{tr('Adds useful packages for SvelteKit: runed, neverthrow, and Zod')}
 						</p>
 					</div>
 				</label>
 				<label class="option-row">
 					<input type="checkbox" bind:checked={asyncSvelte} class="option-checkbox" />
 					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)">Async Svelte</span>
+						<span class="text-sm font-medium" style="color: var(--color-text)"
+							>{tr('Async Svelte')}</span
+						>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Updates the svelte.config.js file to support async Svelte
+							{tr('Updates the svelte.config.js file to support async Svelte')}
 						</p>
 					</div>
 				</label>
 				<label class="option-row">
 					<input type="checkbox" bind:checked={helloWorld} class="option-checkbox" />
 					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)">Hello World</span>
+						<span class="text-sm font-medium" style="color: var(--color-text)"
+							>{tr('Hello World')}</span
+						>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							Makes the default page a nicer Hello World
+							{tr('Makes the default page a nicer Hello World')}
 						</p>
 					</div>
 				</label>
@@ -206,7 +222,7 @@
 		<div class="space-y-4">
 			<label class="option-row">
 				<input type="checkbox" bind:checked={vscodeThemeEnabled} class="option-checkbox" />
-				<span class="font-medium" style="color: var(--color-text)">VSCode Theme</span>
+				<span class="font-medium" style="color: var(--color-text)">{tr('VSCode Theme')}</span>
 			</label>
 			{#if vscodeThemeEnabled}
 				<div class="space-y-4 pl-7">
@@ -224,7 +240,7 @@
 		<div class="space-y-4">
 			<label class="option-row">
 				<input type="checkbox" bind:checked={tailwindThemeEnabled} class="option-checkbox" />
-				<span class="font-medium" style="color: var(--color-text)">Tailwind Theme</span>
+				<span class="font-medium" style="color: var(--color-text)">{tr('Tailwind Theme')}</span>
 			</label>
 			{#if tailwindThemeEnabled}
 				<div class="space-y-4 pl-7">
@@ -246,7 +262,7 @@
 							d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
 						></path>
 					</svg>
-					Copying...
+					{tr('Copying...')}
 				{:else if copySuccess}
 					<svg
 						class="success-text h-4 w-4"
@@ -257,9 +273,9 @@
 					>
 						<polyline points="20 6 9 17 4 12"></polyline>
 					</svg>
-					Copied!
+					{tr('Copied!')}
 				{:else}
-					Copy Prompts
+					{tr('Copy Prompts')}
 				{/if}
 			</button>
 		</div>
