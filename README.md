@@ -11,9 +11,31 @@ pnpm dev --host localhost --port 5173
 
 Unprefixed page URLs such as `/` or `/macos` redirect on the server using the browser’s `Accept-Language` header. Regional languages and preference weights are supported, with English as the fallback. Redirects are not cached.
 
-Explicit `/en`, `/es`, `/fr`, `/de`, and `/ja` paths always win over browser preferences, for example `/ja/macos` or `/en/sponsors`. Internal links and the AI archive redirect preserve that explicit language. There is no language dropdown. Query strings are preserved; browsers retain fragments across the redirect.
+Explicit locale paths always win over browser preferences, for example `/ja/macos` or `/en/sponsors`. Internal links and the AI archive redirect preserve that explicit language. There is no language dropdown. Query strings are preserved; browsers retain fragments across the redirect.
 
 Only explicit language pages are prerendered. Unprefixed pages stay server-routed so the deployed site can negotiate each request; assets, downloads, and unlisted Executor pages are excluded.
+
+Supported locale paths:
+
+| Language             | Path     |
+| -------------------- | -------- |
+| English              | `/en`    |
+| Spanish              | `/es`    |
+| French               | `/fr`    |
+| German               | `/de`    |
+| Japanese             | `/ja`    |
+| Hindi                | `/hi`    |
+| Brazilian Portuguese | `/pt-BR` |
+| Dutch                | `/nl`    |
+| Polish               | `/pl`    |
+| Indonesian           | `/id`    |
+| Swedish              | `/sv-SE` |
+| Italian              | `/it`    |
+| Russian              | `/ru`    |
+| Thai                 | `/th`    |
+| Vietnamese           | `/vi`    |
+
+Browser negotiation tries an exact locale first, then a supported variant of the same language. Portuguese preferences fall back to Brazilian Portuguese. Swedish uses `/sv-SE` to avoid colliding with the existing `/sv` page. It uses language preferences, never the visitor’s country; for example, `en-IN` still selects English. The locale list in `src/lib/i18n/config.ts` also drives prerendering, alternate links, and the sitemap.
 
 ## General Translation
 
@@ -31,7 +53,7 @@ After editing copy:
 pnpm i18n:translate
 ```
 
-This extracts source strings, uses the GT project in `gt.config.json`, downloads Spanish, French, German, and Japanese translations, and checks catalog completeness and placeholders. Add UI copy with `tr('English text')`. Dynamic text needs a matching entry in the English catalog; the extractor also collects descriptive object fields and the AI snapshot data. Run `pnpm i18n:extract` to update source strings without calling GT.
+This extracts source strings, uses the GT project in `gt.config.json`, downloads all target languages configured in `gt.config.json`, and checks catalog completeness and placeholders. Add UI copy with `tr('English text')`. Dynamic text needs a matching entry in the English catalog; the extractor also collects descriptive object fields and the AI snapshot data. Run `pnpm i18n:extract` to update source strings without calling GT.
 
 Commit the updated catalogs and `gt-lock.json` alongside your copy changes. Unchanged messages reuse existing translations; new or changed messages are translated by GT. Builds serve the checked-in catalogs and do not generate translations.
 
