@@ -1,7 +1,7 @@
 <script>
 	import '../app.css';
 	import { tr, localizePath, currentLocale } from '$lib/i18n';
-	import { locales, stripLocale, withLocale } from '$lib/i18n/config';
+	import { locales, openGraphLocales, stripLocale, withLocale } from '$lib/i18n/config';
 	import { page } from '$app/state';
 	import Analytics from '$lib/components/Analytics.svelte';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
@@ -16,7 +16,7 @@
 
 <svelte:head>
 	<link rel="canonical" href={canonicalUrl} />
-	<meta property="og:locale" content={currentLocale()} />
+	<meta property="og:locale" content={openGraphLocales[currentLocale()]} />
 	{#if isLocalizedPage}
 		{#each locales as locale (locale)}
 			<link rel="alternate" hreflang={locale} href={absoluteUrl(withLocale(seo.path, locale))} />
@@ -29,7 +29,7 @@
 	<meta property="og:description" content={tr(seo.description)} />
 	<meta property="og:url" content={canonicalUrl} />
 	<meta property="og:image" content={imageUrl} />
-	<meta property="og:image:alt" content={`${seo.title} preview`} />
+	<meta property="og:image:alt" content={tr('{title} preview', { title: tr(seo.title) })} />
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1200" />
 	<meta property="og:image:height" content="630" />
@@ -38,7 +38,7 @@
 	<meta name="twitter:title" content={tr(seo.title)} />
 	<meta name="twitter:description" content={tr(seo.description)} />
 	<meta name="twitter:image" content={imageUrl} />
-	<meta name="twitter:image:alt" content={`${seo.title} preview`} />
+	<meta name="twitter:image:alt" content={tr('{title} preview', { title: tr(seo.title) })} />
 	<meta name="color-scheme" content="dark light" />
 </svelte:head>
 

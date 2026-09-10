@@ -16,8 +16,9 @@
 			<svelte:element
 				this={element.tag}
 				{...element.attributes}
-				href={element.attributes.href ? localizePath(element.attributes.href) : undefined}
-				>{@render renderNodes(node.children)}</svelte:element
+				href={element.attributes.href && element.localize !== false
+					? localizePath(element.attributes.href)
+					: element.attributes.href}>{@render renderNodes(node.children)}</svelte:element
 			>
 		{/if}
 	{/each}

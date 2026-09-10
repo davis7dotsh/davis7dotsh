@@ -3,6 +3,7 @@
 	import { vercelImageUrl, vercelSrcset } from '$lib/image';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
+	import RichText from '$lib/components/RichText.svelte';
 
 	const tileImageQuality = 82;
 	const setupImageQuality = 82;
@@ -376,14 +377,22 @@
 					/>
 					<figcaption>
 						<span class="diagram-label">{tr('network map')}</span>
-						<span
-							>{tr('tip:')}
-							<a href={setup.diagram.image} target="_blank" rel="noopener noreferrer"
-								>{tr('open the full-size image')}</a
-							>{tr(
-								', then copy or paste it into GPT or Claude for a deeper walkthrough, or to adapt it to your own setup.'
-							)}</span
-						>
+						<span>
+							<RichText
+								message="tip: <s0>open the full-size image</s0>, then copy or paste it into GPT or Claude for a deeper walkthrough, or to adapt it to your own setup."
+								elements={[
+									{
+										tag: 'a',
+										localize: false,
+										attributes: {
+											href: setup.diagram.image,
+											target: '_blank',
+											rel: 'noopener noreferrer'
+										}
+									}
+								]}
+							/>
+						</span>
 					</figcaption>
 				</figure>
 
@@ -568,7 +577,7 @@
 		font-size: 0.75rem;
 	}
 
-	.setup-diagram figcaption a {
+	.setup-diagram figcaption :global(a) {
 		color: var(--color-text);
 		text-decoration: underline;
 		text-decoration-color: var(--color-border-strong);
@@ -578,12 +587,12 @@
 			text-decoration-color 160ms ease;
 	}
 
-	.setup-diagram figcaption a:hover {
+	.setup-diagram figcaption :global(a):hover {
 		color: var(--color-link-hover);
 		text-decoration-color: var(--color-link-hover);
 	}
 
-	.setup-diagram figcaption a:focus-visible {
+	.setup-diagram figcaption :global(a):focus-visible {
 		outline: 1px solid var(--color-focus);
 		outline-offset: 3px;
 	}

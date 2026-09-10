@@ -2,6 +2,7 @@ export type RichNode = string | { index: number; children: RichNode[] };
 export type RichElement = {
 	tag: 'a' | 'strong' | 'em' | 'code';
 	attributes: Record<string, string>;
+	localize?: boolean;
 };
 
 // Translation controls only text and numbered slots, never tags, URLs, or attributes.

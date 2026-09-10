@@ -477,5 +477,7 @@
 	"m_c98b14fa0307": "Top Bar Text Color",
 	"m_75efaf4335ff": "Primary Color",
 	"m_9660996e8b8b": "Hover or focus a key",
-	"m_2fdcf62686d8": "Hover or focus a key to see the keybinding"
+	"m_2fdcf62686d8": "Hover or focus a key to see the keybinding",
+	"m_74752963b340": "{title} preview",
+	"m_27670ccabf3f": "tip: <s0>open the full-size image</s0>, then copy or paste it into GPT or Claude for a deeper walkthrough, or to adapt it to your own setup."
 }

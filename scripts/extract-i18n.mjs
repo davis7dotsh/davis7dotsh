@@ -36,7 +36,8 @@ function walk(node, file) {
 	if (node.type === 'Property' && fields.has(node.key.name)) add(node.value.value, file);
 	if (node.type === 'Component' && node.name === 'RichText') {
 		const attr = node.attributes.find((attribute) => attribute.name === 'message');
-		add(attr?.value?.[0]?.expression?.value, file);
+		const value = Array.isArray(attr?.value) ? attr.value[0] : attr?.value;
+		add(value?.expression?.value ?? value?.data, file);
 	}
 	if (node.type === 'Attribute' && ['label', 'backLabel'].includes(node.name))
 		add(node.value?.[0]?.data, file);

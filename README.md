@@ -33,6 +33,10 @@ pnpm i18n:translate
 
 This extracts source strings, uses the GT project in `gt.config.json`, downloads Spanish, French, German, and Japanese translations, and checks catalog completeness and placeholders. Add UI copy with `tr('English text')`. Dynamic text needs a matching entry in the English catalog; the extractor also collects descriptive object fields and the AI snapshot data. Run `pnpm i18n:extract` to update source strings without calling GT.
 
+Commit the updated catalogs and `gt-lock.json` alongside your copy changes. Unchanged messages reuse existing translations; new or changed messages are translated by GT. Builds serve the checked-in catalogs and do not generate translations.
+
+No GitHub translation automation is configured by this integration. GT’s optional [Locadex automation](https://generaltranslation.com/en-US/docs/platform/locadex/guides/configuring-automations) can generate translations and open or update a separate PR. For this app it needs to run `pnpm install --frozen-lockfile && pnpm i18n:extract` before processing and `pnpm i18n:check` afterward. Its PR trigger runs on opening, reopening, or marking a PR ready; later commits require a `/locadex` comment to run again. A push-to-branch trigger is also available.
+
 Keep complete sentences together. `RichText` lets GT reorder numbered inline elements while keeping the original links and attributes in code. Translation text is escaped by Svelte; it is never inserted as raw HTML. Commands, copied configurations, URLs, and product identifiers stay unchanged.
 
 `GT_API_KEY` is used only by the CLI. Never expose it through public environment variables or commit `.env.local`. The site itself builds and runs from the downloaded catalogs without that key.

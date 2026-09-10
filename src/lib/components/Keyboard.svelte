@@ -228,7 +228,7 @@
 				role={isInteractive ? 'button' : undefined}
 				tabindex={isInteractive ? 0 : undefined}
 				aria-label={isInteractive
-					? `${key.label || 'Space'}: ${key.title}. ${tr(key.description || '')}`
+					? `${key.label || 'Space'}: ${tr(key.title ?? '')}. ${tr(key.description || '')}`
 					: undefined}
 				style:cursor={isCapsLock ? 'default' : isInteractive ? 'pointer' : 'default'}
 				onmouseenter={() => activateKey(key)}

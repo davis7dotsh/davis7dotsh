@@ -1,5 +1,12 @@
 export const locales = ['en', 'es', 'fr', 'de', 'ja'] as const;
 export type Locale = (typeof locales)[number];
+export const openGraphLocales = {
+	en: 'en_US',
+	es: 'es_ES',
+	fr: 'fr_FR',
+	de: 'de_DE',
+	ja: 'ja_JP'
+} satisfies Record<Locale, string>;
 export const isLocale = (value: string): value is Locale =>
 	locales.some((locale) => locale === value);
 export function stripLocale(path: string) {
