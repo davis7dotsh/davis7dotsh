@@ -1,3 +1,4 @@
+import { locales } from './src/lib/i18n/config.ts';
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
@@ -41,7 +42,7 @@ const config = {
 				'/executor',
 				'/executor/privacy',
 				'/executor/terms',
-				...['en', 'es', 'fr', 'de', 'ja'].flatMap((locale) =>
+				...locales.flatMap((locale) =>
 					['', '/sponsors', '/macos', '/home-server', '/karabiner', '/font', '/sv'].map(
 						(route) => `/${locale}${route}`
 					)
