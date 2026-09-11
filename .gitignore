@@ -3,3 +3,12 @@ dist/
 .DS_Store
 .bun-dev/
 .vercel/
+.svelte-kit/
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+.env.local
+
