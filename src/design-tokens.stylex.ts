@@ -25,7 +25,7 @@ export const spacing = stylex.defineVars({
 });
 
 export const colors = stylex.defineVars({
-  background: '#141a21',
+  background: '#0a0a0a',
   text: '#f5f6f7',
   title: '#fff',
   selectionText: '#0b0d10',
