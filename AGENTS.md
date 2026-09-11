@@ -1,36 +1,22 @@
-# Agents
+# Site rules
 
-- use pnpm for the package manager and to run scripts
-- make sure to use modern up to date svelte patterns and features
-- Whenever user-facing copy is added or changed, run `pnpm i18n:translate` after the final copy edit and before committing or handing off the work. Include the updated translation catalogs and `gt-lock.json` in the same commit.
+Keep content and tone close to the official Davis7 pages. Improve layout, clarity, and interaction without adding promotional copy, marketing calls to action, or product claims.
 
-this is my personal website. focus on having it be fast, responsive, concise, and very simple.
+Read README.md before editing. Do not write tests or start local servers. Preserve existing user changes.
 
-## Design Context
+## Background
 
-This project carries strategic and visual design context in two files at the repository root:
+Use the static theme-colored background and subtle grid. Do not add a background renderer. Respect reduced-motion preferences for the header animation.
 
-- **PRODUCT.md** — register, users, brand personality, anti-references, design principles, accessibility posture. Strategic. Read this before making any UX/UI decision.
-- **DESIGN.md** — the visual system (colors, typography, elevation, components, do's and don'ts) in [Stitch DESIGN.md format](https://stitch.withgoogle.com/docs/design-md/format/). Tokens are normative.
+## Layout
 
-**Register:** `brand` (personal site / portfolio surface; sub-routes like `/karabiner`, `/font`, `/ai` may shift toward product-register density per task).
+Use the same 1000px container and shared outer padding on every route. Keep page content left-aligned without nested page insets. Internal pages use the supplied SVG logo as the home link instead of Back text; keep the Ben Davis heading on the homepage. Use shared spacing tokens for header, section, and content gaps. The homepage is the spacing reference. `spacing` in `src/design-tokens.stylex.ts` owns responsive page insets/top padding and the 32px header, 40px section, 20px block, 4px related-text, and 6px icon gaps. Use the shared control spacing and 44px minimum target tokens. Apply outer padding once in App; give each gap one owner and avoid stacked margins. Preserve the homepage spacing when normalizing internal routes. See README Spacing rules.
 
-**Quick anchors from PRODUCT.md:**
+## Typography and navigation
 
-1. Restraint reads as confidence — empty space is content
-2. Self-evident over self-explanatory — pages don't introduce themselves
-3. One opinion per surface — each page commits to a single visual idea
-4. Normal sentence/title case with proper punctuation, never shouty (no forced ALL-CAPS)
-5. Sharp edges on purpose — `border-radius: 0` is identity
-6. Utility pages earn their own register
-
-**Quick anchors from DESIGN.md:**
-
-- Creative North Star: _The Quiet Workbench_
-- Five-step dark ladder: ink → graphite → slate → panel → concrete
-- One typeface family: Geist + GeistMono. No third font.
-- The Wire Rule: blue (`#2663eb`) is for links and focus rings only — never a fill
-- Tonal layering, never shadow-as-decoration; one heavy shadow per page max (`.content-sheet`)
-- Light theme is a parallel warm-cream system, not an inversion
-
-When in doubt, read both files end-to-end before proposing changes.
+- Use shared StyleX design tokens for typography and homepage colors across all pages. Font sizes are 17px (body, small text, labels, and non-monospace metadata), 23px (middle-sized text), and 37px (large headings), including responsive layouts. All monospace text uses the shared 16px `mono` token, including code and monospace metadata.
+- All text uses font weight 400. No bold, semibold, or medium weights, including headings, controls, and semantic bold elements.
+- Resource and section titles are 17px and white in the dark theme. Capture this color in shared StyleX tokens. Keep contrasting dark titles in the light theme.
+- Subheadings and descriptions below those titles preserve the original accent (`--accent: var(--subtle)`, #a4acb8 in dark mode and #555f57 in light mode). Do not substitute the saturated link-hover blue #2663eb.
+- Main page headings use 37px. Apply these rules to the homepage and all local subpages.
+- Internal pages use local paths and no arrow. External destinations show a right-side ↗. The fork includes the full linked site, not just the homepage.

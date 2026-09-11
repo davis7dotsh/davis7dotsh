@@ -1,0 +1,65 @@
+@font-face {
+  font-family: Geist;
+  src: url('/Geist.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  line-height: 1.5;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] { color-scheme: light; }
+
+*, *::before, *::after { box-sizing: border-box; font-weight: var(--font-weight) !important; }
+html, body, #root { min-height: 100%; margin: 0; }
+html { background: var(--bg, var(--startup-background)); scroll-behavior: smooth; scroll-padding-block: var(--anchor-offset); }
+[id] { scroll-margin-block: var(--anchor-offset); }
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { display: none; }
+body {
+  min-height: 100vh;
+  background: var(--bg, var(--startup-background));
+  color: var(--muted);
+}
+@layer base {
+  a { color: inherit; text-decoration: none; }
+}
+a, a:hover { text-decoration: none !important; }
+:root .reference-page a[href], :root .reference-page a[href] * { color: var(--subtle) !important; }
+:root .reference-page a[href]:focus-visible, :root .reference-page a[href]:focus-visible * { color: var(--link-hover) !important; }
+@media (hover: hover) {
+  :root .reference-page a[href]:hover, :root .reference-page a[href]:hover * { color: var(--link-hover) !important; }
+}
+.reference-page :is(.brand-link, .prose a:not(.back-link)),
+.reference-page :is(.brand-link, .prose a:not(.back-link)):hover { border-bottom-color: transparent; }
+button { font: inherit; cursor: pointer; }
+svg { display: block; }
+a, button, summary, [role="button"] {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+:is(a, button, summary, [role="button"]):active { opacity: .8; }
+:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--link-hover); }
+/* Route headings receive focus for screen readers, not an interactive focus ring. */
+:root h1[tabindex="-1"]:focus { outline: none !important; box-shadow: none !important; }
+button:disabled { cursor: not-allowed; }
+input, textarea, select { font: inherit; font-size: var(--font-small); }
+table, time, pre, code { font-variant-numeric: tabular-nums; }
+:is(pre, code, kbd, samp, .font-mono) { font-size: var(--font-mono-size); }
+@media (forced-colors: active) {
+  :focus-visible { outline: 2px solid Highlight; outline-offset: 3px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+::selection { background: var(--link-hover); color: var(--selection-text); }
