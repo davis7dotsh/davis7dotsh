@@ -3,7 +3,6 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "packageManager": "bun@1.4.0",
   "scripts": {
     "dev": "bun --watch server.ts",
     "build": "bun scripts/build.ts",
