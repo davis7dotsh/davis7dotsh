@@ -10,7 +10,7 @@
 </svelte:head>
 
 <main class="z-10 mx-auto max-w-3xl px-3 text-center">
-	<div class="pb-16 text-left">
+	<div class="pb-16 text-start">
 		<div class="mb-10 flex justify-start">
 			<svg
 				viewBox="0 0 700 443"

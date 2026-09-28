@@ -19,6 +19,7 @@
 		<input type="color" {id} bind:value class="field-input color-swatch cursor-pointer" />
 		<input
 			type="text"
+			dir="ltr"
 			bind:value
 			class="field-input flex-1"
 			aria-label={tr('{label} hex value', { label: tr(label) })}

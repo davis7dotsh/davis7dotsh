@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { locales, preferredLocale, withLocale } from '../src/lib/i18n/config.ts';
+import { localeDirection, locales, preferredLocale, withLocale } from '../src/lib/i18n/config.ts';
 
 test('matches regional browser languages and respects quality weights', () => {
 	assert.equal(preferredLocale('es-MX,es;q=0.9,en;q=0.8'), 'es');
@@ -39,4 +39,10 @@ test('matches the audience locales, including Brazilian Portuguese', () => {
 	assert.equal(preferredLocale('en;q=0.9,pt-BR;q=0.7'), 'en');
 	assert.equal(withLocale('/pt-BR/macos?demo=1#configs', 'hi'), '/hi/macos?demo=1#configs');
 	assert.equal(withLocale('/es', 'pt-BR'), '/pt-BR');
+});
+
+test('Arabic is right-to-left and every other locale is left-to-right', () => {
+	assert.equal(preferredLocale('ar-SA,en;q=0.5'), 'ar');
+	for (const locale of locales)
+		assert.equal(localeDirection(locale), locale === 'ar' ? 'rtl' : 'ltr');
 });

@@ -1,5 +1,5 @@
 import type { Handle } from '@sveltejs/kit';
-import { isLocale, withLocale, preferredLocale } from '$lib/i18n/config';
+import { isLocale, localeDirection, withLocale, preferredLocale } from '$lib/i18n/config';
 
 export const handle: Handle = ({ event, resolve }) => {
 	if (
@@ -21,6 +21,7 @@ export const handle: Handle = ({ event, resolve }) => {
 	}
 	const locale = event.params.lang && isLocale(event.params.lang) ? event.params.lang : 'en';
 	return resolve(event, {
-		transformPageChunk: ({ html }) => html.replace('%site.locale%', locale)
+		transformPageChunk: ({ html }) =>
+			html.replace('%site.locale%', locale).replace('%site.dir%', localeDirection(locale))
 	});
 };

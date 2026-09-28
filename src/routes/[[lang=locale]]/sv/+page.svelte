@@ -225,7 +225,7 @@
 				<span class="font-medium" style="color: var(--color-text)">{tr('VSCode Theme')}</span>
 			</label>
 			{#if vscodeThemeEnabled}
-				<div class="space-y-4 pl-7">
+				<div class="space-y-4 ps-7">
 					<ColorField id="topBarColor" label="Top Bar Color" bind:value={topBarColor} />
 					<ColorField
 						id="topBarTextColor"
@@ -243,7 +243,7 @@
 				<span class="font-medium" style="color: var(--color-text)">{tr('Tailwind Theme')}</span>
 			</label>
 			{#if tailwindThemeEnabled}
-				<div class="space-y-4 pl-7">
+				<div class="space-y-4 ps-7">
 					<ColorField id="primaryColor" label="Primary Color" bind:value={primaryColor} />
 				</div>
 			{/if}

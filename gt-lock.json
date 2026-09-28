@@ -75,6 +75,11 @@
 					"updatedAt": "2026-09-10T01:25:18.015Z",
 					"fileName": "src/lib/i18n/locales/sv-SE.json",
 					"postProcessHash": "685a5fb4aa75755ea94562ef1bcb6aea04915c6a10a7d89d1f0f7ff1bc777f71"
+				},
+				"ar": {
+					"updatedAt": "2026-09-28T19:16:21.978Z",
+					"fileName": "src/lib/i18n/locales/ar.json",
+					"postProcessHash": "d1a03a264b8f73cb73cb9f273177b227ee0a3f83eacf104587c244c893ac941f"
 				}
 			},
 			"fileName": "src/lib/i18n/locales/en.json"

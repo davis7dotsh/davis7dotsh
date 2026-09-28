@@ -37,7 +37,7 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 </svelte:head>
 
 <main class="z-10 px-3 text-center">
-	<article class="content-sheet prose mb-8 pb-16 text-left">
+	<article class="content-sheet prose mb-8 pb-16 text-start">
 		<a href={localizePath('/')} class="back-link mb-8">{tr('← Back')}</a>
 
 		<h1 class="mb-8">{tr('macOS Power User Setup')}</h1>

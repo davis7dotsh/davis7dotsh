@@ -24,7 +24,7 @@
 </script>
 
 <div class="relative">
-	<button type="button" class="button absolute top-2 right-2 px-2 py-1 text-xs" onclick={copy}>
+	<button type="button" class="button absolute end-2 top-2 px-2 py-1 text-xs" onclick={copy}>
 		{#if copied}
 			<Icon name="check" size={12} class="success-text" /> {tr('Copied!')}
 		{:else}

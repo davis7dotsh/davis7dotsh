@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tr, localizePath } from '$lib/i18n';
+	import { tr, localizePath, isolate } from '$lib/i18n';
 	import { vercelImageUrl, vercelSrcset } from '$lib/image';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
@@ -328,7 +328,7 @@
 </svelte:head>
 
 <main class="z-10 px-3">
-	<article class="server-sheet mb-8 text-left">
+	<article class="server-sheet mb-8 text-start">
 		<PageHeader title={tr('My Home Servers')} />
 
 		<div class="intro">
@@ -350,7 +350,10 @@
 						<h2 id={`${setup.id}-title`}>{tr(setup.title)}</h2>
 						<p class="setup-note">{tr(setup.note)}</p>
 						<p class="setup-total">
-							{tr('{count} items · {total}', { count: setup.purchases.length, total: setup.total })}
+							{tr('{count} items · {total}', {
+								count: setup.purchases.length,
+								total: isolate(setup.total)
+							})}
 						</p>
 					</header>
 
@@ -447,8 +450,7 @@
 <style lang="postcss">
 	.server-sheet {
 		box-sizing: border-box;
-		margin-right: auto;
-		margin-left: auto;
+		margin-inline: auto;
 		max-width: min(94rem, 100%);
 		padding: clamp(1.25rem, 3vw, 2.5rem);
 	}
@@ -669,9 +671,8 @@
 
 	.product-overlay {
 		position: absolute;
-		right: 0;
+		inset-inline: 0;
 		bottom: 0;
-		left: 0;
 		z-index: 1;
 		display: flex;
 		align-items: flex-end;
@@ -694,6 +695,8 @@
 	}
 
 	.product-price {
+		direction: ltr;
+		unicode-bidi: isolate;
 		flex-shrink: 0;
 		color: var(--color-cloud);
 		font-family: var(--font-family-geist-mono);
@@ -726,6 +729,8 @@
 	}
 
 	.receipt-list dd {
+		direction: ltr;
+		unicode-bidi: isolate;
 		flex-shrink: 0;
 		margin: 0;
 		color: var(--color-text);
@@ -782,8 +787,7 @@
 		}
 
 		.product-overlay {
-			padding-right: 0.75rem;
-			padding-left: 0.75rem;
+			padding-inline: 0.75rem;
 		}
 	}
 </style>

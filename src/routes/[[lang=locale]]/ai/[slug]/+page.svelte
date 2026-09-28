@@ -311,7 +311,7 @@
 
 	.tldr-arrow {
 		color: var(--color-text-subtle);
-		margin-right: 0.25rem;
+		margin-inline-end: 0.25rem;
 	}
 
 	.empty {
@@ -331,7 +331,8 @@
 
 	.item {
 		position: relative;
-		padding: 1.5rem 0 1.5rem 3rem;
+		padding-block: 1.5rem;
+		padding-inline: 3rem 0;
 		border-bottom: 1px solid var(--color-border);
 	}
 
@@ -341,7 +342,7 @@
 
 	.item-rank {
 		position: absolute;
-		left: 0;
+		inset-inline-start: 0;
 		top: 1.55rem;
 		width: 2.25rem;
 		font-family: var(--font-family-geist-mono);
@@ -437,7 +438,7 @@
 	}
 
 	.item-desc ul {
-		padding-left: 1.25rem;
+		padding-inline-start: 1.25rem;
 	}
 
 	.item-notes {
@@ -486,7 +487,7 @@
 
 	@media (max-width: 480px) {
 		.item {
-			padding-left: 2.5rem;
+			padding-inline-start: 2.5rem;
 		}
 
 		.item-rank {

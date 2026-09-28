@@ -13,7 +13,8 @@ export const locales = [
 	'it',
 	'ru',
 	'th',
-	'vi'
+	'vi',
+	'ar'
 ] as const;
 export type Locale = (typeof locales)[number];
 export const openGraphLocales = {
@@ -31,8 +32,11 @@ export const openGraphLocales = {
 	it: 'it_IT',
 	ru: 'ru_RU',
 	th: 'th_TH',
-	vi: 'vi_VN'
+	vi: 'vi_VN',
+	ar: 'ar_AR'
 } satisfies Record<Locale, string>;
+const rtlLocales: readonly Locale[] = ['ar'];
+export const localeDirection = (locale: Locale) => (rtlLocales.includes(locale) ? 'rtl' : 'ltr');
 export const isLocale = (value: string): value is Locale =>
 	locales.some((locale) => locale === value);
 export function stripLocale(path: string) {

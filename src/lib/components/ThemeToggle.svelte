@@ -59,7 +59,7 @@
 <button
 	type="button"
 	onclick={toggleTheme}
-	class="icon-button fixed top-4 right-4 z-50 h-11 w-11 backdrop-blur transition-[transform,background-color,border-color,color] duration-200 hover:-translate-y-px"
+	class="icon-button fixed end-4 top-4 z-50 h-11 w-11 backdrop-blur transition-[transform,background-color,border-color,color] duration-200 hover:-translate-y-px"
 	aria-label={tr('Toggle color theme')}
 	aria-pressed={mounted ? theme === 'dark' : undefined}
 	title={tr('Toggle color theme')}
