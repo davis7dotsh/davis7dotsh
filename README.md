@@ -34,8 +34,11 @@ Supported locale paths:
 | Russian              | `/ru`    |
 | Thai                 | `/th`    |
 | Vietnamese           | `/vi`    |
+| Arabic               | `/ar`    |
 
 Browser negotiation tries an exact locale first, then a supported variant of the same language. Portuguese preferences fall back to Brazilian Portuguese. Swedish uses `/sv-SE` to avoid colliding with the existing `/sv` page. It uses language preferences, never the visitor’s country; for example, `en-IN` still selects English. The locale list in `src/lib/i18n/config.ts` also drives prerendering, alternate links, and the sitemap.
+
+Arabic is right-to-left. `localeDirection` in the same file sets `dir` on `<html>` (`src/app.html`, `src/hooks.server.ts`), so new layout CSS should use logical properties (`margin-inline`, `padding-inline-start`, `inset-inline-end`, `text-start`) rather than `left`/`right`. Code, commands, keybindings, and prices stay left-to-right inside Arabic pages.
 
 ## General Translation
 

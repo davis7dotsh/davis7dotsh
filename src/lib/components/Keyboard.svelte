@@ -208,7 +208,7 @@
 	</div>
 </section>
 
-<div class="w-full overflow-x-auto p-4">
+<div class="w-full overflow-x-auto p-4" dir="ltr">
 	<svg
 		viewBox="0 0 {svgWidth} {svgHeight}"
 		class="h-auto w-full"
