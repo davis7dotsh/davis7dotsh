@@ -130,6 +130,7 @@
 				rel="noopener noreferrer"
 				class="sponsor"
 				aria-labelledby={`sponsor-name-${sponsor.slug} sponsor-cta-${sponsor.slug}`}
+				aria-describedby={`sponsor-description-${sponsor.slug}`}
 			>
 				<div class="sponsor-mark">
 					<div class="sponsor-logo" role="img" aria-label={tr(sponsor.logoAlt)}>
@@ -140,7 +141,7 @@
 					</span>
 				</div>
 				<h2 id={`sponsor-name-${sponsor.slug}`}>{sponsor.name}</h2>
-				<p>{tr(sponsor.description)}</p>
+				<p id={`sponsor-description-${sponsor.slug}`}>{tr(sponsor.description)}</p>
 				<span id={`sponsor-cta-${sponsor.slug}`} class="sponsor-cta">
 					{tr('Visit sponsor →')}
 				</span>
@@ -155,7 +156,17 @@
 
 <style>
 	.sponsors-page {
+		--sponsor-link: #4dabf7;
+		--sponsor-agentuity-icon: #00ffff;
+
+		max-width: 1024px;
+		margin-inline: auto;
 		padding: 8px 0 24px;
+	}
+
+	:global(html[data-theme='light']) .sponsors-page {
+		--sponsor-link: var(--color-accent-blue);
+		--sponsor-agentuity-icon: #087d89;
 	}
 
 	.sponsors-nav {
@@ -168,8 +179,8 @@
 
 	.sponsors-nav a {
 		padding-block: 10px;
-		font-size: 16px;
-		line-height: 24px;
+		font-size: 14px;
+		line-height: 22px;
 	}
 
 	.site-name {
@@ -186,13 +197,13 @@
 	.sponsors-hero {
 		display: flex;
 		flex-direction: column;
-		gap: 24px;
-		padding-block: 48px;
+		gap: 20px;
+		padding-block: 36px;
 	}
 
 	.sponsors-hero h1 {
 		color: var(--color-text);
-		font-size: clamp(48px, 7.23vw, 104px);
+		font-size: clamp(40px, 4.5vw, 64px);
 		font-weight: 600;
 		line-height: 1;
 		letter-spacing: -0.06em;
@@ -200,24 +211,24 @@
 	}
 
 	.sponsors-hero p {
-		max-width: 430px;
+		max-width: 340px;
 		color: var(--color-text-subtle);
-		font-size: clamp(18px, 1.53vw, 22px);
+		font-size: 18px;
 		line-height: 1.45;
 	}
 
 	.sponsors-gallery {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
-		column-gap: clamp(24px, 4.44vw, 64px);
+		column-gap: clamp(24px, 3vw, 48px);
 	}
 
 	.sponsor {
 		display: flex;
 		min-width: 0;
-		min-height: 320px;
+		min-height: 280px;
 		flex-direction: column;
-		padding-block: 32px;
+		padding-block: 24px;
 		border-top: 1px solid var(--color-border);
 		transition: border-color 160ms ease;
 	}
@@ -228,7 +239,7 @@
 
 	.sponsor-mark {
 		display: flex;
-		height: 76px;
+		height: 60px;
 		flex-shrink: 0;
 		align-items: flex-start;
 		justify-content: space-between;
@@ -237,8 +248,8 @@
 
 	.sponsor-logo {
 		display: flex;
-		width: 180px;
-		height: 44px;
+		width: 144px;
+		height: 36px;
 		align-items: center;
 		color: var(--color-text);
 	}
@@ -247,7 +258,7 @@
 		display: block;
 		width: 100%;
 		height: auto;
-		max-height: 44px;
+		max-height: 36px;
 	}
 
 	.sponsor-number {
@@ -258,27 +269,27 @@
 	}
 
 	.sponsor h2 {
-		padding-bottom: 12px;
+		padding-bottom: 8px;
 		color: var(--color-text);
-		font-size: 22px;
+		font-size: 18px;
 		font-weight: 500;
-		line-height: 28px;
+		line-height: 24px;
 	}
 
 	.sponsor p {
 		flex: 1;
 		color: var(--color-text-subtle);
-		font-size: 17px;
-		line-height: 26px;
+		font-size: 15px;
+		line-height: 23px;
 		overflow-wrap: anywhere;
 	}
 
 	.sponsor-cta {
 		align-self: flex-start;
-		padding-top: 24px;
+		padding-top: 20px;
 		color: var(--sponsor-link);
-		font-size: 16px;
-		line-height: 24px;
+		font-size: 14px;
+		line-height: 22px;
 		text-underline-offset: 4px;
 	}
 
@@ -290,7 +301,7 @@
 	.sponsors-footer {
 		display: flex;
 		justify-content: center;
-		padding-top: 48px;
+		padding-top: 32px;
 		border-top: 1px solid var(--color-border);
 	}
 
@@ -309,10 +320,6 @@
 		.sponsors-gallery {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
-
-		.sponsor {
-			min-height: 360px;
-		}
 	}
 
 	@media (min-width: 1024px) {
@@ -320,12 +327,12 @@
 			flex-direction: row;
 			align-items: flex-end;
 			justify-content: space-between;
-			gap: 64px;
-			padding-block: 72px;
+			gap: 40px;
+			padding-block: 44px;
 		}
 
 		.sponsors-hero p {
-			flex-basis: 430px;
+			flex-basis: 340px;
 		}
 
 		.sponsors-gallery {

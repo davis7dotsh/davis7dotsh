@@ -9,7 +9,6 @@
 
 	let { children } = $props();
 	const seo = $derived(getSeo(stripLocale(page.url.pathname)));
-	const isSponsorsPage = $derived(stripLocale(page.url.pathname) === '/sponsors');
 	const isLocalizedPage = $derived(page.route.id?.startsWith('/[[lang=locale]]'));
 	const canonicalUrl = $derived(absoluteUrl(isLocalizedPage ? localizePath(seo.path) : seo.path));
 	const imageUrl = $derived(absoluteUrl(seo.image));
@@ -43,15 +42,13 @@
 	<meta name="color-scheme" content="dark light" />
 </svelte:head>
 
-<div class={['relative min-h-screen w-full', isSponsorsPage && 'sponsors-surface']}>
-	{#if !isSponsorsPage}
-		<div
-			class="grid-pattern fixed inset-0 h-full w-full [mask-image:radial-gradient(ellipse_at_center,transparent_0%,transparent_35%,rgba(0,0,0,0.5)_70%,black_100%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,transparent_0%,transparent_35%,rgba(0,0,0,0.5)_70%,black_100%)]"
-		></div>
-	{/if}
+<div class="relative min-h-screen w-full">
+	<div
+		class="grid-pattern fixed inset-0 h-full w-full [mask-image:radial-gradient(ellipse_at_center,transparent_0%,transparent_35%,rgba(0,0,0,0.5)_70%,black_100%)] [-webkit-mask-image:radial-gradient(ellipse_at_center,transparent_0%,transparent_35%,rgba(0,0,0,0.5)_70%,black_100%)]"
+	></div>
 
 	<div class="relative z-10 flex h-full w-full justify-center overflow-auto p-4 sm:p-8">
-		<div class={['animate-fade-in-up w-full', isSponsorsPage ? 'max-w-7xl' : 'max-w-6xl']}>
+		<div class="animate-fade-in-up w-full max-w-6xl">
 			{@render children()}
 		</div>
 	</div>
@@ -59,25 +56,3 @@
 
 <ThemeToggle />
 <Analytics />
-
-<style>
-	.sponsors-surface {
-		--color-bg: #080808;
-		--color-text: #f5f5f5;
-		--color-text-subtle: #aaaaaa;
-		--color-border: #303030;
-		--sponsor-link: #4dabf7;
-		--sponsor-agentuity-icon: #00ffff;
-
-		background-color: var(--color-bg);
-	}
-
-	:global(html[data-theme='light']) .sponsors-surface {
-		--color-bg: #fafaf8;
-		--color-text: #0b0d10;
-		--color-text-subtle: #555f57;
-		--color-border: rgba(11, 13, 16, 0.12);
-		--sponsor-link: var(--color-accent-blue);
-		--sponsor-agentuity-icon: #087d89;
-	}
-</style>
