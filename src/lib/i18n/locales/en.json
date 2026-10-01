@@ -479,5 +479,11 @@
 	"m_9660996e8b8b": "Hover or focus a key",
 	"m_2fdcf62686d8": "Hover or focus a key to see the keybinding",
 	"m_74752963b340": "{title} preview",
-	"m_27670ccabf3f": "tip: <s0>open the full-size image</s0>, then copy or paste it into GPT or Claude for a deeper walkthrough, or to adapt it to your own setup."
+	"m_27670ccabf3f": "tip: <s0>open the full-size image</s0>, then copy or paste it into GPT or Claude for a deeper walkthrough, or to adapt it to your own setup.",
+	"m_0ce4c9a0f0e7": "Faster GitHub Actions without rewriting your workflows. Swap the runner and keep shipping.",
+	"m_892cf600cb05": "Blacksmith logo",
+	"m_7c512bc15ee0": "Infrastructure defined in your code. Run your whole backend locally, then deploy to your own cloud.",
+	"m_090a5dfdb92c": "Encore logo",
+	"m_7c25947b024c": "The team behind Grok Bot and Cursor. AI teammates for research, coding, and getting work done.",
+	"m_959ea52a841e": "SpaceXAI logo"
 }

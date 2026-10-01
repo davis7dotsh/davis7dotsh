@@ -1441,5 +1441,23 @@
 	},
 	"m_27670ccabf3f": {
 		"context": "Ben Davis’s personal website. Casual, concise first-person voice for developers. Preserve brand/product names, commands, keyboard shortcuts, and numbered XML-like formatting placeholders exactly. Translate complete sentences naturally. Source: routes/[[lang=locale]]/home-server/+page.svelte"
+	},
+	"m_0ce4c9a0f0e7": {
+		"context": "Ben Davis’s personal website. Casual, concise first-person voice for developers. Preserve brand/product names, commands, keyboard shortcuts, and numbered XML-like formatting placeholders exactly. Translate complete sentences naturally. Source: routes/[[lang=locale]]/sponsors/+page.svelte"
+	},
+	"m_892cf600cb05": {
+		"context": "Ben Davis’s personal website. Casual, concise first-person voice for developers. Preserve brand/product names, commands, keyboard shortcuts, and numbered XML-like formatting placeholders exactly. Translate complete sentences naturally. Source: routes/[[lang=locale]]/sponsors/+page.svelte"
+	},
+	"m_7c512bc15ee0": {
+		"context": "Ben Davis’s personal website. Casual, concise first-person voice for developers. Preserve brand/product names, commands, keyboard shortcuts, and numbered XML-like formatting placeholders exactly. Translate complete sentences naturally. Source: routes/[[lang=locale]]/sponsors/+page.svelte"
+	},
+	"m_090a5dfdb92c": {
+		"context": "Ben Davis’s personal website. Casual, concise first-person voice for developers. Preserve brand/product names, commands, keyboard shortcuts, and numbered XML-like formatting placeholders exactly. Translate complete sentences naturally. Source: routes/[[lang=locale]]/sponsors/+page.svelte"
+	},
+	"m_7c25947b024c": {
+		"context": "Ben Davis’s personal website. Casual, concise first-person voice for developers. Preserve brand/product names, commands, keyboard shortcuts, and numbered XML-like formatting placeholders exactly. Translate complete sentences naturally. Source: routes/[[lang=locale]]/sponsors/+page.svelte"
+	},
+	"m_959ea52a841e": {
+		"context": "Ben Davis’s personal website. Casual, concise first-person voice for developers. Preserve brand/product names, commands, keyboard shortcuts, and numbered XML-like formatting placeholders exactly. Translate complete sentences naturally. Source: routes/[[lang=locale]]/sponsors/+page.svelte"
 	}
 }

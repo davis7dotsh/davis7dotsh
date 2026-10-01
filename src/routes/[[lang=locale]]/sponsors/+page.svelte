@@ -1,6 +1,9 @@
 <script lang="ts">
 	import { tr, localizePath } from '$lib/i18n';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
+	import blacksmithLogo from '$lib/svg/sponsors/blacksmith.svg?raw';
+	import encoreLogo from '$lib/svg/sponsors/encore.svg?raw';
+	import spacexaiLogo from '$lib/svg/sponsors/spacexai.svg?raw';
 	import agentuityLogo from '$lib/svg/sponsors/agentuity.svg?raw';
 	import convexLogo from '$lib/svg/sponsors/convex.svg?raw';
 	import daytonaLogo from '$lib/svg/sponsors/daytona.svg?raw';
@@ -90,6 +93,33 @@
 				'The auth platform for everything from insane enterprise setups all the way down to side projects.',
 			logo: workosLogo,
 			logoAlt: 'WorkOS logo'
+		},
+		{
+			slug: 'blacksmith',
+			name: 'Blacksmith',
+			href: 'https://www.blacksmith.sh/',
+			description:
+				'Faster GitHub Actions without rewriting your workflows. Swap the runner and keep shipping.',
+			logo: blacksmithLogo,
+			logoAlt: 'Blacksmith logo'
+		},
+		{
+			slug: 'encore',
+			name: 'Encore',
+			href: 'https://encore.dev/',
+			description:
+				'Infrastructure defined in your code. Run your whole backend locally, then deploy to your own cloud.',
+			logo: encoreLogo,
+			logoAlt: 'Encore logo'
+		},
+		{
+			slug: 'spacexai',
+			name: 'SpaceXAI',
+			href: 'https://x.ai/',
+			description:
+				'The team behind Grok Bot and Cursor. AI teammates for research, coding, and getting work done.',
+			logo: spacexaiLogo,
+			logoAlt: 'SpaceXAI logo'
 		}
 	] as const;
 
