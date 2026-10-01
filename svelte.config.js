@@ -1,6 +1,16 @@
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { locales } from './src/lib/i18n/config.ts';
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+
+// Permit only the exact startup script, without a blocking network request or
+// unsafe-inline. Read the template so formatting and edits keep the hash in sync.
+const themeScript = readFileSync(new URL('./src/app.html', import.meta.url), 'utf8').match(
+	/<script id="theme-init">([\s\S]*?)<\/script>/
+)?.[1];
+if (!themeScript) throw new Error('Missing theme initializer in src/app.html');
+const themeScriptHash = `sha256-${createHash('sha256').update(themeScript).digest('base64')}`;
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -27,7 +37,7 @@ const config = {
 				'form-action': ['self'],
 				'img-src': ['self', 'data:'],
 				'object-src': ['none'],
-				'script-src': ['self'],
+				'script-src': ['self', themeScriptHash],
 				'style-src-elem': ['self'],
 				'style-src-attr': ['unsafe-inline']
 			}
