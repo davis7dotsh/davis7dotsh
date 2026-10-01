@@ -9,6 +9,13 @@ pnpm install
 pnpm dev --host localhost --port 5173
 ```
 
+To preview a production build locally:
+
+```sh
+pnpm build
+pnpm preview --host localhost --port 4173
+```
+
 Unprefixed page URLs such as `/` or `/macos` redirect on the server using the browser’s `Accept-Language` header. Regional languages and preference weights are supported, with English as the fallback. Redirects are not cached.
 
 Explicit locale paths always win over browser preferences, for example `/ja/macos` or `/en/sponsors`. Internal links and the AI archive redirect preserve that explicit language. There is no language dropdown. Query strings are preserved; browsers retain fragments across the redirect.
