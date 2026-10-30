@@ -1,12 +1,11 @@
 import { page } from '$app/state';
 import source from './locales/en.json';
-import { isLocale, withLocale } from './config';
+import { routeLocale, withLocale } from './config';
 
 const normalize = (value: string) => value.replace(/\s+/g, ' ').trim();
 const keys = new Map(Object.entries(source).map(([key, value]) => [normalize(value), key]));
 export function currentLocale() {
-	const value = page.params.lang ?? 'en';
-	return isLocale(value) ? value : 'en';
+	return routeLocale(page.params.lang);
 }
 export function tr(message: string, values: Record<string, string | number> = {}) {
 	const key = keys.get(normalize(message));

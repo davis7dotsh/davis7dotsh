@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { tr, localizePath } from '$lib/i18n';
+	import { tr } from '$lib/i18n';
 	let keyTitle = $state('Hover or focus a key');
 	let keyDescription = $state('Hover or focus a key to see the keybinding');
 	let hoveredKey = $state.raw<{ label: string } | null>(null);
 	let lastTimeout: number | null = null;
 
 	// Simple keyboard layout: each row is an array of keys
-	const layout = $state([
+	const layout = [
 		[
 			{ label: 'Esc', width: 50 },
 			{ label: 'F1', width: 40 },
@@ -143,7 +143,7 @@
 			{ label: 'Cmd', width: 60 },
 			{ label: 'Opt', width: 60 }
 		]
-	]);
+	];
 
 	const keyHeight = 40;
 	const rowSpacing = 10;
@@ -153,17 +153,15 @@
 	const rowOffsets = [10, 10, 30, 40, 50, 10];
 
 	// Pre-calculate positions
-	const keys = $derived(
-		layout.flatMap((row, rowIndex) => {
-			let x = rowOffsets[rowIndex];
-			const y = rowSpacing + rowIndex * (keyHeight + rowSpacing);
-			return row.map((key) => {
-				const k = { ...key, x, y };
-				x += key.width + keySpacing;
-				return k;
-			});
-		})
-	);
+	const keys = layout.flatMap((row, rowIndex) => {
+		let x = rowOffsets[rowIndex];
+		const y = rowSpacing + rowIndex * (keyHeight + rowSpacing);
+		return row.map((key) => {
+			const k = { ...key, x, y };
+			x += key.width + keySpacing;
+			return k;
+		});
+	});
 
 	function activateKey(key: (typeof keys)[0]) {
 		if (key.label === 'Caps') return;
@@ -224,13 +222,12 @@
 			<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 			<g
 				class="key-group"
-				class:key-group-static={!isInteractive}
 				role={isInteractive ? 'button' : undefined}
 				tabindex={isInteractive ? 0 : undefined}
 				aria-label={isInteractive
 					? `${key.label || 'Space'}: ${tr(key.title ?? '')}. ${tr(key.description || '')}`
 					: undefined}
-				style:cursor={isCapsLock ? 'default' : isInteractive ? 'pointer' : 'default'}
+				style:cursor={isInteractive ? 'pointer' : 'default'}
 				onmouseenter={() => activateKey(key)}
 				onmouseleave={deactivateKey}
 				onfocus={() => activateKey(key)}

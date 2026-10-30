@@ -21,12 +21,6 @@ type SnapshotData = {
 	subs: RatingEntry[];
 };
 
-export type RatingsIndex = {
-	title: string;
-	latestSlug: string;
-	snapshots: { id: string; slug: string; label: string; file: string }[];
-};
-
 function object(value: unknown, label: string): Record<string, unknown> {
 	if (typeof value !== 'object' || value === null || Array.isArray(value)) {
 		throw new Error(`${label} must be an object`);

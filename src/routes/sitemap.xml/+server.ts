@@ -1,11 +1,10 @@
-import { locales, withLocale } from '$lib/i18n/config';
+import { locales, localizedPagePaths, withLocale } from '$lib/i18n/config';
 import type { RequestHandler } from './$types';
-import { getAiSnapshotMetas } from '$lib/ai/manifest';
+import { aiSnapshots } from '$lib/ai/manifest';
 import { absoluteUrl } from '$lib/seo';
 
 export const prerender = true;
 
-const staticPaths = ['/', '/sponsors', '/macos', '/home-server', '/karabiner', '/font', '/sv'];
 const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 function snapshotPath(slug: string) {
@@ -18,7 +17,7 @@ function escapeXml(value: string) {
 }
 
 export const GET = (() => {
-	const paths = [...staticPaths, ...getAiSnapshotMetas().map(({ slug }) => snapshotPath(slug))];
+	const paths = [...localizedPagePaths, ...aiSnapshots.map(({ slug }) => snapshotPath(slug))];
 	const urls = paths
 		.flatMap((path) => locales.map((locale) => withLocale(path, locale)))
 		.map((path) => `\t<url><loc>${escapeXml(absoluteUrl(path))}</loc></url>`)

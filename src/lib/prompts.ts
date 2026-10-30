@@ -190,8 +190,7 @@ NOTE: If there is not a primary color set, just use orange-500
 `;
 
 type PromptOptions = {
-	vercelSetup: boolean;
-	cloudflareSetup: boolean;
+	provider: 'vercel' | 'cloudflare' | null;
 	cursorRules: boolean;
 	usefulPackages: boolean;
 	asyncSvelte: boolean;
@@ -211,8 +210,8 @@ export function getPrompts(opts: PromptOptions) {
 	if (opts.asyncSvelte) prompts.push(ASYNC_SVELTE_PROMPT);
 	if (opts.cursorRules) prompts.push(CURSOR_RULES_PROMPT);
 	if (opts.usefulPackages) prompts.push(USEFUL_PACKAGES_PROMPT);
-	if (opts.vercelSetup) prompts.push(VERCEL_SETUP_PROMPT);
-	if (opts.cloudflareSetup) prompts.push(CLOUDFLARE_SETUP_PROMPT);
+	if (opts.provider === 'vercel') prompts.push(VERCEL_SETUP_PROMPT);
+	if (opts.provider === 'cloudflare') prompts.push(CLOUDFLARE_SETUP_PROMPT);
 	if (opts.vscodeTheme) prompts.push(VSCODE_THEME_PROMPT(opts.vscodeTheme));
 	if (opts.tailwindTheme) prompts.push(TAILWIND_THEME_PROMPT(opts.tailwindTheme));
 	if (opts.helloWorld) prompts.push(HELLO_WORLD_PROMPT);

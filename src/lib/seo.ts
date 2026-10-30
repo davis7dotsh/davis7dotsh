@@ -1,4 +1,4 @@
-import { aiIndexManifest, getAiSnapshotMetas } from '$lib/ai/manifest';
+import { aiSnapshots, latestAiSnapshot } from './ai/manifest.ts';
 
 type SeoConfig = {
 	title: string;
@@ -18,9 +18,6 @@ const defaultSeo: SeoConfig = {
 
 const aiDescriptions =
 	"Rankings and notes on the AI models, harnesses, and subscriptions I'm using.";
-const aiSnapshots = getAiSnapshotMetas();
-const latestAiSnapshot =
-	aiSnapshots.find((snapshot) => snapshot.id === aiIndexManifest.defaultSnapshot) ?? aiSnapshots[0];
 
 function aiSnapshotSeo(slug: string, label: string): SeoConfig {
 	return {
