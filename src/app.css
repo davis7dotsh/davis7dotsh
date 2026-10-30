@@ -375,10 +375,6 @@ input:focus-visible {
 	background-size: 24px 24px;
 }
 
-.svg-container {
-	@apply flex h-8 w-8 items-center justify-center;
-}
-
 .prose {
 	color: var(--color-text-muted);
 	max-width: 65ch;

@@ -53,7 +53,7 @@ After editing copy:
 pnpm i18n:translate
 ```
 
-This extracts source strings, uses the GT project in `gt.config.json`, downloads all target languages configured in `gt.config.json`, and checks catalog completeness and placeholders. Add UI copy with `tr('English text')`. Dynamic text needs a matching entry in the English catalog; the extractor also collects descriptive object fields and the AI snapshot data. Run `pnpm i18n:extract` to update source strings without calling GT.
+This extracts source strings, uses the GT project in `gt.config.json`, downloads all target languages configured in `gt.config.json`, and checks catalog completeness and placeholders. Add UI copy with `tr('English text')`. Dynamic text needs a matching entry in the English catalog; the extractor also reads descriptive fields in components, the home-server inventory, AI snapshots, and page SEO. It lists existing catalog entries it could not trace and preserves them for review. Run `pnpm i18n:extract` to update source strings without calling GT.
 
 Commit the updated catalogs and `gt-lock.json` alongside your copy changes. Unchanged messages reuse existing translations; new or changed messages are translated by GT. Builds serve the checked-in catalogs and do not generate translations.
 

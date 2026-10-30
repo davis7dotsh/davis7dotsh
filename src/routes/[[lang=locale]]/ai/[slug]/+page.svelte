@@ -40,12 +40,6 @@
 		{ key: 'subscriptions', label: 'Subscriptions', entries: data.snapshot.subs }
 	]);
 
-	const allSnapshots = $derived(data.index.snapshots);
-
-	function snapshotShort(label: string) {
-		return tr(label);
-	}
-
 	function tldr(entries: RatingEntry[]) {
 		const recs = entries.filter((entry) => entry.recommended).map((entry) => entry.name);
 		return recs.length ? recs.join(' · ') : tr('None this round');
@@ -97,18 +91,17 @@
 			)}
 		</p>
 
-		{#if allSnapshots.length > 1}
+		{#if data.index.snapshots.length > 1}
 			<p class="previous">
 				<span class="previous-label">{tr('Historical:')}</span>
-				{#each allSnapshots as snapshot, i (snapshot.slug)}
+				{#each data.index.snapshots as snapshot, i (snapshot.slug)}
 					{#if snapshot.slug === data.snapshot.slug}
-						<span class="snapshot-current" aria-current="page">{snapshotShort(snapshot.label)}</span
-						>
+						<span class="snapshot-current" aria-current="page">{tr(snapshot.label)}</span>
 					{:else}
 						<a class="brand-link" href={localizePath('/ai/' + snapshot.slug)}
-							>{snapshotShort(snapshot.label)}</a
+							>{tr(snapshot.label)}</a
 						>
-					{/if}{#if i < allSnapshots.length - 1}<span aria-hidden="true">,</span>{/if}
+					{/if}{#if i < data.index.snapshots.length - 1}<span aria-hidden="true">,</span>{/if}
 				{/each}
 			</p>
 		{/if}

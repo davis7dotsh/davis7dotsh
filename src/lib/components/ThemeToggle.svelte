@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tr, localizePath } from '$lib/i18n';
+	import { tr } from '$lib/i18n';
 	import { onMount } from 'svelte';
 	import Icon from '$lib/components/Icon.svelte';
 
@@ -7,8 +7,7 @@
 
 	const storageKey = 'theme-preference';
 
-	let theme = $state<Theme>('dark');
-	let mounted = $state(false);
+	let theme = $state<Theme>();
 
 	function applyTheme(nextTheme: Theme) {
 		theme = nextTheme;
@@ -29,29 +28,28 @@
 	}
 
 	onMount(() => {
-		mounted = true;
-
 		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-		const storedTheme = window.localStorage.getItem(storageKey);
-		const initialTheme: Theme =
-			storedTheme === 'light' || storedTheme === 'dark'
-				? storedTheme
-				: mediaQuery.matches
-					? 'dark'
-					: 'light';
+		function syncTheme() {
+			let preference: string | null = null;
+			try {
+				preference = localStorage.getItem(storageKey);
+			} catch {
+				// Storage can be unavailable in restricted browser contexts.
+			}
+			applyTheme(
+				preference === 'light' || preference === 'dark'
+					? preference
+					: mediaQuery.matches
+						? 'dark'
+						: 'light'
+			);
+		}
 
-		applyTheme(initialTheme);
-
-		const handleChange = (event: MediaQueryListEvent) => {
-			if (window.localStorage.getItem(storageKey) === 'light') return;
-			if (window.localStorage.getItem(storageKey) === 'dark') return;
-			applyTheme(event.matches ? 'dark' : 'light');
-		};
-
-		mediaQuery.addEventListener('change', handleChange);
+		syncTheme();
+		mediaQuery.addEventListener('change', syncTheme);
 
 		return () => {
-			mediaQuery.removeEventListener('change', handleChange);
+			mediaQuery.removeEventListener('change', syncTheme);
 		};
 	});
 </script>
@@ -61,16 +59,8 @@
 	onclick={toggleTheme}
 	class="icon-button fixed top-4 right-4 z-50 h-11 w-11 backdrop-blur transition-[transform,background-color,border-color,color] duration-200 hover:-translate-y-px"
 	aria-label={tr('Toggle color theme')}
-	aria-pressed={mounted ? theme === 'dark' : undefined}
+	aria-pressed={theme ? theme === 'dark' : undefined}
 	title={tr('Toggle color theme')}
 >
-	{#if mounted}
-		{#if theme === 'dark'}
-			<Icon name="sun" size={18} />
-		{:else}
-			<Icon name="moon" size={18} />
-		{/if}
-	{:else}
-		<Icon name="sun-moon" size={18} />
-	{/if}
+	<Icon name={theme === 'dark' ? 'sun' : theme === 'light' ? 'moon' : 'sun-moon'} size={18} />
 </button>

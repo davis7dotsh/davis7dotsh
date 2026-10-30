@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tr, localizePath } from '$lib/i18n';
+	import { tr } from '$lib/i18n';
 	import SocialLinks from '$lib/components/SocialLinks.svelte';
 	import PageHeader from '$lib/components/PageHeader.svelte';
 	import agentuityLogo from '$lib/svg/sponsors/agentuity.svg';
@@ -14,7 +14,6 @@
 
 	const sponsors = [
 		{
-			slug: 'agentuity',
 			accent: '#8b5cf6',
 			name: 'Agentuity',
 			href: 'https://davis7.link/agentuity',
@@ -25,7 +24,6 @@
 			logoClass: 'max-h-10 max-w-[10rem]'
 		},
 		{
-			slug: 'greptile',
 			accent: '#22c55e',
 			name: 'Greptile',
 			href: 'https://davis7.link/greptile',
@@ -35,7 +33,6 @@
 			logoClass: 'max-h-9 max-w-[10rem]'
 		},
 		{
-			slug: 'firecrawl',
 			accent: '#fa5d19',
 			name: 'Firecrawl',
 			href: 'https://davis7.link/firecrawl',
@@ -46,7 +43,6 @@
 			logoClass: 'max-h-9 max-w-[10rem]'
 		},
 		{
-			slug: 'railway',
 			accent: '#a855f7',
 			name: 'Railway',
 			href: 'https://davis7.link/railway',
@@ -57,7 +53,6 @@
 			logoClass: 'max-h-10 max-w-[9.5rem]'
 		},
 		{
-			slug: 'depot',
 			accent: '#46a759',
 			name: 'Depot',
 			href: 'https://davis7.link/depot',
@@ -68,7 +63,6 @@
 			logoClass: 'max-h-9 max-w-[10rem]'
 		},
 		{
-			slug: 'daytona',
 			accent: '#38bdf8',
 			name: 'Daytona',
 			href: 'https://davis7.link/daytona',
@@ -78,7 +72,6 @@
 			logoClass: 'max-h-8 max-w-[10.75rem]'
 		},
 		{
-			slug: 'convex',
 			accent: '#ee342f',
 			name: 'Convex',
 			href: 'https://davis7.link/convex',
@@ -89,7 +82,6 @@
 			logoClass: 'max-h-10 max-w-[10rem]'
 		},
 		{
-			slug: 'upstash',
 			accent: '#00e9a3',
 			name: 'Upstash',
 			href: 'https://davis7.link/upstash',
@@ -100,7 +92,6 @@
 			logoClass: 'max-h-8 max-w-[12rem]'
 		},
 		{
-			slug: 'workos',
 			accent: '#6366f1',
 			name: 'WorkOS',
 			href: 'https://davis7.link/workos',

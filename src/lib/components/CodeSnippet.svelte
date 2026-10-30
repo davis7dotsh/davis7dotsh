@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tr, localizePath } from '$lib/i18n';
+	import { tr } from '$lib/i18n';
 	import Icon from '$lib/components/Icon.svelte';
 	import { trackCopy } from '$lib/analytics';
 

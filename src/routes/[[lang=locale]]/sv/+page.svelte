@@ -5,13 +5,42 @@
 	import ColorField from '$lib/components/ColorField.svelte';
 	import { trackCopy } from '$lib/analytics';
 
-	let vercelSetup = $state(false);
-	let cloudflareSetup = $state(false);
-	let cursorRules = $state(false);
-	let usefulPackages = $state(false);
-	let asyncSvelte = $state(false);
-	let helloWorld = $state(false);
-	let convexSetup = $state(false);
+	let provider = $state<'vercel' | 'cloudflare' | null>(null);
+	const options = [
+		{
+			key: 'convexSetup',
+			label: 'Convex Setup',
+			description: 'Sets up Convex in your SvelteKit app and gives you a good Cursor rule for it'
+		},
+		{
+			key: 'cursorRules',
+			label: 'Cursor Rules',
+			description:
+				'Adds 5 useful Cursor rules for SvelteKit: global, neverthrow, Svelte, Tailwind CSS, and Convex'
+		},
+		{
+			key: 'usefulPackages',
+			label: 'Useful Packages',
+			description: 'Adds useful packages for SvelteKit: runed, neverthrow, and Zod'
+		},
+		{
+			key: 'asyncSvelte',
+			label: 'Async Svelte',
+			description: 'Updates the svelte.config.js file to support async Svelte'
+		},
+		{
+			key: 'helloWorld',
+			label: 'Hello World',
+			description: 'Makes the default page a nicer Hello World'
+		}
+	] as const;
+	let selected = $state({
+		convexSetup: false,
+		cursorRules: false,
+		usefulPackages: false,
+		asyncSvelte: false,
+		helloWorld: false
+	});
 	let vscodeThemeEnabled = $state(false);
 	let topBarColor = $state('#232831');
 	let topBarTextColor = $state('#ffffff');
@@ -35,13 +64,8 @@
 		isLoading = true;
 		try {
 			const prompts = getPrompts({
-				vercelSetup,
-				cloudflareSetup,
-				cursorRules,
-				usefulPackages,
-				convexSetup,
-				asyncSvelte,
-				helloWorld,
+				provider,
+				...selected,
 				vscodeTheme: vscodeThemeEnabled ? { topBarColor, topBarTextColor } : undefined,
 				tailwindTheme: tailwindThemeEnabled ? { primaryColor } : undefined
 			});
@@ -62,33 +86,14 @@
 
 	function toggleAll() {
 		const allChecked =
-			vercelSetup &&
-			cursorRules &&
-			usefulPackages &&
-			asyncSvelte &&
-			helloWorld &&
+			provider === 'vercel' &&
+			options.every(({ key }) => selected[key]) &&
 			vscodeThemeEnabled &&
-			tailwindThemeEnabled &&
-			convexSetup;
-		vercelSetup = !allChecked;
-		cloudflareSetup = false;
-		cursorRules = !allChecked;
-		usefulPackages = !allChecked;
-		asyncSvelte = !allChecked;
-		helloWorld = !allChecked;
+			tailwindThemeEnabled;
+		provider = allChecked ? null : 'vercel';
+		for (const { key } of options) selected[key] = !allChecked;
 		vscodeThemeEnabled = !allChecked;
 		tailwindThemeEnabled = !allChecked;
-		convexSetup = !allChecked;
-	}
-
-	function handleVercelChange(value: boolean) {
-		vercelSetup = value;
-		if (value) cloudflareSetup = false;
-	}
-
-	function handleCloudflareChange(value: boolean) {
-		cloudflareSetup = value;
-		if (value) vercelSetup = false;
 	}
 </script>
 
@@ -127,8 +132,8 @@
 				<label class="option-row">
 					<input
 						type="checkbox"
-						checked={vercelSetup}
-						onchange={(e) => handleVercelChange(e.currentTarget.checked)}
+						checked={provider === 'vercel'}
+						onchange={(e) => (provider = e.currentTarget.checked ? 'vercel' : null)}
 						class="option-checkbox"
 					/>
 					<div>
@@ -143,8 +148,8 @@
 				<label class="option-row">
 					<input
 						type="checkbox"
-						checked={cloudflareSetup}
-						onchange={(e) => handleCloudflareChange(e.currentTarget.checked)}
+						checked={provider === 'cloudflare'}
+						onchange={(e) => (provider = e.currentTarget.checked ? 'cloudflare' : null)}
 						class="option-checkbox"
 					/>
 					<div>
@@ -158,63 +163,19 @@
 						</p>
 					</div>
 				</label>
-				<label class="option-row">
-					<input type="checkbox" bind:checked={convexSetup} class="option-checkbox" />
-					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)"
-							>{tr('Convex Setup')}</span
-						>
-						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							{tr('Sets up Convex in your SvelteKit app and gives you a good Cursor rule for it')}
-						</p>
-					</div>
-				</label>
-				<label class="option-row">
-					<input type="checkbox" bind:checked={cursorRules} class="option-checkbox" />
-					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)"
-							>{tr('Cursor Rules')}</span
-						>
-						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							{tr(
-								'Adds 5 useful Cursor rules for SvelteKit: global, neverthrow, Svelte, Tailwind CSS, and Convex'
-							)}
-						</p>
-					</div>
-				</label>
-				<label class="option-row">
-					<input type="checkbox" bind:checked={usefulPackages} class="option-checkbox" />
-					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)"
-							>{tr('Useful Packages')}</span
-						>
-						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							{tr('Adds useful packages for SvelteKit: runed, neverthrow, and Zod')}
-						</p>
-					</div>
-				</label>
-				<label class="option-row">
-					<input type="checkbox" bind:checked={asyncSvelte} class="option-checkbox" />
-					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)"
-							>{tr('Async Svelte')}</span
-						>
-						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							{tr('Updates the svelte.config.js file to support async Svelte')}
-						</p>
-					</div>
-				</label>
-				<label class="option-row">
-					<input type="checkbox" bind:checked={helloWorld} class="option-checkbox" />
-					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)"
-							>{tr('Hello World')}</span
-						>
-						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
-							{tr('Makes the default page a nicer Hello World')}
-						</p>
-					</div>
-				</label>
+				{#each options as option (option.key)}
+					<label class="option-row">
+						<input type="checkbox" bind:checked={selected[option.key]} class="option-checkbox" />
+						<div>
+							<span class="text-sm font-medium" style="color: var(--color-text)"
+								>{tr(option.label)}</span
+							>
+							<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
+								{tr(option.description)}
+							</p>
+						</div>
+					</label>
+				{/each}
 			</div>
 		</div>
 

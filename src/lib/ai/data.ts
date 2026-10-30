@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
-import { aiIndexManifest, getAiSnapshotMetas } from './manifest';
-import { parseRatingsSnapshot, type RatingsIndex } from './ratings';
+import { aiSnapshots, aiTitle, latestAiSnapshot } from './manifest';
+import { parseRatingsSnapshot } from './ratings';
 
 const snapshotFiles = import.meta.glob('./data/*.json', {
 	eager: true,
@@ -14,26 +14,21 @@ function loadSnapshot(filename: string) {
 }
 
 export function getIndex() {
-	const legacy = aiIndexManifest;
-	const snapshots = getAiSnapshotMetas();
 	const seenSlugs = new Set<string>();
 
-	for (const snapshot of snapshots) {
+	for (const snapshot of aiSnapshots) {
 		if (seenSlugs.has(snapshot.slug))
 			error(500, `AI index contains duplicate snapshot slug: ${snapshot.slug}`);
 		seenSlugs.add(snapshot.slug);
 	}
 
-	if (snapshots.length === 0) error(500, 'AI index must contain at least one snapshot');
-
-	const latest =
-		snapshots.find((snapshot) => snapshot.id === legacy.defaultSnapshot) ?? snapshots[0];
+	if (!latestAiSnapshot) error(500, 'AI index must contain at least one snapshot');
 
 	return {
-		title: legacy.title,
-		latestSlug: latest.slug,
-		snapshots
-	} satisfies RatingsIndex;
+		title: aiTitle,
+		latestSlug: latestAiSnapshot.slug,
+		snapshots: aiSnapshots
+	};
 }
 
 export function getSnapshot(slug: string) {
@@ -48,7 +43,6 @@ export function getSnapshot(slug: string) {
 		snapshot: {
 			...snapshot,
 			slug: meta.slug
-		},
-		activeSnapshotId: meta.id
+		}
 	};
 }

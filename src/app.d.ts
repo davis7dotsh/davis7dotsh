@@ -6,7 +6,6 @@ declare global {
 		// interface Locals {}
 		interface PageData {
 			translations?: Record<string, string>;
-			locale?: string;
 		}
 		// interface PageState {}
 		// interface Platform {}

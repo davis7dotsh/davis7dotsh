@@ -1,3 +1,13 @@
+export const localizedPagePaths = [
+	'/',
+	'/sponsors',
+	'/macos',
+	'/home-server',
+	'/karabiner',
+	'/font',
+	'/sv'
+];
+
 export const locales = [
 	'en',
 	'es',
@@ -35,6 +45,9 @@ export const openGraphLocales = {
 } satisfies Record<Locale, string>;
 export const isLocale = (value: string): value is Locale =>
 	locales.some((locale) => locale === value);
+export function routeLocale(lang: string | undefined): Locale {
+	return lang && isLocale(lang) ? lang : 'en';
+}
 export function stripLocale(path: string) {
 	const [pathname, ...suffix] = path.split(/(?=[?#])/);
 	const segments = pathname.split('/');
@@ -44,7 +57,7 @@ export function stripLocale(path: string) {
 export function withLocale(path: string, locale: Locale) {
 	if (!path.startsWith('/') || path.startsWith('//')) return path;
 	const clean = stripLocale(path);
-	return `/${locale}${clean === '/' ? '' : clean}`;
+	return `/${locale}${clean.replace(/^\/(?=[?#]|$)/, '')}`;
 }
 
 export function preferredLocale(acceptLanguage: string | null): Locale {

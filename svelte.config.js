@@ -1,4 +1,5 @@
-import { locales } from './src/lib/i18n/config.ts';
+import { locales, localizedPagePaths, withLocale } from './src/lib/i18n/config.ts';
+import { imageWidths } from './src/lib/image-widths.ts';
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
@@ -12,7 +13,7 @@ const config = {
 		adapter: adapter({
 			runtime: 'nodejs24.x',
 			images: {
-				sizes: [640, 828, 1200, 1920],
+				sizes: imageWidths,
 				formats: ['image/avif', 'image/webp'],
 				minimumCacheTTL: 2678400
 			}
@@ -42,11 +43,7 @@ const config = {
 				'/executor',
 				'/executor/privacy',
 				'/executor/terms',
-				...locales.flatMap((locale) =>
-					['', '/sponsors', '/macos', '/home-server', '/karabiner', '/font', '/sv'].map(
-						(route) => `/${locale}${route}`
-					)
-				)
+				...locales.flatMap((locale) => localizedPagePaths.map((path) => withLocale(path, locale)))
 			],
 			handleHttpError: ({ path, message }) => {
 				if (path === '/_vercel/image') return;

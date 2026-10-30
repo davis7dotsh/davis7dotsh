@@ -20,6 +20,7 @@ test('keeps explicit language paths, query strings, fragments, and external URLs
 	assert.equal(withLocale('/macos?demo=1#configs', 'ja'), '/ja/macos?demo=1#configs');
 	assert.equal(withLocale('/ja/macos', 'en'), '/en/macos');
 	assert.equal(withLocale('/', 'en'), '/en');
+	assert.equal(withLocale('/?demo=1#intro', 'fr'), '/fr?demo=1#intro');
 	assert.equal(withLocale('/fr', 'fr'), '/fr');
 	assert.equal(withLocale('https://example.com', 'de'), 'https://example.com');
 	assert.equal(withLocale('//example.com', 'de'), '//example.com');
