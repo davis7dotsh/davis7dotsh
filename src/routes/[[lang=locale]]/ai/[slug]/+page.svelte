@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { afterNavigate, goto } from '$app/navigation';
+	import { page } from '$app/state';
+	import { fromPromise } from 'neverthrow';
 	import { tr, localizePath, currentLocale } from '$lib/i18n';
 	import RichText from '$lib/components/RichText.svelte';
 	import type { RatingEntry } from '$lib/ai/ratings';
@@ -39,6 +42,49 @@
 		{ key: 'harnesses', label: 'Harnesses', entries: data.snapshot.harnesses },
 		{ key: 'subscriptions', label: 'Subscriptions', entries: data.snapshot.subs }
 	]);
+
+	let query = $state('');
+	const normalizedQuery = $derived(query.trim().toLowerCase());
+	const visibleSections = $derived(
+		sections
+			.map((section) => ({
+				...section,
+				results: section.entries
+					.map((item, index) => ({ item, rank: index + 1 }))
+					.filter(
+						({ item }) => !normalizedQuery || item.name.toLowerCase().includes(normalizedQuery)
+					)
+			}))
+			// Keep each section's full entries for the TL;DR; only search results are filtered.
+			.filter((section) => !normalizedQuery || section.results.length > 0)
+	);
+	const noResults = $derived(normalizedQuery !== '' && visibleSections.length === 0);
+
+	afterNavigate(({ to }) => {
+		query = to?.url.searchParams.get('q') ?? '';
+	});
+
+	function search(value: string) {
+		const url = new URL(page.url);
+		if (value) url.searchParams.set('q', value);
+		else url.searchParams.delete('q');
+		// Start every update so the latest input, including clearing, supersedes an in-flight one.
+		// A superseded navigation rejects; the newest one wins.
+		void fromPromise(
+			goto(url, {
+				replaceState: true,
+				keepFocus: true,
+				noScroll: true,
+				state: page.state
+			}),
+			(error) => error
+		);
+	}
+
+	function handleSearch(event: Event) {
+		query = (event.currentTarget as HTMLInputElement).value;
+		search(query);
+	}
 
 	function tldr(entries: RatingEntry[]) {
 		const recs = entries.filter((entry) => entry.recommended).map((entry) => entry.name);
@@ -107,86 +153,106 @@
 		{/if}
 	</header>
 
-	{#each sections as section (section.key)}
-		<section class="section" id={section.key}>
-			<h2 class="section-label">{tr(section.label)}</h2>
-			<p class="tldr"><span class="tldr-arrow">{tr('TL;DR →')}</span> {tldr(section.entries)}</p>
+	<div class="search">
+		<input
+			class="field-input search-input"
+			type="search"
+			placeholder={tr('Search')}
+			aria-label={tr('Search')}
+			autocomplete="off"
+			spellcheck="false"
+			bind:value={query}
+			oninput={handleSearch}
+		/>
+	</div>
 
-			{#if section.entries.length === 0}
-				<p class="empty">{tr('Nothing this round.')}</p>
-			{:else}
-				<ol class="items">
-					{#each section.entries as item, i (item.id)}
-						<li class="item" class:item-rec={item.recommended}>
-							<span class="item-rank" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-							<div class="item-body">
-								<p class="item-head">
-									{#if logos[item.logoId]}
-										<span class="item-logo" aria-hidden="true">
-											<img src={logos[item.logoId]} alt="" />
-										</span>
-									{/if}
-									<a
-										class="brand-link item-name"
-										href={item.url}
-										target="_blank"
-										rel="noopener noreferrer external">{item.name}</a
-									>
-									{#if item.tags?.length}
-										<span class="item-tags">
-											{#each item.tags as tag, t (tag)}
-												<span class="item-tag">{tr(tag)}</span>{#if t < item.tags.length - 1}<span
-														aria-hidden="true"
-													>
-														·
-													</span>{/if}
-											{/each}
-										</span>
-									{/if}
-									{#if item.recommended}
-										<span class="item-rec-tail">{tr('→ Recommended')}</span>
-									{/if}
-								</p>
+	{#if noResults}
+		<p class="empty no-results">{tr('Nothing this round.')}</p>
+	{:else}
+		{#each visibleSections as section (section.key)}
+			<section class="section" id={section.key}>
+				<h2 class="section-label">{tr(section.label)}</h2>
+				<p class="tldr">
+					<span class="tldr-arrow">{tr('TL;DR →')}</span>
+					{tldr(section.entries)}
+				</p>
 
-								<div class="item-desc">
-									{#each descriptionBlocks(tr(item.description)) as block, blockIndex (`${item.id}-${blockIndex}`)}
-										{#if block.type === 'list'}
-											<ul>
-												{#each block.items as line, lineIndex (`${item.id}-${blockIndex}-${lineIndex}`)}
-													<li>{line}</li>
-												{/each}
-											</ul>
-										{:else}
-											<p>{block.text}</p>
+				{#if section.results.length === 0}
+					<p class="empty">{tr('Nothing this round.')}</p>
+				{:else}
+					<ol class="items">
+						{#each section.results as { item, rank } (item.id)}
+							<li class="item" class:item-rec={item.recommended} value={rank}>
+								<span class="item-rank" aria-hidden="true">{String(rank).padStart(2, '0')}</span>
+								<div class="item-body">
+									<p class="item-head">
+										{#if logos[item.logoId]}
+											<span class="item-logo" aria-hidden="true">
+												<img src={logos[item.logoId]} alt="" />
+											</span>
 										{/if}
-									{/each}
-								</div>
+										<a
+											class="brand-link item-name"
+											href={item.url}
+											target="_blank"
+											rel="noopener noreferrer external">{item.name}</a
+										>
+										{#if item.tags?.length}
+											<span class="item-tags">
+												{#each item.tags as tag, t (tag)}
+													<span class="item-tag">{tr(tag)}</span>{#if t < item.tags.length - 1}<span
+															aria-hidden="true"
+														>
+															·
+														</span>{/if}
+												{/each}
+											</span>
+										{/if}
+										{#if item.recommended}
+											<span class="item-rec-tail">{tr('→ Recommended')}</span>
+										{/if}
+									</p>
 
-								{#if item.pros?.length || item.cons?.length}
-									<div class="item-notes">
-										{#if item.pros?.length}
-											<ul class="item-list item-list-pros" aria-label={tr('Pros')}>
-												{#each item.pros as line (line)}
-													<li><span class="glyph" aria-hidden="true">+</span> {tr(line)}</li>
-												{/each}
-											</ul>
-										{/if}
-										{#if item.cons?.length}
-											<ul class="item-list item-list-cons" aria-label={tr('Cons')}>
-												{#each item.cons as line (line)}
-													<li><span class="glyph" aria-hidden="true">−</span> {tr(line)}</li>
-												{/each}
-											</ul>
-										{/if}
+									<div class="item-desc">
+										{#each descriptionBlocks(tr(item.description)) as block, blockIndex (`${item.id}-${blockIndex}`)}
+											{#if block.type === 'list'}
+												<ul>
+													{#each block.items as line, lineIndex (`${item.id}-${blockIndex}-${lineIndex}`)}
+														<li>{line}</li>
+													{/each}
+												</ul>
+											{:else}
+												<p>{block.text}</p>
+											{/if}
+										{/each}
 									</div>
-								{/if}
-							</div>
-						</li>
-					{/each}
-				</ol>
-			{/if}
-		</section>
-	{/each}
+
+									{#if item.pros?.length || item.cons?.length}
+										<div class="item-notes">
+											{#if item.pros?.length}
+												<ul class="item-list item-list-pros" aria-label={tr('Pros')}>
+													{#each item.pros as line (line)}
+														<li><span class="glyph" aria-hidden="true">+</span> {tr(line)}</li>
+													{/each}
+												</ul>
+											{/if}
+											{#if item.cons?.length}
+												<ul class="item-list item-list-cons" aria-label={tr('Cons')}>
+													{#each item.cons as line (line)}
+														<li><span class="glyph" aria-hidden="true">−</span> {tr(line)}</li>
+													{/each}
+												</ul>
+											{/if}
+										</div>
+									{/if}
+								</div>
+							</li>
+						{/each}
+					</ol>
+				{/if}
+			</section>
+		{/each}
+	{/if}
 
 	<footer class="dispatch-foot">
 		<p>{tr('Snapshot for this period · Not a live ranking')}</p>
@@ -277,6 +343,15 @@
 		text-underline-offset: 0.2em;
 	}
 
+	.search {
+		padding-block: 1.5rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.search-input {
+		width: min(20rem, 100%);
+	}
+
 	.section {
 		padding-block: 2.5rem;
 		border-bottom: 1px solid var(--color-border);
@@ -312,6 +387,10 @@
 		font-family: var(--font-family-geist-mono);
 		font-size: 0.8rem;
 		color: var(--color-text-subtle);
+	}
+
+	.no-results {
+		padding-block: 2.5rem;
 	}
 
 	.items {
