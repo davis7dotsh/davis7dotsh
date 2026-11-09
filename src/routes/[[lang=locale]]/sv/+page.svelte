@@ -5,6 +5,7 @@
 	import { getPrompts } from '$lib/prompts';
 	import ColorField from '$lib/components/ColorField.svelte';
 	import { trackCopy } from '$lib/analytics';
+	import { readStoredJson, writeStoredJson } from '$lib/storage';
 
 	let provider = $state<'vercel' | 'cloudflare' | null>(null);
 	const options = [
@@ -66,59 +67,71 @@
 
 	let storageReady = $state(false);
 
+	// Holds the last valid color per field, so an incomplete edit can't erase it from saved setup.
+	const lastValidColors = {
+		topBarColor: '#232831',
+		topBarTextColor: '#ffffff',
+		primaryColor: '#2663EB'
+	};
+
 	function restoreSetup() {
-		try {
-			const raw = localStorage.getItem(STORAGE_KEY);
-			if (!raw) return;
+		const saved = readStoredJson(STORAGE_KEY).unwrapOr(null);
+		if (!isRecord(saved)) return;
 
-			const saved = JSON.parse(raw);
-			if (!isRecord(saved)) return;
-
-			if (saved.provider === 'vercel' || saved.provider === 'cloudflare') provider = saved.provider;
-
-			const savedSelected = saved.selected;
-			if (isRecord(savedSelected)) {
-				for (const { key } of options) {
-					if (typeof savedSelected[key] === 'boolean') selected[key] = savedSelected[key];
-				}
-			}
-
-			if (typeof saved.vscodeThemeEnabled === 'boolean')
-				vscodeThemeEnabled = saved.vscodeThemeEnabled;
-			if (isHexColor(saved.topBarColor)) topBarColor = saved.topBarColor;
-			if (isHexColor(saved.topBarTextColor)) topBarTextColor = saved.topBarTextColor;
-
-			if (typeof saved.tailwindThemeEnabled === 'boolean')
-				tailwindThemeEnabled = saved.tailwindThemeEnabled;
-			if (isHexColor(saved.primaryColor)) primaryColor = saved.primaryColor;
-		} catch {
-			// Ignore unavailable or malformed storage.
+		if (saved.provider === 'vercel' || saved.provider === 'cloudflare') {
+			provider = saved.provider;
+		} else if (saved.provider === null) {
+			provider = null;
 		}
+
+		const savedSelected = saved.selected;
+		if (isRecord(savedSelected)) {
+			for (const { key } of options) {
+				if (typeof savedSelected[key] === 'boolean') selected[key] = savedSelected[key];
+			}
+		}
+
+		if (typeof saved.vscodeThemeEnabled === 'boolean')
+			vscodeThemeEnabled = saved.vscodeThemeEnabled;
+		if (isHexColor(saved.topBarColor)) topBarColor = saved.topBarColor;
+		if (isHexColor(saved.topBarTextColor)) topBarTextColor = saved.topBarTextColor;
+
+		if (typeof saved.tailwindThemeEnabled === 'boolean')
+			tailwindThemeEnabled = saved.tailwindThemeEnabled;
+		if (isHexColor(saved.primaryColor)) primaryColor = saved.primaryColor;
+	}
+
+	function handleStorage(event: StorageEvent) {
+		// Another tab saved: adopt it instead of overwriting it with stale state.
+		if (event.key === STORAGE_KEY) restoreSetup();
 	}
 
 	onMount(() => {
 		restoreSetup();
 		storageReady = true;
+		window.addEventListener('storage', handleStorage);
+		return () => window.removeEventListener('storage', handleStorage);
 	});
 
 	$effect(() => {
 		if (!storageReady) return;
 
-		const saved = {
+		for (const [key, value] of [
+			['topBarColor', topBarColor],
+			['topBarTextColor', topBarTextColor],
+			['primaryColor', primaryColor]
+		] as const) {
+			if (isHexColor(value)) lastValidColors[key] = value;
+		}
+
+		// Blocked storage returns an error value; the tool still works for this session.
+		writeStoredJson(STORAGE_KEY, {
 			provider,
 			selected: { ...selected },
 			vscodeThemeEnabled,
-			topBarColor: isHexColor(topBarColor) ? topBarColor : undefined,
-			topBarTextColor: isHexColor(topBarTextColor) ? topBarTextColor : undefined,
-			tailwindThemeEnabled,
-			primaryColor: isHexColor(primaryColor) ? primaryColor : undefined
-		};
-
-		try {
-			localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
-		} catch {
-			// Ignore blocked storage; the tool still works for this session.
-		}
+			...lastValidColors,
+			tailwindThemeEnabled
+		});
 	});
 
 	function showToast(message: string, type: 'success' | 'error' = 'success') {
@@ -135,8 +148,15 @@
 			const prompts = getPrompts({
 				provider,
 				...selected,
-				vscodeTheme: vscodeThemeEnabled ? { topBarColor, topBarTextColor } : undefined,
-				tailwindTheme: tailwindThemeEnabled ? { primaryColor } : undefined
+				vscodeTheme: vscodeThemeEnabled
+					? {
+							topBarColor: lastValidColors.topBarColor,
+							topBarTextColor: lastValidColors.topBarTextColor
+						}
+					: undefined,
+				tailwindTheme: tailwindThemeEnabled
+					? { primaryColor: lastValidColors.primaryColor }
+					: undefined
 			});
 
 			await navigator.clipboard.writeText(prompts);

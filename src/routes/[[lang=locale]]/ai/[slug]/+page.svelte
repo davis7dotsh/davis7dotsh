@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { afterNavigate, goto } from '$app/navigation';
 	import { page } from '$app/state';
+	import { fromPromise } from 'neverthrow';
 	import { tr, localizePath, currentLocale } from '$lib/i18n';
 	import RichText from '$lib/components/RichText.svelte';
 	import type { RatingEntry } from '$lib/ai/ratings';
@@ -48,13 +49,14 @@
 		sections
 			.map((section) => ({
 				...section,
-				entries: section.entries
+				results: section.entries
 					.map((item, index) => ({ item, rank: index + 1 }))
 					.filter(
 						({ item }) => !normalizedQuery || item.name.toLowerCase().includes(normalizedQuery)
 					)
 			}))
-			.filter((section) => !normalizedQuery || section.entries.length > 0)
+			// Keep each section's full entries for the TL;DR; only search results are filtered.
+			.filter((section) => !normalizedQuery || section.results.length > 0)
 	);
 	const noResults = $derived(normalizedQuery !== '' && visibleSections.length === 0);
 
@@ -67,15 +69,16 @@
 		if (value) url.searchParams.set('q', value);
 		else url.searchParams.delete('q');
 		// Start every update so the latest input, including clearing, supersedes an in-flight one.
-
-		goto(url, {
-			replaceState: true,
-			keepFocus: true,
-			noScroll: true,
-			state: page.state
-		}).catch(() => {
-			// A newer keystroke can abort the previous URL update.
-		});
+		// A superseded navigation rejects; the newest one wins.
+		void fromPromise(
+			goto(url, {
+				replaceState: true,
+				keepFocus: true,
+				noScroll: true,
+				state: page.state
+			}),
+			(error) => error
+		);
 	}
 
 	function handleSearch(event: Event) {
@@ -171,15 +174,15 @@
 				<h2 class="section-label">{tr(section.label)}</h2>
 				<p class="tldr">
 					<span class="tldr-arrow">{tr('TL;DR →')}</span>
-					{tldr(section.entries.map(({ item }) => item))}
+					{tldr(section.entries)}
 				</p>
 
-				{#if section.entries.length === 0}
+				{#if section.results.length === 0}
 					<p class="empty">{tr('Nothing this round.')}</p>
 				{:else}
 					<ol class="items">
-						{#each section.entries as { item, rank } (item.id)}
-							<li class="item" class:item-rec={item.recommended}>
+						{#each section.results as { item, rank } (item.id)}
+							<li class="item" class:item-rec={item.recommended} value={rank}>
 								<span class="item-rank" aria-hidden="true">{String(rank).padStart(2, '0')}</span>
 								<div class="item-body">
 									<p class="item-head">

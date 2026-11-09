@@ -65,6 +65,14 @@ Keep complete sentences together. `RichText` lets GT reorder numbered inline ele
 
 GT CLI 2.20.3 can emit a CDN-disabled warning after a successful local download even with `publish: false`. This demo serves local files and does not require CDN publishing. The catalog check confirms that every translation downloaded.
 
+## Karabiner rule download
+
+`/karabiner/hyper-key-rule.json` is a single Karabiner complex-modification rule, not a `karabiner.json` configuration. The distinct filename keeps it from being saved over an existing configuration. Install it without replacing anything:
+
+1. Open Karabiner-Elements → Complex Modifications → Add your own rule.
+2. Paste the downloaded file's contents and press Save.
+3. Enable the rule in the list.
+
 ## Verification
 
 ```sh

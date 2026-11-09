@@ -4,7 +4,7 @@
 	import Icon from '$lib/components/Icon.svelte';
 	import Keyboard from '$lib/components/Keyboard.svelte';
 	import { trackCopy } from '$lib/analytics';
-	import { karabinerConfig, karabinerConfigText } from './karabiner';
+	import { karabinerConfig, karabinerConfigText, karabinerRuleFilename } from './karabiner';
 
 	const configText = karabinerConfigText;
 	let copied = $state(false);
@@ -65,9 +65,9 @@
 		<div class="flex flex-wrap items-center gap-4">
 			<button class="button" onclick={openDialog}> {tr('View Full Config')} </button>
 			<a
-				href={localizePath('/karabiner/karabiner.json')}
-				download="karabiner.json"
-				class="brand-link text-sm">karabiner.json</a
+				href={localizePath(`/karabiner/${karabinerRuleFilename}`)}
+				download={karabinerRuleFilename}
+				class="brand-link text-sm">{karabinerRuleFilename}</a
 			>
 		</div>
 
