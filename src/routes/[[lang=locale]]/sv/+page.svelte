@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { tr, localizePath } from '$lib/i18n';
 	import RichText from '$lib/components/RichText.svelte';
 	import { getPrompts } from '$lib/prompts';
@@ -51,6 +52,74 @@
 	let toastType = $state<'success' | 'error'>('success');
 	let isLoading = $state(false);
 	let copySuccess = $state(false);
+
+	const STORAGE_KEY = 'sveltekit-setup';
+	const HEX_COLOR = /^#[0-9a-f]{6}$/i;
+
+	function isRecord(value: unknown): value is Record<string, unknown> {
+		return typeof value === 'object' && value !== null && !Array.isArray(value);
+	}
+
+	function isHexColor(value: unknown): value is string {
+		return typeof value === 'string' && HEX_COLOR.test(value);
+	}
+
+	let storageReady = $state(false);
+
+	function restoreSetup() {
+		try {
+			const raw = localStorage.getItem(STORAGE_KEY);
+			if (!raw) return;
+
+			const saved = JSON.parse(raw);
+			if (!isRecord(saved)) return;
+
+			if (saved.provider === 'vercel' || saved.provider === 'cloudflare') provider = saved.provider;
+
+			const savedSelected = saved.selected;
+			if (isRecord(savedSelected)) {
+				for (const { key } of options) {
+					if (typeof savedSelected[key] === 'boolean') selected[key] = savedSelected[key];
+				}
+			}
+
+			if (typeof saved.vscodeThemeEnabled === 'boolean')
+				vscodeThemeEnabled = saved.vscodeThemeEnabled;
+			if (isHexColor(saved.topBarColor)) topBarColor = saved.topBarColor;
+			if (isHexColor(saved.topBarTextColor)) topBarTextColor = saved.topBarTextColor;
+
+			if (typeof saved.tailwindThemeEnabled === 'boolean')
+				tailwindThemeEnabled = saved.tailwindThemeEnabled;
+			if (isHexColor(saved.primaryColor)) primaryColor = saved.primaryColor;
+		} catch {
+			// Ignore unavailable or malformed storage.
+		}
+	}
+
+	onMount(() => {
+		restoreSetup();
+		storageReady = true;
+	});
+
+	$effect(() => {
+		if (!storageReady) return;
+
+		const saved = {
+			provider,
+			selected: { ...selected },
+			vscodeThemeEnabled,
+			topBarColor: isHexColor(topBarColor) ? topBarColor : undefined,
+			topBarTextColor: isHexColor(topBarTextColor) ? topBarTextColor : undefined,
+			tailwindThemeEnabled,
+			primaryColor: isHexColor(primaryColor) ? primaryColor : undefined
+		};
+
+		try {
+			localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+		} catch {
+			// Ignore blocked storage; the tool still works for this session.
+		}
+	});
 
 	function showToast(message: string, type: 'success' | 'error' = 'success') {
 		toastMessage = message;

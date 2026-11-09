@@ -4,15 +4,15 @@
 	import Icon from '$lib/components/Icon.svelte';
 	import Keyboard from '$lib/components/Keyboard.svelte';
 	import { trackCopy } from '$lib/analytics';
-	import myConfig from './karabiner.json';
+	import { karabinerConfig, karabinerConfigText } from './karabiner';
 
-	const configText = JSON.stringify(myConfig, null, 2);
+	const configText = karabinerConfigText;
 	let copied = $state(false);
 	let dialogEl = $state<HTMLDialogElement>();
 
 	const copy = async () => {
 		try {
-			await navigator.clipboard.writeText(JSON.stringify(myConfig));
+			await navigator.clipboard.writeText(JSON.stringify(karabinerConfig));
 			trackCopy('Karabiner config');
 			copied = true;
 			setTimeout(() => {
@@ -62,7 +62,14 @@
 			/>
 		</p>
 
-		<button class="button" onclick={openDialog}> {tr('View Full Config')} </button>
+		<div class="flex flex-wrap items-center gap-4">
+			<button class="button" onclick={openDialog}> {tr('View Full Config')} </button>
+			<a
+				href={localizePath('/karabiner/karabiner.json')}
+				download="karabiner.json"
+				class="brand-link text-sm">karabiner.json</a
+			>
+		</div>
 
 		<p style="color: var(--color-text-muted)">{tr('Keybindings:')}</p>
 		<ul class="w-full space-y-2">
