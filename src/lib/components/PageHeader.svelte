@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tr, localizePath } from '$lib/i18n';
+	import { tr, localizePath } from '#lib/i18n/index.ts';
 	import type { Snippet } from 'svelte';
 
 	let { title, children }: { title: string; children?: Snippet } = $props();

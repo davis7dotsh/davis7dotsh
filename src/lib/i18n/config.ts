@@ -6,7 +6,7 @@ export const localizedPagePaths = [
 	'/karabiner',
 	'/font',
 	'/sv'
-];
+] satisfies `/${string}`[];
 
 export const locales = [
 	'en',
@@ -54,6 +54,8 @@ export function stripLocale(path: string) {
 	if (isLocale(segments[1])) segments.splice(1, 1);
 	return (segments.join('/') || '/') + suffix.join('');
 }
+export function withLocale(path: `/${string}`, locale: Locale): `/${string}`;
+export function withLocale(path: string, locale: Locale): string;
 export function withLocale(path: string, locale: Locale) {
 	if (!path.startsWith('/') || path.startsWith('//')) return path;
 	const clean = stripLocale(path);

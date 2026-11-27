@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tr } from '$lib/i18n';
+	import { tr } from '#lib/i18n/index.ts';
 	let keyTitle = $state('Hover or focus a key');
 	let keyDescription = $state('Hover or focus a key to see the keybinding');
 	let hoveredKey = $state.raw<{ label: string } | null>(null);

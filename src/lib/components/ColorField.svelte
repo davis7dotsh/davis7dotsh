@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tr } from '$lib/i18n';
+	import { tr } from '#lib/i18n/index.ts';
 	let {
 		id,
 		label,
@@ -12,9 +12,9 @@
 </script>
 
 <div>
-	<label for={id} class="mb-3 block text-xs font-medium" style="color: var(--color-text-subtle)"
-		>{tr(label)}</label
-	>
+	<label for={id} class="mb-3 block text-xs font-medium" style="color: var(--color-text-subtle)">
+		{tr(label)}
+	</label>
 	<div class="flex items-center gap-3">
 		<input type="color" {id} bind:value class="field-input color-swatch cursor-pointer" />
 		<input

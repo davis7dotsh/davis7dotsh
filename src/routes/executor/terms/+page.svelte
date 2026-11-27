@@ -20,7 +20,9 @@
 <p>
 	Only the owner and clients explicitly authorized by the owner may use this instance. Connect only
 	accounts you control or are authorized to manage. Use must comply with applicable law, the
-	connected providers' terms, and the <a href={resolve('/executor/privacy')}>privacy policy</a>.
+	connected providers' terms, and the
+
+	<a href={resolve('executor/privacy')}>privacy policy</a>.
 </p>
 <h2>Responsibility for actions</h2>
 <p>

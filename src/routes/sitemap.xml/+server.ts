@@ -1,7 +1,7 @@
-import { locales, localizedPagePaths, withLocale } from '$lib/i18n/config';
+import { locales, localizedPagePaths, withLocale } from '#lib/i18n/config.ts';
 import type { RequestHandler } from './$types';
-import { aiSnapshots } from '$lib/ai/manifest';
-import { absoluteUrl } from '$lib/seo';
+import { aiSnapshots } from '#lib/ai/manifest.ts';
+import { absoluteUrl } from '#lib/seo.ts';
 
 export const prerender = true;
 

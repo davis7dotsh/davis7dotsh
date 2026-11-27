@@ -381,7 +381,7 @@ alwaysApply: false
 **Core Concepts**
 
 - **Framework:** Builds full-stack apps with Svelte components. Handles routing, data loading, build optimization, SSR/CSR/SSG.
-- **Project Structure:** Key items: `src/routes` (app pages/endpoints), `src/lib` (shared code, `$lib` alias), `src/app.html` (HTML shell), `static` (public assets), `svelte.config.js`, `vite.config.js`.
+- **Project Structure:** Key items: `src/routes` (app pages/endpoints), `src/lib` (shared code, imported via `#lib`), `src/app.html` (HTML shell), `static` (public assets), `vite.config.ts` (SvelteKit config is passed to `sveltekit({...})`; there is no `svelte.config.js`).
 
 **Routing (Filesystem-based in `src/routes`)**
 
@@ -391,7 +391,7 @@ alwaysApply: false
 - **API Endpoints:** `+server.js`. Export functions named `GET`, `POST`, etc.
 - **Remote Functions:** `.remote.ts`. For example, for a set of remote functions for "todos" the file name would be `todos.remote.ts`.
 - **Error Pages:** `+error.svelte`. Catches errors in its subtree.
-- **Dynamic Routes:** `[param]`, rest `[...param]`, optional `[[param]]`. Matchers `[param=matcher]` (defined in `src/params/matcher.js`).
+- **Dynamic Routes:** `[param]`, rest `[...param]`, optional `[[param]]`. Matchers `[param=matcher]` (all defined in `src/params.ts` with `defineParams` from `@sveltejs/kit/params`).
 
 **Page Options (Export `const` from `+page/layout .js/.server.js`)**
 
@@ -402,14 +402,14 @@ alwaysApply: false
 
 **Other Core Features**
 
-- **Hooks (`hooks.server.js`, `hooks.client.js`):** `handle` (middleware, modify `event.locals`), `handleError` (catch unexpected errors), `handleFetch` (intercept server fetch).
-- **Server-only Modules:** Use `$lib/server/`, `*.server.js`, `$env/.../private`. Build fails if imported into client code.
+- **Hooks (`hooks.server.js`, `hooks.client.js`):** Types (`Handle`, etc.) come from `@sveltejs/kit/hooks`. `handle` (middleware, modify `event.locals`), `handleError` (catch unexpected errors), `handleFetch` (intercept server fetch).
+- **Server-only Modules:** Any `server` directory, `*.server.ts`, `$app/env/private`. Build fails if imported into client code.
 - **State Management:** `CORRECT: Pass server data via load/props. Use context/stores/URL for client state. AVOID: Shared mutable server variables.`
 - **Error Handling:** `error(status, data)` helper throws expected error -> `+error.svelte`. Unexpected errors -> `handleError`.
 - **Link Options (`<a>` attributes):** `data-sveltekit-preload-data/code`, `data-sveltekit-reload`, etc. Tune navigation/preloading.
-- **Service Workers (`src/service-worker.js`):** Offline support via `$service-worker` module.
+- **Service Workers (`src/service-worker/index.ts`):** Offline support. `version` from `$app/env`, asset lists from `$app/manifest`.
 - **Snapshots (`snapshot` export):** Preserve ephemeral component state across navigation.
-- **Shallow Routing (`$app/navigation`):** `pushState`/`replaceState` to change URL/state without navigation. Access via `page.state`.
+- **Shallow Routing (`$app/navigation`):** `goto(url, { shallow: true, state })` to change URL/state without navigation. Access via `page.state`.
 
 **Best Practices**
 
@@ -417,14 +417,14 @@ alwaysApply: false
 
 **Key Modules Reference**
 
-- **`@sveltejs/kit`:** `error`, `fail`, `redirect`, `json`, `text`.
+- **`@sveltejs/kit`:** `error`, `fail`, `redirect`. Use `Response.json(...)` and `new Response(text)` for endpoint responses.
 - **`$app/forms`:** `enhance`, `applyAction`, `deserialize`.
-- **`$app/navigation`:** `goto`, `invalidate`, `invalidateAll`, `preloadData`, `preloadCode`, `beforeNavigate`, `afterNavigate`, `pushState`, `replaceState`.
-- **`$app/paths`:** `base`, `assets`.
+- **`$app/navigation`:** `goto`, `invalidate`, `refreshAll`, `preloadData`, `preloadCode`, `beforeNavigate`, `onNavigate`, `afterNavigate`.
+- **`$app/paths`:** `asset`, `resolve`.
 - **`$app/server` (Server-only):** `read`, `getRequestEvent`.
 - **`$app/state`:** `page`, `navigating`, `updated`.
-- **`$env/...`:** Access environment variables.
-- **`$lib`:** Alias for `src/lib`.
+- **`$app/env/public`, `$app/env/private`:** Environment variables, declared in `src/env.ts` with `defineEnvVars` from `@sveltejs/kit/env`.
+- **`#lib`:** Subpath import for `src/lib`, declared in `package.json` `imports`. Include the file extension (`#lib/utils.ts`).
 
 **Import Requirements**
 
@@ -445,16 +445,15 @@ Understanding what needs an `import` statement is crucial.
 - **From `svelte/transition`, `svelte/animate` and `svelte/easing`:**
   - Built-in transitions, animations and easing functions
 - **From `@sveltejs/kit`:**
-  - API/Action helpers: `error`, `fail`, `redirect`, `json`, `text`.
+  - API/Action helpers: `error`, `fail`, `redirect`.
 - **From `$app/...` Modules (SvelteKit):**
   - `$app/forms`: `enhance`, `applyAction`, `deserialize`.
-  - `$app/navigation`: `goto`, `invalidate`, `invalidateAll`, `beforeNavigate`, `afterNavigate`, `preloadData`, `preloadCode`, `pushState`, `replaceState`, etc.
-  - `$app/paths`: `base`, `assets`.
+  - `$app/navigation`: `goto`, `invalidate`, `refreshAll`, `beforeNavigate`, `onNavigate`, `afterNavigate`, `preloadData`, `preloadCode`, etc.
+  - `$app/paths`: `asset`, `resolve`.
   - `$app/server` (Server-only): `read`, `getRequestEvent`.
   - `$app/state`: `page`, `navigating`, `updated`.
-  - `$app/environment`: `dev`, `browser`, `building`.
-- **From `$env/...` Modules (SvelteKit):**
-  - Environment variables (`$env/static/public`, `$env/static/private`, etc.).
+  - `$app/env`: `dev`, `browser`, `building`, `version`.
+  - `$app/env/public`, `$app/env/private`: environment variables declared in `src/env.ts`.
 
 # remote functions docs:
 
@@ -470,4 +469,4 @@ Understanding what needs an `import` statement is crucial.
 >
 > For complete documentation on using `await` in Svelte components, see: https://svelte.dev/docs/svelte/await-expressions/llms.txt
 >
-> **Quick setup:** Enable `experimental.async: true` in `svelte.config.js` to use `await` at the top level of `<script>`, inside `$derived`, and in markup.
+> **Quick setup:** Pass `compilerOptions: { experimental: { async: true } }` to `sveltekit({...})` in `vite.config.ts` to use `await` at the top level of `<script>`, inside `$derived`, and in markup.

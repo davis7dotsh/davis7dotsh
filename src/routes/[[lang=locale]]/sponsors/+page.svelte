@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { tr } from '$lib/i18n';
-	import SocialLinks from '$lib/components/SocialLinks.svelte';
-	import PageHeader from '$lib/components/PageHeader.svelte';
-	import agentuityLogo from '$lib/svg/sponsors/agentuity.svg';
-	import convexLogo from '$lib/svg/sponsors/convex.svg';
-	import daytonaLogo from '$lib/svg/sponsors/daytona.svg';
-	import depotLogo from '$lib/svg/sponsors/depot.svg';
-	import firecrawlLogo from '$lib/svg/sponsors/firecrawl.svg';
-	import greptileLogo from '$lib/svg/sponsors/greptile.svg';
-	import railwayLogo from '$lib/svg/sponsors/railway.svg';
-	import upstashLogo from '$lib/svg/sponsors/upstash.svg';
-	import workosLogo from '$lib/svg/sponsors/workos.svg';
+	import { tr } from '#lib/i18n/index.ts';
+	import SocialLinks from '#lib/components/SocialLinks.svelte';
+	import PageHeader from '#lib/components/PageHeader.svelte';
+	import agentuityLogo from '#lib/svg/sponsors/agentuity.svg';
+	import convexLogo from '#lib/svg/sponsors/convex.svg';
+	import daytonaLogo from '#lib/svg/sponsors/daytona.svg';
+	import depotLogo from '#lib/svg/sponsors/depot.svg';
+	import firecrawlLogo from '#lib/svg/sponsors/firecrawl.svg';
+	import greptileLogo from '#lib/svg/sponsors/greptile.svg';
+	import railwayLogo from '#lib/svg/sponsors/railway.svg';
+	import upstashLogo from '#lib/svg/sponsors/upstash.svg';
+	import workosLogo from '#lib/svg/sponsors/workos.svg';
 
 	const sponsors = [
 		{

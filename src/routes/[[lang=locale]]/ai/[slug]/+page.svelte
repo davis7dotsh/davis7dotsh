@@ -2,10 +2,10 @@
 	import { afterNavigate, goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { fromPromise } from 'neverthrow';
-	import { tr, localizePath, currentLocale } from '$lib/i18n';
-	import RichText from '$lib/components/RichText.svelte';
-	import type { RatingEntry } from '$lib/ai/ratings';
-	import { aiLogos as logos } from '$lib/ai/logos';
+	import { tr, localizePath, currentLocale } from '#lib/i18n/index.ts';
+	import RichText from '#lib/components/RichText.svelte';
+	import type { RatingEntry } from '#lib/ai/ratings.ts';
+	import { aiLogos as logos } from '#lib/ai/logos.ts';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -54,27 +54,28 @@
 					.filter(
 						({ item }) => !normalizedQuery || item.name.toLowerCase().includes(normalizedQuery)
 					)
-			}))
-			// Keep each section's full entries for the TL;DR; only search results are filtered.
+			})) // Keep each section's full entries for the TL;DR; only search results are filtered.
 			.filter((section) => !normalizedQuery || section.results.length > 0)
 	);
+
 	const noResults = $derived(normalizedQuery !== '' && visibleSections.length === 0);
 
-	afterNavigate(({ to }) => {
+	afterNavigate(({ to, shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		query = to?.url.searchParams.get('q') ?? '';
 	});
 
 	function search(value: string) {
-		const url = new URL(page.url);
+		const url = new URL(page.url.href);
 		if (value) url.searchParams.set('q', value);
 		else url.searchParams.delete('q');
 		// Start every update so the latest input, including clearing, supersedes an in-flight one.
 		// A superseded navigation rejects; the newest one wins.
 		void fromPromise(
 			goto(url, {
-				replaceState: true,
-				keepFocus: true,
-				noScroll: true,
+				replace: true,
+				reset: false,
 				state: page.state
 			}),
 			(error) => error
@@ -144,9 +145,9 @@
 					{#if snapshot.slug === data.snapshot.slug}
 						<span class="snapshot-current" aria-current="page">{tr(snapshot.label)}</span>
 					{:else}
-						<a class="brand-link" href={localizePath('/ai/' + snapshot.slug)}
-							>{tr(snapshot.label)}</a
-						>
+						<a class="brand-link" href={localizePath('/ai/' + snapshot.slug)}>
+							{tr(snapshot.label)}
+						</a>
 					{/if}{#if i < data.index.snapshots.length - 1}<span aria-hidden="true">,</span>{/if}
 				{/each}
 			</p>
@@ -195,8 +196,10 @@
 											class="brand-link item-name"
 											href={item.url}
 											target="_blank"
-											rel="noopener noreferrer external">{item.name}</a
+											rel="noopener noreferrer external"
 										>
+											{item.name}
+										</a>
 										{#if item.tags?.length}
 											<span class="item-tags">
 												{#each item.tags as tag, t (tag)}

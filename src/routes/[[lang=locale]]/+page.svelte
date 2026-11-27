@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { tr, localizePath } from '$lib/i18n';
-	import PrimarySocialLinks from '$lib/components/PrimarySocialLinks.svelte';
-	import SocialLinks from '$lib/components/SocialLinks.svelte';
+	import { tr, localizePath } from '#lib/i18n/index.ts';
+	import PrimarySocialLinks from '#lib/components/PrimarySocialLinks.svelte';
+	import SocialLinks from '#lib/components/SocialLinks.svelte';
 </script>
 
 <svelte:head>
@@ -33,9 +33,9 @@
 		<div class="home-link-list space-y-1">
 			<a href={localizePath('/sponsors')} class="resource-card">
 				<span class="resource-title font-medium">{tr('Sponsors')}</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>{tr('The companies backing my work.')}</span
-				>
+				<span class="resource-subtitle mt-1 block text-sm">
+					{tr('The companies backing my work.')}
+				</span>
 			</a>
 
 			<a
@@ -45,37 +45,37 @@
 				class="resource-card"
 			>
 				<span class="resource-title font-medium">{tr('Substack')}</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>{tr('Longer notes on AI and tech. Where I think in writing.')}</span
-				>
+				<span class="resource-subtitle mt-1 block text-sm">
+					{tr('Longer notes on AI and tech. Where I think in writing.')}
+				</span>
 			</a>
 
 			<a href={localizePath('/ai')} class="resource-card">
 				<span class="resource-title font-medium">{tr('My "State of AI"')}</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>{tr("Rankings and notes on the models, harnesses, and subscriptions I'm using.")}</span
-				>
+				<span class="resource-subtitle mt-1 block text-sm">
+					{tr("Rankings and notes on the models, harnesses, and subscriptions I'm using.")}
+				</span>
 			</a>
 
 			<a href={localizePath('/macos')} class="resource-card">
 				<span class="resource-title font-medium">{tr('My macOS Setup')}</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>{tr('Tools, shortcuts, and configs from my Mac setup.')}</span
-				>
+				<span class="resource-subtitle mt-1 block text-sm">
+					{tr('Tools, shortcuts, and configs from my Mac setup.')}
+				</span>
 			</a>
 
 			<a href={localizePath('/home-server')} class="resource-card">
 				<span class="resource-title font-medium">{tr('My Home Server')}</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>{tr('The hardware, links, and cost breakdown for my home server setup.')}</span
-				>
+				<span class="resource-subtitle mt-1 block text-sm">
+					{tr('The hardware, links, and cost breakdown for my home server setup.')}
+				</span>
 			</a>
 
 			<a href={localizePath('/karabiner')} class="resource-card">
 				<span class="resource-title font-medium">{tr('Karabiner Config')}</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>{tr('My complete config and a visualizer for every keybinding.')}</span
-				>
+				<span class="resource-subtitle mt-1 block text-sm">
+					{tr('My complete config and a visualizer for every keybinding.')}
+				</span>
 			</a>
 
 			<a
@@ -85,16 +85,16 @@
 				class="resource-card"
 			>
 				<span class="resource-title font-medium">{tr('My Pi Setup')}</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>{tr('Extensions, theme, and config for my coding agent.')}</span
-				>
+				<span class="resource-subtitle mt-1 block text-sm">
+					{tr('Extensions, theme, and config for my coding agent.')}
+				</span>
 			</a>
 
 			<a href={localizePath('/font')} class="resource-card">
 				<span class="resource-title font-medium">{tr('My Font')}</span>
-				<span class="resource-subtitle mt-1 block text-sm"
-					>{tr('The font I use in Cursor and the terminal.')}</span
-				>
+				<span class="resource-subtitle mt-1 block text-sm">
+					{tr('The font I use in Cursor and the terminal.')}
+				</span>
 			</a>
 		</div>
 	</div>

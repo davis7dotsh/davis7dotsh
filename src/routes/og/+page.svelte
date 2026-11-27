@@ -1,5 +1,5 @@
 <script lang="ts">
-	import logo from '$lib/svg/my-logo.svg';
+	import logo from '#lib/svg/my-logo.svg';
 </script>
 
 <svelte:head>

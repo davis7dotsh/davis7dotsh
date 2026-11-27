@@ -1,11 +1,11 @@
 <script>
 	import '../app.css';
-	import { tr, localizePath, currentLocale } from '$lib/i18n';
-	import { locales, openGraphLocales, stripLocale, withLocale } from '$lib/i18n/config';
+	import { tr, localizePath, currentLocale } from '#lib/i18n/index.ts';
+	import { locales, openGraphLocales, stripLocale, withLocale } from '#lib/i18n/config.ts';
 	import { page } from '$app/state';
-	import Analytics from '$lib/components/Analytics.svelte';
-	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
-	import { absoluteUrl, getSeo } from '$lib/seo';
+	import Analytics from '#lib/components/Analytics.svelte';
+	import ThemeToggle from '#lib/components/ThemeToggle.svelte';
+	import { absoluteUrl, getSeo } from '#lib/seo.ts';
 
 	let { children } = $props();
 	const seo = $derived(getSeo(stripLocale(page.url.pathname)));

@@ -428,6 +428,7 @@
 	"m_e6ff0260d059": "Sprawia wrażenie naprawdę szybkiego (skłonny do działania)",
 	"m_e759793341ff": "CLI",
 	"m_e77011ab7bba": "Moja konfiguracja hyper key i wizualizator skrótów klawiszowych.",
+	"m_e782980ff74e": "Aktualizuje konfigurację Vite, dodając obsługę asynchroniczności w Svelte",
 	"m_e7f6c011776e": "6",
 	"m_e8ae37a6d744": "SDK jest dość słabe w porównaniu z Pi. Po prostu robi za dużo",
 	"m_e8e46325e7a7": "Mniejsza wersja u moich rodziców, zbudowana z myślą o sieci 2.5Gb",
