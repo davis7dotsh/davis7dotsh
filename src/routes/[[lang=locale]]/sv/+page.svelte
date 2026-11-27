@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { tr, localizePath } from '$lib/i18n';
-	import RichText from '$lib/components/RichText.svelte';
-	import { getPrompts } from '$lib/prompts';
-	import ColorField from '$lib/components/ColorField.svelte';
-	import { trackCopy } from '$lib/analytics';
-	import { readStoredJson, writeStoredJson } from '$lib/storage';
+	import { tr, localizePath } from '#lib/i18n/index.ts';
+	import RichText from '#lib/components/RichText.svelte';
+	import { getPrompts } from '#lib/prompts.ts';
+	import ColorField from '#lib/components/ColorField.svelte';
+	import { trackCopy } from '#lib/analytics.ts';
+	import { readStoredJson, writeStoredJson } from '#lib/storage.ts';
 
 	let provider = $state<'vercel' | 'cloudflare' | null>(null);
 	const options = [
@@ -28,7 +28,7 @@
 		{
 			key: 'asyncSvelte',
 			label: 'Async Svelte',
-			description: 'Updates the svelte.config.js file to support async Svelte'
+			description: 'Updates the Vite config to support async Svelte'
 		},
 		{
 			key: 'helloWorld',
@@ -226,9 +226,9 @@
 						class="option-checkbox"
 					/>
 					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)"
-							>{tr('Vercel Setup')}</span
-						>
+						<span class="text-sm font-medium" style="color: var(--color-text)">
+							{tr('Vercel Setup')}
+						</span>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
 							{tr('Adds the Vercel adapter and removes the default one')}
 						</p>
@@ -242,9 +242,9 @@
 						class="option-checkbox"
 					/>
 					<div>
-						<span class="text-sm font-medium" style="color: var(--color-text)"
-							>{tr('Cloudflare Setup')}</span
-						>
+						<span class="text-sm font-medium" style="color: var(--color-text)">
+							{tr('Cloudflare Setup')}
+						</span>
 						<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
 							{tr(
 								'Adds the Cloudflare adapter, sets up Wrangler, and gives you the right commands to deploy to Cloudflare'
@@ -256,9 +256,9 @@
 					<label class="option-row">
 						<input type="checkbox" bind:checked={selected[option.key]} class="option-checkbox" />
 						<div>
-							<span class="text-sm font-medium" style="color: var(--color-text)"
-								>{tr(option.label)}</span
-							>
+							<span class="text-sm font-medium" style="color: var(--color-text)">
+								{tr(option.label)}
+							</span>
 							<p class="mt-0.5 text-sm" style="color: var(--color-text-subtle)">
 								{tr(option.description)}
 							</p>

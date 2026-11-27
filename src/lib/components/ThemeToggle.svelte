@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { tr } from '$lib/i18n';
+	import { tr } from '#lib/i18n/index.ts';
 	import { onMount } from 'svelte';
-	import Icon from '$lib/components/Icon.svelte';
+	import Icon from '#lib/components/Icon.svelte';
 
 	type Theme = 'light' | 'dark';
 

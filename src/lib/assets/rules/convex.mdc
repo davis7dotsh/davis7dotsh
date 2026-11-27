@@ -274,9 +274,9 @@ Example of calling a mutation in a Svelte component:
 ```svelte
 <script lang="ts">
 	import { useConvexClient } from 'convex-svelte';
-	import { api } from '$convex/_generated/api';
+	import { api } from '#convex/_generated/api.js';
 	import { ResultAsync } from 'neverthrow';
-	import type { Id } from '$convex/_generated/dataModel';
+	import type { Id } from '#convex/_generated/dataModel.js';
 
 	const convexClient = useConvexClient();
 	let workoutId = $state<Id<'workouts'> | null>(null);

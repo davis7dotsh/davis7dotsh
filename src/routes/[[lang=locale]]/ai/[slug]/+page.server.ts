@@ -1,5 +1,5 @@
-import { locales } from '$lib/i18n/config';
-import { getIndex, getSnapshot } from '$lib/ai/data';
+import { locales } from '#lib/i18n/config.ts';
+import { getIndex, getSnapshot } from '#lib/ai/data.ts';
 import type { PageServerLoad } from './$types';
 
 export const prerender = 'auto';

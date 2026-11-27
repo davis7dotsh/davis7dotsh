@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { tr } from '$lib/i18n';
-	import { vercelImageUrl, vercelSrcset } from '$lib/image';
-	import SocialLinks from '$lib/components/SocialLinks.svelte';
-	import PageHeader from '$lib/components/PageHeader.svelte';
-	import RichText from '$lib/components/RichText.svelte';
+	import { tr } from '#lib/i18n/index.ts';
+	import { vercelImageUrl, vercelSrcset } from '#lib/image.ts';
+	import SocialLinks from '#lib/components/SocialLinks.svelte';
+	import PageHeader from '#lib/components/PageHeader.svelte';
+	import RichText from '#lib/components/RichText.svelte';
 	import { setups } from './inventory';
 
 	const imageQuality = 82;

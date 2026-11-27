@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { tr, localizePath } from '$lib/i18n';
-	import RichText from '$lib/components/RichText.svelte';
-	import Icon from '$lib/components/Icon.svelte';
-	import Keyboard from '$lib/components/Keyboard.svelte';
-	import { trackCopy } from '$lib/analytics';
+	import { tr, localizePath } from '#lib/i18n/index.ts';
+	import RichText from '#lib/components/RichText.svelte';
+	import Icon from '#lib/components/Icon.svelte';
+	import Keyboard from '#lib/components/Keyboard.svelte';
+	import { trackCopy } from '#lib/analytics.ts';
 	import { karabinerConfig, karabinerConfigText, karabinerRuleFilename } from './karabiner';
 
 	const configText = karabinerConfigText;
@@ -67,8 +67,10 @@
 			<a
 				href={localizePath(`/karabiner/${karabinerRuleFilename}`)}
 				download={karabinerRuleFilename}
-				class="brand-link text-sm">{karabinerRuleFilename}</a
+				class="brand-link text-sm"
 			>
+				{karabinerRuleFilename}
+			</a>
 		</div>
 
 		<p style="color: var(--color-text-muted)">{tr('Keybindings:')}</p>

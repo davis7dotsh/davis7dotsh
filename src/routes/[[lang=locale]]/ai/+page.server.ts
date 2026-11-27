@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
-import { withLocale, routeLocale } from '$lib/i18n/config';
-import { getIndex } from '$lib/ai/data';
+import { withLocale, routeLocale } from '#lib/i18n/config.ts';
+import { getIndex } from '#lib/ai/data.ts';
 
 export function load({ params }: import('./$types').PageServerLoadEvent) {
 	const index = getIndex();

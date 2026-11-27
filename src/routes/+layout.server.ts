@@ -1,8 +1,8 @@
-import { routeLocale } from '$lib/i18n/config';
+import { routeLocale } from '#lib/i18n/config.ts';
 import type { LayoutServerLoad } from './$types';
 
 const catalogs = import.meta.glob<Record<string, string>>(
-	['$lib/i18n/locales/*.json', '!**/*.metadata.json'],
+	['#lib/i18n/locales/*.json', '!**/*.metadata.json'],
 	{
 		import: 'default'
 	}

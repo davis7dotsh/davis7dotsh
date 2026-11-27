@@ -28,8 +28,9 @@
 <p>
 	Executor on Nexus's use and transfer of information received from Google APIs will adhere to the <a
 		href="https://developers.google.com/terms/api-services-user-data-policy"
-		>Google API Services User Data Policy</a
-	>, including its Limited Use requirements.
+	>
+		Google API Services User Data Policy
+	</a>, including its Limited Use requirements.
 </p>
 <h2>Sharing and AI clients</h2>
 <p>
@@ -49,15 +50,17 @@
 <h2>Retention, revocation, and deletion</h2>
 <p>
 	Credentials are retained while a connection is in use. The owner can remove a connection in
-	Executor and revoke its Google access at <a href="https://myaccount.google.com/connections"
-		>Google Account connections</a
-	>. Revoking access prevents further authorized API access; it does not automatically erase
+	Executor and revoke its Google access at <a href="https://myaccount.google.com/connections">
+		Google Account connections
+	</a>. Revoking access prevents further authorized API access; it does not automatically erase
 	previously saved outputs, histories, or backups.
 </p>
 <p>
 	To request deletion of retained data or ask about a particular copy, contact <a
-		href="mailto:me@davis7.sh">me@davis7.sh</a
-	>. Deletion includes identifying relevant workflow and client storage; backup copies may remain
+		href="mailto:me@davis7.sh"
+	>
+		me@davis7.sh
+	</a>. Deletion includes identifying relevant workflow and client storage; backup copies may remain
 	until those backups expire or are removed.
 </p>
 <h2>These public pages</h2>

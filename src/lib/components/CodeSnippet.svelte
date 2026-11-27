@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { tr } from '$lib/i18n';
-	import Icon from '$lib/components/Icon.svelte';
-	import { trackCopy } from '$lib/analytics';
+	import { tr } from '#lib/i18n/index.ts';
+	import Icon from '#lib/components/Icon.svelte';
+	import { trackCopy } from '#lib/analytics.ts';
 
 	let { content, label = 'Config snippet' }: { content: string; label?: string } = $props();
 

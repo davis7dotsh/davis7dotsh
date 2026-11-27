@@ -4,8 +4,10 @@ Setup this SvelteKit project to be deployed to Vercel by doing the following:
 1. Install the adapter and get rid of the old one:
 pnpm add -D @sveltejs/adapter-vercel
 pnpm remove @sveltejs/adapter-auto
-2. Update the svelte.config.js file to use the new adapter:
+2. Update vite.config.ts to pass the new adapter to the sveltekit() plugin:
 import adapter from '@sveltejs/adapter-vercel';
+
+sveltekit({ adapter: adapter() })
 `;
 
 const CONVEX_SETUP_PROMPT = `
@@ -24,26 +26,30 @@ pnpm add -D concurrently
 "dev": "concurrently --names \"SVELTE,CONVEX\" -c yellow,magenta \"pnpm run dev:sv\" \"pnpm run dev:cx\"",
 "dev:sv": "vite dev",
 "dev:cx": "convex dev",
-4. Update the +layout.svelte file at the root of the routes directory to include the following in the script tag:
-<script lang="ts">  
-import { PUBLIC_CONVEX_URL } from '$env/static/public';  
-import { setupConvex } from 'convex-svelte';  
-  
-const { children } = $props();  
-setupConvex(PUBLIC_CONVEX_URL);  
+4. Declare the Convex URL in src/env.ts (create the file if it doesn't exist, otherwise just add the variable):
+import { defineEnvVars } from '@sveltejs/kit/env';
+
+export const variables = defineEnvVars({
+	PUBLIC_CONVEX_URL: { public: true, static: true }
+});
+5. Update the +layout.svelte file at the root of the routes directory to include the following in the script tag:
+<script lang="ts">
+import { PUBLIC_CONVEX_URL } from '$app/env/public';
+import { setupConvex } from 'convex-svelte';
+
+const { children } = $props();
+setupConvex(PUBLIC_CONVEX_URL);
 </script>
 Don't get rid of anything else in the +layout.svelte file, just add the above code.
-5. Add in the Convex Cursor rules by running the following command:
+6. Add in the Convex Cursor rules by running the following command:
 curl "https://www.davis7.sh/sv/rules?rule=convex" -o .cursor/rules/convex.mdc
-6. Prompt the user when this agent run is finished to run the following command to setup the Convex project:
+7. Prompt the user when this agent run is finished to run the following command to setup the Convex project:
 pnpm run dev:cx
-7. Update the svelte.config.js to include the following:
-kit: {
-		alias: {
-			$convex: './src/convex'
-		}
+8. Add a #convex subpath import to the "imports" field in package.json:
+"imports": {
+	"#convex/*": "./src/convex/*"
 }
-Leave the rest of the svelte.config.js file alone (including the kit section, just add the alias)
+Leave the existing #lib entries alone, just add the #convex one.
 `;
 
 const CLOUDFLARE_SETUP_PROMPT = `
@@ -51,8 +57,10 @@ Setup this SvelteKit project to be deployed to Cloudflare Workers by doing the f
 1. Install the adapter and get rid of the old one:
 pnpm add -D @sveltejs/adapter-cloudflare
 pnpm remove @sveltejs/adapter-auto
-2. Update the svelte.config.js file to use the new adapter:
+2. Update vite.config.ts to pass the new adapter to the sveltekit() plugin:
 import adapter from '@sveltejs/adapter-cloudflare';
+
+sveltekit({ adapter: adapter() })
 3. Update the scripts in package.json to be the following:
 	"scripts": {
 		"dev": "vite dev",
@@ -70,33 +78,16 @@ import adapter from '@sveltejs/adapter-cloudflare';
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "",
-	"main": ".svelte-kit/cloudflare/_worker.js",
 	"compatibility_flags": ["nodejs_compat"],
 	"compatibility_date": "2025-10-11",
-	"assets": {
-		"binding": "ASSETS",
-		"directory": ".svelte-kit/cloudflare"
-	},
 	"observability": {
 		"enabled": true
 	}
 }
-Fill the name with the name in the package.json file.
+Fill the name with the name in the package.json file. Don't add main or assets: the adapter sets the Worker entry and static assets itself.
 5. Generate the types with: pnpm run cf-typegen
-6. Update app.d.ts to be the following:
-// See https://svelte.dev/docs/kit/types#app.d.ts
-// for information about these interfaces
-declare global {
-	namespace App {
-		interface Platform {
-			env: Env;
-			cf: CfProperties;
-			ctx: ExecutionContext;
-		}
-	}
-}
-
-export {};
+6. Access Cloudflare bindings by importing env from cloudflare:workers. The generated types cover it, so don't add a Platform interface to app.d.ts:
+import { env } from 'cloudflare:workers';
 `;
 
 const CURSOR_RULES_PROMPT = `
@@ -117,24 +108,17 @@ pnpm add zod neverthrow runed
 `;
 
 const ASYNC_SVELTE_PROMPT = `
-Update the svelte.config.js file to support async svelte:
+Update vite.config.ts to support async svelte by adding compilerOptions to the sveltekit() plugin:
 
-/** @type {import('@sveltejs/kit').Config} */
-const config = {
-	preprocess: vitePreprocess(),
-
-	kit: {
-		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter()
-	},
+sveltekit({
 	compilerOptions: {
 		experimental: {
 			async: true
 		}
 	}
-};
+})
 
-The only thing you should be touching is the compilerOptions: { experimental: { async: true } } section. Leave the rest of the file alone.
+The only thing you should be touching is the compilerOptions: { experimental: { async: true } } section. Leave the rest of the sveltekit() options alone.
 `;
 
 const VSCODE_THEME_PROMPT = (opts: { topBarColor: string; topBarTextColor: string }) => `
@@ -151,9 +135,9 @@ Setup the root layout and page to be nicer:
 ---
 
 <script lang="ts">
-	// +layout.ts
+	// +layout.svelte
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import favicon from '#lib/assets/favicon.svg';
 
 	let { children } = $props();
 </script>
@@ -173,7 +157,7 @@ Setup the root layout and page to be nicer:
 
 <script lang="ts">
 	// +page.svelte
-	import logo from '$lib/assets/favicon.svg';
+	import logo from '#lib/assets/favicon.svg';
 </script>
 
 <main class="flex grow flex-col items-center justify-center gap-4">

@@ -1,5 +1,5 @@
-import type { Handle } from '@sveltejs/kit';
-import { routeLocale, withLocale, preferredLocale } from '$lib/i18n/config';
+import type { Handle } from '@sveltejs/kit/hooks';
+import { routeLocale, withLocale, preferredLocale } from '#lib/i18n/config.ts';
 
 export const handle: Handle = ({ event, resolve }) => {
 	if (

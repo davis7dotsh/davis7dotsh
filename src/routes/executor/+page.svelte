@@ -21,11 +21,22 @@
 	<li>
 		<strong>Gmail:</strong> read and manage messages, compose and send email, and manage basic email settings.
 	</li>
-	<li><strong>Google Drive:</strong> find, read, create, edit, and delete files.</li>
-	<li><strong>Google Calendar:</strong> read and manage calendars and events.</li>
+
 	<li>
-		<strong>YouTube:</strong> read channel information and Analytics reports, including revenue reports.
-		The YouTube integration does not upload, edit, or delete videos.
+		<strong>Google Drive:</strong>
+		find, read, create, edit, and delete files.
+	</li>
+
+	<li>
+		<strong>Google Calendar:</strong>
+		read and manage calendars and events.
+	</li>
+
+	<li>
+		<strong>YouTube:</strong>
+
+		read channel information and Analytics reports, including revenue reports. The YouTube
+		integration does not upload, edit, or delete videos.
 	</li>
 </ul>
 <p>
@@ -40,7 +51,9 @@
 	practices.
 </p>
 <p>
-	Read the <a href={resolve('/executor/privacy')}>privacy policy</a> and
-	<a href={resolve('/executor/terms')}>terms of use</a>. For questions or access requests, contact
+	Read the
+	<a href={resolve('executor/privacy')}>privacy policy</a>
+	and
+	<a href={resolve('executor/terms')}>terms of use</a>. For questions or access requests, contact
 	<a href="mailto:me@davis7.sh">me@davis7.sh</a>.
 </p>

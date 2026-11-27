@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { tr, localizePath } from '$lib/i18n';
-	import { parseRich, type RichElement, type RichNode } from '$lib/i18n/rich';
+	import { tr, localizePath } from '#lib/i18n/index.ts';
+	import { parseRich, type RichElement, type RichNode } from '#lib/i18n/rich.ts';
 	let { message, elements }: { message: string; elements: RichElement[] } = $props();
 	const nodes = $derived(
 		parseRich(tr(message), elements.length) ?? parseRich(message, elements.length) ?? [message]
@@ -18,8 +18,10 @@
 				{...element.attributes}
 				href={element.attributes.href && element.localize !== false
 					? localizePath(element.attributes.href)
-					: element.attributes.href}>{@render renderNodes(node.children)}</svelte:element
+					: element.attributes.href}
 			>
+				{@render renderNodes(node.children)}
+			</svelte:element>
 		{/if}
 	{/each}
 {/snippet}

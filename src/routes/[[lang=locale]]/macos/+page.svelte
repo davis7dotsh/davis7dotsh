@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { tr, localizePath } from '$lib/i18n';
-	import RichText from '$lib/components/RichText.svelte';
-	import SocialLinks from '$lib/components/SocialLinks.svelte';
-	import CodeSnippet from '$lib/components/CodeSnippet.svelte';
+	import { tr, localizePath } from '#lib/i18n/index.ts';
+	import RichText from '#lib/components/RichText.svelte';
+	import SocialLinks from '#lib/components/SocialLinks.svelte';
+	import CodeSnippet from '#lib/components/CodeSnippet.svelte';
 
 	const ghosttyContent = `---
 description: Help make changes to my terminal emulator
@@ -50,20 +50,20 @@ My tmux config is located at: ~/.tmux.conf Your job is to make the changes I des
 
 		<ul>
 			<li>
-				<a href="https://karabiner-elements.pqrs.org/" target="_blank" rel="noopener noreferrer"
-					>{tr('Karabiner Elements')}</a
-				>
+				<a href="https://karabiner-elements.pqrs.org/" target="_blank" rel="noopener noreferrer">
+					{tr('Karabiner Elements')}
+				</a>
 				{tr('(breakdown')} <a href={localizePath('/karabiner')}>{tr('here')}</a>)
 			</li>
 			<li>
-				<a href="https://www.raycast.com/" target="_blank" rel="noopener noreferrer"
-					>{tr('Raycast')}</a
-				>
+				<a href="https://www.raycast.com/" target="_blank" rel="noopener noreferrer">
+					{tr('Raycast')}
+				</a>
 			</li>
 			<li>
-				<a href="https://rectangleapp.com/" target="_blank" rel="noopener noreferrer"
-					>{tr('Rectangle')}</a
-				>
+				<a href="https://rectangleapp.com/" target="_blank" rel="noopener noreferrer">
+					{tr('Rectangle')}
+				</a>
 			</li>
 		</ul>
 

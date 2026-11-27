@@ -1,10 +1,24 @@
 <script lang="ts">
-	import { injectAnalytics } from '@vercel/analytics/sveltekit';
-	import { trackOutboundLink } from '$lib/analytics';
+	import { inject, pageview } from '@vercel/analytics';
+	import { browser } from '$app/env';
+	import { page } from '$app/state';
+	import { trackOutboundLink } from '#lib/analytics.ts';
 
-	// Client-only: injectAnalytics checks `browser` internally before injecting
-	// the script and subscribing to pageview changes.
-	injectAnalytics();
+	// Mirrors `@vercel/analytics/sveltekit`, which still imports the removed `$app/stores`.
+	if (browser) {
+		inject(
+			{
+				basePath: import.meta.env.VITE_VERCEL_OBSERVABILITY_BASEPATH,
+				disableAutoTrack: true,
+				framework: 'sveltekit'
+			},
+			import.meta.env.VITE_VERCEL_OBSERVABILITY_CLIENT_CONFIG
+		);
+	}
+
+	$effect(() => {
+		if (page.route.id) pageview({ route: page.route.id, path: page.url.pathname });
+	});
 
 	function onWindowClick(event: MouseEvent) {
 		const target = event.target as Element | null;

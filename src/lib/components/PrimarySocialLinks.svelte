@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tr } from '$lib/i18n';
+	import { tr } from '#lib/i18n/index.ts';
 	import SocialIcon from './SocialIcon.svelte';
 
 	const links = [

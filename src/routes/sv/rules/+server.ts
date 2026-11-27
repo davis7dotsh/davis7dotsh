@@ -1,10 +1,10 @@
 import { error } from '@sveltejs/kit';
 
-import globalRule from '$lib/assets/rules/global.mdc?raw';
-import neverthrowRule from '$lib/assets/rules/neverthrow.mdc?raw';
-import svelteRule from '$lib/assets/rules/svelte.mdc?raw';
-import tailwindcssRule from '$lib/assets/rules/tailwindcss.mdc?raw';
-import convexRule from '$lib/assets/rules/convex.mdc?raw';
+import globalRule from '#lib/assets/rules/global.mdc?raw';
+import neverthrowRule from '#lib/assets/rules/neverthrow.mdc?raw';
+import svelteRule from '#lib/assets/rules/svelte.mdc?raw';
+import tailwindcssRule from '#lib/assets/rules/tailwindcss.mdc?raw';
+import convexRule from '#lib/assets/rules/convex.mdc?raw';
 
 const RULES = {
 	global: globalRule,
