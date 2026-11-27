@@ -30,7 +30,7 @@ pnpm add -D concurrently
 import { defineEnvVars } from '@sveltejs/kit/env';
 
 export const variables = defineEnvVars({
-	PUBLIC_CONVEX_URL: { public: true }
+	PUBLIC_CONVEX_URL: { public: true, static: true }
 });
 5. Update the +layout.svelte file at the root of the routes directory to include the following in the script tag:
 <script lang="ts">
@@ -78,18 +78,13 @@ sveltekit({ adapter: adapter() })
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "",
-	"main": ".svelte-kit/cloudflare/_worker.js",
 	"compatibility_flags": ["nodejs_compat"],
 	"compatibility_date": "2025-10-11",
-	"assets": {
-		"binding": "ASSETS",
-		"directory": ".svelte-kit/cloudflare"
-	},
 	"observability": {
 		"enabled": true
 	}
 }
-Fill the name with the name in the package.json file.
+Fill the name with the name in the package.json file. Don't add main or assets: the adapter sets the Worker entry and static assets itself.
 5. Generate the types with: pnpm run cf-typegen
 6. Access Cloudflare bindings by importing env from cloudflare:workers. The generated types cover it, so don't add a Platform interface to app.d.ts:
 import { env } from 'cloudflare:workers';
